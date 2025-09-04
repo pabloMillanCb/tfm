@@ -1,4 +1,94 @@
 \chapter{Estado del arte}
 
-El software libre y sus licencias \cite{gplv3} ha permitido llevar a cabo una expansión del
-aprendizaje de la informática sin precedentes.
+En este capítulo se realizará una revisión de documentación y literatura sobre los siguientes enumerados a continuación, que se consideraron relevantes para una comprensión sólida del proyecto a realizar.
+
+\begin{itemize}
+    \item \textbf{Motores de videojuegos}: Este trabajo ya tiene como premisa el uso de \textit{Godot} como motor. Sin embargo es relevante estudiar y comparar los principales motores de mercado, sus especificaciones técnicas, filosofía, precio y modelo de negocio. Así se podrá justificar la que es una de las decisiones más importantes a la hora de emprender un desarrollo.
+    
+    \item \textbf{Género Metroidvania}: Antes de planear un videojuego es importante realizar un estudio de mercado previo para hacerse una idea de cual es el alcance comercial esperado de uno. Un tipo de juego poco demandado o saturado en el mercado aumenta mucho el riesgo de resultar en un proyecto no rentable. Además es necesario estudiar otras propuestas similares e identificar cuales son sus características, tropos y qué suele buscar el público en ellos. Se añadirá en esta sección una brevísima revisión a la historia y características del género para el lector que esté interesado.
+    
+    \item \textbf{Metodologías de desarrollo aplicadas a videojuegos}: Se estudiarán las distintas propuestas y enfoques de metodologías existentes, poniendo especial interés en casos los reales y testimonios de veteranos de la industria. Se identificarán las carencias y problemas de las propuestas existentes. La síntesis de este apartado será crucial para el capítulo de planificación.
+    
+    \item \textbf{Arquitecturas de proyecto}: Revisión de las principales arquitecturas de proyectos de videojuegos en general y las prácticas comunes de Godot en específico.
+    
+    \item \textbf{Opciones de accesibilidad}: Estas opciones se proponen adaptar las experiencias jugables desde distintos enfoques para que personas con distintas preferencias, dificultades psicomotrices, nivel de habilidad o edad puedan disfrutar de los videojuegos. Lamentablemente, a día de hoy no todos los juegos cuentan con opciones de este tipo pese a su importancia, ya que permiten ampliar el público potencial. Se estudiarán cuales son las principales dificultades con la que se puede encontrar una persona, qué soluciones existen y cuales se pueden aplicar al proyecto.
+    
+    \item \textbf{Videojuegos como software libre}: Se estudiará el uso de software libre como forma de distribución y modelo de negocio para videojuegos.
+    
+    \item \textbf{Herramientas para testing}: Se investigarán las distintas herramientas para la realización de test y, en general, garantizar la calidad software en videojuegos y en Godot.
+    
+    \item \textbf{Consideraciones técnicas para el pixel art}: (valorar si esto es necesario)
+
+\end{itemize} 
+
+Tras esta investigación se pretende tener una visión de conjunto sobre estos campos. Es crucial adquirir esta visión antes de planificar y comenzar el proyecto, pues permitirán tomar decisiones informadas en temas muy determinantes a largo plazo y con potencial impacto en la calidad y rédito económico del producto resultante.
+
+
+[REVISAR ESTA PARTE]
+
+
+Para la búsqueda de información se usó principalmente búsquedas en internet y en repositorios como Google Scholar, Scopus y la biblioteca de la Universidad de Granada.
+
+Se consultarán sobre las distintas herramientas software sus páginas oficiales de documentación, términos de uso, contratos y licencias. También se estudiarán las publicaciones científicas disponibles sobre los temas a abordar. Debido a que al panorama científico aplicado al desarrollo de videojuegos le queda mucho por desarrollar, se prestará atención a los distintos testimonios y ponencias de los profesionales de la industria que hayan explicado cómo funcionan en su equipo, cómo enfocan un desarrollo y qué prácticas encuentran más efectivas. Las ponencias en eventos profesionales como la \textit{GDC (Game Developer Conference)} o \textit{Guadalindie} pueden ser muy útiles.
+
+\section{Motores de videojuegos}
+
+Existe una gran variedad de motores de videojuegos. Algunos de ellos tienden a ser más generalistas, y otros se especializan en nichos como \textit{Ren'Py}\cite{renpy}, el cual está enfocado al desarrollo de novelas visuales. Algunos de los motores más relevantes en el mercado actual como \textit{RE Engine} o \textit{Frostbite} son software privado usado por sus empresas propietarias para desarrollos internos, por lo que el público general no tiene acceso a ellos. Tomando de referencia \textit{The Big Game Engine Report of 2025}\cite{game-engine-report} y cribando las opciones de nichos y privadas, los motores accesibles más relevantes en lanzamientos de 2024 fueron los siguientes:
+
+\begin{itemize}
+    \item Unreal Engine
+    \item Unity
+    \item GameMaker
+    \item Godot Engine
+\end{itemize}
+
+\subsection{GameMaker}
+
+GameMaker\cite{gamemaker} es un motor enfocado al desarrollo de juegos 2D. No tiene capacidad de trabajar con gráficos 3D. Desde su web oficial se anuncian como un motor indicado para primerizos en el desarrollo de videojuegos y programación en general, pero apuntando también cómo muchos equipos profesionales que trabajan en proyectos grandes siguen apostando por el. Las claves de su accesibilidad se debe a varios factores; Su lenguaje de programación, \textit{GML}, cuenta con un editor gráfico sencillo que funciona con nodos y etiquetas. La interfaz general del motor cuenta con muchos elementos \textit{drag and drop}. Cuenta con un editor de \textit{habitaciones} con el que se pueden dibujar fácilmente instancias del juego.
+
+Además, la arquitectura de los proyectos y los cauces de trabajo que promueve el motor son ideales para acelerar el proceso de creación de la mayoría de los juegos 2D. Es interesante apuntar que al tratarse de un motor muy popular, en internet se pueden encontrar fácilmente muchos recursos, tutoriales y foros para poder solventar cualquier problema que se tenga durante el desarrollo.
+
+El motor tiene soporte multiplataforma y permite exportar proyectos a todas las plataformas principales de videojuegos (Windows, Linux, Mac, Playstation, XBOX, Nintendo Switch y smartphones).
+
+En cuanto a su modelo de negocio, GameMaker presenta tres opciones:
+
+\begin{itemize}
+    \item \textbf{Uso gratuito}: Permite usar el motor en todas sus capacidades pero no permite el uso comercial de los videojuegos creados. Permite exportar los mismos a escritorio, web o móvil.
+    \item \textbf{Profesional}: Se accede a través de un pago único. Es similar al uso gratuito con la excepción de se permite el uso comercial de los juegos.
+    \item \textbf{Enterprise}: Se accede a través de una suscripción mensual o anual. Permite exportar al resto de plataformas y da acceso al código fuente de GameMaker. La licencia con la que se permite el acceso al código permite únicamente ver, usar, copiar, modificar, extender o alterarlo con el único propósito de depurar u optimizar el producto creado a través del software. No permite aplicar una sublicencia o cualquier uso comercial sobre el código.
+\end{itemize}
+
+En resumen, GameMaker es un motor recomendado para hacer videojuegos 2D. Tiene formas de trabajar propias pero son presuntamente eficaces para la construcción de ese tipo de juegos. Cuenta con opciones gratis y de pago en función del alcance comercial deseado. No es software libre.
+
+\subsection{Unity}
+
+Unity\cite{Unity} ha sido en los últimos años el motor más popular entre desarrolladores independientes además de ocupar un cuarto\cite{game-engine-report} de la cuota de mercado de \textit{Steam}. Permite la construcción de videojuegos tanto 2D como 3D, aunque destaca más por estos últimos. Puede exportar para web, consolas, móviles, gafas de \textit{realidad virtual} entre otros. Emplea C\# como lenguaje de programación.
+
+Dependiendo de el plan elegido, el motor cuenta también con distintos servicios satélite y herramientas enfocadas a facilitar el desarrollo, como un motor especializado de físicas, herramientas de red para crear juegos \textit{online}, un \textit{asset manager} con una tienda de recursos incluida, herramientas de diagnóstico de errores, o líneas para soporte y aprendizaje. Estas características están repartidas en 4 niveles de suscripción, siendo la primera de ellas gratis y el resto por cobro mensual. Independientemente de sus características, todas ellas tienen una restricción\cite{unity-license} en función de los ingresos de la entidad que los use:
+
+\begin{itemize}
+    \item \textbf{Personal}: Para entusiastas y pequeños equipos. Permite el uso comercial mientras las ganancias totales de todos los productos bajo un titular no sobrepasen los \$200,000 USD en los últimos 12 meses.
+    \item \textbf{Pro}: Para equipos o desarrolladores experimentados. Elegible unicamente si no se sobrepasan los \$24,999,999 USD en ganancias.
+    \item \textbf{Enterprise}: Para grandes equipos y problemas complejos. Ofrece un kit completo de todas las funcionalidades y servicios de Unity enfocado a videojuegos.
+    \item \textbf{Industry}: Para aplicaciones de tiempo real en 3D como formación de empleados, configuración de producto o sistemas embebidos.
+\end{itemize}
+
+Unity cuenta con recursos propios para aprender a manejar el motor. Además de eso y debido a su popularidad y activa comunidad hay muchos recursos de terceros.
+
+Es importante mencionar una polémica\cite{unicty-scandal} ocurrida alrededor de Unity en años recientes. Se anunció un cambio en los términos y condiciones a través de los cuales todos los juegos que superaran los \$200,000 USD en facturación deberán pagar un impuesto adicional \textbf{por cada instalación} que los consumidores realizaran del juego, las cuales podrían ser de hasta 20 céntimos. Este cambio sentó mal en la comunidad de desarrolladores por considerarse abusiva. Tras algunas semanas de protestas, Unity decidió echarse atrás con este cambio. Pero esto destapa una debilidad de Unity (y otros motores privativos): el negocio que se pueda usando este motor está a merced de la empresa propietaria y sus políticas. Nada asegura que en un futuro no pueda volver a realizarse otro cambio similar en un futuro.
+
+En resumen, Unity es un motor sólido y asentado en la industria, con muchos recursos online que puede cumplir su función si sus cuotas son asumibles, pero que cuenta con una dirección que ha dado pasos en falso y generado desconfianza en el futuro del proyecto. Huelga decir que no es software libre.
+
+\subsection{Unreal Engine}
+
+Unreal Engine en sus diferentes versiones (siendo Unreal Engine 5 la última) es el motor gráfico público más puntero tecnológicamente hablando. Está enfocado en la creación de juegos 3D, aunque también es posible hacerlos 2D. Emplea principalmente C++ como lenguaje de programación (considerado el estandar de la industria) aunque tiene opciones para poder usar otros como Python. El motor además es usado en múltiples sectores además de el del videojuego, como el cine o en experiencias de realidad virtual.
+
+El motor cuenta con decenas de herramientas muy avanzadas tecnológicamentes para, entre otros, partículas físicas de ropa, físicas de pelo, sistema integrado de física de destrucción, infraestructura multijugador, diseñador de UI, nubes de puntos, herramientas de terreno, \textit{world partition} para facilitar crear mundos abiertos, generación de contenido procedural, físicas de agua, etc. Permite exportar a todas las plataformas actuales, con soporte de realidad aumentada.
+
+Es un software muy potente enfocado al uso profesional, y por ello tiene una curva de aprendizaje más pronunciada, requiere conocimiento más técnico y de bajo nivel y se pueden encontrar bastantes menos recursos en internet comparado con otras opciones.
+
+El uso de el motor íntegro es gratuito mientras no se superen unos ingresos de un millón de dólares. A partir de ese punto, es posible continuar de dos formas. O bien pagando el 5\% de los ingresos que generen los productos, o pagando una licencia por cada puesto de trabajo que dispongas. Para todas las licencias, incluida la gratuita, se tiene acceso al código fuente de Unreal Engine. Sin embargo no es software libre. Es necesario tener una cuenta de Unreal Engine con algún plan para acceder a el y su uso está sujeto a la licencia de \textit{Epic}, la empresa matriz.
+
+En resumen, Unreal Engine es el motor público más puntero y potente en lo que a gráficos 3D se refieren. Tiene muchas herramientas para desarrollar productos profesionales sólidos siempre y cuando se cuente con el conocimiento técnico suficiente. Sus planes son relativamente generosos, permitiendo el uso comercial de pequeños desarrolladores sin muchas ganancias sin ahogarlos con licencias caras.
+
+\subsection{Godot Engine}
