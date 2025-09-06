@@ -92,3 +92,48 @@ El uso de el motor íntegro es gratuito mientras no se superen unos ingresos de 
 En resumen, Unreal Engine es el motor público más puntero y potente en lo que a gráficos 3D se refieren. Tiene muchas herramientas para desarrollar productos profesionales sólidos siempre y cuando se cuente con el conocimiento técnico suficiente. Sus planes son relativamente generosos, permitiendo el uso comercial de pequeños desarrolladores sin muchas ganancias sin ahogarlos con licencias caras.
 
 \subsection{Godot Engine}
+%%
+
+proyectos comerciales existentes
+
+%%
+
+
+La característica principal de Godot Engine\cite{godot} es que es \textit{FOSS (Free and Open Source Software)}. Su código está publicado en \textit{\href{https://github.com/godotengine/godot}{GitHub}} y cualquiera puede contribuir para mejorarlo. Está publicadobajo la licencia MIT, que permite modificación, distribución y uso comercial del software mientras se publique bajo la misma licencia.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{img/godot-by-year.png}
+    \caption[Juegos publicados en Godot por año]{Juegos desarrollados con Godot publicados en Steam por año según SteamDB\cite{steamdb}}
+    \label{fig:godotbyyear}
+\end{figure}
+
+El motor está expresamente diseñado para creación de juegos 2D, 3D y de \textit{Extended Reality} (término paraguas que auna la realidad virtual y realidad aumentada entre otras). Puede exportar para web, Windows, MacOS, Linux y plataformas móviles. \textbf{No tiene soporte oficial para exportar a videoconsolas}\cite{godot-console-export}. Esto se debe a que las consolas son plataformas cerradas que requieren de leyes y acuerdos de confidencialidad estrictos incompatibles con su naturaleza de software libre. Aun así es posible exportar a consolas haciendo uso de herramientas de terceros. Como lenguage emplea GDScript\cite{gdscript}, un lenguage interpretado similar a Python desarrollado específicamente para las necesidades de Godot. También es posible emplear otros lenguajes como C\# y C++, este último siendo interesante para proyectos con necesidades técnicas más altas ya que cuenta con una mayor velocidad de ejecución.
+
+Godot trabaja sobre un concepto fundamental: sus \textbf{Nodos}. Un nodo es un elemento que encapsula un nombre y propiedades mutables. Este recibe en cada instante señales que actualizan su estado. Son extensibles (en el mismo sentido por el que se entiende extender en el ámbito de la programación orientada a objetos) y a un nodo dado se le pueden añadir otros \textbf{nodos hijos}. De esta forma, una ejecución de un programa en Godot consta de una colección de nodos compuestos en forma de grafo árbol.
+
+En la figura \ref{fig:godotsceneexpample} se puede observar como luce un ejemplo de un nodo \textit{Character}, que representa a un personaje, probablemente el del jugador. Este nodo está compuesto de otros nodos hijos que lo dotan de propiedades, como una imagen, una forma de colisión para sus físicas y una cámara que lo sigue y lo muestra por pantalla. En la figura \ref{fig:godottreeexpample} se puede ver un ejemplo de un proyecto sencillo. Todos los nodos cuelgan de la raíz del proyecto, \textit{Scene}. Contamos con un nodo \textit{Level}, conteniendo un nivel del juego, \textit{CanvasLayer} encargado de mostrar el decorado de fondo de dicho nivel, y un segundo \textit{CanvasLayer} en el que se muestra la interfaz de usuario.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{img/godot-node.png}
+    \caption[Ejemplo de escena de Godot]{Ejemplo de una escena 'Personaje' compuesta de nodos extraida de Godot Docs\cite{godot-docs}}
+    \label{fig:godotsceneexpample}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{img/godot-node-structure.png}
+    \caption[Ejemplo de grafo de nodos en Godot]{Ejemplo de una organización en árbol de los nodos que componen un juego en Godot, extraido de Godot Docs\cite{godot-docs}}
+    \label{fig:godottreeexpample}
+\end{figure}
+
+En 2014 Godot fue publicado y su código fue liberado. De esto fue responsable Okam Studio, estudio de videojuegos argentino que dejó de estar en activo en 2019. Durante más de 10 años, Godot fue desarrollado como motor privado para los proyectos del estudio, que finalmente decidió liberarlo. Lo que empezó siendo el proyecto de una empresa con dos trabajadores, en diciembre acabó acumulando aportaciones de más de 2800 usuarios en su repositorio. En la base de datos SteamBD\cite{steamdb} se puede consultar como ha ido creciendo el número de juegos publicados con Godot cada año. 2024 supuso una exlposión de casi el doble de publicaciones, llegando a 792.
+
+En 2022 aparece de la mano de los dos fundadores \textit{Godot Foundation}\cite{godot-foundation}, organización sin ánimo de lucro que se dedica a gestionar en lo técnico y en lo económico el desarrollo del motor. Se financian enteramente a través de donaciones de usuarios y empresas patrocinadoras, entre las que se encuentran desarrolladoras de videojuegos que usan el motor, por lo que está en el mejor de sus intereses el desarrollo del proyecto. El código permanece abierto y recibiendo aportaciones de usuarios de todo el mundo, siendo la diferencia que, gracias a las donaciones, pueden permitirse contratar a ingenieros a tiempo completo para que gestionen y desarrollen el proyecto.
+
+Es crucial remarcar la importancia de tener un proyecto de software libre tan ambicioso como el de Godot. Si bien es cierto que sus capacidades técnicas en cuanto a 3D no son ni de lejos tan punteras como las de Unity y mucho menos Unreal Engine, es muy probable que con el tiempo la brecha vaya menguando. En menos de un lustro, el proyecto ha crecido enormemente en todos los aspectos: usuarios, características y financiación. Esta tendencia parece mantenerse y, sumado a la robustez que confiere el software libre con una gran comunidad detrás, parece inteligente apostar por Godot en el largo plazo. Además, la licencia MIT da a los estudios grandes ventajas de forma inmediata. Recortan gastos en licencias y no están atados a ningún contrato que pueda cambiar en el futuro y comprometer su actividad comercial, como recientemente ocurrió con Unity.
+
+Pese a lo relativamente novel que es el motor, ya cuenta con grandes proyectos 2D y 3D lanzados tanto para ordenador, móvil y videoconsolas. Aquí algunos: \href{https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch/Sonic-Colours-Ultimate-2014880.html?srsltid=AfmBOopP2Gm2S3Zo5fcoc3Ifz5E1b136K8O_6Y2vLMouJm2Zj5LI0aut}{Sonic Colours Ultimate}, \href{https://store.steampowered.com/app/2868840/Slay_the_Spire_2/}{Slay the Spire 2}, \href{https://store.steampowered.com/app/2835570/Buckshot_Roulette/}{Buckshot Roullete}, \href{https://store.steampowered.com/app/1321440/Cassette_Beasts/}{Cassete Beast}, \href{https://store.steampowered.com/app/1677770/The_Case_of_the_Golden_Idol/}{The Case of the Golden Idol}, etc.
+
+En resumen, Godot es ideal para construir juegos 2D y también 3D aunque con limitaciones. Su licencia y modelo de negocio son los más interesantes desde el punto de vista del cliente. Su sistema de nodos es muy potente de cara a construir la arquitectura de un proyecto. Y por último, su tendencia al alza promete mayor crecimiento en el medio y largo plazo.
