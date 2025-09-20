@@ -2,12 +2,13 @@
 
 En este capítulo se realizará una revisión de documentación y literatura sobre los siguientes enumerados a continuación, que se consideraron relevantes para una comprensión sólida del proyecto a realizar.
 
+[CAMBIAR ORDEN DE ITEMS]
 \begin{itemize}
     \item \textbf{Motores de videojuegos}: Este trabajo ya tiene como premisa el uso de \textit{Godot} como motor. Sin embargo es relevante estudiar y comparar los principales motores de mercado, sus especificaciones técnicas, filosofía, precio y modelo de negocio. Así se podrá justificar la que es una de las decisiones más importantes a la hora de emprender un desarrollo.
     
     \item \textbf{Género Metroidvania}: Antes de planear un videojuego es importante realizar un estudio de mercado previo para hacerse una idea de cual es el alcance comercial esperado de uno. Un tipo de juego poco demandado o saturado en el mercado aumenta mucho el riesgo de resultar en un proyecto no rentable. Además es necesario estudiar otras propuestas similares e identificar cuales son sus características, tropos y qué suele buscar el público en ellos. Se añadirá en esta sección una brevísima revisión a la historia y características del género para el lector que esté interesado.
     
-    \item \textbf{Metodologías de desarrollo aplicadas a videojuegos}: Se estudiarán las distintas propuestas y enfoques de metodologías existentes, poniendo especial interés en casos los reales y testimonios de veteranos de la industria. Se identificarán las carencias y problemas de las propuestas existentes. La síntesis de este apartado será crucial para el capítulo de planificación.
+    \item \textbf{Características y retos del desarrollo de videojuegos}: [REVISAR ESTE FRAGMENTO] Se estudiarán las distintas propuestas y enfoques de metodologías existentes, poniendo especial interés en casos los reales y testimonios de veteranos de la industria. Se identificarán las carencias y problemas de las propuestas existentes, así como los problemas más comunes. La síntesis de este apartado será crucial para el capítulo de planificación.
     
     \item \textbf{Arquitecturas de proyecto}: Revisión de las principales arquitecturas de proyectos de videojuegos en general y las prácticas comunes de Godot en específico.
     
@@ -137,3 +138,71 @@ Es crucial remarcar la importancia de tener un proyecto de software libre tan am
 Pese a lo relativamente novel que es el motor, ya cuenta con grandes proyectos 2D y 3D lanzados tanto para ordenador, móvil y videoconsolas. Aquí algunos: \href{https://www.nintendo.com/es-es/Juegos/Juegos-de-Nintendo-Switch/Sonic-Colours-Ultimate-2014880.html?srsltid=AfmBOopP2Gm2S3Zo5fcoc3Ifz5E1b136K8O_6Y2vLMouJm2Zj5LI0aut}{Sonic Colours Ultimate}, \href{https://store.steampowered.com/app/2868840/Slay_the_Spire_2/}{Slay the Spire 2}, \href{https://store.steampowered.com/app/2835570/Buckshot_Roulette/}{Buckshot Roullete}, \href{https://store.steampowered.com/app/1321440/Cassette_Beasts/}{Cassete Beast}, \href{https://store.steampowered.com/app/1677770/The_Case_of_the_Golden_Idol/}{The Case of the Golden Idol}, etc.
 
 En resumen, Godot es ideal para construir juegos 2D y también 3D aunque con limitaciones. Su licencia y modelo de negocio son los más interesantes desde el punto de vista del cliente. Su sistema de nodos es muy potente de cara a construir la arquitectura de un proyecto. Y por último, su tendencia al alza promete mayor crecimiento en el medio y largo plazo.
+
+\section{Características y retos del desarrollo de videojuegos}
+
+\subsection{Diferencias entre el desarrollo de videojuegos y de software generalista}
+
+Para comprender por qué el desarrollo de videojuegos debe ser objeto de estudio en si mismo, hay que analizar sus diferencias respecto a otros tipos de software. La publicación de Murphy-Hill et al.\cite{murphy-hill} proporciona una buena comprensión de partida para abordar el tema. Realizaron un estudio en el que se entrevistó y encuestó a desarrolladores de videojuegos, de software generalista, y otros con una experiencia en ambos sectores con el fin de analizar en qué se diferenciaban. Tras un análisis estadístico de las respuestas, el estudio concluía con cierto grado de certeza que:
+
+\begin{enumerate}
+    \item En videojuegos los requisitos son menos claros que en otro software.
+    \item La creatividad se valora más en los equipos que desarrollan videojuegos.
+    \item En videojuegos se valora más la habilidad de comunicarse con empleados no ingenieros.
+    \item Los equipos que desarrollan videojuegos necesitan ser más diversos.
+    \item En videojuegos, los desarrolladores tienden a usar lo que ellos perciben como metodologías Ágiles más que en otro software.
+    \item El trabajo de desarrollador de videojuego recibe mayor admiración. 
+\end{enumerate}
+
+Se puede deducir que los puntos 1, 2, 3 y 4 están estrechamente relacionados con el hecho de que los videojuegos además de software son productos creativos y artísticos. Este aspecto puede explicarse desde dos prismas: el del \textit{requisito de diversión} y el de las disciplinas involucradas, que se explican a continuación.
+
+El software generalista suele estar diseñado como una herramienta que cumple un propósito, por tanto es relativamente fácil requisitar qué puntos o necesidades debe cubrir. En contraste, el fin último de un VJ es entretener de alguna forma al usuario. En Schmalz et al.\cite{mark-schmalz} señalan la búsqueda del \textit{fun factor} (es decir, cuan divertido es) como uno de los principales riesgos presentes en el desarrollo de VJ. Según el estudio, este riesgo se manifiesta no solo en aspectos de usabilidad presentes en otro tipo de software, sino como aspecto único del medio. Explorar qué cosas son divertidas y cuales no para el usuario es una tarea que se corresponde más con un proceso creativo que con la ingeniería. En Murphy-Hill también señalan que la consecuencia de un requisito no cumplido en un videojuego es menos grave, ya que un jugador puede pasar por alto hasta cierto punto una experiencia que considere incompleta.
+
+Para encontrar el \textit{fun factor} de un proyecto, los desarrolladores suelen apoyarse en la creación de prototipos. Este puede se desarrolla en la fase de preproducción para validar las ideas centrales del proyecto (a menudo denominado prueba de concecpto), pero también se realizan para aplicar elementos o funcionalidades concretas de un producto ya en desarrollo. Una buena idea no siempre se traduce en una experiencia divertida, y la única forma de validarla es que la pruebe un usuario. Este proceso de prototipado es iterativo por naturaleza, y por eso es necesario que los desarrollos de VJ se estructuren a traves de una metodología flexible y reactiva al cambio. 
+
+Los equipos de VJ son multidisciplinares. Además de ingenieros informáticos participan artistas conceptuales, artistas 2D y 3D, diseñadores, músicos, diseñadores de sonido, incluso en ocasiones psicólogos y sociólogos, etc. Todas estos campos se ven entrelazados a través del software. Por eso la comunicación con no ingenieros resulta muy valiosa.
+
+Una consecuencia de esta multidisciplinaridad es que en proyectos grandes los puestos de trabajo tienden a la hiperespecialización. En superproducciones se pueden encontrar perfiles como ingeniero de cinemáticas, artista de iluminación, artista técnico, ingeniero de sonido 3D, etc.
+
+\subsection{Metodologías}
+
+Las metodologías ágiles son una filosofía a la hora de abordar proyectos software con un énfasis en la flexibilidad y adaptabilidad. En 2001 se publicó el \textit{Manifesto for Agile Software Development}, una web donde se describen sus principios. En \textit{agile} se priorizan los individuos e interacciones a a los procesos, el software funcional a la documentación, la colaboración con el cliente frente a la negociación de contratos y responder al cambio frente a seguir un plan. 
+
+Existen metodologías formalizadas acogidas a esta filosofía como SCRUM y XP. Estas definen una serie de reuniones, métricas y \textit{artefactos} (conceptos propios como \textit{sprint} o \textit{product backlog}), que estructuran el proceso. Esta corriente surge como respuesta a el desarrollo en cascada\cite{waterfall}, un flujo de trabajo surgido en la década de los 70. En este se atraviesan 5 fases secuenciales: diseño, implementación, verificación y mantenimiento. \textit{Agile} propone en esencia un flujo de trabajo más flexible y adaptable a los imprevistos.
+
+
+
+Características propias del gamedev vs software:
+- Explorar artículo 11, añadir siguientes puntos si faltasen
+- Es un proceso técnico y creativo a la vez
+- Suele contar con equipos multidisciplinares, en grandes producciones los miembros del equipo tienden a hiper especializarse
+- Los requisitos no son fijos y difícilmente pueden formalizarse
+- Una de las prioridades en un desarrollo es determinar el fun factor
+- Las consecuencias de los requisitos no cumplidos son menores que en software generalista
+- El proceso iterativo de diseño es central, los proyectos precisan de una aproximación flexible
+
+Metodologías más comunes:
+- A grandes rasgos, se puede dividir en preproducción, producción, postproducción, marketing y mantenimiento
+- Explorar el uso de metodologías ágiles en el desarrollo, debido a su premisa flexible (artículos 5,)
+
+Problematicas comunes en el desarrollo:
+- Es común el uso de crunch de forma sistematizada en desarrollos
+
+\section{Género Metroidvania}
+
+El género \textit{metroidvania} enmarca videojuegos que combinan la acción y/o plataformeo\footnote{Los videojuegos de plataformas consisten en superar obstáculos a través del movimiento de un personaje} con la exploración no lineal de un mapa interconectado. Investigando dicho mapa se suelen obtener objetos y mejoras para el personaje del jugador que le permiten abrir nuevos caminos y llegar a lugares a los que antes no podría acceder.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=2.0]{img/smetrmap.jpg}
+    \caption[Planos del mapa explorable en Super Metroid]{Planos del mapa explorable en Super Metroid, Nintendo 1994, extraido de \href{https://metroiddatabase.com/maps/}{Metroid Database}}.
+    \label{fig:supermetroidmap}
+\end{figure}
+
+Su nombre es una combinación de las franquicias \textit{Metroid} (Nintendo, 1986) y \textit{Castlevania} (Konami, 1986), consideradas por lo general de las más influyentes del género. El término fue acuñado de forma popular, existiendo alternativas como \textit{search-action}, con un uso más extendido en Japón y usada por Nintendo en sus comunicaciones oficiales.
+
+Aunque existen juegos anteriores que podrían definirse como metroidvanias como \textit{Below the Root}(Dale DeSharone, 1984) y \textit{Brain Braker} (Enix, 1985), se suele considerar a Metroid como quien cimienta las bases del género. En Metroid (1986) el jugador controla a Samus Aran, una cazarrecompensas espacial, con la misión de explorar unas instalaciones subterráneas del planeta Zebes y recuperar un espécimen de \textit{metroide} de las manos de unos piratas espaciales. La franquicia está influenciada por la película Alien. Esto se puede observar en su temática espacial o algunas referencias dentro del juego, como Ridley, el antagonista principal que comparte nombre con el director de cine.
+
+La saga Castlevania relata la historia de la familia Belmont en su centenaria lucha contra el conde Drácula, el cual resucita cada 100 años. En estos juegos el jugador por lo general debe explorar el castillo de Drácula para encontrarle y derrotarle. Curiosamente, las primeras entregas no pueden considerarse metroidvanias, si no juegos de acción. No fue hasta 1997 cuando con \textit{Castlevania: Symphony of the Night} para la consola Playstation que adopraron esta nueva estructura, pero su éxito e influencia cultural fue suficiente para copresidir el nombre del género.
+
+A la hora de estudiar el mercado de los videojuegos del género, se limitó la búsqueda a juegos lanzados para ordenador, concretamente en \href{https://store.steampowered.com/?l=spanish}{Steam}.
