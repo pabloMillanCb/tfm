@@ -10,15 +10,11 @@ En este capítulo se realizará una revisión de documentación y literatura sob
     
     \item \textbf{Características y retos del desarrollo de videojuegos}: [REVISAR ESTE FRAGMENTO] Se estudiarán las distintas propuestas y enfoques de metodologías existentes, poniendo especial interés en casos los reales y testimonios de veteranos de la industria. Se identificarán las carencias y problemas de las propuestas existentes, así como los problemas más comunes. La síntesis de este apartado será crucial para el capítulo de planificación.
     
-    \item \textbf{Arquitecturas de proyecto}: Revisión de las principales arquitecturas de proyectos de videojuegos en general y las prácticas comunes de Godot en específico.
+    \item \textbf{Arquitecturas y patrones}: Revisión de las principales arquitecturas de proyectos de videojuegos en general y las prácticas comunes de Godot en específico.
     
     \item \textbf{Opciones de accesibilidad}: Estas opciones se proponen adaptar las experiencias jugables desde distintos enfoques para que personas con distintas preferencias, dificultades psicomotrices, nivel de habilidad o edad puedan disfrutar de los videojuegos. Lamentablemente, a día de hoy no todos los juegos cuentan con opciones de este tipo pese a su importancia, ya que permiten ampliar el público potencial. Se estudiarán cuales son las principales dificultades con la que se puede encontrar una persona, qué soluciones existen y cuales se pueden aplicar al proyecto.
     
-    \item \textbf{Videojuegos como software libre}: Se estudiará el uso de software libre como forma de distribución y modelo de negocio para videojuegos.
-    
-    \item \textbf{Herramientas para testing}: Se investigarán las distintas herramientas para la realización de test y, en general, garantizar la calidad software en videojuegos y en Godot.
-    
-    \item \textbf{Consideraciones técnicas para el pixel art}: (valorar si esto es necesario)
+    \item \textbf{Herramientas para testing y QA}: Se investigarán las distintas herramientas para la realización de test y, en general, garantizar la calidad software en videojuegos y en Godot.
 
 \end{itemize} 
 
@@ -190,6 +186,8 @@ Problematicas comunes en el desarrollo:
 
 \section{Género Metroidvania}
 
+\subsection{Contexto}
+
 El género \textit{metroidvania} enmarca videojuegos que combinan la acción y/o plataformeo\footnote{Los videojuegos de plataformas consisten en superar obstáculos a través del movimiento de un personaje} con la exploración no lineal de un mapa interconectado. Investigando dicho mapa se suelen obtener objetos y mejoras para el personaje del jugador que le permiten abrir nuevos caminos y llegar a lugares a los que antes no podría acceder.
 
 \begin{figure}[h]
@@ -205,4 +203,78 @@ Aunque existen juegos anteriores que podrían definirse como metroidvanias como 
 
 La saga Castlevania relata la historia de la familia Belmont en su centenaria lucha contra el conde Drácula, el cual resucita cada 100 años. En estos juegos el jugador por lo general debe explorar el castillo de Drácula para encontrarle y derrotarle. Curiosamente, las primeras entregas no pueden considerarse metroidvanias, si no juegos de acción. No fue hasta 1997 cuando con \textit{Castlevania: Symphony of the Night} para la consola Playstation que adopraron esta nueva estructura, pero su éxito e influencia cultural fue suficiente para copresidir el nombre del género.
 
-A la hora de estudiar el mercado de los videojuegos del género, se limitó la búsqueda a juegos lanzados para ordenador, concretamente en \href{https://store.steampowered.com/?l=spanish}{Steam}.
+\subsection{Datos de mercado}
+
+A la hora de estudiar el mercado de los juegos del género, se limitó la búsqueda a juegos lanzados para ordenador, concretamente en la plataforma de venta \href{https://store.steampowered.com/?l=spanish}{Steam}. Esto se debe a que el mercado más fácilmente accesible para desarrolladores independientes es el de ordenadores. Desarrollar y publicar en consolas suele requerir el uso de kits de desarrollo\footnote{Los kits de desarrollo son consolas especiales con funcionalidades para la depuración} usualmente distribuidas por las propias Nintendo, Microsoft o Sony, además de necesitar una aprobación más estrictas para entrar en las tiendas digitales de dichas plataformas. En cuanto al mercado del PC, Steam cuenta con más del 70\% de la cuota de mercado\cite{pc-market-share}, siendo este el estándar para comprar y jugar videojuegos.
+
+Es difícil conocer con precisión las ventas de juegos de steam, ya que son datos que no suelen ser públicos. SteamSpy\cite{steamspy} es una web que se dedica al \textit{escrapear} la web para recopilar datos aproximados. Aunque algunos de esos datos están restringidos tras una barrera de pago, existe un estudio\cite{steamgames-genre} con datos de ventas por etiquetas hasta el año 2022.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.28]{img/genres-chart.png}
+    \caption[Datos de venta por género en steam]{Planos del mapa explorable en Super Metroid, Nintendo 1994, extraido de \href{https://metroiddatabase.com/maps/}{Metroid Database}Número de juegos lanzados y mediana de ganancias en steam entre 2019 y 2022}.
+    \label{fig:steamgenreschart}
+\end{figure}
+
+En la figura \ref{fig:steamgenreschart} se puede apreciar cómo \textit{Metroidvania} está entre las diez etiquetas con mayor mediana de ganancia. La mediana es algo menor de \$10.000, por lo que la mitad de los juegos analizados obtuvieron como mínimo esos ingresos. Se puede ver que el número de juegos no es demasiado elevado comparado con otras entradas, por lo que se puede deducir que el mercado del género no está muy saturado. Haciendo uso del buscador de SteamSpy, se puede observar que la mediana del precio de venta es de \$9.99 y el tiempo medio de juego es de 2:52 horas.
+
+Estos datos son insuficientes para realizar una predicción real sobre cuanto podría vender el juego, pero se pueden sacar algunas conclusiones. El mercado no parece saturado y la mediana de ganancias es relativamente alta. Se tiene una aproximación del rango de precio al que se podría vender el juego, aunque esto dependerá de características concretas del mismo como su duración y la calidad percibida por el usuario. Además se tiene una estimación del tiempo que suele dedicar un usuario medio al género, dato clave para decidir la extensión del proyecto.
+
+\subsection{Estudio del diseño}
+
+El lector puede pensar que el diseño de videojuegos es una disciplina que no compete a la ingeniería. Si bien no es un aspecto técnico, guarda ciertos parecidos con el diseño de interfaces y la UX (\textit{user experiencie}). En una app convencional, estas dos materias se encargan de organizar los elementos del software de tal manera que el usuario lo navegue de la forma agradable y eficaz para conseguir su objetivo. El diseño en VJ actua de manera similar: cómo organizar o presentar los elementos del juego para provocar en el jugador una determinada sensación o sentimiento.
+
+Esta disciplina es todavía joven. Aunque pueden encontrarse multitud de libros sobre el tema como \textit{Rules of Play: Game Design Fundamentals}\cite{rules-of-play} o \textit{Game Feel, a games designer guide to virtual sensation}\cite{gamefeel}, no es una disciplina asentada en la academia y no existen unos cimientos sólidos. Estos textos suelen describir una serie de principios y buenas prácticas que por lo general suelen ser útiles y deseables, pero que en última instancia dependen del contexto del juego que se vaya a desarrollar y de la intención del autor. Por ejemplo, en un juego de disparos un conviene implementar unos controles responsivos que permitan al jugador maniobrar y responder de forma ágil ante el ataque de un soldado enemigo. Pero, ¿y si es un juego de terror? En ese caso quizás sería interesante aplicar unos controles menos responsivos, más lentos, que generen más fricción, para que el jugador se vea impotente ante los monstruos que intentan darle caza.
+
+Es difícil definir dónde empieza y dónde acaba el diseño de videojuegos, ya que puede abarcar muchas áreas. Una de ellas es el \textbf{diseño de niveles}, responsable de la organización de los espacios del juego para plantear un reto o experiencia concreta. También lo es el \textbf{diseño de sonido}, componer la \textbf{banda sonora}, la \textbf{animación}, el \textbf{guión}, el \textbf{arte}... Todas estas disciplinas condicionan la experiencia final. 
+
+No se profundizará en todas estas disciplinas, ya que resultaría inabarcable y se prefiere centrarse en lo técnico del proyecto, pero en los próximos párrafos se repasarán cuestiones generales de diseño a la hora de abordar un metroidvania.
+
+Se tuvieron como referencia los siguientes títulos:
+
+\begin{itemize}
+    \item Saga Metroid: Super Metrois, Metroid Zero Mission, Metroid Fusion, trilogía Metroid Prime, Samus Returns y Metroid Dread (Nintendo, Retro Studios y Mercury Steam).
+    \item Hollow Knight y su secuela, Hollow Knight Silksong (Team Cherry).
+    \item Axiom Verge (Thomas Happ Games).
+    \item Xeodrifter (Renegade Kid).
+    \item Bobo Robo (Sokpop Collective).
+    \item Saga The Legend of Zelda. No pertenecen al género, pero contienen mazmorras cuyos principios de diseño son aplicables (Nintendo).
+    \item Castlevania: Portrait of Ruin (Konami).
+    \item Hollow Floor (Ahmed Khalifa).
+    \item Gato Roboto (Doinksoft).
+    \item Dead Cells (Motion Twin).
+\end{itemize}
+
+Para entender el diseño subyacente, además de analizar estos títulos, se hizo uso de \textit{Boss Keys}\cite{boss-keys}, una serie de video ensayos realizados por el divulgador Mark Brown en los que se analizan la estructura de la progresión de algunos de los juegos mencionados anteriormente.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.28]{img/mark-brown.png}
+    \caption[Diagrama de progresión de una mazmorra de The Legend of Zelda]{Diagrama de progresión de progresión de The Legend of Zelda extraido de \href{https://www.youtube.com/@GMTK}{Game Maker's Toolkit}}.
+    \label{fig:markbrown}
+\end{figure}
+
+Las conclusiones fueron los siguientes pilares sobre los que se propone que se debería construir un buen metroidvania:
+
+\textbf{Exploración}: El núcleo jugable en todos los casos pasa por avanzar por un mapa no lineal, es decir, la exploración no consiste en ir de punto A a punto B, sino por ejemplo, ir de A a B, pero para entrar a B se necesita una llave que se consigue yendo a C. Como ejemplo se tiene el diagrama de la figura \ref{fig:markbrown}. Si se dibujara sobre el mapa el recorrido que debe hacer el jugador, debe parecerse más a las raíces de un árbol que a un circuito de carreras.
+
+
+\textbf{Progresión basada en llaves y mejoras}: El jugador no puede acceder en todo momento a todos los sitios. A veces necesitará una llave para abrir una puerta, o un objeto que le permita alcanzar cierta altura a la que no llega con un salto. Se identifican entonces dos tipos de elementos para desbloquear opciones de progresión: llaves y mejoras. Las llaves son lo que parece, objetos cuyo único propósito es desbloquear un camino. Las mejoras en cambio, son cambios sustanciales a las capacidades del personaje como una mochila propulsora, unos misiles que destruyen paredes, una cuerda para atrapar objetos lejanos. Estas, además de ampliar las acciones posibles del jugador, permiten llegar a nuevos lugares.
+
+
+\textbf{Tutoriales invisibles}: En muchos de los juegos analizados, no existe una guía explícita que explique cómo progresar en el juego más allá de los controles básicos. En su lugar, se usa un modelo de tutoriales basado en la experiencia. Por ejemplo, si se desea que el jugador comprenda cómo usar la recien obtenida mochila propulsora, se le conduce hasta una estancia cuya única salida esté a gran altura y no pueda salir de ahí hasta que comprenda el uso del nuevo objeto.
+
+
+\textbf{\textit{Foreshadowing} mecánico}: El \textit{foreshadowing} es una técnica narrativa que consiste en adelantar a través de pistas sucesos que ocurrirán más adelante en la trama. En los metroidvania se aplica algo similar. El jugador debe encontrar puntos muertos por los que no puede continuar antes de que obtener la mejora o llave necesaria para pasar. Esto hace más orgánica la progresión, además de darle al jugador una dirección sin necesidad de hacerla explícita.
+
+
+\textbf{Objetivos encapsulados}: El objetivo principal del juego (a nivel macroscópico) es recorrer el mapa. Mientras se avanza, el jugador se encuentra con otros objetivos más inmediatos encapsulado dentro del marco de la exploración. Un ejemplo podría ser resolver un desafío \textit{plataformero}, acabar con unos enemigos o resolver un puzle. 
+
+
+\textbf{Orientación apoyada por zonas temáticas}: Es necesario dotar a las instancias con elementos distintivos y zonas visualmente reconocibles (por ejemplo, una zona de cuevas, un laboratorio, una zona con lava, un bosque, etc.). Estos ayudan al jugador a orientarse de forma orgánica sin necesidad de abrir el menú de mapa continuamente, interrumpiendo la acción.
+
+\section{Arquitecturas y patrones}
+
+\section{Herramientas de testing y QA}
+
+\section{Opciones de accesibilidad}
