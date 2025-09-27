@@ -14,6 +14,8 @@ En este capítulo se realizará una revisión de documentación y literatura sob
     
     \item \textbf{Opciones de accesibilidad}: Estas opciones se proponen adaptar las experiencias jugables desde distintos enfoques para que personas con distintas preferencias, dificultades psicomotrices, nivel de habilidad o edad puedan disfrutar de los videojuegos. Lamentablemente, a día de hoy no todos los juegos cuentan con opciones de este tipo pese a su importancia, ya que permiten ampliar el público potencial. Se estudiarán cuales son las principales dificultades con la que se puede encontrar una persona, qué soluciones existen y cuales se pueden aplicar al proyecto.
     
+    \item \textbf{Videojuegos como software libre}: Se estudiará el uso de software libre como forma de distribución y modelo de negocio para videojuegos. [IGUAL NO APLICA]
+    
     \item \textbf{Herramientas para testing y QA}: Se investigarán las distintas herramientas para la realización de test y, en general, garantizar la calidad software en videojuegos y en Godot.
 
 \end{itemize} 
@@ -162,26 +164,81 @@ Una consecuencia de esta multidisciplinaridad es que en proyectos grandes los pu
 
 \subsection{Metodologías}
 
-Las metodologías ágiles son una filosofía a la hora de abordar proyectos software con un énfasis en la flexibilidad y adaptabilidad. En 2001 se publicó el \textit{Manifesto for Agile Software Development}, una web donde se describen sus principios. En \textit{agile} se priorizan los individuos e interacciones a a los procesos, el software funcional a la documentación, la colaboración con el cliente frente a la negociación de contratos y responder al cambio frente a seguir un plan. 
+A diferencia del cine, donde el proceso está mucho más estandarizado\cite{ENGSTROM201810}, no existe un consenso general sobre cuales son las fases de desarrollo en videojuegos. McKenzie et al.\cite{mckenzie} mencionan cuatro etapas que quizás pueden ilustrar una primera aproximación: concepto, pre-producción, producción y post-producción. Sin embargo, Ramadan et al.\cite{ramadan} exponen cómo no existe un GDLC (\textit{Game Development Life Cycle}) estándar que garantice la construcción de un videojuego de calidad. En el mismo artículo se recopilan distintas propuestas para GDLC. Aunque estas guardan cierta distancia, podrían sintetizarse con el siguiente esquema:
 
-Existen metodologías formalizadas acogidas a esta filosofía como SCRUM y XP. Estas definen una serie de reuniones, métricas y \textit{artefactos} (conceptos propios como \textit{sprint} o \textit{product backlog}), que estructuran el proceso. Esta corriente surge como respuesta a el desarrollo en cascada\cite{waterfall}, un flujo de trabajo surgido en la década de los 70. En este se atraviesan 5 fases secuenciales: diseño, implementación, verificación y mantenimiento. \textit{Agile} propone en esencia un flujo de trabajo más flexible y adaptable a los imprevistos.
+\begin{itemize}
+    \item \textbf{Concepto/Pre-producción}: En esta etapa contiene una gran carga de experimentación. Se debe definir el concepto e ideas principales del juego, y para ello se realizan distintas pruebas de concepto y prototipos. También se extraen los requisitos y características del proyecto. Es en esta etapa donde los estudios suelen buscar el \textit{fun factor}.
+    \item \textbf{Producción}: Se desarrolla el videojuego en base a las conclusiones extraidas en pre-producción, tanto su código y sistemas como sus recursos audiovisuales.
+    \item \textbf{Post-producción}: Una vez siendo jugable de principio a fin, se realiza una fase intensiva de testeo y depuración.
+    \item \textbf{Despliegue/lanzamiento}: Comprende todas las labores relacionadas con poner el juego a disposición del público.
+    \item \textbf{Mantenimiento}: Se realizan parches posteriores a lanzar el juego, existiendo la posibilidad de añadir contenido adicional en forma de descarga.
+\end{itemize}
 
+A primera vista podría intuirse que este esquema corresponde a un desarrollo en cascada\cite{waterfall}, un flujo de trabajo surgido en la década de los 70. En este se atraviesan 5 fases secuenciales: diseño, implementación, verificación y mantenimiento. Este esquema con el paso del tiempo fue cayendo en desuso debido a su rigidez e incapacidad para reaccionar al cambio de requisitos. En respuesta a esta corriente, surgieron las llamadas \textbf{metodolgías ágiles}.
 
+Las metodologías ágiles son una filosofía a la hora de abordar proyectos software con un énfasis en la flexibilidad y adaptabilidad. En 2001 se publicó el \textit{Manifesto for Agile Software Development}\cite{agile-manifesto}, una web donde se describen sus principios. En \textit{agile} se priorizan los individuos e interacciones a a los procesos, el software funcional a la documentación, la colaboración con el cliente frente a la negociación de contratos y responder al cambio frente a seguir un plan.  En esencia, propone en esencia un flujo de trabajo más flexible y adaptable a los imprevistos. Existen metodologías formalizadas acogidas a esta filosofía como SCRUM y XP. Estas definen una serie de reuniones, métricas y \textit{artefactos} (conceptos propios como \textit{sprint} o \textit{product backlog}), que estructuran el proceso.
 
-Características propias del gamedev vs software:
-- Explorar artículo 11, añadir siguientes puntos si faltasen
-- Es un proceso técnico y creativo a la vez
-- Suele contar con equipos multidisciplinares, en grandes producciones los miembros del equipo tienden a hiper especializarse
-- Los requisitos no son fijos y difícilmente pueden formalizarse
-- Una de las prioridades en un desarrollo es determinar el fun factor
-- Las consecuencias de los requisitos no cumplidos son menores que en software generalista
-- El proceso iterativo de diseño es central, los proyectos precisan de una aproximación flexible
+Volviendo a los GDLC, pese a que el esquema mostrado anteriormente pueda interpretarse como desarrollo en cascada, es compatible con metodologías iterativas. Por ejemplo, dentro de la fase de producción podría aplicarse un modelo SCRUM para poder producir en cada iteración una versión jugable del VJ. El uso de metodologías ágiles es a primera vista algo deseable, de hecho, ya que su naturaleza flexible y reactiva parece casar bien con el aspecto creativo del desarrollo. A continuación se repasarán algunos aspectos de la adopción de agile en videojuegos.
 
-Metodologías más comunes:
-- A grandes rasgos, se puede dividir en preproducción, producción, postproducción, marketing y mantenimiento
-- Explorar el uso de metodologías ágiles en el desarrollo, debido a su premisa flexible (artículos 5,)
+Politowski et al.\cite{politowski} realizaron un estudio sobre los procesos de ingeniería en VJ comerciales. Los resultados se clasificaron en cuatro categorías: cascada, iterativo (donde se enmarcaría Agile), híbrido (una mezcla entre cascada e iterativo) y ad-hoc. El desarrollo en cascada parecía todavía vigente en algunos casos, en especial en juegos para licencias hechos por estudios externos. La corriente principal sin embargo son los procesos iterativos, teniendo Agile cada vez una presencia mayor. Sin embargo, el estudio apunta que las prácticas y beneficios de Agile no son siempre comprendida por los desarrolladores, jefes de proyecto o productores, conclusión que parece alinearse con McKenzie et al.\cite{mckenzie}, donde se explica que muchos de los problemas de aplicar SCRUM a videojuegos viene de la mala comprensión del mismo o de falta de entrenamiento a los empleados. Esto coincice con otro estudio anterior de McKenzie\cite{mckenzie2} y con Marklund et al.\cite{marklund}. Parece ser que los desarrolladores de VJ tienen una mala percepción sobre sus prácticas agile. Afirman usarlas, pero no las aplican por completo, siendo inconscientes sobre hasta qué punto difieren. Esto se debe probablemente, como señala McKenzie\cite{mckenzie}, por falta de formación.
+
+Es necesario saber si estos problemas con las metodologías ágiles sanarían en caso de aplicarse correctamente los marcos de trabajo como SCRUM. McKenzie et al.\cite{mckenzie} concluyeron que SCRUM no es suficiente para las necesidades creativas de los videojuegos. Los responsables de elaborar recursos multimedia no resultan trabajar bien en este marco. Esto coincide con \cite{ENGSTROM201810}, que señala que las metodologías ágiles pueden resultar demasiado rígidas y van en contra del trabajo creativo. O'Hagan et al.\cite{ohagan} explican que SCRUM puede causar problemas, especialmente el uso del \textit{product backlog}. Para aliviar estos problemas, O'Hagan propone el uso de principios \textit{Lean} como el uso de tableros \textit{Kanban}, coincidiendo en cierto grado con McKenzie, que propone el uso de \textit{Scrunban}. Este consiste en un método de entrega por dos vías, usándose SCRUM para el código y un tablero Kanban para gestionar la creación de multimedia.
+
+Volviendo a las fases generales de la producción de videojuegos, un artefacto clave en el proceso suele ser el \textbf{GDD, \textit{Game Design Document}}. A grandes rasgos, este documento establece la visión general del juego. Es una herramienta de comunicación para todo el equipo, desde ingenieros hasta artistas, músicos o animadores, por lo que no debe ser demasiado técnico en ninguno de sus ámbitos. Este suele contener información como el género del videojuego, sus mecánicas principales, historia, estilo artístico, objetivos, etc. El GDD es formulado en la fase de preproducción y es esencial para pasar a producción, según indican Ramadan et al.\cite{ramadan}. En ese mismo artículo, \textit{Requirements Engineering in the Video Game Industry}, se argumenta por qué un GDD no debe tener una estructura demasiado rígida, ni existe un estándar a la hora de elaborar uno. Es un documento creativo, y de ser encorsetado en una estructura dificultaría la labor artística de los diseñadores y encontrar el \textit{fun factor}. Este tampoco tiene que ser inamovible, pudiendo modificarse a lo largo de todo el desarrollo para reflejar las decisiones, adiciones y cambios que el equipo va aplicando.
+
+Rescatando la publicación de Ramadan et al.\cite{ramadan}, en ella se propone un GDLC que se puede observar en la figura \ref{fig:ramadan}. La fase de iniciación coincide en parte con la de concepto/preproducción. En lugar de una fase monolítica de producción, se tiene un ciclo iterativo de pre-producción, producción y testeo. Esta aproximación es interesante porque en cada iteración de la producción se tiene un software entregable, lo que lo hace muy reactivo a cambios, además de que integra el testeo continuo en cada momento. Sin embargo, el proceso de iniciación que proponen no es muy fuerte. No realizan hincapié en las directrices para asentar unos cimientos sólidos y una visión clara, muy necesarias en la fase de producción.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.3]{img/ramadan-diagram.png}
+    \caption[GDLC propuesto por Ramadan et al.]{GDLC propuesto por Ramadan et al., extraido de \textit{Game Development Life Cycle Guidelines}\cite{ramadan}}
+    \label{fig:ramadan}
+\end{figure}
+
+En ese aspecto, sería interesante la aplicación de \textit{Deep Game Design}, o diseño de juego profundo. Esta es una metodología para la creación de juegos innovadores propuesta por Sebastián Blanco y Gonzalo Zabala\cite{deepdesign}. El Diseño Profundo surge a raíz de la observación de la práctica experimental de desarrolladores independientes reconocidos a nivel mundial. Este abraza la naturaleza creativa de este tipo de proyectos y permite realizar una experimentación guiada durante preproducción, pero sin llegar a ser rígida.
+
+Blanco y Zabala hacen uso de las siguientes definiciones:
+
+\begin{itemize}
+    \item Restricciones: Similar a reglas de juego. Delimitaan el espacio de juego y pueden estar activas o no durante el mismo. Por ejemplo, el enroque en el ajedrez es una restricción.
+    \item \textit{Puzzles}: Desafíos intelectuales propuestos por el diseñador que debe resolver el jugador. Siendo el videojuego un sistema, al encontrarse un \textit{puzzle} el jugador debe buscar una solución basada en ideas preconcebidas sobre el sistema e integrar nuevas ideas sobre este a través de la observación y la experimentación.
+\end{itemize}
+
+Sabiendo esto, el diseño de juego profundo se divide en tres etapas:
+
+\begin{itemize}
+    \item Definición: se expresa una idea a explorar de forma clara y concisa. Se enuncian principios de diseño, como podrían ser \textit{"fácil de aprender, difícil de dominar"} o \textit{"exploración del duelo a través de las mecánicas jugables"}. A continuación, se elabora un prototipo que represente el espacio de juego necesario para explorar la idea. Este prototipo se realiza con un conjunto atómico de reglas que se mantiene constante durante el proceso. Contiene los primeros \textit{puzzles} para validar que las ideas jugables se transmiten de forma exitosa al jugador.
+    \item Exploración: se crean nuevas restricciones en el espacio de juego derivadas de las existentes de su raíz, siempre y cuando no se invaliden las anteriores. Esta relación puede representarse con una estructura jerárquica en forma de árbol de las reglas de juego. Por cada nodo, es decir cada restricción, se diseña un conjunto de \textit{puzzles} específico para transmitir al jugador la restricción ideada y verificar su internalización. De este grafo, se pueden extraer tres métricas: \textbf{profundidad}, la altura del árbol de restricciones, \textbf{complejidad}, cantidad de elementos y relaciones que el jugador debe internalizar para cumplir los objetivos, y \textbf{elegancia}, que se deriva de una menor complejidad con mayor profundidad.
+    \item Finalización: el diseñador emplea su criterio para determinar qué subconjunto del árbol de restricciones y qué \textit{puzzles} se utilizarán para transmitir en el juego el diseño establecido.
+\end{itemize}
+
+Este proceso permite al diseñador adquirir una visión muy profunda y clara sobre su propio sistema, lo cual es fundamental para la redacción del GDD y el paso a producción del proyecto, ya que encauza la extensión del mismo y minimiza el riesgo a posibles cambios durante la siguiente fase.
+
+\subsection{Problemas y riesgos comunes}
+
+Kanode et al\cite{kanode} realizaron un estudio sobre los principales retos del desarrollo de videojuegos. Estos son algunos de ellos:
+
+\begin{itemize}
+    \item \textbf{Integración de recursos multimedia}: Recursos como las imágenes, modelos, animaciones o música son desarrollados por expertos de distintas materias en tandem con los ingenieros y programadores. Es necesario una comunicación precisa entre los distintos profesionales y desarrollar herramientas para su rápida integración en el proyecto. McKenzie et al. también menciona cómo un punto de conflicto común suele ser el choque entre la ingeniería y las disciplinas creativas.
+    \item \textbf{Alcance del proyecto}: No es extraño que en videojuegos se realice una estimación pobre de el alcance del proyecto. Durante preproducción, puede parecer factible realizar cierto contenido que, durante de producción, liquidan el presupuesto. En el postmortem de \textit{Bioshock}\cite{bioshock} se cuenta cómo se estimó un desarrollo de dos años para el juego, cuando finalmente tomó tres años completarlo.
+    \item \textbf{Gestión de proyectos}: Los equipos tienden a ser más grandes y más diversos. La falta de mecanismos para obtener información sobre el estado real del desarrollo impide identificar posibles problemas.
+    \item \textbf{Realización pobre de GDD}: Un GDD con carencias puede avocar al equipo a perder el rumbo durante la producción. Esto se traduce en retrasos, milestones fallidas, errores y otros defectos.
+\end{itemize}
+
+Por otro lado, Schmalz et al. identifican otros tres riesgos exclusivos en videojuegos:
+
+\begin{itemize}
+    \item \textbf{Audiencia}: riesgos asociados con conectar con el público objetivo del producto y ajustar el nivel dificultad apropiado.
+    \item \textbf{Fun factor}: riesgos asociados con asegurar que el juego es lo suficientemente divertido para poder ser monetizado.
+    \item \textbf{Originalidad}: riesgos asociados con crear un juego lo suficientemente innovador para ser relevante en el mercado.
+\end{itemize}
+
+Petrillo et al.\cite{petrillo} añade el riesgo de \textit{feature creep}: significa una adición gradual y descontrolada de características y funcionalidades a un proyecto. Está relacionado con la mala planificación del alcance.
+
+Todos estos riesgos y problemas tienen como última consecuencia una productividaad baja, que se traduce en no alcanzar los objetivos propuestos en preproducción. Esto suele llevar a casos como el de \textit{Bioshock} en el que se invierte más tiempo en terminar el desarrollo, pero también suele acabar con los empleados realizando horas extras para paliar la mala planificación. El \textbf{crunch} en videojuegos es el uso sistematizado de horas extra, periodos con carga de trabajo extrema en las que es común ver jornadas de 12 horas entre 6 y 7 días de la semana.
 
 Problematicas comunes en el desarrollo:
+-testing automático sensible a cambios
 - Es común el uso de crunch de forma sistematizada en desarrollos
 
 \section{Género Metroidvania}
@@ -265,7 +322,7 @@ Las conclusiones fueron los siguientes pilares sobre los que se propone que se d
 \textbf{Tutoriales invisibles}: En muchos de los juegos analizados, no existe una guía explícita que explique cómo progresar en el juego más allá de los controles básicos. En su lugar, se usa un modelo de tutoriales basado en la experiencia. Por ejemplo, si se desea que el jugador comprenda cómo usar la recien obtenida mochila propulsora, se le conduce hasta una estancia cuya única salida esté a gran altura y no pueda salir de ahí hasta que comprenda el uso del nuevo objeto.
 
 
-\textbf{\textit{Foreshadowing} mecánico}: El \textit{foreshadowing} es una técnica narrativa que consiste en adelantar a través de pistas sucesos que ocurrirán más adelante en la trama. En los metroidvania se aplica algo similar. El jugador debe encontrar puntos muertos por los que no puede continuar antes de que obtener la mejora o llave necesaria para pasar. Esto hace más orgánica la progresión, además de darle al jugador una dirección sin necesidad de hacerla explícita.
+\textbf{\textit{Foreshadowing} mecánico}: El \textit{foreshadowing} es una técnica narrativa que consiste en adelantar a través de pistas sucesos que ocurrirán más adelante en la trama. En los metroidvania se aplica algo similar. El jugador debe identificar zonas inaccesibles o inalcanzables por antes de obtener la mejora o llave que requieran. Esto hace más orgánica la progresión, además de darle al jugador una dirección sin necesidad de hacerla explícita. Al encontrar una mejora que le permite escalar, por ejemplo, puede pensar \textit{"recuerdo pasar por un sitio demasiado alto para llegar de un salto, iré y probaré a escalarlo"}.
 
 
 \textbf{Objetivos encapsulados}: El objetivo principal del juego (a nivel macroscópico) es recorrer el mapa. Mientras se avanza, el jugador se encuentra con otros objetivos más inmediatos encapsulado dentro del marco de la exploración. Un ejemplo podría ser resolver un desafío \textit{plataformero}, acabar con unos enemigos o resolver un puzle. 
