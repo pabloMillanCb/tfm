@@ -10,11 +10,7 @@ En este capítulo se realizará una revisión de documentación y literatura sob
     
     \item \textbf{Características y retos del desarrollo de videojuegos}: [REVISAR ESTE FRAGMENTO] Se estudiarán las distintas propuestas y enfoques de metodologías existentes, poniendo especial interés en casos los reales y testimonios de veteranos de la industria. Se identificarán las carencias y problemas de las propuestas existentes, así como los problemas más comunes. La síntesis de este apartado será crucial para el capítulo de planificación.
     
-    \item \textbf{Arquitecturas y patrones}: Revisión de las principales arquitecturas de proyectos de videojuegos en general y las prácticas comunes de Godot en específico.
-    
     \item \textbf{Opciones de accesibilidad}: Estas opciones se proponen adaptar las experiencias jugables desde distintos enfoques para que personas con distintas preferencias, dificultades psicomotrices, nivel de habilidad o edad puedan disfrutar de los videojuegos. Lamentablemente, a día de hoy no todos los juegos cuentan con opciones de este tipo pese a su importancia, ya que permiten ampliar el público potencial. Se estudiarán cuales son las principales dificultades con la que se puede encontrar una persona, qué soluciones existen y cuales se pueden aplicar al proyecto.
-    
-    \item \textbf{Videojuegos como software libre}: Se estudiará el uso de software libre como forma de distribución y modelo de negocio para videojuegos. [IGUAL NO APLICA]
     
     \item \textbf{Herramientas para testing y QA}: Se investigarán las distintas herramientas para la realización de test y, en general, garantizar la calidad software en videojuegos y en Godot.
 
@@ -250,7 +246,7 @@ El género \textit{metroidvania} enmarca videojuegos que combinan la acción y/o
 \begin{figure}[h]
     \centering
     \includegraphics[scale=2.0]{img/smetrmap.jpg}
-    \caption[Planos del mapa explorable en Super Metroid]{Planos del mapa explorable en Super Metroid, Nintendo 1994, extraido de \href{https://metroiddatabase.com/maps/}{Metroid Database}}.
+    \caption[Planos del mapa explorable en Super Metroid]{Planos del mapa explorable en Super Metroid, Nintendo 1994, extraido de \href{https://metroiddatabase.com/maps/}{Metroid Database}.}
     \label{fig:supermetroidmap}
 \end{figure}
 
@@ -269,7 +265,7 @@ Es difícil conocer con precisión las ventas de juegos de steam, ya que son dat
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.28]{img/genres-chart.png}
-    \caption[Datos de venta por género en steam]{Planos del mapa explorable en Super Metroid, Nintendo 1994, extraido de \href{https://metroiddatabase.com/maps/}{Metroid Database}Número de juegos lanzados y mediana de ganancias en steam entre 2019 y 2022}.
+    \caption[Datos de venta por género en steam]{Número de juegos lanzados y mediana de ganancias en steam entre 2019 y 2022.}
     \label{fig:steamgenreschart}
 \end{figure}
 
@@ -281,16 +277,16 @@ Estos datos son insuficientes para realizar una predicción real sobre cuanto po
 
 El lector puede pensar que el diseño de videojuegos es una disciplina que no compete a la ingeniería. Si bien no es un aspecto técnico, guarda ciertos parecidos con el diseño de interfaces y la UX (\textit{user experiencie}). En una app convencional, estas dos materias se encargan de organizar los elementos del software de tal manera que el usuario lo navegue de la forma agradable y eficaz para conseguir su objetivo. El diseño en VJ actua de manera similar: cómo organizar o presentar los elementos del juego para provocar en el jugador una determinada sensación o sentimiento.
 
-Esta disciplina es todavía joven. Aunque pueden encontrarse multitud de libros sobre el tema como \textit{Rules of Play: Game Design Fundamentals}\cite{rules-of-play} o \textit{Game Feel, a games designer guide to virtual sensation}\cite{gamefeel}, no es una disciplina asentada en la academia y no existen unos cimientos sólidos. Estos textos suelen describir una serie de principios y buenas prácticas que por lo general suelen ser útiles y deseables, pero que en última instancia dependen del contexto del juego que se vaya a desarrollar y de la intención del autor. Por ejemplo, en un juego de disparos un conviene implementar unos controles responsivos que permitan al jugador maniobrar y responder de forma ágil ante el ataque de un soldado enemigo. Pero, ¿y si es un juego de terror? En ese caso quizás sería interesante aplicar unos controles menos responsivos, más lentos, que generen más fricción, para que el jugador se vea impotente ante los monstruos que intentan darle caza.
+Esta disciplina es todavía joven. Aunque pueden encontrarse multitud de libros sobre el tema como \textit{Rules of Play: Game Design Fundamentals}\cite{rules-of-play} o \textit{Game Feel, a games designer guide to virtual sensation}\cite{gamefeel}, no es una disciplina asentada en la academia y no existen unos cimientos sólidos. Estos textos suelen describir una serie de principios y buenas prácticas que por lo general suelen ser útiles y deseables, pero que en última instancia dependen del contexto del juego que se vaya a desarrollar y de la intención del autor. Por ejemplo, en un juego de disparos conviene implementar unos controles responsivos que permitan al jugador maniobrar y responder de forma ágil ante el ataque de un soldado enemigo. Pero, ¿y si es un juego de terror? En ese caso quizás sería interesante aplicar unos controles menos responsivos, más lentos y que generen más fricción para que el jugador se vea impotente ante los monstruos que intentan darle caza.
 
 Es difícil definir dónde empieza y dónde acaba el diseño de videojuegos, ya que puede abarcar muchas áreas. Una de ellas es el \textbf{diseño de niveles}, responsable de la organización de los espacios del juego para plantear un reto o experiencia concreta. También lo es el \textbf{diseño de sonido}, componer la \textbf{banda sonora}, la \textbf{animación}, el \textbf{guión}, el \textbf{arte}... Todas estas disciplinas condicionan la experiencia final. 
 
-No se profundizará en todas estas disciplinas, ya que resultaría inabarcable y se prefiere centrarse en lo técnico del proyecto, pero en los próximos párrafos se repasarán cuestiones generales de diseño a la hora de abordar un metroidvania.
+No se profundizará en todas estas disciplinas, ya que resultaría inabarcable y se prefiere centrar el proyecto en lo técnico, pero en los próximos párrafos se repasarán cuestiones generales de diseño a la hora de abordar un metroidvania.
 
-Se tuvieron como referencia los siguientes títulos:
+Se tuvieron como referencia y se analizaron diferentes aspectos de los siguientes juegos:
 
 \begin{itemize}
-    \item Saga Metroid: Super Metrois, Metroid Zero Mission, Metroid Fusion, trilogía Metroid Prime, Samus Returns y Metroid Dread (Nintendo, Retro Studios y Mercury Steam).
+    \item Saga Metroid: Super Metroid, Metroid Zero Mission, Metroid Fusion, trilogía Metroid Prime, Samus Returns y Metroid Dread (Nintendo, Retro Studios y Mercury Steam).
     \item Hollow Knight y su secuela, Hollow Knight Silksong (Team Cherry).
     \item Axiom Verge (Thomas Happ Games).
     \item Xeodrifter (Renegade Kid).
@@ -302,16 +298,16 @@ Se tuvieron como referencia los siguientes títulos:
     \item Dead Cells (Motion Twin).
 \end{itemize}
 
-Para entender el diseño subyacente, además de analizar estos títulos, se hizo uso de \textit{Boss Keys}\cite{boss-keys}, una serie de video ensayos realizados por el divulgador Mark Brown en los que se analizan la estructura de la progresión de algunos de los juegos mencionados anteriormente.
+Para entender el diseño subyacente, además de estudiar estos títulos, se hizo uso de \textit{Boss Keys}\cite{boss-keys}, una serie de video ensayos realizados por el divulgador Mark Brown en los que se analiza la estructura de la progresión de algunos de los juegos mencionados anteriormente.
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.28]{img/mark-brown.png}
-    \caption[Diagrama de progresión de una mazmorra de The Legend of Zelda]{Diagrama de progresión de progresión de The Legend of Zelda extraido de \href{https://www.youtube.com/@GMTK}{Game Maker's Toolkit}}.
+    \caption[Diagrama de progresión de una mazmorra en The Legend of Zelda]{Diagrama de progresión de una mazmorra en The Legend of Zelda extraido de \href{https://www.youtube.com/@GMTK}{Game Maker's Toolkit}.}
     \label{fig:markbrown}
 \end{figure}
 
-Las conclusiones fueron los siguientes pilares sobre los que se propone que se debería construir un buen metroidvania:
+Las conclusiones se sintetizaron en los siguientes pilares sobre los que se propone que se debería construir un buen metroidvania:
 
 \textbf{Exploración}: El núcleo jugable en todos los casos pasa por avanzar por un mapa no lineal, es decir, la exploración no consiste en ir de punto A a punto B, sino por ejemplo, ir de A a B, pero para entrar a B se necesita una llave que se consigue yendo a C. Como ejemplo se tiene el diagrama de la figura \ref{fig:markbrown}. Si se dibujara sobre el mapa el recorrido que debe hacer el jugador, debe parecerse más a las raíces de un árbol que a un circuito de carreras.
 
@@ -330,8 +326,66 @@ Las conclusiones fueron los siguientes pilares sobre los que se propone que se d
 
 \textbf{Orientación apoyada por zonas temáticas}: Es necesario dotar a las instancias con elementos distintivos y zonas visualmente reconocibles (por ejemplo, una zona de cuevas, un laboratorio, una zona con lava, un bosque, etc.). Estos ayudan al jugador a orientarse de forma orgánica sin necesidad de abrir el menú de mapa continuamente, interrumpiendo la acción.
 
-\section{Arquitecturas y patrones}
+\section{Opciones de accesibilidad}
+
+La accesibilidad en videojuegos comprende una serie de prácticas, opciones y decisiones de diseño enfocadas en permitir o facilitar que cualquiera pueda disfrutar de los videojuegos. Esto comprende por supuesto a las personas con alguna discapacidad visual, auditiva, motriz o cognitiva.
+
+En 2009 el estudio PopCap Games realizó una encuesta en la que observó que alrededor de un 20\% de sus jugadores tenían algún tipo de discapacidad\cite{popcap}. Pauliina et al.\cite{paulina} señala que más de una décima parte de la población mundial tiene alguna discapacidad y solo en Estados Unidos 400 millones de estos juegan a videojuegos. Estas cifras sirven para ilustrar que este perfil de jugador puede representar una porción significativa del público al que se dirige un VJ. Por tanto hacer los juegos más accesibles no solo puede ser beneficioso desde el punto de vista social, sino también desde el económico.
+
+A continuación se sintetizarán consideraciones que se deberían tener a la hora de desarrollar un videojuego. La información ha sido extraida de la web Accesibly\cite{accesibly} y de la revisión de estado del arte de Game Makers Toolkit\cite{gmtk-accesibility}.
+
+\subsection{Discapacidad auditiva}
+
+Comprende a personas con dificultad de escucha o sordera (cofosis). Para empezar, un juego debe tener subtítulos para todos los diálogos hablados. Estos subtítulos deben ser grandes y visibles. Se recomienda el uso de una fuente con un tamaño de de 46 píxeles. Los subtítulos deben estar claramente contrastados con el fondo de la pantalla. Para ello pueden emplearse bordes negros sobre fuentes de letra blanca, o contener todo el texto en una caja negra semitransparente como en la figura \ref{fig:gmtk-subtitles}. Los subtítulos deben permanecer el suficiente tiempo en pantalla para que el usuario pueda leerlos. En su defecto, el propio usuario debe ser el que a través de una acción haga avanzar el texto. Siempre debe indicarse junto al texto qué personaje es el emisor para cada diálogo. Es deseable contar con opciones para personalizar los subtítulos cambiándoles el color, fondo, tamaño o posición.
+
+En caso de que el juego tenga elementos auditivos necesarios para avanzar en el mismo, deben estar indicados por texto u otra forma visible. Por ejemplo, un juego de puzles en el que para resolver un acertijo sea necesario escuchar cierto sonido.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.28]{img/gmtk-subtitles.png}
+    \caption[Contraste de subtítulos en Prey]{Contraste de subtítulos haciendo uso de caja negra semitransparente en Prey, 2017. Extraido de \href{https://www.youtube.com/@GMTK}{Game Maker's Toolkit}.}
+    \label{fig:gmtk-subtitles}
+\end{figure}
+
+\subsection{Discapacidad visual y daltonismo}
+
+Para personas con visión reducida, se aplican todas las consideraciones para los subtítulos comentadas en el apartado anterior. Cualquier otro elemento interactuable, además, deberá tener al menos una fuente de 28 píxeles.
+
+La población daltónica representa un 10\% entre los hombres y un 0.5\% entre las mujeres. Existen diferentes tipos: protanopia (ausencia de cojor rojo), deuteranopia (ausencia de color verde) y tritanopia (ausencia de color azul).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.28]{img/daltonismo.png}
+    \caption[Tipos de daltonismo]{Tipos de daltonismo. Extraido de \href{https://optometristas.org/tratamiento-del-daltonismo}{Aeoptometristas}.}
+    \label{fig:daltonismo}
+\end{figure}
+
+Existen ocasiones en videojuegos en las que se usan códigos de color para transmitir información. Por ejemplo en un juego por equipos, para diferenciar a los jugadores de cada equipo. Este problema puede abordarse incluyendo opciones para que el jugador elija en qué colores quiere mostrar estos elementos, y asegurarse que distingue bien entre ellos. Otra opción más sencilla es usar \textbf{azul y naranja} para distinguir elementos de este tipo, ya que todos los tipos de daltonismo son capaces de discernir entre ellos.
+
+\subsection{Discapacidad motora}
+
+Las discapacidades motoras comprenden condiciones como la artritis, tendinitis, paikinson o distrofia muscular. Intervienen en la capacidad del jugador para operar los controles del juego con la velocidad o responsividad deseada.
+
+A algunas de estas personas les resulta imposible sostener o controlar un mando tradicional, mucho menos un teclado y ratón. Es por ello que existen mandos especiales como el Sony Access Controller y el Xbox Adaptive (figura \ref{fig:controllers}). Estos mandos son modulares y sus consolas cuentan con una interfaz de reasignación de botones a nivel de sistema operativo, por lo que cada usuario puede adaptarlo a sus necesidades específicas. Es importante aun así que dentro de \textbf{los propios juegos se cuente con una opción de reasignación de botones}, por si el usuario accede desde otra plataforma como un PC y para que los iconos en pantalla coincidan con los botones asignados en la configuración.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.48]{img/accesible-controls.png}
+    \caption[Sony Access Controller y el Xbox Adaptive]{Sony Access Controller y el Xbox Adaptive. Extraido de \href{https://www.heise.de/tests/Sony-Access-und-Xbox-Adaptive-Barrierefreie-Gaming-Controller-im-Vergleich-9645431.html}{Heise}.}
+    \label{fig:controllers}
+\end{figure}
+
+\subsection{Discapacidad cognitiva}
+
+Este apartado comprende condiciones como la epilepsia, la dislexia o la dificultad de aprendizaje, además de otras experiencias particulares que no están categorizadas como discapacidad.
+
+Un problema común es el mareo producido en juegos 3D en primera y tercera persona en los que la cámara se mueve, y muy comunmente en juegos de realidad virtual. Este se produce al producirse una disparidad entre el movimiento percibido por la visa y el sentido por el cuerpo. Para aliviar esto, se pueden incluir opciones para deshabilitar el movimiento de cámara al andar, los efectos de sacudida y la sensibilidad del giro.
+
+La \textbf{sobrecarga sensorial} una condición experimentada cuando una persona se ve abrumada por una estimulación excesiva a través de los sentidos. Dificulta el procesamiento de información y puede generar malestar, incomodidad y pánico. Esto afecta especialmente a personas con migrañas, epilepsia o que estén dentro del espectro autista. Se recomienda evitar o añadir opciones para eliminar los efectos de \textit{flash} rápidos y patrones de formas regulares en movimiento, como podrían ser la caida de copos de nieve. Existen herramientas como \href{https://www.hardingfpa.com/}{Harding-FPA}, que señalan posibles problemas relacionados con flashes y patrones espaciales en fragmentos de video.
+
+Para personas con dislexia es importante añadir por defecto o como opción el uso de fuentes especiales diseñadas para facilitar su lectura, como \textit{OpenDyslexic}. También es importante cumplir todas las indicaciones para subtítulos y textos en pantalla que se han comentado en apartados anteriores.
+
+Por último, es interesante añadir opciones de dificultad, de ralentización del tiempo dentro del juego y de navegación en entornos para personas con dificultad de aprendizaje. Estas ayudan a reducir su frustración al enfrentarse al juego y también puede ser útiles para que cualquiera pueda personalizar la experiencia a su gusto.
 
 \section{Herramientas de testing y QA}
 
-\section{Opciones de accesibilidad}
