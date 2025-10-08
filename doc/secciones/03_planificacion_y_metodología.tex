@@ -22,6 +22,13 @@ El desarrollo contará con 4 fases: \textbf{preproducción, producción, postpro
 
 \subsection{Preproducción}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/preproduction.drawio.png}
+    \caption[Diagrama de preproducción]{Diagrama del proceso de preproducción.}
+    \label{fig:preproduction}
+\end{figure}
+
 La preproducción comienza aplicando \textbf{Deep Game Design}\cite{deepdesign}. Se experimentará con prototipos rápidos y baratos las ideas de diseño sobre las que se cimentará el juego. Se plantearán y verificarán las distintas restricciones (es decir, las mecánicas y reglas del juego) y los diferentes puzles (desafíos) que se le plantearán al jugador. En esta fase se producirá el \textit{diagrama de diseño profundo}, con sus métricas de profundidad, complejidad y elegancia. Una vez finalizada esta fase, se tendrá una comprensión profunda de las mecánicas principales alrededor de las que se construirá el juego.
 
 Con este conocimiento adquirido se pasará a desarrollar una primera iteración del \textit{Game Design Document} (GDD), donde se desarrollará el \textit{pitch} (concepto) del juego, su contexto, narrativa, mecánicas principales, estílo artístico, estructura general del juego, etc. Este documento podrá ser modificado en etapas posteriores.
@@ -45,12 +52,19 @@ Por último, se realizará una estimación del proyecto con un presupuesto en fo
 
 \subsection{Producción}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/production.drawio.png}
+    \caption[Diagrama de produccion]{Diagrama del proceso de producción.}
+    \label{fig:production}
+\end{figure}
 
-Para la producción se usará una versión adaptada de SCRUM. Estará dividida en \textit{sprints} de alrededor de 20 horas de trabajo efectivo. Los sprints son iteraciones del proyecto con un tiempo fijo estos tienen la siguiente estructura:
+
+Para la producción se usará una versión adaptada de SCRUM. Estará dividida en \textit{sprints} de alrededor de 20 horas de trabajo efectivo. Los sprints son iteraciones del proyecto con un tiempo fijo. Tienen la siguiente estructura:
 
 \begin{itemize}
     \item \textbf{\textit{Sprint planning}}: Se revisa el product backlog, se escogen las historias de usuario que se desarrollarán en ese sprint y se derivan tareas relacionadas con estas a el \textit{sprint backlog}. Para cada tarea se realiza una estimación en horas para su compleción y qué \textit{assets} se requieren.
-    \item \textbf{Implementación}: Se hace uso de un \textit{tablero kanban} para gestionar el estado de las diferentes tareas, el cual puedes ser diseño, implementación, validación, test, finalizado y descartado. Se tiene otro tablero kanban para llevar la cuenta y el progreso de la producción de los distintos assets. En este punto se desarrollan los test automáticos asociados 
+    \item \textbf{Desarrollo}: Se hace uso de un \textit{tablero kanban} para gestionar el estado de las diferentes tareas, el cual puedes ser diseño, implementación, validación, test, finalizado y descartado. Se tiene otro tablero kanban para llevar la cuenta y el progreso de la producción de los distintos assets. En este punto se desarrollan los test automáticos asociados 
     \item \textbf{Validación}: Una vez finalizado el grueso del sprint, se realiza una sesión íntegra del producto resultante. Durante esta se realizan anotaciones sobre la experiencia percibida, las sensaciones, qué elementos funcionan a nivel emocional y cuales no. Si se detecta algún problema en esa línea, se anotará en el product backlog en forma de \textbf{observación de test}. Esta es un tipo de entrada al mismo nivel que las historias de usuario o juego. En el se describe el problema detectado en el juego, para el cual deberá diseñarse una solución en sprints posteriores.
     \item \textbf{Retrospectiva}: Se realiza un repaso del desempeño del sprint, redactando en un pequeño documento qué se ha hecho bien, qué se ha hecho mal, qué imprevistos han surgido y cómo se adaptará el proyecto en siguientes sprints. Por último se hace una primera aproximación sobre qué parte del product backlog se tratará en el siguiente sprint.
 \end{itemize}
@@ -63,10 +77,29 @@ A su vez, los sprints de producción se encasillan en tres etapas sucesivas:
     \item \textbf{Cierre} (20\% del total): Se cesa de añadir contenido nuevo con el objetivo de cerrar la experiencia con lo que ya se tiene hecho. Al final de esta fase, la producción acaba y el juego debe ser jugable de principio a fin.
 \end{itemize}
 
+Durante la fase de contenidos se producirá una versión de prueba del juego. Se empleará en una prueba con usuarios reales, con el objetivo de obtener retroalimentación sobre el juego, ver qué aspectos gustan, cuales no y poder reaccionar con tiempo para aplicar cambios en la planificación de ser necesario.
+
 \subsection{Postproducción}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/postproduction.drawio.png}
+    \caption[Diagrama de postproducción]{Diagrama del proceso de postproducción.}
+    \label{fig:postproduction}
+\end{figure}
+
+Durante la postproducción se produce una fase intensiva de test para detectar y corregir bugs. Se prueba el juego por usuarios, tanto de dentro del equipo de desarrollo como fuera de él, en sesiones monitorizadas siempre que sea posible. Además de solventar bugs se realizan cambios estéticos para pulir el apartado visual. Se hace uso de un tablero kanban donde se anotan todos los bugs y problemas derivados de las sesiones de test.
 
 \subsection{Despliegue}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/deploy.drawio.png}
+    \caption[Diagrama de despliegue]{Diagrama del proceso de despliegue.}
+    \label{fig:deploy}
+\end{figure}
+
+Se compila el juego y se prepara para su publicación por el medio correspondiente (Steam, \textit{itch.io}, consolas, etc.). También se preparan materiales promocionales como un trailer y recursos gráficos.
 
 \section{Planificación}
 
