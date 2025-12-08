@@ -123,13 +123,37 @@ El juego consistiría en un personaje que a través de un único botón pudiera 
 
 A partir de esta premisa se realizó un prototipo. En distintas fases del prototipo se dio a probar a usuarios para comprobar si la idea funcionaba y realizar ajustes. Durante las pruebas no se dio a los jugadores ninguna instrucción más allá de los controles básicos para que pudieran moverse y saltar. Esto último era crucial para validar el concepto: es necesario comprobar si el prototipo transmite las ideas y objetivos del juego orgánicamente, llevando a los jugadores a poder resolver los puzles por ellos mismos.
 
+\begin{figure}[H]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_1.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_2.png}
+    \end{minipage}
+
+    \vspace{0.3cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_3.png}
+    \end{minipage}
+
+    \caption[Prototipo de plataformas aritmético]{Prototipo de plataformas aritmético.}
+    \label{fig:prototypearithmetic}
+\end{figure}
+
+
 Para este prototipo se empleó un total de \textbf{11,5 horas de trabajo efectivo}. Se acabó descartando por las siguientes razones:
 \begin{itemize}
     \item Por el tipo de juego, el proyecto requeriría de mucho trabajo de diseño jugable, pero muy poco de implementación, por lo que no se ajustaba a las necesidades académicas y técnicas de este trabajo.
     \item La expresividad de las mecánicas parecía prometer, pero casa más con un juego lineal estructurado en niveles que en un metroidvania.
 \end{itemize}
 
-% [INSERTAR IMAGEN DEL PROTOTIPO]
 
 \subsubsection{Juego de la pelota}
 
@@ -143,7 +167,14 @@ Los principios de diseño son los siguientes:
     \item Desafíos plataformeros dinámicos y exigentes.
 \end{itemize}
 
-Se realizó un prototipo. En total supuso \textbf{7 horas de trabajo efectivo}. A partir de este se decidió descartar el concepto del juego antes de realizar pruebas con otros usuarios. Esto se debió a lo siguiente:
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.37]{img/bounce_prototype.png}
+    \caption[Prototipo de juego de la pelota]{Prototipo del juego de la pelota.}
+    \label{fig:bounceprototype}
+\end{figure}
+
+Se realizó un prototipo que puede verse en la figura \ref{fig:bounceprototype}. En total supuso \textbf{7 horas de trabajo efectivo}. A partir de este se decidió descartar el concepto del juego antes de realizar pruebas con otros usuarios. Esto se debió a lo siguiente:
 
 \begin{itemize}
     \item Las salas en un metroidvania deben ser, en su mayoría, agnósticas a la dirección del jugador. Es decir, si tiene dos entradas/salidas a ambos laterales, esta debe poder recorrerse tanto de derecha a izquierda como al revés. Este requisito complica bastante el diseño de obstáculos divertidos que tengan sentido en ambas direcciones.
@@ -151,7 +182,6 @@ Se realizó un prototipo. En total supuso \textbf{7 horas de trabajo efectivo}. 
     \item El concepto de la pelota funciona mejor al mantenerlo simple. Añadir distintas mejoras desbloqueables no parece, a priori, hacerlo más divertido.
 \end{itemize}
 
-% [INSERTAR IMAGEN DEL PROTOTIPO]
 
 \subsubsection{Reimaginación de Zelda II: The Adventure of Link}
 
@@ -166,7 +196,36 @@ Los principios de diseño son:
     \item La dificultad debe surgir de saber medir distancias y pulsar botones en el momento adecuado, y no debe depender de la velocidad de reacción del jugador ni de necesitar pulsar muchos botones o realizar acciones complejas.
 \end{itemize}
 
-Tras analizar el juego, se llegó a la conclusión de que muchos de los aspectos de Zelda II serían más disfrutables si fueran menos exigentes y modernizados a estándares de diseño actuales: de ahí nace la idea de plantear una experiencia más pausada en cuanto al movimiento del jugador. Además, es un tipo de juego que los jugadores con alguna discapacidad motora pueden disfrutar más fácilmente, cubriendo así desde el diseño uno de los requisitos de accesibilidad del proyecto y aumentando el público objetivo. Además la estructura del Zelda II permite fácilmente añadir mejoras al personaje para aumentar su expresividad y capacidades.
+Tras analizar el juego, se llegó a la conclusión de que muchos de los aspectos de Zelda II serían más disfrutables si fueran menos exigentes y modernizados a estándares de diseño actuales: de ahí nace la idea de plantear una experiencia más pausada en cuanto al movimiento del jugador. Además, es un tipo de juego que los jugadores con alguna discapacidad motora pueden disfrutar más fácilmente, cubriendo así desde el diseño uno de los requisitos de accesibilidad del proyecto y aumentando el público objetivo. Además la estructura del Zelda II permite fácilmente añadir mejoras al personaje para aumentar su expresividad y capacidades. En la figura \ref{fig:prototypezelda} se muestran capturas de pantalla del prototipo  realizado.
+
+\begin{figure}[h]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_1.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_2.png}
+    \end{minipage}
+
+    \vspace{0.3cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_3.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_4.png}
+    \end{minipage}
+
+    \caption[Prototipo basado en Zelda II]{Prototipo basado en Zelda II}
+    \label{fig:prototypezelda}
+\end{figure}
 
 Se construyó el prototipo y se validó realizando pruebas con tres usuarios. Esto último fue de gran ayuda para ajustar la velocidad del juego, ya que inicialmente opinaban que esta era demasiado lenta y con demasiada fricción. En total se emplearon \textbf{14,5 horas de trabajo efectivo} en validar el prototipo. A continuación se pasó a la fase de \textit{exploración}, en la que a partir de las los puzles básicos explorados en el prototipo se definieron formalmente las \textbf{restricciones} y se experimentó con ellas para obtener nuevos puzles derivados de ellas. 
 
@@ -195,9 +254,9 @@ A continuación se describen los puzles que usan las restricciones. Cada puzle t
     \item \textbf{PZ-04 [UNLOCK, SWORD, BUTTON]}: El jugador encuentra una puerta bloqueada junto a un mecanismo que llama su atención. El mecanismo, de activarse, abriría la puerta, pero debe encontrar antes la espada para poder golpear y activar el mecanismo más adelante.
     \item \textbf{PZ-05 [SWORD, BUTTON]}: El jugador, justo al obtener el arma, acaba encerrado en una sala cuya única salida es una puerta conectada a un mecanismo. El jugador debe aprender a accionar el mecanismo con la espada para poder continuar.
     \item \textbf{PZ-06 [SWORD]}: Tras conseguir la espada, el jugador es encerrado en una habitación cuyas puertas no se abrirán hasta que derrote a todos los enemigos.
-    \item \textbf{PZ-07 [DESTROY]}: El jugador se encontrará con unos bloques que bloquean una puerta. Estos solo podrán ser destruidos tras conseguir la habilidad que permite romper bloques.
-    \item \textbf{PZ-08 [DESTROY, POGO]}: El jugador encuentra unos bloques destruibles en el suelo, de tal forma que no puede impactarlos con un golpe lateral. Tendrá que desbloquear la habilidad de rebotar con el arma para poder romperlos.
-    \item \textbf{PZ-09 [DESTROY]}: El jugador encuentra una pila de bloques que deberá destruir de cierta manera para construir una escalera y alcanzar una plataforma a la que no podría haber accedido solo con sáltos.
+    \item \textbf{PZ-07 [BREAK]}: El jugador se encontrará con unos bloques que bloquean una puerta. Estos solo podrán ser destruidos tras conseguir la habilidad que permite romper bloques.
+    \item \textbf{PZ-08 [BREAK, POGO]}: El jugador encuentra unos bloques destruibles en el suelo, de tal forma que no puede impactarlos con un golpe lateral. Tendrá que desbloquear la habilidad de rebotar con el arma para poder romperlos.
+    \item \textbf{PZ-09 [BREAK]}: El jugador encuentra una pila de bloques que deberá destruir de cierta manera para construir una escalera y alcanzar una plataforma a la que no podría haber accedido solo con sáltos.
     \item \textbf{PZ-10 [POGO]}: El jugador encuentra un enemigo flotando sobre una superficie de lava. Para cubrir esa distancia y llegar al otro lado, el jugador debe rebotar en el enemigo con su arma.
     \item \textbf{PZ-11 [BUTTON]}: El jugador encuentra una puerta cerrada que debe abrirse accionando un mecanismo, pero este está inaccesible tras una pared. Deberá entrar a esa misma estancia por un lugar distinto para acceder al mecanismo y abrir la puerta.
     \item \textbf{PZ-12 [BUTTON]}:  El jugador encuentra un mecanismo que abre una puerta, pero solo durante unos pocos segundos, volviendo a cerrar la puerta tras acabarse el tiempo. El jugador no puede volver atrás.
@@ -208,4 +267,17 @@ A continuación se describen los puzles que usan las restricciones. Cada puzle t
     \item \textbf{PZ-17 [TELEPORT]}: El jugador ve en una sala una llave inaccesible. Está demasiado lejos para alcanzarla usando el teletransporte. Deberá ir a la habitación adyacente y usar el teletransporte desde ahí para alcanzarla.
 \end{itemize}
 
-% [INSERTAR IMAGEN DEL PROTOTIPO]
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.37]{img/deep_design_diagram.drawio.png}
+    \caption[Diagrama de diseño profundo]{Diagrama de diseño profundo del prototipo Zelda II.}
+    \label{fig:deepdesigndiagram}
+\end{figure}
+
+El diagrama de diseño profundo generado en esta etapa se puede ver en la figura \ref{fig:deepdesigndiagram}. Se tienen las siguientes métricas sobre el grafo:
+
+\begin{itemize}
+    \item Profundidad: equivale a la profundidad de los nodos de restricciones del grafo, es igual a 3.
+    \item Complejidad: Es igual al número de restricciones y relaciones entre restricciones que se presentan en el grafo, en este caso 15.
+    \item Elegancia: Deriva de tener una menor complejidad con mayor profundidad, por lo tanto es un cociente de dividir la profundidad entre la complejidad, en este caso 0.2.
+\end{itemize}
