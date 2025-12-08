@@ -1,0 +1,211 @@
+\chapter{Planificación y desarrollo}
+
+En este capítulo se procederá a explicar la metodología diseñada para el proyecto. Esta se ideó para ajustarse a las necesidades, retos y riesgos del desarrollo de videojuegos que se identificaron en el capítulo del estado del arte. Tras ello, se procederá al apartado de planificación, en el que se detallará la programación temporal inicial. Por último, en el apartado de seguimiento, se detallará el desarrollo de las distintas fases y sprints, además de realizar una retrospectiva comparando el desarrollo con la planificación inicial.
+
+\section{Metodología}
+
+En el capítulo anterior se detectaron una serie de riesgos y problemas comunes en el desarrollo de videojuegos, que se recapitulan a continuación:
+
+\begin{itemize}
+    \item \textbf{Alcance del proyecto y \textit{feature creep}}, la adición descontrolada de contenido por planificación pobre.
+    \item \textbf{Integración de recursos multimedia} como arte o sonido.
+    \item \textbf{Convivencia del proceso creativo con el de ingeniería}, tanto de las distintas disciplinas asociadas como de la construcción del propio videojuego.
+    \item \textbf{Búsqueda del \textit{fun factor}}.
+    \item Gestión de proyectos con plantillas de empleados grandes y diversas.
+    \item \textbf{Satisfacción del público objetivo del juego}, calibrar la experiencia para que esté al nivel de dificultad esperado.
+    \item \textbf{Uso de crunch}, o agotar el presupuesto del proyecto.
+\end{itemize}
+
+Se diseñó la metodología con el objetivo de tratar los puntos en negrita de la lista anterior. Al ser un proyecto individual, no se puede gestionar el aspecto de gestión de proyecto multidisciplinar 
+
+El desarrollo contará con 4 fases: \textbf{preproducción, producción, postproducción} y \textbf{despliegue}.
+
+\subsection{Preproducción}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/preproduction.drawio.png}
+    \caption[Diagrama de preproducción]{Diagrama del proceso de preproducción.}
+    \label{fig:preproduction}
+\end{figure}
+
+La preproducción comienza aplicando \textbf{Deep Game Design}\cite{deepdesign}. Se experimentará con prototipos rápidos y baratos las ideas de diseño sobre las que se cimentará el juego. Se plantearán y verificarán las distintas restricciones (es decir, las mecánicas y reglas del juego) y los diferentes puzles (desafíos) que se le plantearán al jugador. En esta fase se producirá el \textit{diagrama de diseño profundo}, con sus métricas de profundidad, complejidad y elegancia. Una vez finalizada esta fase, se tendrá una comprensión profunda de las mecánicas principales alrededor de las que se construirá el juego.
+
+Con este conocimiento adquirido se pasará a desarrollar una primera iteración del \textit{Game Design Document} (GDD), donde se desarrollará el \textit{pitch} (concepto) del juego, su contexto, narrativa, mecánicas principales, estílo artístico, estructura general del juego, etc. Este documento podrá ser modificado en etapas posteriores.
+
+A continuación se redactará el \textit{product backlog}. Esto es un artefacto de SCRUM, ya que en producción se trabajará con una versión adaptada de esta metodología. Se trata de una lista ordenada de requisitos del proyecto, normalmente en forma de historias de usuario.
+
+Las \textbf{historias de usuario} son requisitos formalizados desde la perspectiva del usuario. Suelen tener la misma estructura:\\ 
+
+
+\centerline{\textit{Como [tipo de usuario] quiero hacer [actividad] para [objetivo]}}
+
+Por ejemplo: \textit{''como usuario, quiero poder revisar la foto que acabo de hacer con la cámara de mi móvil para comprobar si he salido bien''}. Este formato es ideal para expresar requisitos funcionales. Se realiza desde la perspectiva del usuario expresando una necesidad suya, y no una solución de implementación concreta. En este proyecto se emplearía para cuestiones como funciones de guardado, de accesibilidad o de ajustes de usuario. Sin embargo, como se ha comentado anteriormente, no se puede expresar el núcleo jugable del juego, su estética o su \textit{fun factor} con la estructura de una historia de usuario. Para ello se propone el siguiente artefacto: \textbf{historia de juego}.
+
+Las historias de juego son una formalización de las ideas plasmadas en el \textit{GDD}. Su objetivo es representar el requisitado más emocional y abstracto del proyecto y poder añadirlo al \textit{product backlog}. Siguen la siguiente estructura:\\
+
+\centerline{\textit{El [actividad/elemento] es [adjetivo]}}
+
+Por ejemplo, \textit{es divertido rebotar en los enemigos}, \textit{es divertido recolectar monedas}, \textit{el cansancio del personaje transmite la dureza de subir una montaña}, o \textit{los entornos transmiten nostalgia}. Las historias de juego son un artefacto \textbf{exclusivamente representativo} de los requisitos emocionales del juego dentro del product backlog, siendo responsabilidad del \textit{GDD} explicarlos y contextualizarlos. Se propone hacer esto así para tenerlos como elementos operables durante los \textit{sprints} de producción y poder visualizarlos en los \textit{tableros kanban} que se realizarán en la misma.
+
+Por último, se realizará una estimación del proyecto con un presupuesto en forma de horas efectivass de trabajo. El desarrollo completo hasta la salida del juego no deberá sobrepasar este número.
+
+\subsection{Producción}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/production.drawio.png}
+    \caption[Diagrama de produccion]{Diagrama del proceso de producción.}
+    \label{fig:production}
+\end{figure}
+
+
+Para la producción se usará una versión adaptada de SCRUM. Estará dividida en \textit{sprints} de alrededor de 20 horas de trabajo efectivo. Los sprints son iteraciones del proyecto con un tiempo fijo. Tienen la siguiente estructura:
+
+\begin{itemize}
+    \item \textbf{\textit{Sprint planning}}: Se revisa el product backlog, se escogen las historias de usuario que se desarrollarán en ese sprint y se derivan tareas relacionadas con estas a el \textit{sprint backlog}. Para cada tarea se realiza una estimación en horas para su compleción y qué \textit{assets} se requieren.
+    \item \textbf{Desarrollo}: Se hace uso de un \textit{tablero kanban} para gestionar el estado de las diferentes tareas, el cual puedes ser diseño, implementación, validación, test, finalizado y descartado. Se tiene otro tablero kanban para llevar la cuenta y el progreso de la producción de los distintos assets. En este punto se desarrollan los test automáticos asociados 
+    \item \textbf{Validación}: Una vez finalizado el grueso del sprint, se realiza una sesión íntegra del producto resultante. Durante esta se realizan anotaciones sobre la experiencia percibida, las sensaciones, qué elementos funcionan a nivel emocional y cuales no. Si se detecta algún problema en esa línea, se anotará en el product backlog en forma de \textbf{observación de test}. Esta es un tipo de entrada al mismo nivel que las historias de usuario o juego. En el se describe el problema detectado en el juego, para el cual deberá diseñarse una solución en sprints posteriores.
+    \item \textbf{Retrospectiva}: Se realiza un repaso del desempeño del sprint, redactando en un pequeño documento qué se ha hecho bien, qué se ha hecho mal, qué imprevistos han surgido y cómo se adaptará el proyecto en siguientes sprints. Por último se hace una primera aproximación sobre qué parte del product backlog se tratará en el siguiente sprint.
+\end{itemize}
+
+A su vez, los sprints de producción se encasillan en tres etapas sucesivas:
+
+\begin{itemize}
+    \item \textbf{Fundamentos} (40\% del total): En esta se desarrolla el núcleo jugable y funcional del juego. Esto abarca asuntos como el bucle principal de ejecución, el desarrollo completo del personaje principal y herramientas que faciliten la creación de contenido para el proyecto, como un constructor de mapas, plantillas para implementar enemigos, un sistema de diálogos, el sistema de cámaras, etc. Es especialmente importante verificar la calidad del núcleo jugable, ya que este a penas será modificado más adelante.
+    \item \textbf{Contenido} (40\% del total): Usando las herramientas de la fase anterior, se añade contenido al juego de manera iterativa: más enemigos, más escenarios, o mecánicas concretas. Por ejemplo, si se desarrolla una zona de volcanes, se implementa una mecánica a través de la cual el personaje puede quemarse con la lava. Estas mecánicas por su naturaleza puntual, deben ser más simples y sencillas de implementar que el núcleo del juego.
+    \item \textbf{Cierre} (20\% del total): Se cesa de añadir contenido nuevo con el objetivo de cerrar la experiencia con lo que ya se tiene hecho. Al final de esta fase, la producción acaba y el juego debe ser jugable de principio a fin.
+\end{itemize}
+
+Durante la fase de contenidos se producirá una versión de prueba del juego. Se empleará en una prueba con usuarios reales, con el objetivo de obtener retroalimentación sobre el juego, ver qué aspectos gustan, cuales no y poder reaccionar con tiempo para aplicar cambios en la planificación de ser necesario.
+
+\subsection{Postproducción}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/postproduction.drawio.png}
+    \caption[Diagrama de postproducción]{Diagrama del proceso de postproducción.}
+    \label{fig:postproduction}
+\end{figure}
+
+Durante la postproducción se produce una fase intensiva de test para detectar y corregir bugs. Se prueba el juego por usuarios, tanto de dentro del equipo de desarrollo como fuera de él, en sesiones monitorizadas siempre que sea posible. Además de solventar bugs se realizan cambios estéticos para pulir el apartado visual. Se hace uso de un tablero kanban donde se anotan todos los bugs y problemas derivados de las sesiones de test.
+
+\subsection{Despliegue}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{img/deploy.drawio.png}
+    \caption[Diagrama de despliegue]{Diagrama del proceso de despliegue.}
+    \label{fig:deploy}
+\end{figure}
+
+Se compila el juego y se prepara para su publicación por el medio correspondiente (Steam, \textit{itch.io}, consolas, etc.). También se preparan materiales promocionales como un trailer y recursos gráficos.
+
+\section{Preproducción}
+
+\subsection{Diseño profundo}
+
+Se comenzó la preproducción aplicando \textbf{diseño profundo}. Se plantearon, implementaron y validaron distintas aproximaciones para plantear el juego. A continuación se detallarán las pruebas de concepto y prototipos más relevantes que se estudiaron durante las dases de \textbf{definición} y \textbf{exploración}, así como el que fue elegido finalmente para el proyecto.
+
+\subsubsection{Plataformas aritmético}
+
+Este concepto fue inspirado por la comunidad del videojuego Super Mario 64 (Nintendo, 1996). En esta hay un grupo de usuarios que se dedican a estudiar el juego a un nivel técnico, aplicando técnicas de ingeniería inversa, decompilado e interacción con el hardware de la consola con un objetivo: averiguar cual es el número mínimo de pulsaciones del botón de salto necesaria para completar el juego. El concepto para el prototipo era transladar esas mismas sensaciones a un juego de puzles en la que el usuario ve limitadas las acciones que puede realizar para explorar un entorno.
+
+Tal y como estipula el método de diseño profundo, los principios de diseño de este concepto son los siguientes:
+
+\begin{itemize}
+    \item Traducción de las sensaciones observadas en la comunidad de Super Mario 64 a un juego de puzles
+    \item Simplificación del concepto: no debe ser necesario interactuar con \textit{bugs}, detalles técnicos de software o hardware.
+    \item Progresión basada en conocimiento: el jugador tiene disponible desde el principio más opciones de las que sabe. A través de la resolución de puzles descubre cosas que no sabía que podía hacer y puede aplicar en otros lugares.
+\end{itemize}
+
+El juego consistiría en un personaje que a través de un único botón pudiera realizar varias acciones como saltar, planear, disparar, etc. Un contador limitaría el número de veces que puede pulsar ese botón, bajando cada vez que se pulsa. Se podría aumentar el número recogiendo objetos que sumaran o multiplicaran su valor por cierto número. El jugador tendría que resolver puzles y acertijos para poder explorar el mapa.
+
+A partir de esta premisa se realizó un prototipo. En distintas fases del prototipo se dio a probar a usuarios para comprobar si la idea funcionaba y realizar ajustes. Durante las pruebas no se dio a los jugadores ninguna instrucción más allá de los controles básicos para que pudieran moverse y saltar. Esto último era crucial para validar el concepto: es necesario comprobar si el prototipo transmite las ideas y objetivos del juego orgánicamente, llevando a los jugadores a poder resolver los puzles por ellos mismos.
+
+Para este prototipo se empleó un total de \textbf{11,5 horas de trabajo efectivo}. Se acabó descartando por las siguientes razones:
+\begin{itemize}
+    \item Por el tipo de juego, el proyecto requeriría de mucho trabajo de diseño jugable, pero muy poco de implementación, por lo que no se ajustaba a las necesidades académicas y técnicas de este trabajo.
+    \item La expresividad de las mecánicas parecía prometer, pero casa más con un juego lineal estructurado en niveles que en un metroidvania.
+\end{itemize}
+
+% [INSERTAR IMAGEN DEL PROTOTIPO]
+
+\subsubsection{Juego de la pelota}
+
+Este concepto consistía realizar un metroidvania con un alto énfasis en el plataformeo en el que se controla a una pelota de baloncesto. En lugar de simplemente saltar, como es común en este tipo de juegos, se debe rebotar en el suelo para llegar alto. Se partía de la base de un proyecto realizado de forma previa a este trabajo: un pequeño juego en el que el jugador controla a una pelota realizando rebotes para superar obstáculos. Se pretendía aprovechar esa base y expandirla a un juego de exploración.
+
+Los principios de diseño son los siguientes:
+\begin{itemize}
+    \item Transmisión al jugador de la percepción háptica del movimiento de botar una pelota con la mano.
+    \item Aproximación alternativa al verbo 'salto' en videojuegos de plataformas.
+    \item Exploración de verticalidad en el diseño de niveles.
+    \item Desafíos plataformeros dinámicos y exigentes.
+\end{itemize}
+
+Se realizó un prototipo. En total supuso \textbf{7 horas de trabajo efectivo}. A partir de este se decidió descartar el concepto del juego antes de realizar pruebas con otros usuarios. Esto se debió a lo siguiente:
+
+\begin{itemize}
+    \item Las salas en un metroidvania deben ser, en su mayoría, agnósticas a la dirección del jugador. Es decir, si tiene dos entradas/salidas a ambos laterales, esta debe poder recorrerse tanto de derecha a izquierda como al revés. Este requisito complica bastante el diseño de obstáculos divertidos que tengan sentido en ambas direcciones.
+    \item Revisitar salas con desafíos plataformeros ya superados es frustrante. Enfatizar mucho el plataformeo parece quitar presencia a los elementos de exploración.
+    \item El concepto de la pelota funciona mejor al mantenerlo simple. Añadir distintas mejoras desbloqueables no parece, a priori, hacerlo más divertido.
+\end{itemize}
+
+% [INSERTAR IMAGEN DEL PROTOTIPO]
+
+\subsubsection{Reimaginación de Zelda II: The Adventure of Link}
+
+Zelda II: The Adventure of Link (Nintendo, 1987) es un videojuego publicado para la \textit{Nintendo Entertaiment System}, el segundo en la franquicia \textit{The Legend of Zelda}. Es impopular entre sus seguidores debido a cómo diverge del resto de juegos de la franquicia y su dificultad, muchas veces injusta. No es un metroidvania, pero tiene elementos que serían muy fácilmente integrables en uno. La idea para el proyecto parte de reimaginar y recontextualizar los elementos de Zelda II en un juego de exploración 2D.
+
+Los principios de diseño son:
+\begin{itemize}
+    \item Recontextualización mecánica de Zelda II: The Adventure of Link.
+    \item Simplicidad visual, uso de iconografías sencillas e universales para transmitir información sin necesidad de usar texto.
+    \item Plataformeo poco exigente para dar más presencia a la exploración.
+    \item Movimientos lentos y rígidos, sensación de controlar a alguien pesado.
+    \item La dificultad debe surgir de saber medir distancias y pulsar botones en el momento adecuado, y no debe depender de la velocidad de reacción del jugador ni de necesitar pulsar muchos botones o realizar acciones complejas.
+\end{itemize}
+
+Tras analizar el juego, se llegó a la conclusión de que muchos de los aspectos de Zelda II serían más disfrutables si fueran menos exigentes y modernizados a estándares de diseño actuales: de ahí nace la idea de plantear una experiencia más pausada en cuanto al movimiento del jugador. Además, es un tipo de juego que los jugadores con alguna discapacidad motora pueden disfrutar más fácilmente, cubriendo así desde el diseño uno de los requisitos de accesibilidad del proyecto y aumentando el público objetivo. Además la estructura del Zelda II permite fácilmente añadir mejoras al personaje para aumentar su expresividad y capacidades.
+
+Se construyó el prototipo y se validó realizando pruebas con tres usuarios. Esto último fue de gran ayuda para ajustar la velocidad del juego, ya que inicialmente opinaban que esta era demasiado lenta y con demasiada fricción. En total se emplearon \textbf{14,5 horas de trabajo efectivo} en validar el prototipo. A continuación se pasó a la fase de \textit{exploración}, en la que a partir de las los puzles básicos explorados en el prototipo se definieron formalmente las \textbf{restricciones} y se experimentó con ellas para obtener nuevos puzles derivados de ellas. 
+
+Se detallan a continuación las restricciones. Cada una está nombrada con una etiqueta entre corchetes para una mayor facilidad a la hora de representarlas en el \textit{grafo de diseño profundo} que se mostrará más adelante:
+
+\begin{itemize}
+    \item \textbf{[MOVE]} El jugador puede moverse por un escenario 2D.
+    \item \textbf{[JUMP]} El jugador puede saltar para alcanzar plataformas y sortear obstáculos.
+    \item \textbf{[UNLOCK]} El jugador puede desbloquear nuevas habilidades que le permitirán acceder a lugares a los que antes le era imposible.
+    \item \textbf{[ENEMY]} Existen enemigos que habitan las instancias del juego y dañaran al personaje del jugador. Si le dañan lo suficiente, este perderá parte de su progreso.
+    \item \textbf{[SWORD]} El jugador puede eliminar a los enemigos usando un arma.
+    \item \textbf{[BREAK]} El jugador puede romper ciertos objetos usando un arma.
+    \item \textbf{[BEAM]} El jugador puede disparar un rayo al atacar.
+    \item \textbf{[POGO]} El jugador puede rebotar en ciertos elementos y enemigos usando su arma.
+    \item \textbf{[TELEPORT]} El jugador puede teletransportarse algunos metros hacia la izquierda o derecha usando un cetro mágico.
+    \item \textbf{[KEY]} El jugador puede recoger llaves y usarlas para abrir peurtas
+    \item \textbf{[BUTTON]} El jugador puede accionar mecanismo que activan mecanismos, como hacer abrir una puerta.
+\end{itemize}
+
+A continuación se describen los puzles que usan las restricciones. Cada puzle tiene un identificador (con forma PZ-XX) y etiquetas en función de en qué restricciones se apoye:
+
+\begin{itemize}
+    \item \textbf{PZ-01 [JUMP]}: El jugador se encuentra en una sala donde la única forma de avanzar es saltando sobre una plataforma para llegar a una salida que está en alto. Es un entorno seguro sin opción a estado de derrota, si el jugador falla el salto puede caer y volver a intentarlo las veces que quiera.
+    \item \textbf{PZ-02 [ENEMY]}: El jugador se encuentra con enemigos antes de encontrar el arma que necesita para defenderse. En primera instancia deberá por tanto evitarlos, hasta que la consiga y pueda combatirlos.
+    \item \textbf{PZ-03 [KEY]}: El juagdor encuentra una puerta bloqueada con el símbolo de una cerradura. En otra sala, el jugador obtiene una llave. Debe volver a la puerta para abrirla.
+    \item \textbf{PZ-04 [UNLOCK, SWORD, BUTTON]}: El jugador encuentra una puerta bloqueada junto a un mecanismo que llama su atención. El mecanismo, de activarse, abriría la puerta, pero debe encontrar antes la espada para poder golpear y activar el mecanismo más adelante.
+    \item \textbf{PZ-05 [SWORD, BUTTON]}: El jugador, justo al obtener el arma, acaba encerrado en una sala cuya única salida es una puerta conectada a un mecanismo. El jugador debe aprender a accionar el mecanismo con la espada para poder continuar.
+    \item \textbf{PZ-06 [SWORD]}: Tras conseguir la espada, el jugador es encerrado en una habitación cuyas puertas no se abrirán hasta que derrote a todos los enemigos.
+    \item \textbf{PZ-07 [DESTROY]}: El jugador se encontrará con unos bloques que bloquean una puerta. Estos solo podrán ser destruidos tras conseguir la habilidad que permite romper bloques.
+    \item \textbf{PZ-08 [DESTROY, POGO]}: El jugador encuentra unos bloques destruibles en el suelo, de tal forma que no puede impactarlos con un golpe lateral. Tendrá que desbloquear la habilidad de rebotar con el arma para poder romperlos.
+    \item \textbf{PZ-09 [DESTROY]}: El jugador encuentra una pila de bloques que deberá destruir de cierta manera para construir una escalera y alcanzar una plataforma a la que no podría haber accedido solo con sáltos.
+    \item \textbf{PZ-10 [POGO]}: El jugador encuentra un enemigo flotando sobre una superficie de lava. Para cubrir esa distancia y llegar al otro lado, el jugador debe rebotar en el enemigo con su arma.
+    \item \textbf{PZ-11 [BUTTON]}: El jugador encuentra una puerta cerrada que debe abrirse accionando un mecanismo, pero este está inaccesible tras una pared. Deberá entrar a esa misma estancia por un lugar distinto para acceder al mecanismo y abrir la puerta.
+    \item \textbf{PZ-12 [BUTTON]}:  El jugador encuentra un mecanismo que abre una puerta, pero solo durante unos pocos segundos, volviendo a cerrar la puerta tras acabarse el tiempo. El jugador no puede volver atrás.
+    \item \textbf{PZ-13 [BUTTON, BEAM]}:El jugador encuentra un mecanismo para abrir una puerta en una cavidad muy pequeña por la que no cabe. La única forma de accionar ese botón es disparándole un rayo.
+    \item \textbf{PZ-14 [BUTTON, BEAM]}: El jugador encuentra un un mecanismo que abre una puerta solo durante unos segundos, pero está tan lejos de la puerta que el jugador no tiene tiempo para cruzarla. Debe accionarla desde lejos con el rayo.
+    \item \textbf{PZ-15 [TELEPORT]}: Tras conseguir el cetro mágico, el jugador es encerrado en una sala con paredes que solo puede atravesar usando el teletransporte.
+    \item \textbf{PZ-16 [TELEPORT]}: El jugador se encuentra con una serie de plataformas que se mueven de arriba a abajo. Están lo suficientemente lejos para que no pueda sortearlas con saltos, pero sí usando el teletransporte. El jugador debe coordinarse para usar el poder en el momento justo y navegar las plataformas.
+    \item \textbf{PZ-17 [TELEPORT]}: El jugador ve en una sala una llave inaccesible. Está demasiado lejos para alcanzarla usando el teletransporte. Deberá ir a la habitación adyacente y usar el teletransporte desde ahí para alcanzarla.
+\end{itemize}
+
+% [INSERTAR IMAGEN DEL PROTOTIPO]
