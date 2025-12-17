@@ -281,3 +281,47 @@ El diagrama de diseño profundo generado en esta etapa se puede ver en la figura
     \item Complejidad: Es igual al número de restricciones y relaciones entre restricciones que se presentan en el grafo, en este caso 15.
     \item Elegancia: Deriva de tener una menor complejidad con mayor profundidad, por lo tanto es un cociente de dividir la profundidad entre la complejidad, en este caso 0.2.
 \end{itemize}
+
+\section{Game Design Document}
+
+A continuación se redactó una primera versión del \textit{Game Design Document}. Como se ha explicado, este documento muta a lo largo del desarrollo a medida que se toman decisiones y se evalua, por lo que el GDD que se incluye en esta memoria es el final, y se puede consultar en el capítulo \ref{chap:gdd}.
+
+\section{Product Backlog}
+
+Se redactó el product backlog con las siguientes historias de usuario e historias de juego:
+
+
+% TODO: REVISAR HU-01, no tiene estructura de hu
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{13cm}|l|}
+    \hline
+        Código & Descripción & Prioridad \\ \hline
+        HU-01 & El juego debe comenzar en una pantalla que muestre el título del mismo, adecuadamente decorada, que cause una buena impresión y con un menú para que el jugador elija qué desea hacer a continuación. & Alta \\ \hline
+        HU-02 & El jugador quiere poder detener el juego de forma indefinida en cualquier momento, para atender a cualquier necesidad que le surja y poder retomar el juego más adelante. & Alta \\ \hline
+        HU-03 & El jugador quiere cambiar todos los textos del juego a su lenguaje de preferencia. & Alta \\ \hline
+        HU-04 & El jugador quiere ajustar el volumen del juego, así como el de distintos elementos, como música o sonidos ambientales. & Baja \\ \hline
+        HU-05 & El jugador con discapacidad motora quiere poder decidir qué botones asignar a cada acción, para adaptarse a sus necesidades concretas y jugar comodamente. & Media \\ \hline
+        HU-06 & El jugador con daltonismo quiere poder identificar correctamente la información visual que da el juego, diferenciando bien distintos elementos, para jugar en las mismas condiciones que un jugador sin daltonismo. & Media \\ \hline
+        HU-07 & El jugador con epilepsia fotosensible necesita poder regular o desactivar los efectos rápidos de flash o patrones. & Media \\ \hline
+        HU-08 & El jugador quiere que entre cada sesión de juego su progreso se mantenga, pudiendo retomar la partida por donde la había dejado. & Alta \\ \hline
+        HU-09 & El jugador quiere poder conectar un mando para jugar más comodamente. & Media \\ \hline
+        HU-10 & El jugador con discapacidad motora necesita poder conectar su mando adaptable para poder jugar. & Media \\ \hline
+        HU-11 & El jugador quiere poder consultar un mapa con su ubicación actual para navegar el entorno con mayor facilidad & Baja \\ \hline
+        ~ & ~ & ~ \\ \hline
+        HJ-01 & Es divertido pensar en qué lugares me podría ser de utilidad un objeto que acabo de descubrir & Alta \\ \hline
+        HJ-02 & Es divertido desbloquear puertas por las que previamente no podía pasar & Alta \\ \hline
+        HJ-03 & Es satisfactorio golpear enemigos con la espada y sentir que ha sido un golpe fuerte & Madia \\ \hline
+        HJ-04 & Es emocionante la sensación tras descubrir un secreto en una zona que pensaba que conocía muy bien & Alta \\ \hline
+        HJ-05 & La historia del juego resulta divertida porque no se toma en serio a si misma, pero los personajes sí que parecen hacerlo & Media \\ \hline
+        HJ-06 & La identidad visual recuerda a juegos enigmáticos de los años 80, potenciando la sensación de exploración y descubrimiento & Media \\ \hline
+        HJ-07 & El personaje principal es satisfactorio de controlar porque es responsivo, pero aunque no es muy ágil se siente muy pesado y fuerte & Alta \\ \hline
+        HJ-08 & Es satisfactorio descifrar una pista que algún NPC dijo y acabo llevándome a descubrir un secreto & Media \\ \hline
+        HJ-09 & Es satisfactorio resolver puzles para abrirme camino & Media \\ \hline
+        ~ & ~ & ~ \\ \hline
+        HJ-10 & Es divertido rebotar en bloques con la espada para poder llegar a zonas altas & Baja \\ \hline
+        HJ-11 & Es divertido disparar rayos para poder golpear enemigos desde lejos & Baja \\ \hline
+        HJ-12 & Es divertido teletransportarme para sortear muros que de otra forma serían infranqueables & Baja \\ \hline
+        HJ-13 & Es divertido usar el teletransporte de formas poco convencionales para ""romper"" el juego & Baja \\ \hline
+    \end{tabular}
+\end{table}
