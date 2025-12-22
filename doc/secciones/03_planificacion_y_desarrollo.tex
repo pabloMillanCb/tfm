@@ -282,17 +282,17 @@ El diagrama de diseño profundo generado en esta etapa se puede ver en la figura
     \item Elegancia: Deriva de tener una menor complejidad con mayor profundidad, por lo tanto es un cociente de dividir la profundidad entre la complejidad, en este caso 0.2.
 \end{itemize}
 
-\section{Game Design Document}
+\subsection{Game Design Document}
 
 A continuación se redactó una primera versión del \textit{Game Design Document}. Como se ha explicado, este documento muta a lo largo del desarrollo a medida que se toman decisiones y se evalua, por lo que el GDD que se incluye en esta memoria es el final, y se puede consultar en el capítulo \ref{chap:gdd}.
 
-\section{Product Backlog}
+\subsection{Product Backlog}
 
 Se redactó el product backlog con las siguientes historias de usuario e historias de juego:
 
 
 % TODO: REVISAR HU-01, no tiene estructura de hu
-\begin{table}[!ht]
+\begin{table}[H]
     \centering
     \begin{tabular}{|l|p{13cm}|l|}
     \hline
@@ -325,3 +325,90 @@ Se redactó el product backlog con las siguientes historias de usuario e histori
         HJ-13 & Es divertido usar el teletransporte de formas poco convencionales para ""romper"" el juego & Baja \\ \hline
     \end{tabular}
 \end{table}
+
+\subsection{Planificación}
+
+Una vez que se tiene claro la dirección y el alcance del proyecto, se puede estimar cuanto tiempo será necesario para su desarrollo. En este caso se estimó que serían necesarios \textbf{6 sprints de 20 horas}. Eso haría un total de \textbf{120 horas de producción}. En cuanto a la postproducción, donde se realizará testeo con usuarios y arreglo de bugs, se asignaron 40 horas de trabajo. Habiendo realizado unas 38,5 horas de preproducción, y añadiendo un margen de error del 15\% para posibles imprevistos, en total se tendría que el presupuesto en horas de trabajo para este proyecto es de \textbf{230 horas en total}.
+
+Hay que puntualizar que esta estimación tiene en cuenta únicamente las horas de diseño y programación, \textbf{no se contabiliza el tiempo para la creación de assets como el arte}, ya que no es el área de interés de este trabajo, y se realizará de forma amateur.
+
+Los sprints se diseñaron con la estructura explicada en la figura \ref{fig:production}, y se distribuyen de la siguiente manera:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|p{8cm}|p{1,8cm}|}
+    \hline
+        Sprint & Fase & Aspectos centrales del desarrollo & Historias asociadas \\ \hline
+        Sprint 1 & Fundamentos & Game life cycle, placeholders de menús, interfaz para controles, personaje del jugador, test room y menú de pausa & HU-01, HU-02, HU-09 \\ \hline
+        Sprint 2 & Fundamentos & Funcionalidad para ajustes, sistema de guardado, gestión de idiomas, sistema de diálogo, game loop, tilemaps, menú de mapa, gestión de cámara & HU-03, HU-08, HU-11 \\ \hline
+        Sprint 3 & Fundamentos & Enemigos, sistema de eventos, meú de ajustes para accesibilidad, sonido y controles, mecánica de puertas y llaves, revisión de personaje jugable & HU-04, HU-05, HU-06, HU-07, HU-10 \\ \hline
+        Sprint 4 & Contenido & Desarrollo de contenido (niveles, diálogos, progresión, etc) & Historias de juego \\ \hline
+        Sprint 5 & Contenido & Desarrollo de contenido (niveles, diálogos, progresión, etc) & Historias de juego \\ \hline
+        Sprint 6 & Cierre & Cierre del proyecto & ~ \\ \hline
+    \end{tabular}
+    \caption{Esquema general de sprints para producción.}
+\end{table}
+
+Para planificar cada sprint de 20 horas, se usarán solo 15 para estimar las tareas a realizar. Se dejarán 2 horas para imprevistos, otras 2 horas para la validación y ajuste del proyecto al terminar el sprint, y otra hora para realizar el \textit{sprint review} y \textit{sprint planning} para la siguiente iteración.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Horas totales: & 20 & h \\ \hline
+        Horas planificables: & 15 & h \\ \hline
+        Validación y ajustes: & 2 & h \\ \hline
+        Sprint Review: & 0,5 & h \\ \hline
+        Sprint Planning: & 0,5 & h \\ \hline
+    \end{tabular}
+    \caption{Distribución de horas de un sprint.}
+\end{table} 
+
+Para cada sprint se extraerán las tareas derivadas de las historias asociadas en la fase de planificación del sprint. Se redactarán en un \textbf{tablero kanban} (cada sprint tendrá uno distinto). El tablero contará con las siguientes columnas: \textbf{Backlog, Diseño, Implementación, Validación, y Finalizado}. Para los \textit{assets} como el arte, se dispondrá de un tablero kanban adicional, con las siguientes columnas: \textbf{Backlog, Boceto, Producción, Finalizado}.
+
+\section{Producción}
+
+A continuación se desarrollarán los diferentes sprints que constituyen el desarrollo.
+
+\subsection{Sprint 1}
+
+El sprint 1 se planificó con el objetivo de trabajar los siguientes aspectos:
+
+\begin{itemize}
+    \item Desarrollar el Game Lifecycle, es decir, los distintos estados por los que pasa el programa desde que se empieza a ejecutar hasta que finaliza (Inicio, pantalla de título, \textit{game world}, pausa, \textit{game over}, etc).
+    \item Implementar los placeholders para los distintos menús, como el de inicio, pausa, ajustes, mapa, etc.
+    \item Implementar al completo al personaje del jugador y sus controles.
+    \item Implementar la funcionalidad del menú de pausa.
+    \item Añadir herramientas para construir una \textit{sala de pruebas}, una instancia acotada donde moverse libremente con el personaje del jugador para probarlo.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-01 & Diseñar e implementar Game Lifecycle & 1,5 & ~ \\ \hline
+        SF-02 & Crear interfaz de controles para en un futuro poder reasignar desde ahí los controles & 0,45 & ~ \\ \hline
+        SF-03 & Diseñar e implementar patrón de estado de máquina completo para PJ principal & 2 & ~ \\ \hline
+        SF-04 & Implementar conroles de movimiento y salto para jugador & 0,45 & ~ \\ \hline
+        SF-05 & Implementar controles de ataque para jugador & 0,45 & ~ \\ \hline
+        SF-06 & Implementar mejora de disparo para jugador & 1,5 & ~ \\ \hline
+        SF-07 & Implementar mejora de pogo para jugador & 2 & ~ \\ \hline
+        SF-08 & Implementar mejora de teletransporte para jugador & 1 & ~ \\ \hline
+        SF-09 & Implementar mejora de destrucción para jugador & 0,5 & ~ \\ \hline
+        SF-10 & Implementar mejora de teletransporte para jugador & 1 & ~ \\ \hline
+        SF-11 & Implementar placeholder menú de pausa & 1 & ~ \\ \hline
+        SF-12 & Implementar placeholder menú de ajustes & 0,5 & ~ \\ \hline
+        SF-13 & Implementar animaciones jugador & 1,5 & ~ \\ \hline
+        SF-14 & Implementar tileset de prueba & 0,5 & ~ \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & ~ \\ \hline
+        SCRUM & Sprint review & 0,5 & ~ \\ \hline
+        SCRUM & Sprint planning & 0,5 & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 1.}
+\end{table}
+
+% Sprint Review
+% Burndown
