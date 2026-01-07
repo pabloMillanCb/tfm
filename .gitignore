@@ -309,3 +309,6 @@ typings/
 # emacs
 *~
 
+# godot
+game/.godot/
+game/android/
