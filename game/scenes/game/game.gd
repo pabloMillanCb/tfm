@@ -12,6 +12,9 @@ enum GameState {
 
 var current_state: GameState = GameState.TITLE_SCREEN
 
+func _ready() -> void:
+	GameManager.game = self
+
 func set_state(new_state: GameState):
 	var old_state = current_state
 	
@@ -113,14 +116,14 @@ func _process(delta: float) -> void:
 	#TODO: test utility, to delete
 	
 	if (Input.is_action_just_pressed("debug_1")):
-		set_state(GameState.TITLE_SCREEN)
+		GameManager.go_to_title_screen()
 	elif (Input.is_action_just_pressed("debug_2")):
-		set_state(GameState.GAME_WORLD)
+		GameManager.load_game()
 	elif (Input.is_action_just_pressed("debug_3")):
-		set_state(GameState.PAUSE_MENU)
+		GameManager.pause_game()
 	elif (Input.is_action_just_pressed("debug_4")):
-		set_state(GameState.GAME_OVER)
+		GameManager.enter_game_over()
 	elif (Input.is_action_just_pressed("debug_5")):
-		set_state(GameState.GAME_INTRO)
+		GameManager.start_new_game()
 	elif (Input.is_action_just_pressed("debug_6")):
-		set_state(GameState.GAME_ENDING)
+		GameManager.on_game_completed()
