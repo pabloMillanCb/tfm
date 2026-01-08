@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Game
 
 enum GameState {
 	TITLE_SCREEN,
@@ -114,13 +114,13 @@ func _process(delta: float) -> void:
 	
 	if (Input.is_action_just_pressed("debug_1")):
 		set_state(GameState.TITLE_SCREEN)
-	if (Input.is_action_just_pressed("debug_2")):
+	elif (Input.is_action_just_pressed("debug_2")):
 		set_state(GameState.GAME_WORLD)
-	if (Input.is_action_just_pressed("debug_3")):
+	elif (Input.is_action_just_pressed("debug_3")):
 		set_state(GameState.PAUSE_MENU)
-	if (Input.is_action_just_pressed("debug_4")):
+	elif (Input.is_action_just_pressed("debug_4")):
 		set_state(GameState.GAME_OVER)
-	if (Input.is_action_just_pressed("debug_5")):
+	elif (Input.is_action_just_pressed("debug_5")):
 		set_state(GameState.GAME_INTRO)
-	if (Input.is_action_just_pressed("debug_6")):
+	elif (Input.is_action_just_pressed("debug_6")):
 		set_state(GameState.GAME_ENDING)

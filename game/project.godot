@@ -21,6 +21,14 @@ window/size/viewport_width=256
 window/size/viewport_height=240
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+ui/toolbar/run_overall=true
+
 [input]
 
 debug_1={
