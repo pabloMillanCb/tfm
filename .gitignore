@@ -312,3 +312,5 @@ typings/
 # godot
 game/.godot/
 game/android/
+game/addons/
+game/reports/
