@@ -23,7 +23,7 @@ func test_remap_action_key(action: String, original_key: int, test_parameters :=
 	runner.simulate_key_release(original_key)
 	await runner.await_input_processed()
 	
-	InputManager.listen_for_action_remap(action)
+	InputMapper.listen_for_action_remap(action)
 	runner.simulate_key_press(KEY_P)
 	runner.simulate_key_release(KEY_P)
 	await runner.await_input_processed()
