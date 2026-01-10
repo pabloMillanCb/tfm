@@ -9,7 +9,7 @@ const REMAP_FILE_LOCATION = "user://my_control_remap.tres"
 func _ready() -> void:
 	input_maping = load(REMAP_FILE_LOCATION)
 	
-	if input_maping == null:
+	if input_maping != null:
 		input_maping.apply_remap()
 	else:
 		input_maping = ControlsRemap.new()

@@ -1,6 +1,6 @@
 extends GdUnitTestSuite
 
-var scene = "res://test/autoload/input_manager_test/TestInputManager.tscn"
+var scene = "res://test/autoload/input_manager_test/TestInputMapper.tscn"
 var runner: GdUnitSceneRunner
 
 func before_test() -> void:
