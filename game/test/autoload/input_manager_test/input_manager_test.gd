@@ -5,6 +5,7 @@ var runner: GdUnitSceneRunner
 
 func before_test() -> void:
 	runner = scene_runner(scene)
+	InputMapper.restore_default_controls()
 
 func test_remap_action_key(action: String, original_key: int, test_parameters := [
 	["jump", KEY_Z],
