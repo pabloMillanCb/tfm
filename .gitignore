@@ -313,3 +313,4 @@ typings/
 game/.godot/
 game/android/
 game/reports/
+game/addons/gdUnit4/GdUnitRunner.cfg
