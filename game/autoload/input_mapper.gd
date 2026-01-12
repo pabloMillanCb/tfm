@@ -38,3 +38,6 @@ func save_remap_changes():
 
 func get_action_list():
 	return input_maping.action_list
+
+func restore_default_controls():
+	input_maping.restore_default_controls()
