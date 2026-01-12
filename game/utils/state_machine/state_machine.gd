@@ -1,3 +1,4 @@
+@icon("res://icons/16x16/computer.png")
 extends Node
 class_name StateMachine
 
