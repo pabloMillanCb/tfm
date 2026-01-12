@@ -1,0 +1,61 @@
+[gd_scene load_steps=15 format=3 uid="uid://dt5id5s6k2sgf"]
+
+[ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
+[ext_resource type="Script" uid="uid://buyvsbbwh18js" path="res://scenes/player/states/idle.gd" id="2_20koh"]
+[ext_resource type="Script" uid="uid://ep1jxwrfqff6" path="res://scenes/player/player_controller.gd" id="2_gfjak"]
+[ext_resource type="Script" uid="uid://ctf5oc3fdynj7" path="res://scenes/player/states/move.gd" id="3_ov1oi"]
+[ext_resource type="Script" uid="uid://dl8vgd7fwgpax" path="res://scenes/player/states/jump.gd" id="4_rn7t0"]
+[ext_resource type="Script" uid="uid://bu3my6ax5bmxy" path="res://scenes/player/states/fall.gd" id="5_8qjgm"]
+[ext_resource type="Script" uid="uid://b1sgfqw4kcqcm" path="res://scenes/player/states/atack.gd" id="6_ejd4k"]
+[ext_resource type="Script" uid="uid://b4s7mu1t2g70i" path="res://scenes/player/states/prepare_teleport.gd" id="7_2xrq6"]
+[ext_resource type="Script" uid="uid://e13wgd807ncy" path="res://scenes/player/states/release_teleport.gd" id="8_pi3ps"]
+[ext_resource type="Script" uid="uid://cgw2ulqt8usnb" path="res://scenes/player/states/pogo.gd" id="9_kswpp"]
+[ext_resource type="Script" uid="uid://bthgpd6o3txnl" path="res://scenes/player/states/hit.gd" id="10_v5i4m"]
+[ext_resource type="Script" uid="uid://74lsldij4r8a" path="res://scenes/player/states/dead.gd" id="11_p1lr0"]
+[ext_resource type="Texture2D" uid="uid://dvku6yqmnndnd" path="res://icons/16x16/character.png" id="13_ro0t8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gfjak")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_wr5hl")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_20koh")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("3_ov1oi")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("4_rn7t0")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("5_8qjgm")
+
+[node name="Atack" type="Node" parent="StateMachine"]
+script = ExtResource("6_ejd4k")
+
+[node name="PrepareTeleport" type="Node" parent="StateMachine"]
+script = ExtResource("7_2xrq6")
+
+[node name="ReleaseTeleport" type="Node" parent="StateMachine"]
+script = ExtResource("8_pi3ps")
+
+[node name="Pogo" type="Node" parent="StateMachine"]
+script = ExtResource("9_kswpp")
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("10_v5i4m")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("11_p1lr0")
+
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource("2_gfjak")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("13_ro0t8")
