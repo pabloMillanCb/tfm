@@ -1,11 +1,11 @@
-extends Node
+extends PlayerState
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _enter(_previous_state_path: String, _init_data := {}):
+	player.set_animation("idle")
+	player.get_node("DebugStateName").text = IDLE
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _update_physics(_delta):
+	if Input.get_axis("move_left", "move_right"):
+		finished.emit(MOVE)

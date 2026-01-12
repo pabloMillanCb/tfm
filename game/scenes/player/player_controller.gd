@@ -1,4 +1,4 @@
-@icon("res://icons/16x16/button.png")
+@icon("res://assets/icons/button.png")
 extends Node
 class_name PlayerController
 

@@ -1,8 +1,10 @@
-@icon("res://icons/16x16/computer.png")
+@icon("res://assets/icons/computer.png")
 extends Node
 class_name StateMachine
 
 @export var initial_state: State = null
+
+@onready var parent = get_parent()
 
 @onready var state: State = (func get_initial_state() -> State:
 	return initial_state if initial_state != null else get_child(0)
@@ -12,6 +14,7 @@ class_name StateMachine
 func _ready() -> void:
 	for state_node: State in find_children("*", "State"):
 		state_node.finished.connect(_transition_to_next_state)
+		state_node._parent = parent
 	
 	await owner.ready
 	state._enter("")
@@ -29,7 +32,7 @@ func _transition_to_next_state(new_state_path: String, init_data := {}):
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	state.handle_input(event)
+	state._handle_input(event)
 
 
 func _process(delta: float) -> void:

@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=20 format=3 uid="uid://dt5id5s6k2sgf"]
 
+[ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
 [ext_resource type="Script" uid="uid://buyvsbbwh18js" path="res://scenes/player/states/idle.gd" id="2_20koh"]
 [ext_resource type="Script" uid="uid://ep1jxwrfqff6" path="res://scenes/player/player_controller.gd" id="2_gfjak"]
@@ -12,11 +13,41 @@
 [ext_resource type="Script" uid="uid://cgw2ulqt8usnb" path="res://scenes/player/states/pogo.gd" id="9_kswpp"]
 [ext_resource type="Script" uid="uid://bthgpd6o3txnl" path="res://scenes/player/states/hit.gd" id="10_v5i4m"]
 [ext_resource type="Script" uid="uid://74lsldij4r8a" path="res://scenes/player/states/dead.gd" id="11_p1lr0"]
-[ext_resource type="Texture2D" uid="uid://dvku6yqmnndnd" path="res://icons/16x16/character.png" id="13_ro0t8"]
+[ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="13_rn7t0"]
+[ext_resource type="Texture2D" uid="uid://dvku6yqmnndnd" path="res://assets/icons/character.png" id="15_rn7t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qjgm"]
+atlas = ExtResource("15_rn7t0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn7t0"]
+atlas = ExtResource("15_rn7t0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_180ig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qjgm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn7t0")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ov1oi")
+debug_mode = true
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gfjak")
@@ -33,7 +64,7 @@ script = ExtResource("3_ov1oi")
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("4_rn7t0")
 
-[node name="Fall" type="Node" parent="StateMachine"]
+[node name="Falling" type="Node" parent="StateMachine"]
 script = ExtResource("5_8qjgm")
 
 [node name="Atack" type="Node" parent="StateMachine"]
@@ -57,5 +88,18 @@ script = ExtResource("11_p1lr0")
 [node name="PlayerController" type="Node" parent="."]
 script = ExtResource("2_gfjak")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("13_ro0t8")
+[node name="PlayerSprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_180ig")
+animation = &"move"
+
+[node name="DebugStateName" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 27.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("13_rn7t0")
+theme_override_font_sizes/font_size = 12
+text = "debug"
+horizontal_alignment = 1
+vertical_alignment = 1
