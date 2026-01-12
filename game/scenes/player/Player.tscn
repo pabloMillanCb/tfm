@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bthgpd6o3txnl" path="res://scenes/player/states/hit.gd" id="10_v5i4m"]
 [ext_resource type="Script" uid="uid://74lsldij4r8a" path="res://scenes/player/states/dead.gd" id="11_p1lr0"]
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="13_rn7t0"]
-[ext_resource type="Texture2D" uid="uid://dvku6yqmnndnd" path="res://assets/icons/character.png" id="15_rn7t0"]
+[ext_resource type="Texture2D" uid="uid://c1m12wwdnluy5" path="res://assets/icons/character.png" id="15_rn7t0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
 
