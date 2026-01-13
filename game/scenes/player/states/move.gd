@@ -26,8 +26,11 @@ func _update_physics(_delta):
 	player.velocity.x = current_speed
 	
 	player.move_and_slide()
-
-	if player.velocity.x == 0.0 and !direction:
+	player.update_look_direction()
+	
+	if Input.is_action_just_pressed("atack"):
+		finished.emit(ATACK)
+	elif player.velocity.x == 0.0 and !direction:
 		finished.emit(IDLE)
 
 func _exit():

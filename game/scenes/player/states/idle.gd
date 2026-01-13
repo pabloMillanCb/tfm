@@ -7,5 +7,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 
 
 func _update_physics(_delta):
-	if Input.get_axis("move_left", "move_right"):
+	if Input.is_action_just_pressed("atack"):
+		finished.emit(ATACK)
+	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)

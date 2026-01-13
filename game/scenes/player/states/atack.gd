@@ -1,11 +1,20 @@
 extends PlayerState
 
+var stored_speed = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _enter(_previous_state_path: String, _init_data := {}):
+	
+	if Input.get_axis("move_left", "move_right"):
+		player.update_look_direction()
+	
+	player.set_animation("atack")
+	stored_speed = player.velocity.x
+	player.velocity.x = 0.0
+	player.get_node("DebugStateName").text = ATACK
 
+func _exit():
+	player.velocity.x = stored_speed
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_atack_animation_end():
+	finished.emit(MOVE)
+	
