@@ -32,6 +32,3 @@ func _update_physics(_delta):
 		finished.emit(ATACK)
 	elif player.velocity.x == 0.0 and !direction:
 		finished.emit(IDLE)
-
-func _exit():
-	player.velocity.x = 0.0

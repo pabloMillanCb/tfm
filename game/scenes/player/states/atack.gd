@@ -8,13 +8,15 @@ func _enter(_previous_state_path: String, _init_data := {}):
 		player.update_look_direction()
 	
 	player.set_animation("atack")
-	stored_speed = player.velocity.x
-	player.velocity.x = 0.0
 	player.get_node("DebugStateName").text = ATACK
-
-func _exit():
-	player.velocity.x = stored_speed
+	
+func _update_physics(_delta):
+	player.velocity.x = move_toward(player.velocity.x, 0, _delta * player.walking_acceleration * 1.2)
+	player.move_and_slide()
 
 func _on_atack_animation_end():
-	finished.emit(MOVE)
+	if (stored_speed != 0):
+		finished.emit(MOVE)
+	else:
+		finished.emit(IDLE)
 	

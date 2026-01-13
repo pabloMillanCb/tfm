@@ -13,6 +13,10 @@ class_name Player
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 
+func stop_animation():
+	$PlayerSprites.stop()
+	$PlayerSprites/AnimationPlayer.stop()
+
 func set_animation(animation_name: String):
 	if animation_name == "atack":
 		$PlayerSprites/AnimationPlayer.play("atack")
