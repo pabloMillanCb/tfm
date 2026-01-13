@@ -4,8 +4,8 @@ var stored_speed = 0.0
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	
-	if Input.get_axis("move_left", "move_right"):
-		player.update_look_direction()
+	if Input.get_axis("move_left", "move_right") != 0:
+		player.update_look_direction(true)
 	
 	player.set_animation("atack")
 	player.get_node("DebugStateName").text = ATACK

@@ -23,8 +23,12 @@ func set_animation(animation_name: String):
 	else:
 		$PlayerSprites.play(animation_name)
 
-func update_look_direction():
-	if velocity.x > 0:
-		$PlayerSprites.scale.x = 1
-	elif velocity.x < 0:
-		$PlayerSprites.scale.x = -1
+func update_look_direction(force = false):
+	var input_direction = Input.get_axis("move_left", "move_right")
+	if force and input_direction:
+		$PlayerSprites.scale.x = input_direction
+	else:
+		if velocity.x > 0:
+			$PlayerSprites.scale.x = 1
+		elif velocity.x < 0:
+			$PlayerSprites.scale.x = -1
