@@ -8,7 +8,7 @@ point_count = 2
 
 [node name="Trail" type="Line2D"]
 top_level = true
-points = PackedVector2Array(32, 0, 0, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
 width_curve = SubResource("Curve_f40rp")
 script = ExtResource("1_tri6w")

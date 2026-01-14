@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ab4tkdfxhvy"]
+
+[ext_resource type="Script" uid="uid://dyw4v4y2um4af" path="res://scenes/player/beam/beam.gd" id="1_46n3b"]
+[ext_resource type="PackedScene" uid="uid://djbqew7ko7jpa" path="res://scenes/player/beam/trail/Trail.tscn" id="2_trrjv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trrjv"]
+size = Vector2(6, 6)
+
+[node name="Beam" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_46n3b")
+
+[node name="Trail" parent="." instance=ExtResource("2_trrjv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_trrjv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

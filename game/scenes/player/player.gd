@@ -34,6 +34,9 @@ func update_look_direction(force = false):
 		elif velocity.x < 0:
 			$PlayerSprites.scale.x = -1
 
+func get_look_direction():
+	return $PlayerSprites.scale.x
+
 func update_gravity(_delta):
 	
 	var JUMP_GRAVITY_FORCE = 200
@@ -44,3 +47,10 @@ func update_gravity(_delta):
 		velocity.y = move_toward(velocity.y, MAX_FALL_SPEED, _delta * FALL_GRAVITY_FORCE)
 	else:
 		velocity.y += JUMP_GRAVITY_FORCE * _delta
+
+
+func shoot():
+	var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
+	beam.direction = get_look_direction()
+	beam.global_position = %ShootingPoint.global_position
+	get_parent().add_child(beam)

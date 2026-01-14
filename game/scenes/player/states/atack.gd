@@ -24,3 +24,6 @@ func _on_atack_animation_end():
 	else:
 		finished.emit(IDLE)
 	
+
+func shoot():
+	player.shoot()
