@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=37 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="13_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://b4md6v6tb177l" path="res://scenes/player/assets/playe_tileset.png" id="14_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://boetaglx536xa" path="res://scenes/player/assets/playe_tileset_jump.png" id="15_8qjgm"]
+[ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="17_ejd4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
 size = Vector2(6, 14)
@@ -344,3 +345,9 @@ theme_override_font_sizes/font_size = 12
 text = "debug"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(128, 120)
+texture = ExtResource("17_ejd4k")
