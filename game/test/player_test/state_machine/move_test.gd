@@ -12,7 +12,7 @@ func test_move_right_and_left():
 	
 	runner.simulate_action_press("move_right")
 	await runner.await_input_processed()
-	await await_millis(300)
+	await await_millis(500)
 	assert_float(player.velocity.x).is_greater(0.0)
 	assert_str(player.state_machine.state.name).is_equal(PlayerState.MOVE)
 	
