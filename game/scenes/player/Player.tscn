@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=36 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://74lsldij4r8a" path="res://scenes/player/states/dead.gd" id="11_p1lr0"]
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="13_rn7t0"]
 [ext_resource type="Texture2D" uid="uid://b4md6v6tb177l" path="res://scenes/player/assets/playe_tileset.png" id="14_rn7t0"]
+[ext_resource type="Texture2D" uid="uid://boetaglx536xa" path="res://scenes/player/assets/playe_tileset_jump.png" id="15_8qjgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
 size = Vector2(6, 14)
@@ -35,6 +36,10 @@ region = Rect2(192, 0, 24, 16)
 atlas = ExtResource("14_rn7t0")
 region = Rect2(120, 0, 24, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_76i7i"]
+atlas = ExtResource("15_8qjgm")
+region = Rect2(24, 0, 24, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kswpp"]
 atlas = ExtResource("14_rn7t0")
 region = Rect2(0, 0, 24, 16)
@@ -54,6 +59,10 @@ region = Rect2(72, 0, 24, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8nn5r"]
 atlas = ExtResource("14_rn7t0")
 region = Rect2(96, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mndc6"]
+atlas = ExtResource("15_8qjgm")
+region = Rect2(0, 0, 24, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvwax"]
 atlas = ExtResource("14_rn7t0")
@@ -83,6 +92,14 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76i7i")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_kswpp")
 }, {
@@ -100,6 +117,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mndc6")
+}],
+"loop": true,
+"name": &"jump",
 "speed": 5.0
 }, {
 "frames": [{

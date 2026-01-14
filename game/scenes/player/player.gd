@@ -3,8 +3,9 @@ class_name Player
 
 @export var debug_mode = false
 
-@export var walking_speed = 100
+@export var walking_speed = 80
 @export var walking_acceleration = 400
+@export var jump_force = -120
 
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
@@ -32,3 +33,14 @@ func update_look_direction(force = false):
 			$PlayerSprites.scale.x = 1
 		elif velocity.x < 0:
 			$PlayerSprites.scale.x = -1
+
+func update_gravity(_delta):
+	
+	var JUMP_GRAVITY_FORCE = 200
+	var FALL_GRAVITY_FORCE = 400
+	var MAX_FALL_SPEED = 450
+	
+	if velocity.y > 0 or !Input.is_action_pressed("jump"):
+		velocity.y = move_toward(velocity.y, MAX_FALL_SPEED, _delta * FALL_GRAVITY_FORCE)
+	else:
+		velocity.y += JUMP_GRAVITY_FORCE * _delta

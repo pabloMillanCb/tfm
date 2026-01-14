@@ -29,6 +29,7 @@ func _transition_to_next_state(new_state_path: String, init_data := {}):
 	state._exit()
 	state = get_node(new_state_path)
 	state._enter(previous_state_path, init_data)
+	parent.get_node("DebugStateName").text = new_state_path
 
 
 func _unhandled_input(event: InputEvent) -> void:

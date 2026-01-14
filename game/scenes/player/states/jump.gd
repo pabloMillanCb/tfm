@@ -1,11 +1,17 @@
 extends PlayerState
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
+func _enter(_previous_state_path: String, _init_data := {}):
+	player.velocity.y = player.jump_force
+	player.set_animation("jump")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _update(_delta):
+	player.update_gravity(_delta)
+	
+	if Input.is_action_just_pressed("atack"):
+		finished.emit(ATACK)
+	elif player.velocity.y > 0:
+		finished.emit(FALLING)
+	
+	player.move_and_slide()
