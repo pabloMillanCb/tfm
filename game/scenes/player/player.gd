@@ -6,6 +6,7 @@ class_name Player
 @export var walking_speed = 80
 @export var walking_acceleration = 660
 @export var jump_force = -120
+@export var bounce_force = -220
 
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
@@ -54,3 +55,8 @@ func shoot():
 	beam.direction = get_look_direction()
 	beam.global_position = %ShootingPoint.global_position
 	get_parent().add_child(beam)
+
+
+func set_pogo_hitbox(active: bool):
+	$PlayerSprites/PogoHitbox.monitoring = active
+	$PlayerSprites/PogoHitbox.visible = active

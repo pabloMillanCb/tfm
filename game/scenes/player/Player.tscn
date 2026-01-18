@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=40 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -282,6 +282,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rn7t0"]
 size = Vector2(9, 5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xrq6"]
+size = Vector2(3, 6)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 script = ExtResource("1_ov1oi")
@@ -328,7 +331,7 @@ script = ExtResource("11_p1lr0")
 script = ExtResource("2_gfjak")
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="."]
-position = Vector2(-5, 5)
+position = Vector2(-5, 1)
 sprite_frames = SubResource("SpriteFrames_180ig")
 animation = &"atack"
 frame = 3
@@ -354,6 +357,16 @@ debug_color = Color(0.78864187, 0.099395506, 1, 0.41960785)
 unique_name_in_owner = true
 position = Vector2(17, 1)
 
+[node name="PogoHitbox" type="Area2D" parent="PlayerSprites"]
+collision_layer = 4
+collision_mask = 24
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/PogoHitbox"]
+position = Vector2(0.5, 12)
+shape = SubResource("RectangleShape2D_2xrq6")
+debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
+
 [node name="DebugStateName" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = -22.0
@@ -372,3 +385,7 @@ vertical_alignment = 1
 visible = false
 position = Vector2(128, 120)
 texture = ExtResource("17_ejd4k")
+
+[connection signal="area_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_entered"]
+[connection signal="body_shape_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_shape_entered"]
