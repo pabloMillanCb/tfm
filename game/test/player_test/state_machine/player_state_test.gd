@@ -8,8 +8,23 @@ func before_test():
 	runner = scene_runner(scene)
 	player = runner.find_child("Player")
 
-func test_move_right_and_left():
+
+func test_pogo_bounce():
+	await await_millis(500)
+	runner.simulate_action_press("jump")
+	await runner.await_input_processed()
+	await await_millis(200)
+	runner.simulate_action_press("aim_down")
+	await runner.await_input_processed()
+	runner.simulate_action_press("atack")
+	await runner.await_input_processed()
+	await await_millis(1300)
 	
+	assert_str(player.state_machine.state.name).is_equal(PlayerState.POGO)
+	assert_float(player.velocity.y).is_less(0.0)
+
+
+func test_move_right_and_left():
 	runner.simulate_action_press("move_right")
 	await runner.await_input_processed()
 	await await_millis(500)
