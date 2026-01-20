@@ -9,6 +9,22 @@ func before_test():
 	player = runner.find_child("Player")
 
 
+func test_teleport():
+	
+	var starting_location = player.global_position
+	await await_millis(300)
+	runner.simulate_action_press("teleport")
+	await runner.await_input_processed()
+	await await_millis(300)
+	assert_str(player.state_machine.state.name).is_equal(PlayerState.PREPARE_TELEPORT)
+	
+	runner.simulate_action_release("teleport")
+	await runner.await_input_processed()
+	await await_millis(100)
+	assert_str(player.state_machine.state.name).is_equal(PlayerState.RELEASE_TELEPORT)
+	
+	assert_float(player.global_position.x).is_not_equal(starting_location.x)
+
 func test_pogo_bounce():
 	await await_millis(500)
 	runner.simulate_action_press("jump")
