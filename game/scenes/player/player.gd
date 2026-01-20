@@ -8,6 +8,7 @@ class_name Player
 @export var jump_force = -120
 @export var bounce_force = -220
 @export var beam_update = false
+@export var break_update = false
 
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
@@ -76,3 +77,7 @@ func teleport():
 	if teleport_crosshair != null:
 		global_position = teleport_crosshair.get_aim_global_position()
 		teleport_crosshair.queue_free()
+
+func _on_atack_hit(area: Area2D) -> void:
+	if area.has_method("break_self") and break_update:
+		area.break_self()

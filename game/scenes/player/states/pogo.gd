@@ -37,6 +37,7 @@ func bounce():
 
 func _on_pogo_hitbox_area_entered(area: Area2D) -> void:
 	print("pogo")
+	player._on_atack_hit(area)
 	bounce()
 
 
