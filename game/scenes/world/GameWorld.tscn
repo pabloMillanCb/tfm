@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbp6l4c04rxj"]
+
+[ext_resource type="PackedScene" uid="uid://dt5id5s6k2sgf" path="res://scenes/player/Player.tscn" id="1_xro63"]
+[ext_resource type="PackedScene" uid="uid://beovhokk6u1q0" path="res://scenes/breakable/skull/Skull.tscn" id="2_45itr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o21sk"]
+size = Vector2(401, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k6en"]
+size = Vector2(9, 8.5)
+
+[node name="GameWorld" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_xro63")]
+position = Vector2(124, 184)
+debug_mode = false
+break_update = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(129.5, 207.5)
+shape = SubResource("RectangleShape2D_o21sk")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_left = 35.0
+offset_top = 193.0
+offset_right = 218.0
+offset_bottom = 221.0
+color = Color(0, 0.31885228, 0.32120225, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(62, 0)
+collision_layer = 24
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(57, 188)
+shape = SubResource("RectangleShape2D_5k6en")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = 52.0
+offset_top = 184.0
+offset_right = 61.0
+offset_bottom = 192.0
+color = Color(0.8984375, 0.5305846, 0.15943256, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Skull" parent="." instance=ExtResource("2_45itr")]
+position = Vector2(72, 185)
