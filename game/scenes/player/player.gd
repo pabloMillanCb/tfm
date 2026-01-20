@@ -8,6 +8,8 @@ class_name Player
 @export var jump_force = -120
 @export var bounce_force = -220
 
+@export var beam_update = false
+
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
 ).call()
@@ -51,10 +53,11 @@ func update_gravity(_delta):
 
 
 func shoot():
-	var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
-	beam.direction = get_look_direction()
-	beam.global_position = %ShootingPoint.global_position
-	get_parent().add_child(beam)
+	if beam_update:
+		var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
+		beam.direction = get_look_direction()
+		beam.global_position = %ShootingPoint.global_position
+		get_parent().add_child(beam)
 
 
 func set_pogo_hitbox(active: bool):
