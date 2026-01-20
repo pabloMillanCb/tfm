@@ -1,11 +1,18 @@
 extends PlayerState
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _enter(_previous_state_path: String, _init_data := {}):
+	player.set_animation("prepare_teleport")
+	player.prepare_teleport()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _update(_delta):
+	player.update_gravity(_delta)
+	
+	if player.is_on_floor():
+		player.velocity.x = 0
+	
+	if !Input.is_action_pressed("teleport"):
+		finished.emit(RELEASE_TELEPORT)
+	
+	player.move_and_slide()

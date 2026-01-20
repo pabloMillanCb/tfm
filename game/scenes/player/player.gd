@@ -7,12 +7,13 @@ class_name Player
 @export var walking_acceleration = 660
 @export var jump_force = -120
 @export var bounce_force = -220
-
 @export var beam_update = false
 
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
 ).call()
+
+var teleport_crosshair: TeleportCrosshair
 
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
@@ -63,3 +64,15 @@ func shoot():
 func set_pogo_hitbox(active: bool):
 	$PlayerSprites/PogoHitbox.monitoring = active
 	$PlayerSprites/PogoHitbox.visible = active
+
+
+func prepare_teleport():
+	teleport_crosshair = preload("res://scenes/player/teleport/TeleportCrosshair.tscn").instantiate() 
+	teleport_crosshair.direction = get_look_direction()
+	teleport_crosshair.global_position = global_position
+	get_parent().add_child(teleport_crosshair)
+
+func teleport():
+	if teleport_crosshair != null:
+		global_position = teleport_crosshair.get_aim_global_position()
+		teleport_crosshair.queue_free()

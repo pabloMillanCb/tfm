@@ -1,11 +1,17 @@
 extends PlayerState
 
+@export var cooldown_time = 0.5
+@export var release_teleport_time = 0.1
+var time = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _enter(_previous_state_path: String, _init_data := {}):
+	player.set_animation("release_teleport")
+	time = 0.0
+	player.teleport()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _update(_delta):
+	time += _delta
+	
+	if time > cooldown_time:
+		finished.emit(IDLE)
