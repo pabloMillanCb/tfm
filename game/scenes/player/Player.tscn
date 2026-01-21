@@ -20,8 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://kwv4pqxs8rv6" path="res://scenes/player/assets/player_pogo.png" id="16_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="17_ejd4k"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfjak"]
-size = Vector2(6, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
+radius = 2.0
+height = 14.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qjgm"]
 atlas = ExtResource("14_rn7t0")
@@ -345,11 +346,10 @@ size = Vector2(3, 6)
 z_index = 10
 collision_mask = 2
 script = ExtResource("1_ov1oi")
-debug_mode = true
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 1)
-shape = SubResource("RectangleShape2D_gfjak")
+shape = SubResource("CapsuleShape2D_pi3ps")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_wr5hl")
