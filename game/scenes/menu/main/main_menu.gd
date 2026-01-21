@@ -14,7 +14,16 @@ func _on_load_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	pass # Replace with function body.
+	var settings_menu: SettingsMenu = preload("res://scenes/menu/settings/SettingsMenu.tscn").instantiate()
+	add_child(settings_menu)
+	$CenterContainer/VBoxContainer/Settings.release_focus()
+	$CenterContainer.visible = false
+	
+	settings_menu.exited.connect(func (): 
+		get_node("SettingsMenu").queue_free()
+		$CenterContainer/VBoxContainer/Settings.grab_focus()
+		$CenterContainer.visible = true
+	)
 
 
 func _on_exit_pressed() -> void:
