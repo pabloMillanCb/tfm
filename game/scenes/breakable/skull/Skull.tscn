@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://beovhokk6u1q0"]
+
+[ext_resource type="Texture2D" uid="uid://cum20b4rt1cos" path="res://scenes/breakable/skull/skull.png" id="1_2l8a3"]
+[ext_resource type="Script" uid="uid://phvv0qpk2s0v" path="res://scenes/breakable/skull/skull.gd" id="1_cpm4r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpm4r"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l8a3"]
+size = Vector2(16, 16)
+
+[node name="Skull" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_cpm4r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2l8a3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cpm4r")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_2l8a3")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3nd17keheb61"]
+
+[ext_resource type="Script" uid="uid://dkgrnfdf88l4i" path="res://scenes/game/game.gd" id="1_sul5r"]
+[ext_resource type="PackedScene" uid="uid://dffy6e8ehpokc" path="res://scenes/menu/main/MainMenu.tscn" id="2_7h61r"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_sul5r")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "old state: 
+
+current state:"
+
+[node name="OldState" type="Label" parent="."]
+visible = false
+offset_left = 28.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 44.0
+text = "-"
+
+[node name="NewState" type="Label" parent="."]
+visible = false
+offset_left = 28.0
+offset_top = 77.0
+offset_right = 68.0
+offset_bottom = 100.0
+text = "-"
+
+[node name="MainMenu" parent="." instance=ExtResource("2_7h61r")]

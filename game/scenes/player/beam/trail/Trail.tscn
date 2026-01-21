@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djbqew7ko7jpa"]
+
+[ext_resource type="Script" uid="uid://c7tgtnu0q8eby" path="res://scenes/player/beam/trail/trail.gd" id="1_tri6w"]
+
+[sub_resource type="Curve" id="Curve_f40rp"]
+_data = [Vector2(0, 0.99473035), 0.0, 0.0, 0, 0, Vector2(1, 0.077827334), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Trail" type="Line2D"]
+top_level = true
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+width_curve = SubResource("Curve_f40rp")
+script = ExtResource("1_tri6w")
