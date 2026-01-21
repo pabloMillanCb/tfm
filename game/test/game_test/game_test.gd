@@ -13,7 +13,10 @@ func simulate_single_action_press(action: String):
 func before_test() -> void:
 	runner = scene_runner(scene)
 	game = runner.find_child("Game")
-	
+
+func after() -> void:
+	get_tree().paused = false
+
 func test_starting_state():
 	
 	assert_int(game.current_state).is_equal(game.GameState.TITLE_SCREEN)
@@ -99,3 +102,6 @@ func test_forbidden_game_state_changes():
 	await simulate_single_action_press("debug_5")
 	await simulate_single_action_press("debug_6")
 	assert_int(game.current_state).is_equal(game.GameState.PAUSE_MENU)
+	
+	await simulate_single_action_press("ui_accept")
+	assert_int(game.current_state).is_equal(game.GameState.GAME_WORLD)
