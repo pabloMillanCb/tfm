@@ -1,10 +1,7 @@
 extends PlayerState
 
-var current_speed = 0.0
-
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_animation("move")
-	current_speed = player.velocity.x
 
 
 func _update_physics(_delta):
@@ -12,17 +9,15 @@ func _update_physics(_delta):
 	var direction = Input.get_axis("move_left", "move_right")
 	
 	if direction:
-		current_speed = move_toward(
-			current_speed, 
+		player.velocity.x = move_toward(
+			player.velocity.x, 
 			player.walking_speed * direction, 
 			_delta * player.walking_acceleration) 
 	else:
-		current_speed = move_toward(
-			current_speed, 
+		player.velocity.x = move_toward(
+			player.velocity.x, 
 			0.0, 
 			_delta * player.walking_acceleration) 
-		
-	player.velocity.x = current_speed
 	
 	player.move_and_slide()
 	player.update_look_direction()

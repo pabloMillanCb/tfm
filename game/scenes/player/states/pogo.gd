@@ -11,7 +11,7 @@ func _exit():
 
 
 func _update(_delta):
-	player.update_gravity(_delta)
+	update_gravity(_delta)
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	
@@ -19,33 +19,34 @@ func _update(_delta):
 		player.velocity.x = move_toward(
 			player.velocity.x, 
 			player.walking_speed * direction, 
-			_delta * player.walking_acceleration) 
+			_delta * player.pogo_acceleration) 
 	else:
 		player.velocity.x = move_toward(
 			player.velocity.x, 
 			0.0, 
-			_delta * player.walking_acceleration) 
+			_delta * player.pogo_acceleration) 
 	
 	if player.is_on_floor():
 		finished.emit(IDLE)
 	
 	player.move_and_slide()
 
+
+func update_gravity(_delta: float):
+	var POGO_GRAVITY_FORCE = 200
+	var MAX_FALL_SPEED = 200
+	
+	player.velocity.y = min(player.velocity.y + POGO_GRAVITY_FORCE * _delta, MAX_FALL_SPEED)
+
+
 func bounce():
 	player.velocity.y = player.bounce_force
 
 
 func _on_pogo_hitbox_area_entered(area: Area2D) -> void:
-	print("pogo")
 	player._on_atack_hit(area)
 	bounce()
 
 
 func _on_pogo_hitbox_body_entered(body: Node2D) -> void:
-	print("pogo2")
-	bounce()
-
-
-func _on_pogo_hitbox_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print("pogo3")
 	bounce()

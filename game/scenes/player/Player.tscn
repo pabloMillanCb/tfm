@@ -449,4 +449,3 @@ texture = ExtResource("17_ejd4k")
 [connection signal="area_entered" from="PlayerSprites/AtackHitBox" to="." method="_on_atack_hit"]
 [connection signal="area_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_entered"]
-[connection signal="body_shape_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_shape_entered"]
