@@ -12,8 +12,17 @@ func _on_resume_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	GameManager.go_to_title_screen()
+	var settings_menu: SettingsMenu = preload("res://scenes/menu/settings/SettingsMenu.tscn").instantiate()
+	add_child(settings_menu)
+	$CenterContainer/VBoxContainer/Settings.release_focus()
+	$CenterContainer.visible = false
+	
+	settings_menu.exited.connect(func (): 
+		get_node("SettingsMenu").queue_free()
+		$CenterContainer/VBoxContainer/Settings.grab_focus()
+		$CenterContainer.visible = true
+	)
 
 
 func _on_main_menu_pressed() -> void:
-	pass # Replace with function body.
+	GameManager.go_to_title_screen()
