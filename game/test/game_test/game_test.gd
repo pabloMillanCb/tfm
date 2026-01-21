@@ -31,10 +31,10 @@ func test_load_game_and_pause_game():
 	await simulate_single_action_press("debug_2")
 	assert_int(game.current_state).is_equal(game.GameState.GAME_WORLD)
 	
-	await simulate_single_action_press("debug_3")
+	await simulate_single_action_press("pause")
 	assert_int(game.current_state).is_equal(game.GameState.PAUSE_MENU)
 	
-	await simulate_single_action_press("debug_2")
+	await simulate_single_action_press("ui_accept")
 	assert_int(game.current_state).is_equal(game.GameState.GAME_WORLD)
 	
 func test_return_to_title_screen():
@@ -42,10 +42,12 @@ func test_return_to_title_screen():
 	await simulate_single_action_press("debug_2")
 	assert_int(game.current_state).is_equal(game.GameState.GAME_WORLD)
 	
-	await simulate_single_action_press("debug_3")
+	await simulate_single_action_press("pause")
 	assert_int(game.current_state).is_equal(game.GameState.PAUSE_MENU)
 	
-	await simulate_single_action_press("debug_1")
+	await simulate_single_action_press("ui_down")
+	await simulate_single_action_press("ui_down")
+	await simulate_single_action_press("ui_accept")
 	assert_int(game.current_state).is_equal(game.GameState.TITLE_SCREEN)
 
 func test_load_game_die_and_respawn():
