@@ -4,6 +4,7 @@
 
 [node name="PauseMenu" type="Node2D"]
 process_mode = 3
+z_index = 100
 script = ExtResource("1_a3xnm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

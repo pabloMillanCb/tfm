@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxkkbwf45d7fa" path="res://scenes/menu/settings/settings_menu.gd" id="1_s351m"]
 
 [node name="SettingsMenu" type="Node2D"]
+z_index = 100
 script = ExtResource("1_s351m")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

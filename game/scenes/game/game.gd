@@ -116,6 +116,7 @@ func exit_state(old_state: GameState, new_state: GameState):
 	elif (old_state == GameState.PAUSE_MENU):
 		$OldState.text = "GameState.PAUSE_MENU"
 		get_node("PauseMenu").queue_free()
+		get_node("GameWorld").queue_free()
 		get_tree().paused = false
 		
 	elif (old_state == GameState.GAME_ENDING):
