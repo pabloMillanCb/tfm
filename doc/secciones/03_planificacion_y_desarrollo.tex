@@ -364,11 +364,25 @@ Para planificar cada sprint de 20 horas, se usarán solo 15 para estimar las tar
     \caption{Distribución de horas de un sprint.}
 \end{table} 
 
-Para cada sprint se extraerán las tareas derivadas de las historias asociadas en la fase de planificación del sprint. Se redactarán en un \textbf{tablero kanban} (cada sprint tendrá uno distinto). El tablero contará con las siguientes columnas: \textbf{Backlog, Diseño, Implementación, Validación, y Finalizado}. Para los \textit{assets} como el arte, se dispondrá de un tablero kanban adicional, con las siguientes columnas: \textbf{Backlog, Boceto, Producción, Finalizado}.
+Para cada sprint se extraerán las tareas derivadas de las historias asociadas en la fase de planificación del sprint. Se redactarán en un \textbf{tablero kanban} (cada sprint tendrá uno distinto). El tablero contará con las siguientes columnas: \textbf{Backlog, Diseño, Implementación, Test, Validación, y Finalizado}. Para los \textit{assets} como el arte, se dispondrá de un tablero kanban adicional, con las siguientes columnas: \textbf{Backlog, Boceto, Producción, Finalizado}.
 
 \section{Producción}
 
 A continuación se desarrollarán los diferentes sprints que constituyen el desarrollo.
+
+\subsection{Control de versiones}
+
+Para el control de versiones del proyecto se empleó Git. Tanto el código como la documentación se alojaron en un mismo \href{https://github.com/pabloMillanCb/tfm}{repositorio en Github}. Se usó la siguiente nomenclatura para las ramas:
+
+\begin{itemize}
+    \item \textbf{main}: Rama principal del proyecto. Solo se actualiza con versiones de código estables al final de cada sprint.
+    \item \textbf{develop}: Rama que contiene la versión estable más reciente en desarrollo. Con estable se hace referencia a que todos los test automáticos deben pasar sin error.
+    \item \textbf{documentation}: Rama donde se actualiza la documentación del proyecto.
+    \item Ramas \textbf{feature/X}: Prefijo que hace referencia a ramas donde se implementa una funcionalidad concreta, usualmente relacionada con el \textit{gameplay} del juego. Por ejemplo, en la rama \textit{feature/player} se desarrolla la lógica, controles y animaciones de todas las mecánicas del personaje del jugador.
+    \item Ramas \textbf{system/X}: Hace referencia a las ramas en las que se desarrolla un sistema más amplio y transversal para el proyecto, como \textit{system/menus} o \textit{system/controls-interface}.
+    \item Ramas \textbf{ci/X}: Ramas para realizar la configuraciones relacionadas con la integración o despliegue continuos.
+    \item Ramas \textbf{bugfix/X}: Ramas para resolución de bugs concretos.
+\end{itemize}
 
 \subsection{Sprint 1}
 
@@ -382,32 +396,78 @@ El sprint 1 se planificó con el objetivo de trabajar los siguientes aspectos:
     \item Añadir herramientas para construir una \textit{sala de pruebas}, una instancia acotada donde moverse libremente con el personaje del jugador para probarlo.
 \end{itemize}
 
+En la tabla \ref{tab:sprint1task} se pueden observar las tareas que se plantearon para el sprint, junto a su estimación y el tiempo efectivo de ejecución. Durante este sprint se observó la necesidad de asegurar que todos los tests automáticos que se realizaran fueran correctos en la rama \textit{develop}. Es por ello que se decidió \textbf{añadir una tarea para configurar Github Actions para la ejecución de tests automáticos}. Durante la tarea de validación y ajustes surgieron cuatro tareas adicionales, tres de las cuales pudieron resolverse en tiempo de sprint. Se pueden observar en la tabla \ref{tab:aditionalsprint1task}.
+
 \begin{table}[!ht]
     \centering
     \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
     \hline
         Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
-        SF-01 & Diseñar e implementar Game Lifecycle & 1,5 & ~ \\ \hline
-        SF-02 & Crear interfaz de controles para en un futuro poder reasignar desde ahí los controles & 0,45 & ~ \\ \hline
-        SF-03 & Diseñar e implementar patrón de estado de máquina completo para PJ principal & 2 & ~ \\ \hline
-        SF-04 & Implementar conroles de movimiento y salto para jugador & 0,45 & ~ \\ \hline
-        SF-05 & Implementar controles de ataque para jugador & 0,45 & ~ \\ \hline
-        SF-06 & Implementar mejora de disparo para jugador & 1,5 & ~ \\ \hline
-        SF-07 & Implementar mejora de pogo para jugador & 2 & ~ \\ \hline
-        SF-08 & Implementar mejora de teletransporte para jugador & 1 & ~ \\ \hline
-        SF-09 & Implementar mejora de destrucción para jugador & 0,5 & ~ \\ \hline
-        SF-10 & Implementar placeholder menú de pausa & 1 & ~ \\ \hline
-        SF-11 & Implementar placeholder menú de ajustes & 0,5 & ~ \\ \hline
-        SF-12 & Implementar animaciones jugador & 1,5 & ~ \\ \hline
-        SF-13 & Implementar tileset de prueba & 0,5 & ~ \\ \hline
+        SF-01 & Diseñar e implementar Game Lifecycle & 1,5 & 2 \\ \hline
+        SF-02 & Crear interfaz de controles para en un futuro poder reasignar desde ahí los controles & 0,5 & 1,5 \\ \hline
+        SF-03 & Diseñar e implementar patrón de estado de máquina completo para PJ principal & 2 & 1,5 \\ \hline
+        SF-04 & Implementar conroles de movimiento y salto para jugador & 0,5 & 0,75 \\ \hline
+        SF-05 & Implementar controles de ataque para jugador & 0,5 & 0,5 \\ \hline
+        SF-06 & Implementar mejora de disparo para jugador & 1,5 & 1 \\ \hline
+        SF-07 & Implementar mejora de pogo para jugador & 2 & 1 \\ \hline
+        SF-08 & Implementar mejora de teletransporte para jugador & 1 & 0,75 \\ \hline
+        SF-09 & Implementar mejora de destrucción para jugador & 0,5 & 0,5 \\ \hline
+        SF-10 & Implementar placeholder menú de pausa & 1 & 1 \\ \hline
+        SF-11 & Implementar placeholder menú de ajustes & 0,5 & 0,5 \\ \hline
+        SF-12 & Implementar animaciones jugador & 1,5 & 0,75 \\ \hline
+        SF-13 & Implementar tileset de prueba & 0,5 & 0,25 \\ \hline
         ~ & ~ & ~ & ~ \\ \hline
         ~ & ~ & ~ & ~ \\ \hline
-        TEST & Validación y ajustes & 2,5 & ~ \\ \hline
-        SCRUM & Sprint review & 0,5 & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 4 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
         SCRUM & Sprint planning & 0,5 & ~ \\ \hline
     \end{tabular}
     \caption{Tareas y estimación del sprint 1.}
+    \label{tab:sprint1task}
 \end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        OBJ-01 & Cambio en gravedad para que sea más manejable en el aire & 0,25 \\ \hline
+        OBJ-02 & Cambio en el salto (que pueda ser redireccionable) para que se corresponda con el control del pogo & 1 \\ \hline
+        OBJ-03 & Existe un pequeño stutter al moverse en diagonal con las opciones de baja resolución de godot & 0,5 \\ \hline
+        BUG-01 & Al pisar con el pogo sobre un objeto que tiene colisión de suelo, se entra en estado de salto y se pierde el control & ~ \\ \hline
+        OBJ-04 & Es necesario separar las animaciones del personaje y la espada/bastón para que este pueda andar y saltar mientras prepara el teletransporte y pueda controlarse antes de conseguir el upgrade de la espada. Requiere refactorización & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 1.}
+    \label{tab:aditionalsprint1task}
+\end{table}
+
+El sprint tenía como objetivo realizarse en 20 horas. Se estimaron 17 horas, y finalmente el tiempo de trabajo efectivo fue de \textbf{23,75 horas}, superando un poco el objetivo.
+
+En el \textbf{sprint review} se siguió el enfoque \textit{¿Qué hicimos mal, qué hicimos bien, y qué vamos a hacer a partir de ahora?}
+
+En cuanto a \textit{qué hicimos mal}:
+\begin{itemize}
+    \item Las siguientes tareas requirieron más tiempo del esperado: SF-01, SF-02, SF-03, SF-04, CI y TEST.
+    \item Gran parte de la demora de algunas tareas se debió a que, a la hora de estimarlas, no se tuvo en cuenta el tiempo de escritura de tests.
+    \item El tiempo empleado de TEST fue de 4 horas porque, mientras se realizaban otras tareas, se divagaba probando el juego y realizando pequeños ajustes no relacionados con la tarea.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Otras tantas tareas requirieron considerablemente menos tiempo del esperado, compensando por suerte las que requirieron más tiempo.
+    \item La planificación de los test parece prometedora, habiendo descubierto algunos fallos inesperados al realizar otras tareas que se pudieron arreglar sin mayor problema.
+    \item El diseño del estado de máquinas del jugador es muy robusto y permite hacer cambios y añadir estados fácilmente.
+\end{itemize}
+
+Y por tanto en los próximos sprints:
+\begin{itemize}
+    \item Se tendrá en cuenta el tiempo de implementación de tests para la estimación, si fuera necesario.
+    \item Se prestará especial atención en no realizar ningún cambio en el proyecto que no afecte directamente a la tarea activa.
+    \item Se valorará qué tareas necesitan tests y cuales no, teniendo como parámetros el si una entidad tiene influencia sobre otros sistemas, y de cuanta extensión puede ser la influencia. A priori, no parece merecer la pena invertir muchas horas en tests unitarios.
+\end{itemize}
+
+\subsection{Sprint 2}
+
+
 
 % Sprint Review
 % Burndown
