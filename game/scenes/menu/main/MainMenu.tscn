@@ -15,11 +15,11 @@ layout_mode = 2
 
 [node name="New" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "NEW"
+text = "NEWGAME"
 
 [node name="Load" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "LOAD"
+text = "CONTINUE"
 
 [node name="Settings" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
