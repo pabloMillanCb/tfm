@@ -8,5 +8,5 @@ script = ExtResource("1_ui0vk")
 theme = ExtResource("2_3kt0x")
 map_data_file = "res://scenes/world/rooms/MapData.txt"
 scene_template = "uid://cdpygcpno7x72"
-in_game_cell_size = Vector2(256, 240)
+in_game_cell_size = Vector2(128, 128)
 _last_scene_folder = "res://scenes/world/rooms"
