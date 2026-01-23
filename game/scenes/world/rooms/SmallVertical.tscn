@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cut1ax5333vo4"]
+[gd_scene load_steps=6 format=4 uid="uid://cut1ax5333vo4"]
 
 [ext_resource type="Texture2D" uid="uid://l28vfyhmg7t5" path="res://assets/tilemaps/test_tilemap.png" id="1_iu7s0"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_2dxno"]
+[ext_resource type="PackedScene" uid="uid://cwo10h5rraa05" path="res://scenes/objects/test_collectible/TestCollectible.tscn" id="3_iu7s0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2tep"]
 texture = ExtResource("1_iu7s0")
@@ -33,3 +34,6 @@ tile_set = SubResource("TileSet_l3ey0")
 [node name="RoomInstance" parent="." instance=ExtResource("2_2dxno")]
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="TestCollectible" parent="." instance=ExtResource("3_iu7s0")]
+position = Vector2(63, 225)
