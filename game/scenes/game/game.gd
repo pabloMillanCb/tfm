@@ -77,6 +77,7 @@ func enter_state(new_state: GameState, old_state: GameState):
 		$NewState.text = "GameState.GAME_WORLD"
 		if old_state != GameState.PAUSE_MENU:
 			add_child(preload("res://scenes/world/GameWorld.tscn").instantiate())
+		%Minimap.visible = true
 		
 	elif (new_state == GameState.GAME_INTRO):
 		$NewState.text = "GameState.GAME_INTRO"
@@ -105,6 +106,7 @@ func exit_state(old_state: GameState, new_state: GameState):
 		$OldState.text = "GameState.GAME_WORLD"
 		if new_state != GameState.PAUSE_MENU:
 			get_node("GameWorld").queue_free()
+		%Minimap.visible = false
 		
 	elif (old_state == GameState.GAME_INTRO):
 		$OldState.text = "GameState.GAME_INTRO"
