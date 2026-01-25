@@ -13,12 +13,20 @@ enum GameState {
 var current_state: GameState = GameState.TITLE_SCREEN
 
 func _ready() -> void:
-	GameManager.game = self
+	
+	GameEvent._on_return_to_title_screen.connect(func():set_state(GameState.TITLE_SCREEN))
+	GameEvent._on_game_load.connect(func():set_state(GameState.GAME_WORLD))
+	GameEvent._on_game_paused.connect(func():set_state(GameState.PAUSE_MENU))
+	GameEvent._on_game_over.connect(func():set_state(GameState.GAME_OVER))
+	GameEvent._on_new_game_start.connect(func():set_state(GameState.GAME_INTRO))
+	GameEvent._on_game_completed.connect(func():set_state(GameState.GAME_ENDING))
+	GameEvent._unpause_game.connect(func(): set_state(GameState.GAME_WORLD))
 	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") and current_state == GameState.GAME_WORLD:
-		GameManager.pause_game()
+		GameEvent._on_game_paused.emit()
+
 
 func set_state(new_state: GameState):
 	var old_state = current_state
@@ -135,14 +143,14 @@ func _process(delta: float) -> void:
 	#TODO: test utility, to delete
 	
 	if (Input.is_action_just_pressed("debug_1")):
-		GameManager.go_to_title_screen()
+		GameEvent._on_return_to_title_screen.emit() #
 	elif (Input.is_action_just_pressed("debug_2")):
-		GameManager.load_game()
+		GameEvent._on_game_load.emit() #
 	elif (Input.is_action_just_pressed("debug_3")):
-		GameManager.pause_game()
+		GameEvent._on_game_paused.emit() #
 	elif (Input.is_action_just_pressed("debug_4")):
-		GameManager.enter_game_over()
+		GameEvent._on_game_over.emit() #
 	elif (Input.is_action_just_pressed("debug_5")):
-		GameManager.start_new_game()
+		GameEvent._on_new_game_start.emit() #
 	elif (Input.is_action_just_pressed("debug_6")):
-		GameManager.on_game_completed()
+		GameEvent._on_game_completed.emit() #

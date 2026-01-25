@@ -6,7 +6,7 @@ func _ready() -> void:
 
 
 func _on_new_pressed() -> void:
-	GameManager.start_new_game()
+	GameEvent._on_new_game_start.emit()
 
 
 func _on_load_pressed() -> void:

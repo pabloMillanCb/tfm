@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _on_resume_pressed() -> void:
 	print("unpause")
-	GameManager.unpause_game()
+	GameEvent._unpause_game.emit()
 
 
 func _on_settings_pressed() -> void:
@@ -25,4 +25,4 @@ func _on_settings_pressed() -> void:
 
 
 func _on_main_menu_pressed() -> void:
-	GameManager.go_to_title_screen()
+	GameEvent._on_return_to_title_screen.emit()

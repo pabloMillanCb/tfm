@@ -12,4 +12,4 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	GameManager.on_game_intro_finish()
+	GameEvent._on_game_intro_finished.emit()
