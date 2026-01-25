@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 GameEvent="*res://autoload/game_event.gd"
 InputMapper="*res://autoload/input_mapper.gd"
 LocalizationManager="*res://autoload/localization_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [debug]
 
@@ -39,7 +40,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ControlsRemap/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
+enabled=PackedStringArray("res://addons/ControlsRemap/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/gdUnit4/plugin.cfg")
 
 [file_customization]
 
