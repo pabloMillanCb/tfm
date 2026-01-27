@@ -11,6 +11,7 @@ const RELEASE_TELEPORT = "ReleaseTeleport"
 const POGO = "Pogo"
 const HIT = "Hit"
 const DEAD = "Dead"
+const TALKING = "Talking"
 
 var player: Player
 

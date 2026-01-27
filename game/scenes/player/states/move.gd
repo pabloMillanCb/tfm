@@ -2,7 +2,11 @@ extends PlayerState
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_animation("move")
+	player.dialog_start_request.connect(start_talking)
 
+
+func _exit():
+	player.dialog_start_request.disconnect(start_talking)
 
 func _update_physics(_delta):
 	
@@ -32,3 +36,7 @@ func _update_physics(_delta):
 		finished.emit(ATACK)
 	elif player.velocity.x == 0.0 and !direction:
 		finished.emit(IDLE)
+
+
+func start_talking(dialogue_component: DialogueComponent):
+	finished.emit(TALKING, {"dialogue": dialogue_component})

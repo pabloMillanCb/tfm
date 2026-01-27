@@ -1,11 +1,11 @@
 ~ start
-[[Hi|Hello|Howdy]], this is some dialogue.
-Here are some choices.
+Yo yo yooooooo
+Which of my spikes is the coolest
 - First one
-	You picked the first one.
+	My fish ain't even trying.
 - Second one
-	You picked the second one.
-- Start again => start
-- End the conversation => END
-For more information see the online documentation.
+	The type of fish that likes Luigi.
+- That isn't natural => start
+- Leave me alone => END
+Wachout for da dog
 => END

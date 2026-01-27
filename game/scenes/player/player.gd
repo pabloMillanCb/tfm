@@ -12,6 +12,8 @@ class_name Player
 @export var beam_update = false
 @export var break_update = false
 
+signal dialog_start_request(dialogue_component: DialogueComponent)
+
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
 ).call()
