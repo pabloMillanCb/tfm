@@ -21,6 +21,7 @@ func _ready() -> void:
 	GameEvent._on_new_game_start.connect(func():set_state(GameState.GAME_INTRO))
 	GameEvent._on_game_completed.connect(func():set_state(GameState.GAME_ENDING))
 	GameEvent._unpause_game.connect(func(): set_state(GameState.GAME_WORLD))
+	GameEvent._on_game_intro_finished.connect(func(): set_state(GameState.GAME_WORLD))
 	
 
 func _input(event: InputEvent) -> void:
@@ -80,6 +81,8 @@ func set_state(new_state: GameState):
 			print_state_change_error(new_state, old_state)
 
 func enter_state(new_state: GameState, old_state: GameState):
+	
+	print("Entering {new_state} from {old_state}".format({"old_state": GameState.keys()[old_state], "new_state": GameState.keys()[new_state]}))
 	
 	if (new_state == GameState.GAME_WORLD):
 		$NewState.text = "GameState.GAME_WORLD"
