@@ -25,6 +25,7 @@ GameEvent="*res://autoload/game_event.gd"
 InputMapper="*res://autoload/input_mapper.gd"
 LocalizationManager="*res://autoload/localization_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+DataManager="*res://autoload/data_manager.gd"
 
 [debug]
 
