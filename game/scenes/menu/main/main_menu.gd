@@ -1,6 +1,5 @@
 extends Node2D
 
-
 func _ready() -> void:
 	$CenterContainer/VBoxContainer/New.grab_focus()
 
@@ -10,7 +9,16 @@ func _on_new_pressed() -> void:
 
 
 func _on_load_pressed() -> void:
-	pass # Replace with function body.
+	var continue_menu: ContinueMenu = preload("res://scenes/menu/continue/ContinueMenu.tscn").instantiate()
+	add_child(continue_menu)
+	$CenterContainer/VBoxContainer/Load.release_focus()
+	$CenterContainer.visible = false
+	
+	continue_menu.exited.connect(func (): 
+		get_node("ContinueMenu").queue_free()
+		$CenterContainer/VBoxContainer/Load.grab_focus()
+		$CenterContainer.visible = true
+	)
 
 
 func _on_settings_pressed() -> void:
