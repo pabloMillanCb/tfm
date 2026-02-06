@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwo10h5rraa05"]
+
+[ext_resource type="Script" uid="uid://b3xum4chbo71o" path="res://scenes/objects/collectible_with_marker.gd" id="1_wapiu"]
+[ext_resource type="Texture2D" uid="uid://f0nv75gc8hxu" path="res://assets/icons/skull.png" id="2_00w8v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00w8v"]
+
+[node name="TestCollectible" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_wapiu")
+metadata/_custom_type_script = "uid://b3xum4chbo71o"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_00w8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_00w8v")
+
+[connection signal="body_entered" from="." to="." method="_collect"]
