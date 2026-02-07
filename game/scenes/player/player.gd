@@ -24,6 +24,9 @@ var teleport_crosshair: TeleportCrosshair
 
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
+	
+	if invencible:
+		$PlayerSprites/AnimationPlayer.play("blink")
 
 
 func stop_animation():
