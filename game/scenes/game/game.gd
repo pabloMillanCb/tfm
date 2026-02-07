@@ -22,6 +22,7 @@ func _ready() -> void:
 	GameEvent._on_game_completed.connect(func():set_state(GameState.GAME_ENDING))
 	GameEvent._on_game_resumed.connect(func(): set_state(GameState.GAME_WORLD))
 	GameEvent._on_game_intro_finished.connect(func(): set_state(GameState.GAME_WORLD))
+	GameEvent._on_player_respawn.connect(func(): set_state(GameState.GAME_WORLD))
 	
 
 func _input(event: InputEvent) -> void:
@@ -73,7 +74,7 @@ func set_state(new_state: GameState):
 			print_state_change_error(new_state, old_state)
 		
 	elif (new_state == GameState.TITLE_SCREEN):
-		var allowed_states: Array = [GameState.PAUSE_MENU, GameState.GAME_ENDING]
+		var allowed_states: Array = [GameState.PAUSE_MENU, GameState.GAME_ENDING, GameState.GAME_OVER]
 		if (allowed_states.has(old_state)):
 			exit_state(old_state, new_state)
 			enter_state(new_state, old_state)
@@ -96,6 +97,7 @@ func enter_state(new_state: GameState, old_state: GameState):
 		
 	elif (new_state == GameState.GAME_OVER):
 		$NewState.text = "GameState.GAME_OVER"
+		add_child(preload("res://scenes/menu/game_over/GameOver.tscn").instantiate())
 		
 	elif (new_state == GameState.PAUSE_MENU):
 		$NewState.text = "GameState.PAUSE_MENU"
@@ -125,6 +127,7 @@ func exit_state(old_state: GameState, new_state: GameState):
 		
 	elif (old_state == GameState.GAME_OVER):
 		$OldState.text = "GameState.GAME_OVER"
+		get_node("GameOver").queue_free()
 		
 	elif (old_state == GameState.PAUSE_MENU):
 		$OldState.text = "GameState.PAUSE_MENU"
