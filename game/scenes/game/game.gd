@@ -20,7 +20,7 @@ func _ready() -> void:
 	GameEvent._on_game_over.connect(func():set_state(GameState.GAME_OVER))
 	GameEvent._on_new_game_start.connect(func():set_state(GameState.GAME_INTRO))
 	GameEvent._on_game_completed.connect(func():set_state(GameState.GAME_ENDING))
-	GameEvent._unpause_game.connect(func(): set_state(GameState.GAME_WORLD))
+	GameEvent._on_game_resumed.connect(func(): set_state(GameState.GAME_WORLD))
 	GameEvent._on_game_intro_finished.connect(func(): set_state(GameState.GAME_WORLD))
 	
 

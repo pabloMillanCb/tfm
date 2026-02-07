@@ -15,10 +15,12 @@ signal _on_game_ending_finished
 	
 signal _on_game_paused
 	
-signal _unpause_game
+signal _on_game_resumed
 	
 signal _on_return_to_title_screen
 	
 signal _on_game_over
 	
 signal _on_player_respawn
+
+signal _on_game_saved

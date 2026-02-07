@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _on_resume_pressed() -> void:
 	print("unpause")
-	GameEvent._unpause_game.emit()
+	GameEvent._on_game_resumed.emit()
 
 
 func _on_settings_pressed() -> void:
