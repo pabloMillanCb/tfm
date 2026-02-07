@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://slp2wmqhqgb"]
+[gd_scene load_steps=6 format=4 uid="uid://slp2wmqhqgb"]
 
 [ext_resource type="Texture2D" uid="uid://l28vfyhmg7t5" path="res://assets/tilemaps/test_tilemap.png" id="1_7mmup"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_i73mw"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="3_7mmup"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2tep"]
 texture = ExtResource("1_7mmup")
@@ -33,3 +34,6 @@ tile_set = SubResource("TileSet_l3ey0")
 [node name="RoomInstance" parent="." instance=ExtResource("2_i73mw")]
 
 [node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="RoomRespawn" parent="." instance=ExtResource("3_7mmup")]
+position = Vector2(188, 127)
