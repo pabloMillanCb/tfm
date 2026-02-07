@@ -1,13 +1,13 @@
 extends Resource
 class_name PlayerData
 
-var max_health: int
+@export var max_health: int
 
-var has_sword_update: bool
-var has_break_update: bool
-var has_beam_update: bool
-var has_pogo_update: bool
-var has_teleport_update: bool
+@export var has_sword_update: bool
+@export var has_break_update: bool
+@export var has_beam_update: bool
+@export var has_pogo_update: bool
+@export var has_teleport_update: bool
 
 func _init(p_sword_update = false, p_break_update = false, 
 			p_beam_update = false, p_pogo_update = false,

@@ -1,8 +1,6 @@
 extends "res://addons/MetroidvaniaSystem/Template/Scripts/MetSysGame.gd"
 class_name GameWorld
 
-var starting_room = "res://scenes/world/rooms/TestScene1.tscn"
-
 var do_respawn := true
 
 func _ready() -> void:
@@ -20,13 +18,27 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	MetSys.get_current_room_instance().adjust_camera_limits($Player/Camera2D)
+	
+	if DataManager.current_save != null:
+		DataManager.current_save.play_time += delta
+	
+	#TODO DEBUG, TO DELETE
+	if Input.is_action_just_pressed("save"):
+		if Input.is_key_pressed(KEY_1):
+			DataManager.save_game_in_room(0)
+		if Input.is_key_pressed(KEY_2):
+			DataManager.save_game_in_room(1)
+		if Input.is_key_pressed(KEY_3):
+			DataManager.save_game_in_room(2)
+		
 
 
 func load_player_in_starting_room():
-	if false: #TODO: if there exists a checkpoint/save
-		pass
-	else:
-		load_room(starting_room)
+	var room = DataManager.current_save.last_room
+	if room == null:
+		room = SaveData.first_room
+
+	load_room(room)
 
 
 func spawn_in_current_room():

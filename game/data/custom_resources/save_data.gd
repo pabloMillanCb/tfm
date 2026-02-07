@@ -1,11 +1,11 @@
 extends Resource
 class_name SaveData
 
-const first_room := ""
+const first_room := "res://scenes/world/rooms/TestScene1.tscn"
 
-var player_data: PlayerData
-var last_room: String
-var play_time: float
+@export var player_data: PlayerData
+@export var last_room: String
+@export var play_time: float
 
 
 func _init(p_player_data: PlayerData = PlayerData.new(), p_last_room = first_room, p_play_time = 0.0) -> void:
