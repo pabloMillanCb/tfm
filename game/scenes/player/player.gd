@@ -12,6 +12,8 @@ class_name Player
 @export var beam_update = false
 @export var break_update = false
 
+var invencible = false
+
 signal dialog_start_request(dialogue_component: DialogueComponent)
 
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
@@ -31,8 +33,8 @@ func stop_animation():
 
 
 func set_animation(animation_name: String):
-	if animation_name == "atack":
-		$PlayerSprites/AnimationPlayer.play("atack")
+	if $PlayerSprites/AnimationPlayer.has_animation(animation_name):
+		$PlayerSprites/AnimationPlayer.play(animation_name)
 	else:
 		$PlayerSprites.play(animation_name)
 		if $PlayerSprites/SwordSprites.sprite_frames.has_animation(animation_name):
@@ -96,3 +98,8 @@ func teleport():
 func _on_atack_hit(area: Area2D) -> void:
 	if area.has_method("break_self") and break_update:
 		area.break_self()
+
+
+func _on_hit_received(_area: Area2D) -> void:
+	if !invencible:
+		state_machine._transition_to_next_state(PlayerState.HIT)

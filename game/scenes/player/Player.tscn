@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=82 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://j131lrtcnry7" path="res://scenes/player/states/talking.gd" id="13_v5i4m"]
 [ext_resource type="Texture2D" uid="uid://bnp74qtbogfm3" path="res://scenes/player/assets/player_spritesheet.png" id="15_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="17_ejd4k"]
+[ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
 radius = 2.0
@@ -300,6 +301,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-5, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_76i7i"]
 resource_name = "atack"
@@ -406,10 +419,27 @@ tracks/7/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_2xrq6"]
+resource_name = "shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 1), Vector2(-4.145, 1), Vector2(-6.115, 1), Vector2(-5, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hh02"]
 _data = {
 &"RESET": SubResource("Animation_mndc6"),
-&"atack": SubResource("Animation_76i7i")
+&"atack": SubResource("Animation_76i7i"),
+&"shake": SubResource("Animation_2xrq6")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rn7t0"]
@@ -652,6 +682,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2xrq6"]
+radius = 3.0
+height = 12.0
+
+[sub_resource type="Curve" id="Curve_2xrq6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.51096493, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 collision_mask = 2
@@ -690,6 +728,13 @@ script = ExtResource("9_kswpp")
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("10_v5i4m")
+
+[node name="KnockBackTimer" type="Timer" parent="StateMachine/Hit"]
+one_shot = true
+
+[node name="InvencibleTimer" type="Timer" parent="StateMachine/Hit"]
+wait_time = 3.0
+one_shot = true
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("11_p1lr0")
@@ -744,7 +789,15 @@ debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
 [node name="SwordSprites" type="AnimatedSprite2D" parent="PlayerSprites"]
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_jtlb7")
-animation = &"empty"
+animation = &"atack"
+
+[node name="Hurtbox" type="Area2D" parent="PlayerSprites"]
+collision_layer = 0
+collision_mask = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/Hurtbox"]
+shape = SubResource("CapsuleShape2D_2xrq6")
+debug_color = Color(0.42542985, 0, 0.48995537, 0.41960785)
 
 [node name="DebugStateName" type="Label" parent="."]
 unique_name_in_owner = true
@@ -765,8 +818,26 @@ visible = false
 position = Vector2(128, 120)
 texture = ExtResource("17_ejd4k")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="PlayerParticles" type="Node2D" parent="."]
+script = ExtResource("18_2xrq6")
 
+[node name="HitParticle" type="CPUParticles2D" parent="PlayerParticles"]
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.92
+spread = 23.0
+gravity = Vector2(-300, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_2xrq6")
+
+[connection signal="show_hit_particles" from="StateMachine/Hit" to="PlayerParticles" method="_on_hit"]
+[connection signal="timeout" from="StateMachine/Hit/KnockBackTimer" to="StateMachine/Hit" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Hit/InvencibleTimer" to="StateMachine/Hit" method="_on_invencible_timer_timeout"]
 [connection signal="area_entered" from="PlayerSprites/AtackHitBox" to="." method="_on_atack_hit"]
 [connection signal="area_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_entered"]
+[connection signal="area_entered" from="PlayerSprites/Hurtbox" to="." method="_on_hit_received"]
