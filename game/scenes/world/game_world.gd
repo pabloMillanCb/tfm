@@ -19,17 +19,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	MetSys.get_current_room_instance().adjust_camera_limits($Player/Camera2D)
 	
-	if DataManager.current_save != null:
-		DataManager.current_save.play_time += delta
-	
 	#TODO DEBUG, TO DELETE
 	if Input.is_action_just_pressed("save"):
 		if Input.is_key_pressed(KEY_1):
 			DataManager.save_game_in_room(0)
-		if Input.is_key_pressed(KEY_2):
+		elif Input.is_key_pressed(KEY_2):
 			DataManager.save_game_in_room(1)
-		if Input.is_key_pressed(KEY_3):
+		elif Input.is_key_pressed(KEY_3):
 			DataManager.save_game_in_room(2)
+		else:
+			DataManager.save_game_in_room(0)
 		
 
 
