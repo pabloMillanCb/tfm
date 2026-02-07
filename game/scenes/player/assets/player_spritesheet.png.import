@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bggbxuxav5xoq"
-path="res://.godot/imported/playe_tileset_teleport.png-ca2e0eef1f89778e273e1dc3bc50e73e.ctex"
+uid="uid://bnp74qtbogfm3"
+path="res://.godot/imported/player_spritesheet.png-1e05664ea4dea08643f028e4511588ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/assets/playe_tileset_teleport.png"
-dest_files=["res://.godot/imported/playe_tileset_teleport.png-ca2e0eef1f89778e273e1dc3bc50e73e.ctex"]
+source_file="res://scenes/player/assets/player_spritesheet.png"
+dest_files=["res://.godot/imported/player_spritesheet.png-1e05664ea4dea08643f028e4511588ba.ctex"]
 
 [params]
 

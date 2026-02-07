@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 func stop_animation():
 	$PlayerSprites.stop()
 	$PlayerSprites/AnimationPlayer.stop()
+	$PlayerSprites/SwordSprites.stop()
 
 
 func set_animation(animation_name: String):
@@ -34,6 +35,10 @@ func set_animation(animation_name: String):
 		$PlayerSprites/AnimationPlayer.play("atack")
 	else:
 		$PlayerSprites.play(animation_name)
+		if $PlayerSprites/SwordSprites.sprite_frames.has_animation(animation_name):
+			$PlayerSprites/SwordSprites.play(animation_name)
+		else:
+			$PlayerSprites/SwordSprites.play("empty")
 
 func update_look_direction(force = false):
 	var input_direction = Input.get_axis("move_left", "move_right")
