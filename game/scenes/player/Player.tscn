@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=78 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -41,6 +41,10 @@ region = Rect2(0, 48, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pi3ps"]
 atlas = ExtResource("15_pi3ps")
 region = Rect2(0, 192, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80bwr"]
+atlas = ExtResource("15_pi3ps")
+region = Rect2(0, 384, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kswpp"]
 atlas = ExtResource("15_pi3ps")
@@ -139,6 +143,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80bwr")
+}],
+"loop": true,
+"name": &"hit",
 "speed": 5.0
 }, {
 "frames": [{
