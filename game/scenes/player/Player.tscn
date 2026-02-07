@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=87 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://bnp74qtbogfm3" path="res://scenes/player/assets/player_spritesheet.png" id="15_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="17_ejd4k"]
 [ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
+[ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="20_kswpp"]
+[ext_resource type="Texture2D" uid="uid://c47inqwe2u6x4" path="res://scenes/player/assets/player_body.png" id="21_v5i4m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
 radius = 2.0
@@ -437,22 +439,6 @@ tracks/7/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_2xrq6"]
-resource_name = "shake"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-5, 1), Vector2(-4.145, 1), Vector2(-6.115, 1), Vector2(-5, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_p1lr0"]
 resource_name = "blink"
 length = 0.4
@@ -467,6 +453,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.606), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2xrq6"]
+resource_name = "shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 1), Vector2(-4.145, 1), Vector2(-6.115, 1), Vector2(-5, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1hh02"]
@@ -870,9 +872,40 @@ scale_amount_min = 2.0
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_2xrq6")
 
+[node name="DeadHeadParticle" type="CPUParticles2D" parent="PlayerParticles"]
+position = Vector2(-5, -3)
+emitting = false
+amount = 1
+texture = ExtResource("20_kswpp")
+lifetime = 4.0
+one_shot = true
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+angular_velocity_min = 15.0
+angular_velocity_max = 15.0
+
+[node name="DeadBodyParticle" type="CPUParticles2D" parent="PlayerParticles"]
+position = Vector2(-5, 4)
+emitting = false
+amount = 1
+texture = ExtResource("21_v5i4m")
+lifetime = 4.0
+one_shot = true
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 120.0
+initial_velocity_max = 150.0
+angular_velocity_min = 15.0
+angular_velocity_max = 15.0
+
 [connection signal="show_hit_particles" from="StateMachine/Hit" to="PlayerParticles" method="_on_hit"]
 [connection signal="timeout" from="StateMachine/Hit/KnockBackTimer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hit/InvencibleTimer" to="StateMachine/Hit" method="_on_invencible_timer_timeout"]
+[connection signal="show_death_particles" from="StateMachine/Dead" to="PlayerParticles" method="_on_death"]
 [connection signal="area_entered" from="PlayerSprites/AtackHitBox" to="." method="_on_atack_hit"]
 [connection signal="area_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_body_entered"]

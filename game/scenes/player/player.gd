@@ -13,6 +13,7 @@ class_name Player
 @export var break_update = false
 
 var invencible = false
+var current_health = 2
 
 signal dialog_start_request(dialogue_component: DialogueComponent)
 
@@ -106,3 +107,7 @@ func _on_atack_hit(area: Area2D) -> void:
 func _on_hit_received(_area: Area2D) -> void:
 	if !invencible:
 		state_machine._transition_to_next_state(PlayerState.HIT)
+
+
+func set_sprite_visibility(visible: bool):
+	$PlayerSprites.visible = visible

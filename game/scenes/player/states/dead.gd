@@ -1,11 +1,10 @@
 extends PlayerState
 
+signal show_death_particles
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _enter(_previous_state_path: String, _init_data := {}):
+	player.set_sprite_visibility(false)
+	show_death_particles.emit(player.get_look_direction())
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _exit():
+	player.set_sprite_visibility(false)

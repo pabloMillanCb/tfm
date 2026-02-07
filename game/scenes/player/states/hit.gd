@@ -3,23 +3,32 @@ extends PlayerState
 signal show_hit_particles
 
 func _enter(_previous_state_path: String, _init_data := {}):
+	
+	player.current_health -= 1
 	player.set_animation("hit")
-	#player.set_animation("shake")
 	
-	#Engine.time_scale = 0.25
-	get_tree().create_timer(0.125).timeout.connect(func():
-		Engine.time_scale = 1.0
-	)
+	if player.current_health <= 0:
+		get_tree().create_timer(1).timeout.connect(func():
+			finished.emit(DEAD)
+		)
+	else:
+		#player.set_animation("shake")
 		
-	player.velocity.y = -60
-	player.velocity.x = -player.velocity.normalized().x * 40
+		#Engine.time_scale = 0.25
+		get_tree().create_timer(0.125).timeout.connect(func():
+			Engine.time_scale = 1.0
+		)
+			
+		player.velocity.y = -60
+		player.velocity.x = -player.velocity.normalized().x * 40
+		
+		show_hit_particles.emit(Vector2(player.velocity.x, 0.0))
+		
+		$KnockBackTimer.start()
+		$InvencibleTimer.start()
+		
+		player.invencible = true
 	
-	show_hit_particles.emit(Vector2(player.velocity.x, 0.0))
-	
-	$KnockBackTimer.start()
-	$InvencibleTimer.start()
-	
-	player.invencible = true
 
 
 func _update_physics(_delta):
