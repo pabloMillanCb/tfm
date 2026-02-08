@@ -5,6 +5,11 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	if Input.get_axis("move_left", "move_right") != sign(player.velocity.x):
 		player.velocity.x = 0
 	player.set_animation("idle")
+	player.dialog_start_request.connect(start_talking)
+
+
+func _exit():
+	player.dialog_start_request.disconnect(start_talking)
 
 
 func _update_physics(_delta):
@@ -18,3 +23,7 @@ func _update_physics(_delta):
 		finished.emit(ATACK)
 	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)
+
+
+func start_talking(dialogue_component: DialogueComponent):
+	finished.emit(TALKING, {"dialogue": dialogue_component})
