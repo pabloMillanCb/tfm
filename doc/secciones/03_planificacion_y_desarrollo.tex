@@ -430,6 +430,7 @@ En la tabla \ref{tab:sprint1task} se pueden observar las tareas que se plantearo
     \centering
     \begin{tabular}{|l|p{8cm}|l|}
     \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
         OBJ-01 & Cambio en gravedad para que sea más manejable en el aire & 0,25 \\ \hline
         OBJ-02 & Cambio en el salto (que pueda ser redireccionable) para que se corresponda con el control del pogo & 1 \\ \hline
         OBJ-03 & Existe un pequeño stutter al moverse en diagonal con las opciones de baja resolución de godot & 0,5 \\ \hline
@@ -454,7 +455,7 @@ En cuanto a \textit{qué hicimos mal}:
 Lo que se hizo bien:
 \begin{itemize}
     \item Otras tantas tareas requirieron considerablemente menos tiempo del esperado, compensando por suerte las que requirieron más tiempo.
-    \item La planificación de los test parece prometedora, habiendo descubierto algunos fallos inesperados al realizar otras tareas que se pudieron arreglar sin mayor problema.
+    \item La implementación de los test parece prometedora, habiendo descubierto algunos fallos inesperados al realizar otras tareas que se pudieron arreglar sin mayor problema.
     \item El diseño del estado de máquinas del jugador es muy robusto y permite hacer cambios y añadir estados fácilmente.
 \end{itemize}
 
@@ -467,7 +468,84 @@ Y por tanto en los próximos sprints:
 
 \subsection{Sprint 2}
 
+El sprint 2 se planificó para abarcar los siguientes puntos:
 
+\begin{itemize}
+    \item Funcionalidades de traducción de interfaz y diálogos.
+    \item Función de guardado de partidas.
+    \item Implementación de sistema de diálogos, para poder tener conversaciones dentro del juego.
+    \item Implementación completa del \textit{game loop}. Este concepto está relacionado con el \textit{game lifecycle}. Mientras que este último es un término técnico que hace referencia a los estados por los que pasa el programa, el \textit{game loop} es el bucle percibido por el jugador a través del cual se estructuran las partidas.
+    \item Funcionalidades de mapeado dinámico y navegación por instancias.
+    \item Gestión de cámara del jugador.
+\end{itemize}
 
-% Sprint Review
-% Burndown
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        Formación & Investigar plugin MetSys para implementar mapas y cámara & 3 & 3 \\ \hline
+        SF-14 & Implementar sistema de diccionario para cambio de idioma & 1,5 & 0,75 \\ \hline
+        SF-15 & Implementar interfaz para el cambio de idioma en pantalla de ajustes & 0,5 & 0,5 \\ \hline
+        SF-16 & Implementar habitaciones y navegación del jugador entre estas & 1 & 1 \\ \hline
+        SF-17 & Implementación de mini-mapa dinámico & 0,5 & 0,5 \\ \hline
+        SF-18 & Implementar dibujado de objetos dinámico en mapa & 0,5 & 0,75 \\ \hline
+        SF-19 & Dibujar la posición del jugador en mapa & 0,5 & 0 \\ \hline
+        SF-20 & Implementar posiciones de spawn del jugador por habitaciones & 0,5 & 0,25 \\ \hline
+        SF-21 & Implementar gestión de cámara dependiente de habitaciones & 1,5 & 0,75 \\ \hline
+        SF-22 & Implementar estado de 'golpeado' para jugador & 1 & 1,5 \\ \hline
+        SF-23 & Implementar pantalla de derrota y respawn & 1 & 1 \\ \hline
+        SF-24 & Investigar opciones para el sistema de dialogo & 1 & 0,75 \\ \hline
+        SF-25 & Implementar funcionalidad básica para datos de guardado & 1,5 & 3,5 \\ \hline
+        SF-26 & Implementar pantalla de carga de partida & 0,5 & 0,5 \\ \hline
+        SF-27 & Implementar sistema de dialogo & 2,5 & 3,5 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 2.}
+    \label{tab:sprint2task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
+        OBJ-04 & Es necesario separar las animaciones del personaje y la espada/bastón para que este pueda andar y saltar mientras prepara el teletransporte y pueda controlarse antes de conseguir el upgrade de la espada. Requiere refactorización & 0,5 \\ \hline
+        OBJ-5 & La animación de golpeo no transmite bien sensaciones. Se podría investigar si es compatible añadir una sacudida de pantalla en MetSys. & - \\ \hline
+        OBJ-6 & La animación de caminar no es muy efectiva, ya que da la sensación de que el personaje se desliza por el suelo, más que caminar. & 0,25 \\ \hline
+        BUG-02 & Los tests del game lifecycle fallan tras añadir la pantalla de game over. & 0,25 \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 2.}
+    \label{tab:aditionalsprint2task}
+\end{table}
+
+En la tabla \ref{tab:sprint2task} se pueden ver las tareas planificadas y su tiempo de compleción. Las tareas adicionales que surgieron durante la validación se pueden observar en la tabla \ref{tab:aditionalsprint2task}. En total se planificaron 20,5 horas y se acabaron realizando 22,75 horas efectivas de trabajo.
+
+Al finalizar este sprint se asentó la gran mayoría del software necesario para desarrollar todo el contenido del juego. Sin embargo, no había mucho que jugar. El personaje del jugador estaba terminado al completo, pero solo podía controlarse por pantallas \textit{placeholder} que no presentaban ningún reto ni objetivo interesante. La sesión de validación resultó por esto mismo un poco redundante. Si se ha llegado a este punto fue por la planificación: se decidió dedicar los 3 primeros sprints a estas cuestiones. El plan hasta ahora había funcionado y se contaba con el prototipo inicial para verificar que lo que se estaba haciendo tenía sentido. A nivel funcional la sensación de progreso era satisfactoria, pero desde un punto de vista lúdico no. En consecuencia se especuló qué habría ocurrido si este caso se hubiera dado en un escenario real, en el que hubiera un agente externo como un \textit{publisher} o un cliente. No se le estaría transmitiendo correctamente que el proyecto avanza en buena dirección, generando desconfianza.
+
+Para corregir este fallo en el planteamiento del proyecto se tomó la siguiente decisión: permutar el orden de los siguientes dos sprints. Es decir, implementar contenido de juego en el sprint 3, y dejar los pocos fundamentos funcionales restantes para el sprint 4. El objetivo es acabar el siguiente sprint con algo parecido a un \textbf{vertical slice}, un producto que contiene un breve fragmento del juego cercano a la versión final, tanto en mecánicas como en gráficos.
+
+Esta idea se propuso durante el \textbf{sprint review}.A continuación se expone el resto de puntos que se trataron siguiendo la estructura \textit{¿Qué hicimos mal, qué hicimos bien, y qué vamos a hacer a partir de ahora?}
+
+En cuanto a \textit{qué hicimos mal}:
+\begin{itemize}
+    \item Las siguientes tareas requirieron más tiempo del esperado: SF-18, SF-22, SF-25 y SF-27.
+    \item Se detectó un rendimiento especialmente bajo en sesiones de trabajo donde se trataron muchas tareas pequeñas poco relacionadas entre ellas, siendo difícil al acabar una saltar a otra distinta.
+    \item Por no dedicar suficiente tiempo al diseño del sistema de guardado, la implementación fue problemática, produciéndose muchos bugs y necesitando bastantes refactorizaciones.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Se tuvo en cuenta para la estimación el tiempo necesario para escribir tests y para la formación necesaria al trabajar con bibliotecas nuevas. 
+    \item La planificación ha permitido poder plantearse cambios de cara al siguiente sprint, los cuales han surgido al observar el estado actual del proyecto y sus necesidades. En este sentido, se está siendo ágil.
+\end{itemize}
+
+Y por tanto en los próximos sprints:
+\begin{itemize}
+    \item Se cambia el orden de realización de los sprints 3 y 4 con el objetivo de producir una \textit{vertical slice} para poder juzgar mejor el avance del proeycto a nivel lúdico.
+    \item Se dedicarán más esfuerzos al diseño de sistemas previos a la implementación.
+    \item Se planificarán previamente las sesiones de trabajo para agrupar en estas tareas grandes o tareas pequeñas de la misma temática con el objetivo de mejorar la productividad.
+\end{itemize}
