@@ -58,3 +58,13 @@ func _get_save_path(slot: int) -> String:
 
 func _reset_current_save():
 	current_save = SaveData.new()
+
+
+func delete_data_from_slot(slot: int):
+	DirAccess.remove_absolute(_get_save_path(slot))
+
+
+func delete_all_data():
+	delete_data_from_slot(0)
+	delete_data_from_slot(1)
+	delete_data_from_slot(2)
