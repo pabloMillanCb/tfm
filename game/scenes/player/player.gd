@@ -12,6 +12,11 @@ class_name Player
 @export var beam_update = false
 @export var break_update = false
 
+var invencible = false
+var current_health = 2
+
+signal dialog_start_request(dialogue_component: DialogueComponent)
+
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
 ).call()
@@ -20,18 +25,26 @@ var teleport_crosshair: TeleportCrosshair
 
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
+	
+	if invencible:
+		$PlayerSprites/AnimationPlayer.play("blink")
 
 
 func stop_animation():
 	$PlayerSprites.stop()
 	$PlayerSprites/AnimationPlayer.stop()
+	$PlayerSprites/SwordSprites.stop()
 
 
 func set_animation(animation_name: String):
-	if animation_name == "atack":
-		$PlayerSprites/AnimationPlayer.play("atack")
+	if $PlayerSprites/AnimationPlayer.has_animation(animation_name):
+		$PlayerSprites/AnimationPlayer.play(animation_name)
 	else:
 		$PlayerSprites.play(animation_name)
+		if $PlayerSprites/SwordSprites.sprite_frames.has_animation(animation_name):
+			$PlayerSprites/SwordSprites.play(animation_name)
+		else:
+			$PlayerSprites/SwordSprites.play("empty")
 
 func update_look_direction(force = false):
 	var input_direction = Input.get_axis("move_left", "move_right")
@@ -89,3 +102,12 @@ func teleport():
 func _on_atack_hit(area: Area2D) -> void:
 	if area.has_method("break_self") and break_update:
 		area.break_self()
+
+
+func _on_hit_received(_area: Area2D) -> void:
+	if !invencible:
+		state_machine._transition_to_next_state(PlayerState.HIT)
+
+
+func set_sprite_visibility(visible: bool):
+	$PlayerSprites.visible = visible

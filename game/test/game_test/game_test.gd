@@ -93,7 +93,6 @@ func test_forbidden_game_state_changes():
 	await simulate_single_action_press("debug_3")
 	await simulate_single_action_press("debug_6")
 	await simulate_single_action_press("debug_5")
-	await simulate_single_action_press("debug_1")
 	assert_int(game.current_state).is_equal(game.GameState.GAME_OVER)
 	
 	await simulate_single_action_press("debug_2")

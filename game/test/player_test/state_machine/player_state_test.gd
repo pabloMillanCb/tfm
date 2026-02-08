@@ -53,7 +53,6 @@ func test_move_right_and_left():
 	await await_millis(500)
 	assert_float(player.velocity.x).is_less(0.0)
 	
-	runner.simulate_action_release("move_")
 	runner.simulate_action_press("move_left")
 	runner.await_input_processed()
 
