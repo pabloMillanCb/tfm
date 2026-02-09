@@ -17,7 +17,7 @@ ControlsRemap/action_list=Array[StringName]([&"move_left", &"move_right", &"atac
 config/name="TFM"
 run/main_scene="uid://d3nd17keheb61"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://786exjf32kq"
 
 [autoload]
 
