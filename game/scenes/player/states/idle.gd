@@ -15,7 +15,7 @@ func _exit():
 func _update_physics(_delta):
 	if !player.is_on_floor():
 		finished.emit(FALLING)
-	elif Input.is_action_just_pressed("teleport"):
+	elif Input.is_action_just_pressed("teleport") and player.data.has_teleport_update:
 		finished.emit(PREPARE_TELEPORT)
 	elif Input.is_action_just_pressed("jump"):
 		finished.emit(JUMP)
