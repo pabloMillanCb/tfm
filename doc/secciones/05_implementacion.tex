@@ -1,2 +1,66 @@
 \chapter{Implementación}
 
+En este capítulo se detallará la implementación técnica del proyecto.
+
+\section{Arquitectura del proyecto}
+
+La unidad de construcción mínima en godot es el \textbf{nodo}. Cada nodo puede asignarse como el hijo de otro nodo, y puede a su vez ser padre de varios nodos, formando así una estructura de árbol. Los nodos pueden contener un estado, una lógica que actualiza su estado a lo largo del tiempo, y una representación visual en la ejecución del juego. Es un elemento versátil que puede cumplir casi cualquier funcionalidad dentro de la arquitectura de un proyecto. Godot cuenta con tipos básicos de nodos, pero el desarrollador puede definir los suyos propios.
+
+Una estructura de árbol de nodos se puede agrupar en lo que se denomina \textbf{escena}.Las escenas tienen un nodo raíz, y otros nodos que hacen de hijos, nietos, etc de esa raíz. Para entender mejor la filosofía de diseño de Godot, estos son algunos ejemplos de unidades lógicas que se pueden construir agrupando nodos en escenas:
+
+\begin{itemize}
+    \item Personaje del jugador: La escena tendría como raíz un nodo tipo CharacterBody2D (ideado para construir personajes que se mueven). Como hijos tendría un nodo CollisionShape2D (para detectar colisiones) un Sprite2D (para dibujar el personaje en pantalla) y un script asociado a la raíz que implementa su estado y lógica.
+    \item Menu de inicio: La escena sería un nodo tipo Node2D. Tendría como hijos un nodo Label para escribir el nombre del juego, y 3 nodos Button para representar los las opciones del menú: Jugar, Ajustes y Salir. El nodo raíz tendría un script asociado para implementar la lógica de los botones.
+    \item Cinemática: La escena representaría una escena animada no interactiva dentro del motor del juego. Su nodo raíz sería del tipo Node2D. Contendría nodos para todos los elementos que participen en la escena (personajes, terreno, sonido, música) y un nodo AnimationPlayer para animar todos estos elementos.
+\end{itemize}
+
+Las escenas son funcionalmente similares a un nodo: empaquetan una funcionalidad y la ponen a disposición de otros nodos, pudiendo instanciarse una escena en múltiples lugares. Al igual que se instancia un nodo como hijo de una escena, puede instanciarse una escena como hija de un nodo u otra escena. El resultado es que, en ejecución y en arquitectura, los proyectos de Godot forman un gran árbol de nodos y escenas. A este árbol total se le llama \textit{scene tree}, o árbol de escenas. En la figura \ref{fig:scene-tree} se puede observar un ejemplo del árbol de escenas.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.7]{img/scene_tree.png}
+    \caption[Scene Tree de ejecución de Godot]{Scene Tree en un instante de ejecución del proyecto.}
+    \label{fig:scene-tree}
+\end{figure}
+
+A la hora de diseñar arquitecturas en Godot, es indispensable pensarla en términos de nodos y escenas. Por eso mismo, en la figura \ref{fig:proyect-architecture} se describe la arquitectura del proyecto como un árbol de escenas y no como, por ejemplo, un diagrama de clases. En esta cada nodo es una escena del proyecto. A lo largo de este capíutlo se desarrollarán en detalle cada una de las escenas. Por ahora y para adquirir una visión general del proyecto, se destacan:
+
+\begin{itemize}
+    \item \textbf{Game}: La lógica de esta escena sigue el patrón de diseño de máquina de estados. Se encarga de instanciar y eliminar las distintas pantallas que conforman el juego (menú principal, menú de pausa, pantalla de juego, pantalla de game over, etc).
+    \item \textbf{GameWorld}: Es el nodo que contiene y gestiona el mundo del videojuego: todos los niveles y elementos que lo componen, como el personaje del jugador.
+    \item \textbf{PlayerCharacter}: Es de los nodos más complejos del proyecto. Se encarga de gestionar el personaje del jugador: desde sus visuales, animaciones, lógica, controles, sonido, etc.
+\end{itemize}
+
+os \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del árbol de escenas. Estos nodos son similares a un patrón Singleton: son cargados al inicio de la ejecución y existen como entidad única de su tipo. Son accesibles de forma global y normalmente su labor es la gestión de sistemas y prestación de servicios que pueden ser solicitados desde cualquier lugar del árbol de escena. Se desarrollarán más adelante en este capítulo.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/proyect_architecture.drawio.png}
+    \caption[Arquitectura general del proyecto]{Arquitectura general del proyecto}
+    \label{fig:proyect-architecture}
+\end{figure}
+
+%    \subsection{Game}
+%    \subsection{Autoloads}
+%
+%\section{Nodo Player}
+
+%\section{Enemigos}
+
+%\section{Sistemas}
+%    \subsection{Mapeado e instanciación de niveles}
+%    \subsection{Guardado}
+%    \subsection{Asignación de controles}
+%    \subsection{Localización}
+%    \subsection{Guardado de partica}
+%    \subsection{Reloj}
+%    \subsection{Diálogos}
+
+%\section{Menus}
+
+%\section{CI/CD/Testing}
+
+%\section{Accesibilidad}
+
+%\section{Shaders y sistemas de partículas}
+
