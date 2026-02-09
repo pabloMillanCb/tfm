@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdoah04o1tqu1"]
+
+[ext_resource type="Script" uid="uid://de2bal4lxflwr" path="res://scenes/enemies/jellyfish/jellyfish.gd" id="1_wv4dl"]
+[ext_resource type="Texture2D" uid="uid://ck5kleyutpluy" path="res://scenes/enemies/jellyfish/jellyfish.png" id="2_4ux0n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrahy"]
+radius = 5.2201533
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vs4q"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3jx3"]
+atlas = ExtResource("2_4ux0n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2kd8"]
+atlas = ExtResource("2_4ux0n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bpw0"]
+atlas = ExtResource("2_4ux0n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yneq3"]
+atlas = ExtResource("2_4ux0n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm838"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3jx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2kd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bpw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yneq3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Jellyfish" type="Node2D"]
+script = ExtResource("1_wv4dl")
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="Character"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Hitbox"]
+position = Vector2(0, -1.5)
+shape = SubResource("CircleShape2D_wrahy")
+
+[node name="HurtBox" type="Area2D" parent="Character"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtBox"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_0vs4q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
+sprite_frames = SubResource("SpriteFrames_hm838")
+frame_progress = 0.23073928
+
+[node name="RotationAxis" type="Node2D" parent="."]
+
+[node name="JellyPosition" type="Marker2D" parent="RotationAxis"]
+unique_name_in_owner = true
