@@ -84,6 +84,19 @@ func test_atack():
 	assert_str(player.state_machine.state.name).is_equal(PlayerState.ATACK)
 	assert_bool(player.is_on_floor()).is_false()
 
+func test_hit_and_death():
+	player.current_health = 2
+	runner.simulate_action_press("move_right")
+	await runner.await_input_processed()
+	await await_millis(2000)
+	runner.simulate_action_release("move_right")
+	assert_str(player.state_machine.state.name).is_equal(PlayerState.HIT)
+	assert_bool(player.invencible).is_equal(true)
+	await await_millis(2000)
+	runner.simulate_action_press("move_right")
+	await await_millis(2000)
+	assert_str(player.state_machine.state.name).is_equal(PlayerState.DEAD)
+
 func press_and_release(action):
 	runner.simulate_action_press(action)
 	await runner.await_input_processed()
