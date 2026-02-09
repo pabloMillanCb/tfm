@@ -9,8 +9,14 @@ class_name Player
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
+@export var debug_data: PlayerData =  null
 
-@export var data: PlayerData
+@onready var data: PlayerData = (func set_debug_data() -> PlayerData:
+	if debug_data != null:
+		return debug_data
+	else:
+		return null
+).call()
 
 var invencible = false
 var current_health = 2
@@ -28,6 +34,11 @@ func _process(delta: float) -> void:
 	
 	if invencible:
 		$PlayerSprites/AnimationPlayer.play("blink")
+
+
+func set_player_data(loaded_data: PlayerData):
+	if debug_data == null:
+		data = loaded_data
 
 
 func stop_animation():

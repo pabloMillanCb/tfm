@@ -50,4 +50,4 @@ func spawn_in_current_room():
 
 func load_player_data():
 	var data = DataManager.current_save.player_data
-	($Player as Player).data = data
+	($Player as Player).set_player_data(data)
