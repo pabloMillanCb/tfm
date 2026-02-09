@@ -9,8 +9,8 @@ class_name Player
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
-@export var beam_update = false
-@export var break_update = false
+
+@export var data: PlayerData
 
 var invencible = false
 var current_health = 2
@@ -74,7 +74,7 @@ func update_gravity(_delta):
 
 
 func shoot():
-	if beam_update:
+	if data.has_beam_update:
 		var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
 		beam.direction = get_look_direction()
 		beam.global_position = %ShootingPoint.global_position
@@ -100,7 +100,7 @@ func teleport():
 
 
 func _on_atack_hit(area: Area2D) -> void:
-	if area.has_method("break_self") and break_update:
+	if area.has_method("break_self") and data.has_break_update:
 		area.break_self()
 
 
