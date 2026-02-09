@@ -1,7 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bomt5vw3c8b3h"]
+[gd_scene load_steps=8 format=3 uid="uid://bomt5vw3c8b3h"]
 
 [ext_resource type="PackedScene" uid="uid://dt5id5s6k2sgf" path="res://scenes/player/Player.tscn" id="1_ukbkf"]
 [ext_resource type="PackedScene" uid="uid://beovhokk6u1q0" path="res://scenes/breakable/skull/Skull.tscn" id="2_5yfwj"]
+[ext_resource type="Script" uid="uid://bjh6dkg0kgo4g" path="res://data/custom_resources/player_data.gd" id="2_o3c4x"]
+
+[sub_resource type="Resource" id="Resource_8rpld"]
+script = ExtResource("2_o3c4x")
+has_sword_update = true
+has_break_update = true
+has_beam_update = true
+has_pogo_update = true
+has_teleport_update = true
+metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ukbkf"]
 size = Vector2(401, 31)
@@ -16,7 +26,7 @@ size = Vector2(13, 13)
 
 [node name="Player" parent="." instance=ExtResource("1_ukbkf")]
 position = Vector2(124, 184)
-break_update = true
+debug_data = SubResource("Resource_8rpld")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
