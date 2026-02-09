@@ -47,6 +47,21 @@ func set_player_data(loaded_data: PlayerData):
 		update_upgrades_information()
 
 
+func get_new_upgrade(upgrade: Upgrade.UpgradeType):
+	if upgrade == Upgrade.UpgradeType.SWORD:
+		data.has_sword_update = true
+	elif upgrade == Upgrade.UpgradeType.BREAK:
+		data.has_break_update = true
+	elif upgrade == Upgrade.UpgradeType.BEAM:
+		data.has_beam_update = true
+	elif upgrade == Upgrade.UpgradeType.POGO:
+		data.has_pogo_update = true
+	elif upgrade == Upgrade.UpgradeType.TELEPORT:
+		data.has_teleport_update = true
+	
+	update_upgrades_information()
+
+
 func update_upgrades_information():
 	$PlayerSprites/SwordSprites.visible = data.has_sword_update
 
