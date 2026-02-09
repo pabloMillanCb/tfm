@@ -15,7 +15,7 @@ class_name Player
 	if debug_data != null:
 		return debug_data
 	else:
-		return null
+		return PlayerData.new()
 ).call()
 
 var invencible = false
@@ -29,6 +29,11 @@ signal dialog_start_request(dialogue_component: DialogueComponent)
 
 var teleport_crosshair: TeleportCrosshair
 
+
+func _ready() -> void:
+	update_upgrades_information()
+
+
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 	
@@ -39,7 +44,11 @@ func _process(delta: float) -> void:
 func set_player_data(loaded_data: PlayerData):
 	if debug_data == null:
 		data = loaded_data
+		update_upgrades_information()
 
+
+func update_upgrades_information():
+	$PlayerSprites/SwordSprites.visible = data.has_sword_update
 
 func stop_animation():
 	$PlayerSprites.stop()

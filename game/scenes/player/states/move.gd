@@ -32,7 +32,7 @@ func _update_physics(_delta):
 		finished.emit(PREPARE_TELEPORT)
 	elif Input.is_action_just_pressed("jump"):
 		finished.emit(JUMP)
-	elif Input.is_action_just_pressed("atack"):
+	elif Input.is_action_just_pressed("atack") and player.data.has_sword_update:
 		finished.emit(ATACK)
 	elif player.velocity.x == 0.0 and !direction:
 		finished.emit(IDLE)

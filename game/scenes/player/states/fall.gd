@@ -23,7 +23,7 @@ func _update(_delta):
 		finished.emit(POGO)
 	elif Input.is_action_just_pressed("teleport"):
 		finished.emit(PREPARE_TELEPORT)
-	elif Input.is_action_just_pressed("atack"):
+	elif Input.is_action_just_pressed("atack") and player.data.has_sword_update:
 		finished.emit(ATACK)
 	elif player.is_on_floor():
 		finished.emit(IDLE)

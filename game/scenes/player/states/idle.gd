@@ -19,7 +19,7 @@ func _update_physics(_delta):
 		finished.emit(PREPARE_TELEPORT)
 	elif Input.is_action_just_pressed("jump"):
 		finished.emit(JUMP)
-	elif Input.is_action_just_pressed("atack"):
+	elif Input.is_action_just_pressed("atack") and player.data.has_sword_update:
 		finished.emit(ATACK)
 	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)

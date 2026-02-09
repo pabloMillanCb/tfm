@@ -825,6 +825,7 @@ shape = SubResource("RectangleShape2D_2xrq6")
 debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
 
 [node name="SwordSprites" type="AnimatedSprite2D" parent="PlayerSprites"]
+visible = false
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_jtlb7")
 animation = &"atack"
