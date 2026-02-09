@@ -10,13 +10,16 @@ func _ready() -> void:
 	GameEvent._on_new_game_start.connect(_reset_current_save)
 
 
-func save_game_in_room(slot: int) -> bool:
+func save_game_in_room(slot: int, player_data: PlayerData) -> bool:
 	var room_id = MetSys.get_current_room_id()
 	var room_path = ResourceUID.path_to_uid(room_id)
 
 	var new_save = current_save
+	
+	new_save.player_data = player_data
 	new_save.last_room = room_path
 	new_save.play_time += Clock.current_time_count
+	
 	var success = save_game_data(slot, new_save)
 	
 	if success:
