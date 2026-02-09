@@ -7,6 +7,5 @@
 script = ExtResource("1_o21sk")
 
 [node name="Player" parent="." instance=ExtResource("1_xro63")]
-break_update = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

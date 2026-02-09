@@ -8,6 +8,7 @@ func _ready() -> void:
 	MetSys.set_save_data()
 	
 	set_player($Player)
+	load_player_data()
 	load_player_in_starting_room()
 	spawn_in_current_room()
 	
@@ -45,3 +46,8 @@ func spawn_in_current_room():
 	if do_respawn and spawn_point:
 		player.position = spawn_point.position
 		do_respawn = false
+
+
+func load_player_data():
+	var data = DataManager.current_save.player_data
+	($Player as Player).data = data
