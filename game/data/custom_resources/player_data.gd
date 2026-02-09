@@ -20,3 +20,8 @@ func _init(p_sword_update = false, p_break_update = false,
 	has_beam_update = p_beam_update
 	has_pogo_update = p_pogo_update
 	has_teleport_update = p_teleport_update
+
+
+func copy():
+	return PlayerData.new(has_sword_update, has_break_update, has_beam_update,
+				has_pogo_update, has_teleport_update)

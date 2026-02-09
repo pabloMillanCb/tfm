@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 
 func set_player_data(loaded_data: PlayerData):
 	if debug_data == null:
-		data = loaded_data
+		data = loaded_data.copy()
 		update_upgrades_information()
 
 
