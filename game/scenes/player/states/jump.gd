@@ -9,7 +9,9 @@ func _enter(_previous_state_path: String, _init_data := {}):
 func _update(_delta):
 	player.update_gravity(_delta)
 	
-	if Input.is_action_just_pressed("atack") and Input.is_action_pressed("aim_down"):
+	if (Input.is_action_just_pressed("atack")
+		and Input.is_action_pressed("aim_down")
+		and player.data.has_pogo_update):
 		finished.emit(POGO)
 	elif Input.is_action_just_pressed("teleport"):
 		finished.emit(PREPARE_TELEPORT)

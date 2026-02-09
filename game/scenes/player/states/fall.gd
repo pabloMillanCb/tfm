@@ -19,7 +19,9 @@ func _update(_delta):
 			0.0, 
 			_delta * player.air_acceleration) 
 	
-	if Input.is_action_just_pressed("atack") and Input.is_action_pressed("aim_down"):
+	if (Input.is_action_just_pressed("atack")
+		and Input.is_action_pressed("aim_down")
+		and player.data.has_pogo_update):
 		finished.emit(POGO)
 	elif Input.is_action_just_pressed("teleport"):
 		finished.emit(PREPARE_TELEPORT)
