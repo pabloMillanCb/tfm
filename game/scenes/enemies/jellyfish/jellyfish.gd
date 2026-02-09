@@ -1,4 +1,4 @@
-extends Node2D
+extends Enemy
 class_name Jellyfish
 
 @export var radius := 20.0
@@ -6,6 +6,7 @@ class_name Jellyfish
 
 func _ready() -> void:
 	%JellyPosition.position.y = -radius
+	$Character/EnemyHurtboxComponent.player_atack_detected.connect(die)
 
 
 func _process(delta: float) -> void:
@@ -18,3 +19,7 @@ func _process(delta: float) -> void:
 	var direction = sign(start_character_position.x - $Character.global_position.x)
 	
 	$Character.scale.x = direction
+
+
+func die():
+	queue_free()

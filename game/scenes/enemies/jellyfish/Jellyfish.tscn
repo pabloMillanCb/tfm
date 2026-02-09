@@ -1,13 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdoah04o1tqu1"]
+[gd_scene load_steps=12 format=3 uid="uid://cdoah04o1tqu1"]
 
 [ext_resource type="Script" uid="uid://de2bal4lxflwr" path="res://scenes/enemies/jellyfish/jellyfish.gd" id="1_wv4dl"]
 [ext_resource type="Texture2D" uid="uid://ck5kleyutpluy" path="res://scenes/enemies/jellyfish/jellyfish.png" id="2_4ux0n"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wrahy"]
-radius = 5.2201533
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0vs4q"]
-radius = 7.0
+[ext_resource type="PackedScene" uid="uid://cobfqtl02yx8u" path="res://scenes/enemies/EnemyHurtboxComponent.tscn" id="3_4ux0n"]
+[ext_resource type="PackedScene" uid="uid://cwmmjdkky6gby" path="res://scenes/enemies/EnemyHitboxComponent.tscn" id="4_wrahy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jx3"]
 atlas = ExtResource("2_4ux0n")
@@ -45,32 +41,36 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0vs4q"]
+radius = 24.083189
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrahy"]
+radius = 5.2201533
+
 [node name="Jellyfish" type="Node2D"]
 script = ExtResource("1_wv4dl")
 
 [node name="Character" type="Node2D" parent="."]
 
-[node name="Hitbox" type="Area2D" parent="Character"]
-collision_layer = 32
-collision_mask = 0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
+sprite_frames = SubResource("SpriteFrames_hm838")
+frame_progress = 0.6715644
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Hitbox"]
-position = Vector2(0, -1.5)
-shape = SubResource("CircleShape2D_wrahy")
+[node name="EnemyHurtboxComponent" parent="Character" instance=ExtResource("3_4ux0n")]
 
-[node name="HurtBox" type="Area2D" parent="Character"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/EnemyHurtboxComponent"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_0vs4q")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character"]
-sprite_frames = SubResource("SpriteFrames_hm838")
-frame_progress = 0.23073928
+[node name="EnemyHitboxComponent" parent="Character" instance=ExtResource("4_wrahy")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/EnemyHitboxComponent"]
+position = Vector2(0, -1.5)
+shape = SubResource("CircleShape2D_wrahy")
 
 [node name="RotationAxis" type="Node2D" parent="."]
 
 [node name="JellyPosition" type="Marker2D" parent="RotationAxis"]
 unique_name_in_owner = true
+
+[connection signal="player_atack_detected" from="Character/EnemyHurtboxComponent" to="." method="die"]
