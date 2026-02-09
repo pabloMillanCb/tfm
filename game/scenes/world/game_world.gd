@@ -5,7 +5,7 @@ var do_respawn := true
 
 func _ready() -> void:
 	MetSys.reset_state()
-	MetSys.set_save_data()
+	MetSys.set_save_data(DataManager.current_save.metsys_data)
 	
 	set_player($Player)
 	load_player_data()

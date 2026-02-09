@@ -19,6 +19,7 @@ func save_game_in_room(slot: int, player_data: PlayerData) -> bool:
 	new_save.player_data = player_data
 	new_save.last_room = room_path
 	new_save.play_time += Clock.current_time_count
+	new_save.metsys_data = MetSys.get_save_data()
 	
 	var success = save_game_data(slot, new_save)
 	
