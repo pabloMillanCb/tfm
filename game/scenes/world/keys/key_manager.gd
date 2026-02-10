@@ -13,16 +13,20 @@ func _ready() -> void:
 
 func _on_key_pick_up(key_: Key):
 	print("key pick up")
-	key = key_
-	var key_global_position = key.global_position
-	key.get_parent().remove_child(key)
-	add_child(key)
-	key.global_position = key_global_position
+	if key == null:
+		key = key_
+		var key_global_position = key.global_position
+		key.get_parent().remove_child(key)
+		add_child(key)
+		key.global_position = key_global_position
+		key.pick_up()
+		key.player.data.has_key = true
 
 
 func _on_key_used():
 	print("key used")
 	key = null
+	key.player.data.has_key = false
 
 
 func _on_room_changed():
@@ -40,3 +44,7 @@ func _on_room_changed():
 func _physics_process(delta: float) -> void:
 	if key != null and key.following_player == false:
 		key.global_position = key.player.global_position - vector_to_player
+
+
+func _on_game_save():
+	pass

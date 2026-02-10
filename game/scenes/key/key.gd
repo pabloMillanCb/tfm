@@ -5,11 +5,13 @@ var player: Player
 var following_player = false
 
 @export var speed_factor: float = 2.0
+@export var storable = false
 
 var player_target_modifier = Vector2(0, -8)
 
 func _ready() -> void:
-	MetSys.register_storable_object(self)
+	if storable:
+		MetSys.register_storable_object(self)
 
 
 func _physics_process(delta: float) -> void:
@@ -22,8 +24,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_player_touch(body: Node2D) -> void:
-	if player == null:
+	if !following_player:
 		player = body
-		MetSys.store_object(self)
 		GameEvent.key_picked_up.emit(self)
-		following_player = true
+
+
+func pick_up():
+	if storable:
+		MetSys.store_object(self)
+	following_player = true

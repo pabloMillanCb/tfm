@@ -78,3 +78,8 @@ radius = 10.0
 
 [node name="Key" parent="." instance=ExtResource("6_xa6g4")]
 position = Vector2(137, 197)
+storable = true
+
+[node name="Key2" parent="." instance=ExtResource("6_xa6g4")]
+position = Vector2(206, 197)
+storable = true

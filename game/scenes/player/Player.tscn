@@ -733,7 +733,7 @@ collision_mask = 2
 script = ExtResource("1_ov1oi")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 1)
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_pi3ps")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -858,6 +858,7 @@ position = Vector2(128, 120)
 texture = ExtResource("17_ejd4k")
 
 [node name="PlayerParticles" type="Node2D" parent="."]
+position = Vector2(5, 0)
 script = ExtResource("18_2xrq6")
 
 [node name="HitParticle" type="CPUParticles2D" parent="PlayerParticles"]
