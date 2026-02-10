@@ -27,6 +27,6 @@ signal _on_game_saved
 
 
 # Pick ups
-signal key_picked_up(key: Key)
+signal key_picked_up(key: Key, player: Player)
 
 signal key_used

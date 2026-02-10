@@ -152,8 +152,5 @@ func set_sprite_visibility(visible: bool):
 func instance_saved_key():
 	if DataManager.current_save.player_data.has_key:
 		var key = preload("res://scenes/key/Key.tscn").instantiate()
-		var player = get_parent().get_node("Player")
-		key.player = player
-		key.global_position = player.global_position
-		key.following_player = false
+		key.global_position = global_position
 		add_child(key)
