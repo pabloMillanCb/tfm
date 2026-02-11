@@ -15,6 +15,9 @@ func _ready() -> void:
 	#room_loaded.connect(spawn_in_current_room)
 	
 	add_module("RoomTransitions.gd")
+	MetSys.room_changed.connect(func(_room):
+		$KeyManager.world_room_changed.emit()
+		)
 
 
 func _process(delta: float) -> void:

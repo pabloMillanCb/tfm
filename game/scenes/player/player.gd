@@ -45,6 +45,7 @@ func set_player_data(loaded_data: PlayerData):
 	if debug_data == null:
 		data = loaded_data.copy()
 		update_upgrades_information()
+		instance_saved_key()
 
 
 func get_new_upgrade(upgrade: Upgrade.UpgradeType):
@@ -146,3 +147,10 @@ func _on_hit_received(_area: Area2D) -> void:
 
 func set_sprite_visibility(visible: bool):
 	$PlayerSprites.visible = visible
+
+
+func instance_saved_key():
+	if DataManager.current_save.player_data.has_key:
+		var key = preload("res://scenes/key/Key.tscn").instantiate()
+		key.global_position = global_position
+		add_child(key)

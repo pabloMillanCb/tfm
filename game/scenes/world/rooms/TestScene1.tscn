@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://cy0ie7e44ist2"]
+[gd_scene load_steps=12 format=4 uid="uid://cy0ie7e44ist2"]
 
 [ext_resource type="Texture2D" uid="uid://l28vfyhmg7t5" path="res://assets/tilemaps/test_tilemap.png" id="1_744q5"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_ggtvn"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="3_744q5"]
 [ext_resource type="PackedScene" uid="uid://m5ah4mbymn1d" path="res://scenes/objects/upgrades/Upgrade.tscn" id="4_ggtvn"]
+[ext_resource type="PackedScene" uid="uid://cdoah04o1tqu1" path="res://scenes/enemies/jellyfish/Jellyfish.tscn" id="5_y4le3"]
+[ext_resource type="PackedScene" uid="uid://clk8frjg8p6o6" path="res://scenes/key/Key.tscn" id="6_xa6g4"]
+[ext_resource type="PackedScene" uid="uid://dvtp4qph8bjs3" path="res://scenes/door/door.tscn" id="7_ctvdn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y2tep"]
 texture = ExtResource("1_744q5")
@@ -69,3 +72,18 @@ position = Vector2(52, 214)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ggtvn")
+
+[node name="Jellyfish" parent="." instance=ExtResource("5_y4le3")]
+position = Vector2(75, 201)
+radius = 10.0
+
+[node name="Key" parent="." instance=ExtResource("6_xa6g4")]
+position = Vector2(137, 197)
+is_pre_instanced = true
+
+[node name="Key2" parent="." instance=ExtResource("6_xa6g4")]
+position = Vector2(206, 197)
+is_pre_instanced = true
+
+[node name="Door" parent="." instance=ExtResource("7_ctvdn")]
+position = Vector2(8, 216)
