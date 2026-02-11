@@ -319,7 +319,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-5, 1)]
+"values": [Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -612,7 +612,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gtkor")
 }],
-"loop": true,
+"loop": false,
 "name": &"atack",
 "speed": 5.0
 }, {
@@ -733,7 +733,6 @@ collision_mask = 2
 script = ExtResource("1_ov1oi")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_pi3ps")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -784,7 +783,6 @@ script = ExtResource("2_gfjak")
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_v5i4m")
-position = Vector2(-5, 1)
 sprite_frames = SubResource("SpriteFrames_180ig")
 animation = &"atack"
 frame = 3
@@ -825,10 +823,9 @@ shape = SubResource("RectangleShape2D_2xrq6")
 debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
 
 [node name="SwordSprites" type="AnimatedSprite2D" parent="PlayerSprites"]
-visible = false
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_jtlb7")
-animation = &"atack"
+animation = &"walk"
 
 [node name="Hurtbox" type="Area2D" parent="PlayerSprites"]
 collision_layer = 0
@@ -862,6 +859,7 @@ position = Vector2(5, 0)
 script = ExtResource("18_2xrq6")
 
 [node name="HitParticle" type="CPUParticles2D" parent="PlayerParticles"]
+position = Vector2(-5, 0)
 emitting = false
 lifetime = 0.4
 one_shot = true
@@ -890,7 +888,7 @@ angular_velocity_min = 15.0
 angular_velocity_max = 15.0
 
 [node name="DeadBodyParticle" type="CPUParticles2D" parent="PlayerParticles"]
-position = Vector2(-5, 4)
+position = Vector2(-5, 3)
 emitting = false
 amount = 1
 texture = ExtResource("21_v5i4m")
