@@ -3,7 +3,7 @@ extends Node2D
 signal world_room_changed
 
 var vector_to_player: Vector2
-var key: Key
+var key: DoorKey
 var player: Player
 
 var player_target_modifier = Vector2(0, -8)
@@ -16,7 +16,7 @@ func _ready() -> void:
 	world_room_changed.connect(_on_room_changed)
 
 
-func _on_key_pick_up(key_: Key, player_: Player):
+func _on_key_pick_up(key_: DoorKey, player_: Player):
 	print("key pick up")
 	if key == null:
 		key = key_

@@ -1,5 +1,5 @@
 extends Area2D
-class_name Key
+class_name DoorKey
 
 @export var is_pre_instanced = false
 
