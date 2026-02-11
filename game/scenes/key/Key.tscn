@@ -22,7 +22,8 @@ animations = [{
 size = Vector2(16, 18)
 
 [node name="Key" type="Area2D"]
-collision_layer = 0
+z_index = 1
+collision_layer = 64
 script = ExtResource("1_dbar6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

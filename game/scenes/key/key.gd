@@ -16,3 +16,7 @@ func pick_up():
 	if is_pre_instanced:
 		MetSys.store_object(self)
 	body_entered.disconnect(_on_player_touch)
+
+
+func use():
+	queue_free()

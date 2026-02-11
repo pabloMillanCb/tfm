@@ -31,7 +31,7 @@ func _on_key_pick_up(key_: DoorKey, player_: Player):
 
 func _on_key_used():
 	key = null
-	key.player.data.has_key = false
+	player.data.has_key = false
 
 
 func _on_room_changed():
