@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d1u1qyvyla2bj"]
+[gd_scene format=3 uid="uid://d1u1qyvyla2bj"]
 
 [ext_resource type="Script" uid="uid://btjhnkfx2d2ep" path="res://scenes/enemies/axolote/axolote.gd" id="1_kmqps"]
 [ext_resource type="Texture2D" uid="uid://c46aqkku63nvw" path="res://scenes/enemies/axolote/axolote.png" id="2_hcfv2"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://dj107ffyc7pll" path="res://scenes/enemies/axolote/states/move.gd" id="6_v2ltq"]
 [ext_resource type="Script" uid="uid://dqnp3b12re3k7" path="res://scenes/enemies/axolote/states/run.gd" id="7_16b8e"]
 [ext_resource type="Script" uid="uid://ckwv72l5mxhe" path="res://scenes/enemies/axolote/states/hit.gd" id="8_0xayr"]
+[ext_resource type="Script" uid="uid://cctfmeq4mffe0" path="res://scenes/enemies/axolote/surprise.gd" id="8_skik0"]
 [ext_resource type="Script" uid="uid://yy04kjb37db6" path="res://scenes/enemies/axolote/states/dead.gd" id="9_skik0"]
 [ext_resource type="Script" uid="uid://csqxlxjyt8oow" path="res://scenes/enemies/axolote/states/idle.gd" id="10_qqln1"]
+[ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="12_skik0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv366"]
 atlas = ExtResource("2_hcfv2")
@@ -31,21 +33,27 @@ region = Rect2(54, 16, 18, 16)
 atlas = ExtResource("2_hcfv2")
 region = Rect2(72, 16, 18, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_16b8e"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(0, 64, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xayr"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(18, 64, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skik0"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(0, 48, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqln1"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(18, 48, 18, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bla43"]
 animations = [{
 "frames": [],
 "loop": true,
 "name": &"hit",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"run",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"sleep",
 "speed": 5.0
 }, {
 "frames": [{
@@ -55,18 +63,45 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5pi6k")
 }, {
-"duration": 1.0,
+"duration": 0.25,
 "texture": SubResource("AtlasTexture_qfj0t")
 }, {
-"duration": 1.0,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_v2ltq")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i6g8n")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"move",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16b8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xayr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skik0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqln1")
+}],
+"loop": true,
+"name": &"surprise",
+"speed": 19.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2ltq"]
@@ -78,59 +113,79 @@ size = Vector2(14, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj0t"]
 size = Vector2(12, 9)
 
-[node name="Axolote" type="CharacterBody2D"]
+[node name="Axolote" type="CharacterBody2D" unique_id=408836494]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_kmqps")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=97063783]
 sprite_frames = SubResource("SpriteFrames_bla43")
-animation = &"walk"
+animation = &"surprise"
+frame_progress = 0.5405733
 
-[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D"]
+[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1764030272]
+visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_5pi6k")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent" unique_id=1582400089]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_v2ltq")
 
-[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D"]
+[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=812813025]
+visible = false
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_qfj0t")
 metadata/_custom_type_script = "uid://bp624mlidiwba"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent" unique_id=1632940051]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_5pi6k")
 
-[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
-target_position = Vector2(-80, 0)
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=262210136]
+unique_name_in_owner = true
+position = Vector2(-6, 0)
+target_position = Vector2(-120, 0)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598907035]
 visible = false
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_qfj0t")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=51184764]
 script = ExtResource("5_qfj0t")
 metadata/_custom_type_script = "uid://cml4nuk5k2ym2"
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Move" type="Node" parent="StateMachine" unique_id=567352326]
 script = ExtResource("6_v2ltq")
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="StateMachine" unique_id=1341242521]
 script = ExtResource("7_16b8e")
 
-[node name="Hit" type="Node" parent="StateMachine"]
+[node name="Surprise" type="Node" parent="StateMachine" unique_id=1472716970]
+script = ExtResource("8_skik0")
+
+[node name="Hit" type="Node" parent="StateMachine" unique_id=786025992]
 script = ExtResource("8_0xayr")
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1537141403]
 script = ExtResource("9_skik0")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=939198180]
 script = ExtResource("10_qqln1")
+
+[node name="DebugStateName" type="Label" parent="." unique_id=1684063392]
+unique_name_in_owner = true
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 27.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("12_skik0")
+theme_override_font_sizes/font_size = 12
+text = "debug"
+horizontal_alignment = 1
+vertical_alignment = 1

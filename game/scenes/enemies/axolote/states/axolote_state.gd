@@ -4,6 +4,7 @@ class_name AxoloteState
 const IDLE = "Idle"
 const MOVE = "Move"
 const RUN = "Run"
+const SURPRISE = "Surprise"
 const HIT = "Hit"
 const DEAD = "Dead"
 

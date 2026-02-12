@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cy0ie7e44ist2"]
+[gd_scene format=4 uid="uid://cy0ie7e44ist2"]
 
 [ext_resource type="Texture2D" uid="uid://l28vfyhmg7t5" path="res://assets/tilemaps/test_tilemap.png" id="1_744q5"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_ggtvn"]
@@ -30,64 +30,43 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_y2tep")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_744q5"]
-size = Vector2(13, 13)
-
 [sub_resource type="Curve2D" id="Curve2D_ggtvn"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 15, -29)
 }
 point_count = 1
 
-[node name="RoomTemplate" type="Node2D"]
+[node name="RoomTemplate" type="Node2D" unique_id=1169780099]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1731558610]
 tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAoAAAAAAAAAAAABAAkAAAAAAAAAAAACAAgAAAAAAAAAAAADAAcAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAADAAMAAAAAAAAAAAADAAIAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAABAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAQAAAAAAAAAAAABAAUAAAAAAAAAAAABAAYAAAAAAAAAAAABAAcAAAAAAAAAAAABAAgAAAAAAAAAAAACAAcAAAAAAAAAAAACAAYAAAAAAAAAAAACAAUAAAAAAAAAAAACAAQAAAAAAAAAAAACAAMAAAAAAAAAAAACAAIAAAAAAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAEAAAAAAAAAAAAAAA8AAAAAAAAAAAABAA8AAAAAAAAAAAACAA8AAAAAAAAAAAADAA8AAAAAAAAAAAAEAA8AAAAAAAAAAAAFAA8AAAAAAAAAAAAGAA8AAAAAAAAAAAAHAA8AAAAAAAAAAAAIAA8AAAAAAAAAAAAJAA8AAAAAAAAAAAAKAA8AAAAAAAAAAAALAA8AAAAAAAAAAAAMAA8AAAAAAAAAAAANAA8AAAAAAAAAAAAOAA8AAAAAAAAAAAAPAA8AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA0AAAAAAAAAAAAPAAwAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAcAAAAAAAAAAAAOAA0AAAAFAAAAAAAOAAsAAAAFAAAAAAAOAAkAAAAFAAAAAAAOAAcAAAAFAAAAAAAGAA4AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_l3ey0")
 
-[node name="RoomInstance" parent="." instance=ExtResource("2_ggtvn")]
+[node name="RoomInstance" parent="." unique_id=590116580 instance=ExtResource("2_ggtvn")]
 
-[node name="SpawnPoint" type="Marker2D" parent="."]
+[node name="RoomRespawn" parent="." unique_id=1503801073 instance=ExtResource("3_744q5")]
+position = Vector2(129, 232)
 
-[node name="RoomRespawn" parent="." instance=ExtResource("3_744q5")]
-position = Vector2(128, 223)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 169.0
-offset_top = 227.0
-offset_right = 182.0
-offset_bottom = 240.0
-color = Color(1, 0.21316963, 0.21316963, 1)
-
-[node name="Area2D" type="Area2D" parent="ColorRect"]
-collision_layer = 40
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Area2D"]
-visible = false
-position = Vector2(6.5, 6.5)
-shape = SubResource("RectangleShape2D_744q5")
-
-[node name="Upgrade" parent="." instance=ExtResource("4_ggtvn")]
+[node name="Upgrade" parent="." unique_id=303815156 instance=ExtResource("4_ggtvn")]
 position = Vector2(52, 214)
 
-[node name="Path2D" type="Path2D" parent="."]
+[node name="Path2D" type="Path2D" parent="." unique_id=1722883350]
 curve = SubResource("Curve2D_ggtvn")
 
-[node name="Jellyfish" parent="." instance=ExtResource("5_y4le3")]
+[node name="Jellyfish" parent="." unique_id=1502255794 instance=ExtResource("5_y4le3")]
 position = Vector2(75, 201)
 radius = 10.0
 
-[node name="Key" parent="." instance=ExtResource("6_xa6g4")]
+[node name="Key" parent="." unique_id=1009668881 instance=ExtResource("6_xa6g4")]
 position = Vector2(137, 197)
 is_pre_instanced = true
 
-[node name="Key2" parent="." instance=ExtResource("6_xa6g4")]
+[node name="Key2" parent="." unique_id=1788791785 instance=ExtResource("6_xa6g4")]
 position = Vector2(206, 197)
 is_pre_instanced = true
 
-[node name="Door" parent="." instance=ExtResource("7_ctvdn")]
+[node name="Door" parent="." unique_id=1967984765 instance=ExtResource("7_ctvdn")]
 position = Vector2(8, 216)
 
-[node name="Axolote" parent="." instance=ExtResource("8_80tu1")]
-position = Vector2(154, 232)
+[node name="Axolote" parent="." unique_id=872440343 instance=ExtResource("8_80tu1")]
+position = Vector2(217, 232)

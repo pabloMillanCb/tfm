@@ -1,10 +1,18 @@
 extends EnemyCharacter
 class_name Axolote
 
-@onready var raycast: RayCast2D = $AnimatedSprite2D/RayCast2D
+@export var walk_speed := 25.0
+@export var run_speed := 90.0
+@export var move_direction := -1.0
 
+@onready var raycast: RayCast2D = %RayCast2D
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")
+).call()
+
+@onready var turn_cooldown: Timer = (func create_timer() -> Timer:
+	var timer = Timer.new()
+	return timer
 ).call()
 
 
@@ -14,6 +22,26 @@ func update_gravity(_delta):
 		velocity.y += GRAVITY_FORCE * _delta
 
 
-func is_raycast_colliding_player() -> bool:
+func is_player_on_sight() -> bool:
 	var object = raycast.get_collider()
 	return object is Player
+
+
+func is_turn_around_needed():
+	var point = raycast.get_collision_point()
+	var object = raycast.get_collider()
+	return (global_position.distance_to(point) <= 10
+		and not object is Player)
+
+
+func set_animation(animation: String):
+	$AnimatedSprite2D.play(animation)
+
+
+func change_direction():
+	print(turn_cooldown.time_left)
+	if turn_cooldown.time_left == 0:
+		move_direction = move_direction * -1
+		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
+		#raycast.target_position *= -1
+		turn_cooldown.start(1.0)
