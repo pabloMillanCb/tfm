@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://de2bal4lxflwr" path="res://scenes/enemies/jellyfish/jellyfish.gd" id="1_wv4dl"]
 [ext_resource type="Texture2D" uid="uid://ck5kleyutpluy" path="res://scenes/enemies/jellyfish/jellyfish.png" id="2_4ux0n"]
-[ext_resource type="PackedScene" uid="uid://cobfqtl02yx8u" path="res://scenes/enemies/EnemyHurtboxComponent.tscn" id="3_4ux0n"]
-[ext_resource type="PackedScene" uid="uid://cwmmjdkky6gby" path="res://scenes/enemies/EnemyHitboxComponent.tscn" id="4_wrahy"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="3_wrahy"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="4_wrahy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jx3"]
 atlas = ExtResource("2_4ux0n")
@@ -56,15 +56,21 @@ script = ExtResource("1_wv4dl")
 sprite_frames = SubResource("SpriteFrames_hm838")
 frame_progress = 0.6715644
 
-[node name="EnemyHurtboxComponent" parent="Character" instance=ExtResource("3_4ux0n")]
+[node name="HurtboxComponent" type="Area2D" parent="Character"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_wrahy")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/EnemyHurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HurtboxComponent"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_0vs4q")
 
-[node name="EnemyHitboxComponent" parent="Character" instance=ExtResource("4_wrahy")]
+[node name="HitboxComponent" type="Area2D" parent="Character"]
+script = ExtResource("4_wrahy")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/EnemyHitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/HitboxComponent"]
 position = Vector2(0, -1.5)
 shape = SubResource("CircleShape2D_wrahy")
 
@@ -73,4 +79,4 @@ shape = SubResource("CircleShape2D_wrahy")
 [node name="JellyPosition" type="Marker2D" parent="RotationAxis"]
 unique_name_in_owner = true
 
-[connection signal="player_atack_detected" from="Character/EnemyHurtboxComponent" to="." method="die"]
+[connection signal="area_entered" from="Character/HurtboxComponent" to="Character/HurtboxComponent" method="_on_atack_detected"]

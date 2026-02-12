@@ -136,6 +136,7 @@ func teleport():
 
 
 func _on_atack_hit(area: Area2D) -> void:
+	print("area")
 	if area.has_method("break_self") and data.has_break_update:
 		area.break_self()
 

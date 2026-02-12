@@ -6,7 +6,6 @@ class_name Jellyfish
 
 func _ready() -> void:
 	%JellyPosition.position.y = -radius
-	$Character/EnemyHurtboxComponent.player_atack_detected.connect(die)
 
 
 func _process(delta: float) -> void:

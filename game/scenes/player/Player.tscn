@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dt5id5s6k2sgf"]
+[gd_scene load_steps=88 format=3 uid="uid://dt5id5s6k2sgf"]
 
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
@@ -18,6 +18,7 @@
 [ext_resource type="Shader" uid="uid://csds65um0tt4m" path="res://shaders/Player_hit.gdshader" id="15_kswpp"]
 [ext_resource type="Texture2D" uid="uid://bnp74qtbogfm3" path="res://scenes/player/assets/player_spritesheet.png" id="15_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="17_ejd4k"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="17_p1lr0"]
 [ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="20_kswpp"]
 [ext_resource type="Texture2D" uid="uid://c47inqwe2u6x4" path="res://scenes/player/assets/player_body.png" id="21_v5i4m"]
@@ -276,62 +277,38 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AtackHitBox:monitoring")
+tracks/2/path = NodePath(".:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AtackHitBox:visible")
+tracks/3/path = NodePath(".:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AtackHitBox:monitorable")
+tracks/4/path = NodePath("AtackHitBox/CollisionShape2D:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_76i7i"]
@@ -361,37 +338,13 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AtackHitBox:monitoring")
+tracks/2/path = NodePath("../StateMachine/Atack")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666664, 0.26333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AtackHitBox:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.06666664, 0.26333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../StateMachine/Atack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.06666667, 0.3333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -402,41 +355,41 @@ tracks/4/keys = {
 "method": &"_on_atack_animation_end"
 }]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AtackHitBox:monitorable")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.06666664, 0.26333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("SwordSprites:animation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwordSprites:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"atack"]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("SwordSprites:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.06666666, 0.26333338),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwordSprites:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0667, 0.2633),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AtackHitBox/CollisionShape2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.2633),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_p1lr0"]
@@ -794,16 +747,17 @@ libraries = {
 }
 
 [node name="AtackHitBox" type="Area2D" parent="PlayerSprites"]
-visible = false
 position = Vector2(5, -1)
 collision_layer = 4
-collision_mask = 24
-monitoring = false
-monitorable = false
+collision_mask = 16
+priority = 10
+script = ExtResource("17_p1lr0")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/AtackHitBox"]
 position = Vector2(7.5, 2.5)
 shape = SubResource("RectangleShape2D_rn7t0")
+disabled = true
 debug_color = Color(0.78864187, 0.099395506, 1, 0.41960785)
 
 [node name="ShootingPoint" type="Marker2D" parent="PlayerSprites"]
@@ -816,6 +770,7 @@ position = Vector2(0, -6)
 collision_layer = 4
 collision_mask = 24
 monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/PogoHitbox"]
 position = Vector2(0.5, 12)
@@ -825,7 +780,8 @@ debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
 [node name="SwordSprites" type="AnimatedSprite2D" parent="PlayerSprites"]
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_jtlb7")
-animation = &"walk"
+animation = &"atack"
+frame = 2
 
 [node name="Hurtbox" type="Area2D" parent="PlayerSprites"]
 collision_layer = 0
