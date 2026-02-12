@@ -1,0 +1,107 @@
+[gd_scene load_steps=14 format=3 uid="uid://d1u1qyvyla2bj"]
+
+[ext_resource type="Script" uid="uid://btjhnkfx2d2ep" path="res://scenes/enemies/axolote/axolote.gd" id="1_kmqps"]
+[ext_resource type="Texture2D" uid="uid://c46aqkku63nvw" path="res://scenes/enemies/axolote/axolote.png" id="2_hcfv2"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="3_5pi6k"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="4_qfj0t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv366"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(0, 16, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pi6k"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(18, 16, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfj0t"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(36, 16, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ltq"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(54, 16, 18, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6g8n"]
+atlas = ExtResource("2_hcfv2")
+region = Rect2(72, 16, 18, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bla43"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv366")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pi6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfj0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ltq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6g8n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2ltq"]
+size = Vector2(14, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pi6k"]
+size = Vector2(14, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj0t"]
+size = Vector2(12, 9)
+
+[node name="Axolote" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_kmqps")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bla43")
+animation = &"walk"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("3_5pi6k")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_v2ltq")
+
+[node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_qfj0t")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(1, 2.5)
+shape = SubResource("RectangleShape2D_5pi6k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_qfj0t")
