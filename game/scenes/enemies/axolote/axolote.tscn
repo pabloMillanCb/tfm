@@ -1,9 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1u1qyvyla2bj"]
+[gd_scene load_steps=20 format=3 uid="uid://d1u1qyvyla2bj"]
 
 [ext_resource type="Script" uid="uid://btjhnkfx2d2ep" path="res://scenes/enemies/axolote/axolote.gd" id="1_kmqps"]
 [ext_resource type="Texture2D" uid="uid://c46aqkku63nvw" path="res://scenes/enemies/axolote/axolote.png" id="2_hcfv2"]
 [ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="3_5pi6k"]
 [ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="4_qfj0t"]
+[ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="5_qfj0t"]
+[ext_resource type="Script" uid="uid://dj107ffyc7pll" path="res://scenes/enemies/axolote/states/move.gd" id="6_v2ltq"]
+[ext_resource type="Script" uid="uid://dqnp3b12re3k7" path="res://scenes/enemies/axolote/states/run.gd" id="7_16b8e"]
+[ext_resource type="Script" uid="uid://ckwv72l5mxhe" path="res://scenes/enemies/axolote/states/hit.gd" id="8_0xayr"]
+[ext_resource type="Script" uid="uid://yy04kjb37db6" path="res://scenes/enemies/axolote/states/dead.gd" id="9_skik0"]
+[ext_resource type="Script" uid="uid://csqxlxjyt8oow" path="res://scenes/enemies/axolote/states/idle.gd" id="10_qqln1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv366"]
 atlas = ExtResource("2_hcfv2")
@@ -81,27 +87,50 @@ script = ExtResource("1_kmqps")
 sprite_frames = SubResource("SpriteFrames_bla43")
 animation = &"walk"
 
-[node name="HitboxComponent" type="Area2D" parent="."]
+[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D"]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_5pi6k")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent"]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_v2ltq")
 
-[node name="HurtboxComponent" type="Area2D" parent="."]
+[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_qfj0t")
 metadata/_custom_type_script = "uid://bp624mlidiwba"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent"]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_5pi6k")
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+target_position = Vector2(-80, 0)
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_qfj0t")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_qfj0t")
+metadata/_custom_type_script = "uid://cml4nuk5k2ym2"
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("6_v2ltq")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("7_16b8e")
+
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource("8_0xayr")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("9_skik0")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("10_qqln1")
