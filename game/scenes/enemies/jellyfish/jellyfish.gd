@@ -18,7 +18,3 @@ func _process(delta: float) -> void:
 	var direction = sign(start_character_position.x - $Character.global_position.x)
 	
 	$Character.scale.x = direction
-
-
-func die():
-	queue_free()

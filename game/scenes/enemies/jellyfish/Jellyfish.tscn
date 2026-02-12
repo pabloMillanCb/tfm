@@ -42,7 +42,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0vs4q"]
-radius = 24.083189
+radius = 6.0827627
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wrahy"]
 radius = 5.2201533
@@ -67,6 +67,8 @@ position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_0vs4q")
 
 [node name="HitboxComponent" type="Area2D" parent="Character"]
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("4_wrahy")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
