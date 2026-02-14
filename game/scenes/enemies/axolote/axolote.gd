@@ -10,10 +10,7 @@ class_name Axolote
 	return get_node("StateMachine")
 ).call()
 
-@onready var turn_cooldown: Timer = (func create_timer() -> Timer:
-	var timer = Timer.new()
-	return timer
-).call()
+@onready var turn_cooldown: Timer = $TurnCooldown
 
 
 func update_gravity(_delta):

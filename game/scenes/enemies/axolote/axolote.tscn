@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d1u1qyvyla2bj"]
+[gd_scene load_steps=26 format=3 uid="uid://d1u1qyvyla2bj"]
 
 [ext_resource type="Script" uid="uid://btjhnkfx2d2ep" path="res://scenes/enemies/axolote/axolote.gd" id="1_kmqps"]
 [ext_resource type="Texture2D" uid="uid://c46aqkku63nvw" path="res://scenes/enemies/axolote/axolote.png" id="2_hcfv2"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dj107ffyc7pll" path="res://scenes/enemies/axolote/states/move.gd" id="6_v2ltq"]
 [ext_resource type="Script" uid="uid://dqnp3b12re3k7" path="res://scenes/enemies/axolote/states/run.gd" id="7_16b8e"]
 [ext_resource type="Script" uid="uid://ckwv72l5mxhe" path="res://scenes/enemies/axolote/states/hit.gd" id="8_0xayr"]
-[ext_resource type="Script" uid="uid://cctfmeq4mffe0" path="res://scenes/enemies/axolote/surprise.gd" id="8_skik0"]
+[ext_resource type="Script" path="res://scenes/enemies/axolote/surprise.gd" id="8_skik0"]
 [ext_resource type="Script" uid="uid://yy04kjb37db6" path="res://scenes/enemies/axolote/states/dead.gd" id="9_skik0"]
 [ext_resource type="Script" uid="uid://csqxlxjyt8oow" path="res://scenes/enemies/axolote/states/idle.gd" id="10_qqln1"]
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="12_skik0"]
@@ -113,72 +113,72 @@ size = Vector2(14, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj0t"]
 size = Vector2(12, 9)
 
-[node name="Axolote" type="CharacterBody2D" unique_id=408836494]
+[node name="Axolote" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_kmqps")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=97063783]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bla43")
 animation = &"surprise"
 frame_progress = 0.5405733
 
-[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1764030272]
+[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D"]
 visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_5pi6k")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent" unique_id=1582400089]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent"]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_v2ltq")
 
-[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=812813025]
+[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D"]
 visible = false
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_qfj0t")
 metadata/_custom_type_script = "uid://bp624mlidiwba"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent" unique_id=1632940051]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent"]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_5pi6k")
 
-[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=262210136]
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
 unique_name_in_owner = true
 position = Vector2(-6, 0)
 target_position = Vector2(-120, 0)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1598907035]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_qfj0t")
 
-[node name="StateMachine" type="Node" parent="." unique_id=51184764]
+[node name="StateMachine" type="Node" parent="."]
 script = ExtResource("5_qfj0t")
 metadata/_custom_type_script = "uid://cml4nuk5k2ym2"
 
-[node name="Move" type="Node" parent="StateMachine" unique_id=567352326]
+[node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("6_v2ltq")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=1341242521]
+[node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("7_16b8e")
 
-[node name="Surprise" type="Node" parent="StateMachine" unique_id=1472716970]
+[node name="Surprise" type="Node" parent="StateMachine"]
 script = ExtResource("8_skik0")
 
-[node name="Hit" type="Node" parent="StateMachine" unique_id=786025992]
+[node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("8_0xayr")
 
-[node name="Dead" type="Node" parent="StateMachine" unique_id=1537141403]
+[node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("9_skik0")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=939198180]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("10_qqln1")
 
-[node name="DebugStateName" type="Label" parent="." unique_id=1684063392]
+[node name="DebugStateName" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = -22.0
 offset_top = -29.0
@@ -189,3 +189,5 @@ theme_override_font_sizes/font_size = 12
 text = "debug"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TurnCooldown" type="Timer" parent="."]
