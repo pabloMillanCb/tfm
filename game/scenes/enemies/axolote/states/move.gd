@@ -7,6 +7,7 @@ func _update_physics(_delta):
 	axolote.update_gravity(_delta)
 	
 	if axolote.is_turn_around_needed():
+		print("move")
 		axolote.change_direction()
 	elif axolote.is_player_on_sight():
 		finished.emit(SURPRISE)

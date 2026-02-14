@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d1u1qyvyla2bj"]
+[gd_scene format=3 uid="uid://d1u1qyvyla2bj"]
 
 [ext_resource type="Script" uid="uid://btjhnkfx2d2ep" path="res://scenes/enemies/axolote/axolote.gd" id="1_kmqps"]
 [ext_resource type="Texture2D" uid="uid://c46aqkku63nvw" path="res://scenes/enemies/axolote/axolote.png" id="2_hcfv2"]
@@ -113,73 +113,74 @@ size = Vector2(14, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj0t"]
 size = Vector2(12, 9)
 
-[node name="Axolote" type="CharacterBody2D"]
+[node name="Axolote" type="CharacterBody2D" unique_id=227587289]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_kmqps")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1946914867]
 sprite_frames = SubResource("SpriteFrames_bla43")
 animation = &"surprise"
-frame_progress = 0.5405733
+frame_progress = 0.18998577
 
-[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D"]
+[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=981640590]
 visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("3_5pi6k")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent" unique_id=936863651]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_v2ltq")
 
-[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D"]
+[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=624209134]
 visible = false
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_qfj0t")
 metadata/_custom_type_script = "uid://bp624mlidiwba"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent" unique_id=1943261686]
 position = Vector2(1, 2.5)
 shape = SubResource("RectangleShape2D_5pi6k")
 
-[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D"]
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1712371612]
 unique_name_in_owner = true
 position = Vector2(-6, 0)
 target_position = Vector2(-120, 0)
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1561670536]
 visible = false
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_qfj0t")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=1745872523]
 script = ExtResource("5_qfj0t")
 metadata/_custom_type_script = "uid://cml4nuk5k2ym2"
 
-[node name="Move" type="Node" parent="StateMachine"]
+[node name="Move" type="Node" parent="StateMachine" unique_id=1099361964]
 script = ExtResource("6_v2ltq")
 
-[node name="Run" type="Node" parent="StateMachine"]
+[node name="Run" type="Node" parent="StateMachine" unique_id=867252470]
 script = ExtResource("7_16b8e")
 
-[node name="Surprise" type="Node" parent="StateMachine"]
+[node name="Surprise" type="Node" parent="StateMachine" unique_id=755452168]
 script = ExtResource("8_skik0")
 
-[node name="Hit" type="Node" parent="StateMachine"]
+[node name="Hit" type="Node" parent="StateMachine" unique_id=1279253032]
 script = ExtResource("8_0xayr")
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Dead" type="Node" parent="StateMachine" unique_id=521894618]
 script = ExtResource("9_skik0")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=297897849]
 script = ExtResource("10_qqln1")
 
-[node name="DebugStateName" type="Label" parent="."]
+[node name="DebugStateName" type="Label" parent="." unique_id=1459893049]
 unique_name_in_owner = true
+visible = false
 offset_left = -22.0
 offset_top = -29.0
 offset_right = 27.0
@@ -190,4 +191,5 @@ text = "debug"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TurnCooldown" type="Timer" parent="."]
+[node name="TurnCooldown" type="Timer" parent="." unique_id=443965976]
+one_shot = true

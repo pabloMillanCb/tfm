@@ -2,7 +2,7 @@ extends EnemyCharacter
 class_name Axolote
 
 @export var walk_speed := 25.0
-@export var run_speed := 90.0
+@export var run_speed := 75.0
 @export var move_direction := -1.0
 
 @onready var raycast: RayCast2D = %RayCast2D
@@ -11,6 +11,8 @@ class_name Axolote
 ).call()
 
 @onready var turn_cooldown: Timer = $TurnCooldown
+
+var can_take_hits = true
 
 
 func update_gravity(_delta):
@@ -36,9 +38,13 @@ func set_animation(animation: String):
 
 
 func change_direction():
-	print(turn_cooldown.time_left)
 	if turn_cooldown.time_left == 0:
 		move_direction = move_direction * -1
 		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
-		#raycast.target_position *= -1
 		turn_cooldown.start(1.0)
+
+
+func take_damage():
+	print("ouch")
+	if can_take_hits:
+		state_machine._transition_to_next_state(AxoloteState.HIT)
