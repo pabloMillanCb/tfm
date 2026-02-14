@@ -118,8 +118,7 @@ func shoot():
 
 
 func set_pogo_hitbox(active: bool):
-	$PlayerSprites/PogoHitbox.monitoring = active
-	$PlayerSprites/PogoHitbox.visible = active
+	$PlayerSprites/PogoHitbox/CollisionShape2D.disabled = !active
 
 
 func prepare_teleport():
@@ -135,10 +134,10 @@ func teleport():
 		teleport_crosshair.queue_free()
 
 
-func _on_atack_hit(area: Area2D) -> void:
+func _on_atack_hit(area: HurtboxComponent) -> void:
 	print("area")
-	if area.has_method("break_self") and data.has_break_update:
-		area.break_self()
+	if area.has_method("take_damage") and data.has_break_update:
+		area.take_damage()
 
 
 func _on_hit_received(_area: Area2D) -> void:
