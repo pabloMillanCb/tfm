@@ -35,6 +35,32 @@ _data = {
 }
 point_count = 1
 
+[sub_resource type="Shader" id="Shader_ctvdn"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, abs(sin(time*alpha)));
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_80tu1"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ctvdn")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
 [node name="RoomTemplate" type="Node2D" unique_id=1169780099]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1731558610]
@@ -67,6 +93,9 @@ position = Vector2(8, 216)
 position = Vector2(180, 230)
 speed = 50.0
 health = 2
+
+[node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_80tu1")
 
 [node name="StartPoint" parent="Piranha" index="3" unique_id=1303859466]
 position = Vector2(-57, 0)

@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://oq7lsobwu6vk"]
 
 [ext_resource type="Script" uid="uid://b2s8cyd2daf8p" path="res://scenes/enemies/piranha/piranha.gd" id="1_cvmpw"]
+[ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="2_rn6c3"]
 [ext_resource type="Texture2D" uid="uid://hj2phostvbhn" path="res://scenes/enemies/piranha/piranha.png" id="2_sy6kx"]
 [ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="3_rn6c3"]
 [ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="4_v3811"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3811"]
+resource_local_to_scene = true
+shader = ExtResource("2_rn6c3")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sdlic"]
 atlas = ExtResource("2_sy6kx")
@@ -49,11 +57,14 @@ size = Vector2(16, 12)
 
 [node name="Piranha" type="Node2D" unique_id=810161683]
 script = ExtResource("1_cvmpw")
+speed = null
+health = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1814534361]
+material = SubResource("ShaderMaterial_v3811")
 sprite_frames = SubResource("SpriteFrames_krgef")
 autoplay = "default"
-frame_progress = 0.79928106
+frame_progress = 0.6323872
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=1708945206]
 collision_layer = 32
@@ -76,3 +87,7 @@ shape = SubResource("RectangleShape2D_rn6c3")
 [node name="StartPoint" type="Marker2D" parent="." unique_id=1303859466]
 
 [node name="EndPoint" type="Marker2D" parent="." unique_id=1382419134]
+
+[node name="InvencibleTimer" type="Timer" parent="." unique_id=171676640]
+wait_time = 0.4
+one_shot = true

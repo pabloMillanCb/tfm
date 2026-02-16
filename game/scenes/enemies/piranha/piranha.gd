@@ -15,6 +15,8 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	
+	$AnimatedSprite2D.material.set_shader_parameter("time", $InvencibleTimer.time_left)
+	
 	var previous_position = global_position
 	
 	if going_backwards:
@@ -30,5 +32,7 @@ func _process(delta: float) -> void:
 
 
 func take_damage():
-	#going_backwards = !going_backwards
+	going_backwards = !going_backwards
+	play_hit_animation()
+	$InvencibleTimer.start()
 	super()
