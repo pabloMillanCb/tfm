@@ -1,10 +1,9 @@
-[gd_scene format=3 uid="uid://cdpygcpno7x72"]
+[gd_resource type="TileSet" format=3 uid="uid://qayywfat3e8e"]
 
-[ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="1_pwjc5"]
-[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_ftega"]
+[ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="1_8fbdc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ftega"]
-texture = ExtResource("1_pwjc5")
+texture = ExtResource("1_8fbdc")
 0:11/0 = 0
 0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.015651584, 0.0052171946, 8, -8, 8, 8, -8, 8)
 1:11/0 = 0
@@ -118,18 +117,9 @@ texture = ExtResource("1_pwjc5")
 12:15/0 = 0
 12:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_y2tep"]
+[resource]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 34
 physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_ftega")
-
-[node name="Room" type="Node2D" unique_id=801174312]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
-tile_set = SubResource("TileSet_y2tep")
-
-[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_ftega")]
-
-[node name="SpawnPoint" type="Marker2D" parent="." unique_id=163154605]
