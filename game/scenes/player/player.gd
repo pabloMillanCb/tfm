@@ -158,3 +158,8 @@ func instance_saved_key():
 
 func get_down_of_one_way_platform():
 	position += Vector2(0.0, 1.0)
+
+
+func _on_tile_hazard_touched(body: Node2D) -> void:
+	if !invencible:
+		state_machine._transition_to_next_state(PlayerState.HIT)
