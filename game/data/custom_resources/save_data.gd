@@ -1,7 +1,7 @@
 extends Resource
 class_name SaveData
 
-const first_room := "res://scenes/world/rooms/TestScene1.tscn"
+const first_room := "res://scenes/world/rooms/FirstRoom.tscn"
 
 @export var player_data: PlayerData
 @export var last_room: String
