@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://djyepdes4klgo"]
+
+[ext_resource type="Texture2D" uid="uid://dy57apgyjmokh" path="res://scenes/world/save/save_statue.png" id="1_ws5hx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw0e4"]
+size = Vector2(17, 17)
+
+[node name="SavePoint" type="Node2D" unique_id=597677078]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=278857238]
+texture = ExtResource("1_ws5hx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1011128136]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1628703914]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_jw0e4")
