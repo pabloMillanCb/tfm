@@ -23,6 +23,10 @@ func _update_physics(_delta):
 		finished.emit(ATACK)
 	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)
+	elif Input.is_action_just_pressed("aim_down"):
+		player.get_down_of_one_way_platform()
+	
+	player.move_and_slide()
 
 
 func start_talking(dialogue_component: DialogueComponent):

@@ -91,6 +91,8 @@ texture = ExtResource("1_pwjc5")
 12:14/0 = 0
 12:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:14/0 = 0
+13:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+13:14/0/physics_layer_0/polygon_0/one_way = true
 0:15/0 = 0
 0:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:15/0 = 0
@@ -133,3 +135,4 @@ tile_set = SubResource("TileSet_y2tep")
 [node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_ftega")]
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=163154605]
+position = Vector2(125, 133)

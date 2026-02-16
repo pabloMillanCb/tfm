@@ -154,3 +154,7 @@ func instance_saved_key():
 		var key = preload("res://scenes/key/Key.tscn").instantiate()
 		key.global_position = global_position
 		add_child(key)
+
+
+func get_down_of_one_way_platform():
+	position += Vector2(0.0, 1.0)
