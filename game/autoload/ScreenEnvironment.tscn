@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bbst1fn4uodef"]
+
+[ext_resource type="Script" uid="uid://d16lflkwq40jw" path="res://autoload/screen_environment.gd" id="1_1x4u0"]
+
+[sub_resource type="Environment" id="Environment_rmg06"]
+background_mode = 3
+adjustment_enabled = true
+
+[node name="ScreenEnvironment" type="WorldEnvironment" unique_id=745451893]
+environment = SubResource("Environment_rmg06")
+script = ExtResource("1_1x4u0")

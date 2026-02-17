@@ -38,3 +38,11 @@ func _on_music_vol_slider_value_changed(value: float) -> void:
 func _on_sfx_vol_slider_value_changed(value: float) -> void:
 	var sfx_bus_index = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(value))
+
+
+func _on_brightness_slider_value_changed(value: float) -> void:
+	ScreenEnvironment.set_brightnes(value)
+
+
+func _on_contrast_slider_value_changed(value: float) -> void:
+	ScreenEnvironment.set_contrast(value)

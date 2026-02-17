@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cxkkbwf45d7fa" path="res://scenes/menu/settings/settings_menu.gd" id="1_s351m"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="2_vlqyx"]
-[ext_resource type="Texture2D" uid="uid://dmedk6atyqkjh" path="res://assets/icons/fullscreen.png" id="3_mtdqx"]
 
 [sub_resource type="Theme" id="Theme_vlqyx"]
 
@@ -11,9 +10,9 @@ z_index = 100
 script = ExtResource("1_s351m")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1633431180]
-offset_top = 48.0
+offset_top = 9.0
 offset_right = 256.0
-offset_bottom = 184.0
+offset_bottom = 250.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1023999176]
 layout_mode = 2
@@ -43,7 +42,7 @@ alignment = 1
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Sound" unique_id=1202211632]
 layout_mode = 2
 theme = ExtResource("2_vlqyx")
-text = "SOUND"
+text = "VOLUME"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Sound" unique_id=1570041651]
@@ -98,13 +97,65 @@ max_value = 1.0
 step = 0.1
 value = 0.8
 
-[node name="FullscreenCheckbox" type="CheckBox" parent="CenterContainer/VBoxContainer" unique_id=941548655]
+[node name="Sound2" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1927411451]
 layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Sound2" unique_id=716731199]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+text = "SCREEN"
+horizontal_alignment = 1
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="CenterContainer/VBoxContainer/Sound2" unique_id=941548655]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
 text = "FULLSCREEN"
-icon = ExtResource("3_mtdqx")
 alignment = 1
 icon_alignment = 2
 expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Sound2" unique_id=1685103084]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Names" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer" unique_id=1548017212]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Names" unique_id=1714700155]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "BRIGHTNESS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Names" unique_id=88645672]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "CONTRAST"
+horizontal_alignment = 1
+
+[node name="Sliders" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer" unique_id=124312705]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="BrightnessSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Sliders" unique_id=232645639]
+layout_mode = 2
+theme = SubResource("Theme_vlqyx")
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="ContrastSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Sliders" unique_id=1476777679]
+layout_mode = 2
+theme = SubResource("Theme_vlqyx")
+min_value = 0.8
+max_value = 1.2
+step = 0.1
+value = 1.1
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1252957351]
 layout_mode = 2
@@ -115,5 +166,7 @@ text = "BACK"
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/Sound2/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Sliders/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound2/HBoxContainer/Sliders/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
