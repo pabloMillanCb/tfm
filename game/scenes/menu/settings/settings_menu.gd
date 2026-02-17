@@ -23,3 +23,18 @@ func _on_fullscreen_checkbox_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+
+func _on_master_vol_slider_value_changed(value: float) -> void:
+	var master_bus_index = AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value))
+
+
+func _on_music_vol_slider_value_changed(value: float) -> void:
+	var music_bus_index = AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(value))
+
+
+func _on_sfx_vol_slider_value_changed(value: float) -> void:
+	var sfx_bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(value))
