@@ -26,6 +26,7 @@ config/icon="uid://786exjf32kq"
 [autoload]
 
 GameEvent="*res://autoload/game_event.gd"
+SettingsManager="*uid://c3uw7nk7vitr7"
 InputMapper="*res://autoload/input_mapper.gd"
 LocalizationManager="*res://autoload/localization_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
