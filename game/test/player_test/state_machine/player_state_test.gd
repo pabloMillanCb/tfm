@@ -79,7 +79,7 @@ func test_atack():
 	runner.simulate_action_press("jump")
 	await runner.await_input_processed()
 	runner.simulate_action_press("atack")
-	await await_millis(100)
+	await await_millis(50)
 	
 	assert_str(player.state_machine.state.name).is_equal(PlayerState.ATACK)
 	assert_bool(player.is_on_floor()).is_false()
