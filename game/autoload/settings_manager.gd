@@ -1,6 +1,13 @@
 extends Node
 
+var master_bus_index = AudioServer.get_bus_index("Master")
+var music_bus_index = AudioServer.get_bus_index("Music")
+var sfx_bus_index = AudioServer.get_bus_index("SFX")
+
 @onready var settings: SettingsData = preload("res://assets/resources/game_settings.tres")
+
+func _ready() -> void:
+	apply_settings()
 
 
 func save_data():
@@ -8,7 +15,25 @@ func save_data():
 
 
 func apply_settings():
-	# function body
+	
+	# Languages
+	#LocalizationManager.set_lang(settings.language)
+	
+	# Fullscreen
+	if settings.full_screen_enable:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		
+	# Audio
+	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(settings.master_volume))
+	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(settings.music_volume))
+	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(settings.sfx_volume))
+	
+	# Screen
+	ScreenEnvironment.set_brightnes(settings.screen_brightness)
+	ScreenEnvironment.set_contrast(settings.screen_contrast)
+	
 	save_data()
 
 

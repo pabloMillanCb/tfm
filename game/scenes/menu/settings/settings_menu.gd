@@ -3,10 +3,6 @@ class_name SettingsMenu
 
 signal exited
 
-var master_bus_index = AudioServer.get_bus_index("Master")
-var music_bus_index = AudioServer.get_bus_index("Music")
-var sfx_bus_index = AudioServer.get_bus_index("SFX")
-
 func _ready() -> void:
 	# Languages
 	$CenterContainer/VBoxContainer/Back.grab_focus()
@@ -16,13 +12,13 @@ func _ready() -> void:
 	
 	# Screen
 	%FullscreenCheckbox.button_pressed = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
-	%BrightnessSlider.value = ScreenEnvironment.get_brightness()
-	%ContrastSlider.value = ScreenEnvironment.get_contrast()
+	%BrightnessSlider.value = SettingsManager.settings.screen_brightness
+	%ContrastSlider.value = SettingsManager.settings.screen_contrast
 	
 	# Music
-	%MasterVolSlider.value = AudioServer.get_bus_volume_linear(master_bus_index)
-	%MusicVolSlider.value = AudioServer.get_bus_volume_linear(music_bus_index)
-	%SfxVolSlider.value = AudioServer.get_bus_volume_linear(sfx_bus_index)
+	%MasterVolSlider.value = SettingsManager.settings.master_volume
+	%MusicVolSlider.value = SettingsManager.settings.music_volume
+	%SfxVolSlider.value = SettingsManager.settings.sfx_volume
 
 
 func _on_back_pressed() -> void:
@@ -31,30 +27,28 @@ func _on_back_pressed() -> void:
 
 func _on_option_button_item_selected(index: int) -> void:
 	LocalizationManager.set_lang(index)
+	SettingsManager.save_data()
 
 
 func _on_fullscreen_checkbox_toggled(toggled_on: bool) -> void:
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+	SettingsManager.set_full_screen(toggled_on)
 
 
 func _on_master_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value))
+	SettingsManager.set_master_volume(value)
 
 
 func _on_music_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(value))
+	SettingsManager.set_music_volume(value)
 
 
 func _on_sfx_vol_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(value))
+	SettingsManager.set_sfx_volume(value)
 
 
 func _on_brightness_slider_value_changed(value: float) -> void:
-	ScreenEnvironment.set_brightnes(value)
+	SettingsManager.set_brightness(value)
 
 
 func _on_contrast_slider_value_changed(value: float) -> void:
-	ScreenEnvironment.set_contrast(value)
+	SettingsManager.set_contrast(value)
