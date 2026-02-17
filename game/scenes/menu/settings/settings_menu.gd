@@ -16,3 +16,10 @@ func _on_back_pressed() -> void:
 
 func _on_option_button_item_selected(index: int) -> void:
 	LocalizationManager.set_lang(index)
+
+
+func _on_fullscreen_checkbox_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
