@@ -24,3 +24,9 @@ signal _on_game_over
 signal _on_player_respawn
 
 signal _on_game_saved
+
+
+# Pick ups
+signal key_picked_up(key: DoorKey, player: Player)
+
+signal key_used

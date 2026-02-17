@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3nd17keheb61"]
+[gd_scene format=3 uid="uid://d3nd17keheb61"]
 
 [ext_resource type="Script" uid="uid://dkgrnfdf88l4i" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://dffy6e8ehpokc" path="res://scenes/menu/main/MainMenu.tscn" id="2_7h61r"]
 [ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="3_0sr1o"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=970068891]
 script = ExtResource("1_sul5r")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1227395552]
 visible = false
 offset_right = 40.0
 offset_bottom = 23.0
@@ -15,7 +15,7 @@ text = "old state:
 
 current state:"
 
-[node name="OldState" type="Label" parent="."]
+[node name="OldState" type="Label" parent="." unique_id=1292383337]
 visible = false
 offset_left = 28.0
 offset_top = 21.0
@@ -23,7 +23,7 @@ offset_right = 68.0
 offset_bottom = 44.0
 text = "-"
 
-[node name="NewState" type="Label" parent="."]
+[node name="NewState" type="Label" parent="." unique_id=1720089064]
 visible = false
 offset_left = 28.0
 offset_top = 77.0
@@ -31,11 +31,11 @@ offset_right = 68.0
 offset_bottom = 100.0
 text = "-"
 
-[node name="MainMenu" parent="." instance=ExtResource("2_7h61r")]
+[node name="MainMenu" parent="." unique_id=347464803 instance=ExtResource("2_7h61r")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1999787560]
 
-[node name="Minimap" parent="CanvasLayer" instance=ExtResource("3_0sr1o")]
+[node name="Minimap" parent="CanvasLayer" unique_id=1361253523 instance=ExtResource("3_0sr1o")]
 unique_name_in_owner = true
 visible = false
 offset_left = 192.0
@@ -44,3 +44,10 @@ scale = Vector2(0.44073305, 0.39422306)
 smooth_scroll = false
 display_player_location = true
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Minimap" unique_id=1350026147]
+z_index = -1
+layout_mode = 0
+offset_right = 145.21262
+offset_bottom = 95.805954
+color = Color(0, 0, 0, 1)

@@ -9,8 +9,14 @@ class_name Player
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
-@export var beam_update = false
-@export var break_update = false
+@export var debug_data: PlayerData =  null
+
+@onready var data: PlayerData = (func set_debug_data() -> PlayerData:
+	if debug_data != null:
+		return debug_data
+	else:
+		return PlayerData.new()
+).call()
 
 var invencible = false
 var current_health = 2
@@ -23,12 +29,42 @@ signal dialog_start_request(dialogue_component: DialogueComponent)
 
 var teleport_crosshair: TeleportCrosshair
 
+
+func _ready() -> void:
+	update_upgrades_information()
+
+
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 	
 	if invencible:
 		$PlayerSprites/AnimationPlayer.play("blink")
 
+
+func set_player_data(loaded_data: PlayerData):
+	if debug_data == null:
+		data = loaded_data.copy()
+		update_upgrades_information()
+		instance_saved_key()
+
+
+func get_new_upgrade(upgrade: Upgrade.UpgradeType):
+	if upgrade == Upgrade.UpgradeType.SWORD:
+		data.has_sword_update = true
+	elif upgrade == Upgrade.UpgradeType.BREAK:
+		data.has_break_update = true
+	elif upgrade == Upgrade.UpgradeType.BEAM:
+		data.has_beam_update = true
+	elif upgrade == Upgrade.UpgradeType.POGO:
+		data.has_pogo_update = true
+	elif upgrade == Upgrade.UpgradeType.TELEPORT:
+		data.has_teleport_update = true
+	
+	update_upgrades_information()
+
+
+func update_upgrades_information():
+	$PlayerSprites/SwordSprites.visible = data.has_sword_update
 
 func stop_animation():
 	$PlayerSprites.stop()
@@ -74,7 +110,7 @@ func update_gravity(_delta):
 
 
 func shoot():
-	if beam_update:
+	if data.has_beam_update:
 		var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
 		beam.direction = get_look_direction()
 		beam.global_position = %ShootingPoint.global_position
@@ -82,8 +118,7 @@ func shoot():
 
 
 func set_pogo_hitbox(active: bool):
-	$PlayerSprites/PogoHitbox.monitoring = active
-	$PlayerSprites/PogoHitbox.visible = active
+	$PlayerSprites/PogoHitbox/CollisionShape2D.disabled = !active
 
 
 func prepare_teleport():
@@ -99,9 +134,10 @@ func teleport():
 		teleport_crosshair.queue_free()
 
 
-func _on_atack_hit(area: Area2D) -> void:
-	if area.has_method("break_self") and break_update:
-		area.break_self()
+func _on_atack_hit(area: HurtboxComponent) -> void:
+	print("area")
+	if area.has_method("take_damage") and data.has_break_update:
+		area.take_damage()
 
 
 func _on_hit_received(_area: Area2D) -> void:
@@ -111,3 +147,19 @@ func _on_hit_received(_area: Area2D) -> void:
 
 func set_sprite_visibility(visible: bool):
 	$PlayerSprites.visible = visible
+
+
+func instance_saved_key():
+	if DataManager.current_save.player_data.has_key:
+		var key = preload("res://scenes/key/Key.tscn").instantiate()
+		key.global_position = global_position
+		add_child(key)
+
+
+func get_down_of_one_way_platform():
+	position += Vector2(0.0, 1.0)
+
+
+func _on_tile_hazard_touched(body: Node2D) -> void:
+	if !invencible:
+		state_machine._transition_to_next_state(PlayerState.HIT)

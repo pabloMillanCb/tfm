@@ -15,14 +15,18 @@ func _exit():
 func _update_physics(_delta):
 	if !player.is_on_floor():
 		finished.emit(FALLING)
-	elif Input.is_action_just_pressed("teleport"):
+	elif Input.is_action_just_pressed("teleport") and player.data.has_teleport_update:
 		finished.emit(PREPARE_TELEPORT)
 	elif Input.is_action_just_pressed("jump"):
 		finished.emit(JUMP)
-	elif Input.is_action_just_pressed("atack"):
+	elif Input.is_action_just_pressed("atack") and player.data.has_sword_update:
 		finished.emit(ATACK)
 	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)
+	elif Input.is_action_just_pressed("aim_down"):
+		player.get_down_of_one_way_platform()
+	
+	player.move_and_slide()
 
 
 func start_talking(dialogue_component: DialogueComponent):

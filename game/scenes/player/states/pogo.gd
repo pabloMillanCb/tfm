@@ -43,10 +43,5 @@ func bounce():
 	player.velocity.y = player.bounce_force
 
 
-func _on_pogo_hitbox_area_entered(area: Area2D) -> void:
-	player._on_atack_hit(area)
-	bounce()
-
-
-func _on_pogo_hitbox_body_entered(body: Node2D) -> void:
+func _on_pogo_hitbox_area_entered(area: HurtboxComponent) -> void:
 	bounce()
