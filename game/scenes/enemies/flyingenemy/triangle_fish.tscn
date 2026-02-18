@@ -140,4 +140,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1222907089]
 shape = SubResource("CircleShape2D_ym17l")
 
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=754048153]
+collision_mask = 3
+
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]
