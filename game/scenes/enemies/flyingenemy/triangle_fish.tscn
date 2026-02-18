@@ -75,7 +75,10 @@ height = 12.0
 radius = 84.095184
 
 [node name="TriangleFish" type="CharacterBody2D" unique_id=1261184046]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_pne4k")
+speed = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601418126]
 sprite_frames = SubResource("SpriteFrames_dwvfd")
@@ -139,8 +142,19 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1222907089]
 shape = SubResource("CircleShape2D_ym17l")
+disabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=754048153]
 collision_mask = 3
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1386840502]
+path_postprocessing = 1
+debug_enabled = true
+
+[node name="StartTimer" type="Timer" parent="." unique_id=611721151]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

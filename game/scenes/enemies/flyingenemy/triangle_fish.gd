@@ -2,7 +2,7 @@ extends EnemyCharacter
 class_name TriangleFish
 
 
-@export var speed = 100.0
+@export var speed = 20.0
 
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
@@ -17,12 +17,11 @@ func set_animation(animation: String):
 	$AnimatedSprite2D.play(animation)
 
 
-func _on_player_detected(body: Player) -> void:
+func _on_player_detected(body: Node2D) -> void:
 	player = body
 
 
-func update_direction():
-	var direction = global_position.direction_to(player.global_position)
+func update_direction(direction: Vector2):
 	if direction.x > 0:
 		$AnimatedSprite2D.flip_h = false
 	else:
@@ -33,3 +32,7 @@ func take_damage():
 	print("ouch")
 	if can_take_hits:
 		state_machine._transition_to_next_state(TriangleFishState.HIT)
+
+
+func _on_start_timer_timeout() -> void:
+	$PlayerDetect/CollisionShape2D.disabled = false
