@@ -23,7 +23,39 @@ animations = [{
 "texture": SubResource("AtlasTexture_4hhuu")
 }],
 "loop": true,
-"name": &"default",
+"name": &"chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhuu")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhuu")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhuu")
+}],
+"loop": true,
+"name": &"sleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhuu")
+}],
+"loop": true,
+"name": &"watch",
 "speed": 5.0
 }]
 
@@ -39,11 +71,15 @@ height = 18.0
 radius = 4.0
 height = 12.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ym17l"]
+radius = 84.095184
+
 [node name="TriangleFish" type="CharacterBody2D" unique_id=1261184046]
 script = ExtResource("1_pne4k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601418126]
 sprite_frames = SubResource("SpriteFrames_dwvfd")
+animation = &"chase"
 
 [node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1336580598]
 collision_layer = 40
@@ -97,3 +133,11 @@ theme_override_font_sizes/font_size = 5
 text = "debug"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PlayerDetect" type="Area2D" parent="." unique_id=701906977]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1222907089]
+shape = SubResource("CircleShape2D_ym17l")
+
+[connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]
