@@ -122,6 +122,10 @@ script = ExtResource("8_32n01")
 [node name="Hit" type="Node" parent="StateMachine" unique_id=1318137682]
 script = ExtResource("9_kkhlc")
 
+[node name="Timer" type="Timer" parent="StateMachine/Hit" unique_id=1672216455]
+wait_time = 0.5
+one_shot = true
+
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1503600499]
 script = ExtResource("10_gmw86")
 
@@ -149,12 +153,12 @@ collision_mask = 3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1386840502]
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="StartTimer" type="Timer" parent="." unique_id=611721151]
 wait_time = 0.2
 one_shot = true
 autostart = true
 
+[connection signal="timeout" from="StateMachine/Hit/Timer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

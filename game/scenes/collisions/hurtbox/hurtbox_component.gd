@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _on_atack_detected(area: HitboxComponent) -> void:
 	if (owner.has_method("take_damage")):
-		owner.take_damage()
+		owner.take_damage(-(area.global_position - global_position).normalized())

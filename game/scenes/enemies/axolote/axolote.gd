@@ -44,7 +44,7 @@ func change_direction():
 		turn_cooldown.start(1.0)
 
 
-func take_damage():
+func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("ouch")
 	if can_take_hits:
 		state_machine._transition_to_next_state(AxoloteState.HIT)

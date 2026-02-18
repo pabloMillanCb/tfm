@@ -135,9 +135,8 @@ func teleport():
 
 
 func _on_atack_hit(area: HurtboxComponent) -> void:
-	print("area")
 	if area.has_method("take_damage") and data.has_break_update:
-		area.take_damage()
+		area.take_damage(-(area.global_position - global_position).normalized())
 
 
 func _on_hit_received(_area: Area2D) -> void:

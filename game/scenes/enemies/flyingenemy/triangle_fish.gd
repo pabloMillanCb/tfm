@@ -28,10 +28,10 @@ func update_direction(direction: Vector2):
 		$AnimatedSprite2D.flip_h = true
 
 
-func take_damage():
+func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("ouch")
 	if can_take_hits:
-		state_machine._transition_to_next_state(TriangleFishState.HIT)
+		state_machine._transition_to_next_state(TriangleFishState.HIT, {"push_direction" = direction})
 
 
 func _on_start_timer_timeout() -> void:
