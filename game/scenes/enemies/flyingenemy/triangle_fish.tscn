@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://7gc3goqj5bl6"]
+
+[ext_resource type="Script" uid="uid://dg4ukxk47ibgu" path="res://scenes/enemies/flyingenemy/triangle_fish.gd" id="1_pne4k"]
+[ext_resource type="Texture2D" uid="uid://dlqwy0fruarvl" path="res://scenes/enemies/flyingenemy/triangle_fish.png" id="2_t1tvu"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="3_fr88r"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="4_jgfb2"]
+[ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="5_fr88r"]
+[ext_resource type="Script" uid="uid://q1vygayblol0" path="res://scenes/enemies/flyingenemy/states/sleep.gd" id="6_nd7lc"]
+[ext_resource type="Script" uid="uid://chplmknt4pelh" path="res://scenes/enemies/flyingenemy/states/watch.gd" id="7_ym17l"]
+[ext_resource type="Script" uid="uid://bbvo8oyfkbs5q" path="res://scenes/enemies/flyingenemy/states/chase.gd" id="8_32n01"]
+[ext_resource type="Script" uid="uid://cnrsr3gr3ojew" path="res://scenes/enemies/flyingenemy/states/hit.gd" id="9_kkhlc"]
+[ext_resource type="Script" uid="uid://dhacus4n85630" path="res://scenes/enemies/flyingenemy/states/dead.gd" id="10_gmw86"]
+[ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="11_ym17l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hhuu"]
+atlas = ExtResource("2_t1tvu")
+region = Rect2(0, 0, 22, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwvfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hhuu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fk5pp"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nd7lc"]
+radius = 7.0
+height = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ym17l"]
+radius = 4.0
+height = 12.0
+
+[node name="TriangleFish" type="CharacterBody2D" unique_id=1261184046]
+script = ExtResource("1_pne4k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601418126]
+sprite_frames = SubResource("SpriteFrames_dwvfd")
+
+[node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1336580598]
+collision_layer = 40
+script = ExtResource("3_fr88r")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitboxComponent" unique_id=1172596728]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_fk5pp")
+
+[node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=511676076]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("4_jgfb2")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtboxComponent" unique_id=2053754269]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_nd7lc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=605731751]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_ym17l")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1418862076]
+script = ExtResource("5_fr88r")
+
+[node name="Sleep" type="Node" parent="StateMachine" unique_id=868313299]
+script = ExtResource("6_nd7lc")
+
+[node name="Watch" type="Node" parent="StateMachine" unique_id=2055892268]
+script = ExtResource("7_ym17l")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=767247871]
+script = ExtResource("8_32n01")
+
+[node name="Hit" type="Node" parent="StateMachine" unique_id=1318137682]
+script = ExtResource("9_kkhlc")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1503600499]
+script = ExtResource("10_gmw86")
+
+[node name="DebugStateName" type="Label" parent="." unique_id=1390418854]
+unique_name_in_owner = true
+offset_left = -24.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("11_ym17l")
+theme_override_font_sizes/font_size = 5
+text = "debug"
+horizontal_alignment = 1
+vertical_alignment = 1
