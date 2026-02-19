@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dg1dpxljly2jl"]
+
+[ext_resource type="Script" uid="uid://bivlx6tth20bl" path="res://scenes/menu/map/map.gd" id="1_x6rgb"]
+
+[node name="MapMenu" type="CanvasLayer" unique_id=1337396091]
+follow_viewport_enabled = true
+
+[node name="Map" type="Panel" parent="." unique_id=1996119679]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.17625
+offset_top = -130.0
+offset_right = 786.8237
+offset_bottom = 798.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(20, 20)
+script = ExtResource("1_x6rgb")
