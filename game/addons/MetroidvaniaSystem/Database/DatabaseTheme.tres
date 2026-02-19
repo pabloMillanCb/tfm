@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=0 format=3 uid="uid://dfyoc5jqnnpf5"]
+[gd_resource type="Theme" format=3 uid="uid://dfyoc5jqnnpf5"]
 
 [resource]
 MetSys/colors/active_custom_element = Color(0.1, 0.1, 1, 0.8)
