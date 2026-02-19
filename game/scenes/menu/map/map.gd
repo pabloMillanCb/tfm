@@ -18,11 +18,28 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	print(event)
-	if event.is_action_pressed("map") and visible:
-		hide_map()
-	elif event.is_action_pressed("map") and !visible:
-		show_map()
+	if event is InputEventKey:
+		if event.pressed:
+			if event.is_action("map") and visible:
+				hide_map()
+			elif event.is_action("map") and !visible:
+				show_map()
+			if visible:
+				var move_offset: Vector2i
+				if event.is_action("move_left"):
+					print("move left")
+					move_offset = Vector2i.LEFT
+				elif event.is_action("move_right"):
+					print("move left")
+					move_offset = Vector2i.RIGHT
+				elif event.is_action("aim_down"):
+					move_offset = Vector2i.DOWN
+				elif event.is_action("aim_up"):
+					move_offset = Vector2i.UP
+				
+				map_view.move(move_offset)
+				player_location.offset = -Vector2(map_view.begin) * MetSys.CELL_SIZE
+				offset += move_offset
 
 
 func show_map():

@@ -1,15 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbp6l4c04rxj"]
+[gd_scene format=3 uid="uid://cbp6l4c04rxj"]
 
 [ext_resource type="Script" uid="uid://mj44wio0qhsu" path="res://scenes/world/game_world.gd" id="1_o21sk"]
 [ext_resource type="PackedScene" uid="uid://dt5id5s6k2sgf" path="res://scenes/player/Player.tscn" id="1_xro63"]
 [ext_resource type="Script" uid="uid://cv4lomcdgvq6b" path="res://scenes/world/keys/key_manager.gd" id="3_45itr"]
+[ext_resource type="PackedScene" uid="uid://dg1dpxljly2jl" path="res://scenes/menu/map/MapMenu.tscn" id="4_o21sk"]
 
-[node name="GameWorld" type="Node2D"]
+[node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
 
-[node name="Player" parent="." instance=ExtResource("1_xro63")]
+[node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=660065809]
 
-[node name="KeyManager" type="Node2D" parent="."]
+[node name="KeyManager" type="Node2D" parent="." unique_id=864591148]
 script = ExtResource("3_45itr")
+
+[node name="MapMenu" parent="." unique_id=1337396091 instance=ExtResource("4_o21sk")]
