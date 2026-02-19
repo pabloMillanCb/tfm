@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dg1dpxljly2jl"]
 
 [ext_resource type="Script" uid="uid://bivlx6tth20bl" path="res://scenes/menu/map/map.gd" id="1_x6rgb"]
+[ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="2_vuvyh"]
 
 [node name="MapMenu" type="CanvasLayer" unique_id=1337396091]
-follow_viewport_enabled = true
 
-[node name="Map" type="Panel" parent="." unique_id=1996119679]
+[node name="Map" type="Panel" parent="." unique_id=1996119679 node_paths=PackedStringArray("mini_map")]
 process_mode = 3
 visible = false
 anchors_preset = 8
@@ -22,3 +22,18 @@ grow_vertical = 2
 scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(20, 20)
 script = ExtResource("1_x6rgb")
+mini_map = NodePath("../Minimap")
+
+[node name="Minimap" parent="." unique_id=913353801 instance=ExtResource("2_vuvyh")]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_bottom = 0.014739215
+offset_left = 179.0
+offset_top = 1.0
+offset_right = 419.0
+offset_bottom = 157.22676
+scale = Vector2(0.32, 0.32)
+smooth_scroll = false
+display_player_location = true
+area = Vector2i(5, 5)
+metadata/_edit_use_anchors_ = true

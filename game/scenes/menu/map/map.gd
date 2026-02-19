@@ -1,6 +1,6 @@
 extends Panel
 
-@export var player: Player
+@export var mini_map: Control
 
 var SIZE: Vector2i
 var map_view: MapView
@@ -44,12 +44,14 @@ func _input(event: InputEvent) -> void:
 
 func show_map():
 	visible = true
+	mini_map.visible = false
 	update_offset()
 	get_tree().paused = true
 
 
 func hide_map():
 	visible = false
+	mini_map.visible = true
 	get_tree().paused = false
 
 func update_offset():
