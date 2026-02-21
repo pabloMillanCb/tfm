@@ -36,6 +36,8 @@ func save_remap_changes():
 	input_maping.create_remap()
 
 
+func is_remap_correct():
+	print(input_maping.find_duplicates())
 func get_action_list():
 	return input_maping.action_list
 

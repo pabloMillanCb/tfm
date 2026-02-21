@@ -168,7 +168,7 @@ step = 0.1
 value = 1.1
 scrollable = false
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=152445551]
+[node name="Controls" type="Button" parent="CenterContainer/VBoxContainer" unique_id=152445551]
 layout_mode = 2
 text = "CONTROLS"
 
@@ -184,4 +184,5 @@ text = "BACK"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/Screen/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

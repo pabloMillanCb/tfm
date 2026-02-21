@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://8p0aurhodngy"]
 
+[ext_resource type="Script" uid="uid://b1xam6o3qoht8" path="res://scenes/menu/settings/controls_menu.gd" id="1_js6q3"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="1_kue0p"]
 [ext_resource type="Script" uid="uid://dopyl5r0vbhea" path="res://addons/ActionIcon/ActionIcon.gd" id="2_js6q3"]
 
 [node name="ControlsMenu" type="Node2D" unique_id=1786076644]
+script = ExtResource("1_js6q3")
 
 [node name="Controls" type="HBoxContainer" parent="." unique_id=169600759]
 offset_top = 46.0
@@ -18,9 +20,16 @@ custom_minimum_size = Vector2(70.69, 0)
 layout_mode = 2
 
 [node name="Jump" type="HBoxContainer" parent="Controls/VBoxContainer" unique_id=1279305058]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="JumpAssign" type="Button" parent="Controls/VBoxContainer/Jump" unique_id=1997419716]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../../../VBoxContainer2/Accept/AcceptAssign")
+focus_neighbor_bottom = NodePath("../../Atack/AtackAssign")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer/Jump" unique_id=80165756]
 layout_mode = 2
@@ -34,9 +43,17 @@ action_name = &"jump"
 metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 
 [node name="Atack" type="HBoxContainer" parent="Controls/VBoxContainer" unique_id=1985961473]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="AtackAssign" type="Button" parent="Controls/VBoxContainer/Atack" unique_id=886560243]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Jump/JumpAssign")
+focus_neighbor_right = NodePath("../../../VBoxContainer2/Back/BackAssign")
+focus_neighbor_bottom = NodePath("../../Wand/WandAssign")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer/Atack" unique_id=1470221119]
 layout_mode = 2
@@ -50,9 +67,17 @@ action_name = &"atack"
 metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 
 [node name="Wand" type="HBoxContainer" parent="Controls/VBoxContainer" unique_id=455261556]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="WandAssign" type="Button" parent="Controls/VBoxContainer/Wand" unique_id=1079803167]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Atack/AtackAssign")
+focus_neighbor_right = NodePath("../../../VBoxContainer2/Map/MapAssign")
+focus_neighbor_bottom = NodePath("../../Pause/PauseAssign")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer/Wand" unique_id=986296196]
 layout_mode = 2
@@ -66,9 +91,17 @@ action_name = &"teleport"
 metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 
 [node name="Pause" type="HBoxContainer" parent="Controls/VBoxContainer" unique_id=1614343906]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="PauseAssign" type="Button" parent="Controls/VBoxContainer/Pause" unique_id=1788070595]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_top = NodePath("../../Wand/WandAssign")
+focus_neighbor_right = NodePath("../../../VBoxContainer2/Map/MapAssign")
+focus_neighbor_bottom = NodePath("../../../../Buttons/Default")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer/Pause" unique_id=1651915131]
 layout_mode = 2
@@ -85,9 +118,18 @@ metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 layout_mode = 2
 
 [node name="Accept" type="HBoxContainer" parent="Controls/VBoxContainer2" unique_id=2080411987]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
+focus_neighbor_left = NodePath("../../VBoxContainer/Jump/JumpAssign")
+focus_neighbor_bottom = NodePath("../Back/BackAssign")
 alignment = 2
+
+[node name="AcceptAssign" type="Button" parent="Controls/VBoxContainer2/Accept" unique_id=2080120118]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/Jump/JumpAssign")
+focus_neighbor_bottom = NodePath("../../Back/BackAssign")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer2/Accept" unique_id=64630615]
 layout_mode = 2
@@ -101,9 +143,17 @@ action_name = &"ui_accept"
 metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 
 [node name="Back" type="HBoxContainer" parent="Controls/VBoxContainer2" unique_id=60827532]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="BackAssign" type="Button" parent="Controls/VBoxContainer2/Back" unique_id=845170593]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/Atack/AtackAssign")
+focus_neighbor_top = NodePath("../../Accept/AcceptAssign")
+focus_neighbor_bottom = NodePath("../../Map/MapAssign")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer2/Back" unique_id=484642740]
 layout_mode = 2
@@ -117,9 +167,17 @@ action_name = &"ui_cancel"
 metadata/_custom_type_script = "uid://dopyl5r0vbhea"
 
 [node name="Map" type="HBoxContainer" parent="Controls/VBoxContainer2" unique_id=1790591859]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34.335)
 layout_mode = 2
 alignment = 2
+
+[node name="MapAssign" type="Button" parent="Controls/VBoxContainer2/Map" unique_id=954587865]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/Wand/WandAssign")
+focus_neighbor_top = NodePath("../../Back/BackAssign")
+focus_neighbor_bottom = NodePath("../../../../Buttons/GoBack")
 
 [node name="Label" type="Label" parent="Controls/VBoxContainer2/Map" unique_id=1210122723]
 layout_mode = 2
@@ -140,18 +198,19 @@ theme = ExtResource("1_kue0p")
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="Reasign" type="Button" parent="Buttons" unique_id=336273246]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "ASSIGN"
-
 [node name="Default" type="Button" parent="Buttons" unique_id=1526904724]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../Controls/VBoxContainer2/Map/MapAssign")
+focus_neighbor_right = NodePath("../GoBack")
 theme_override_font_sizes/font_size = 12
 text = "DEFAULT"
 
-[node name="Back" type="Button" parent="Buttons" unique_id=190214734]
+[node name="GoBack" type="Button" parent="Buttons" unique_id=190214734]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_left = NodePath("../Default")
+focus_neighbor_top = NodePath("../../Controls/VBoxContainer2/Map/MapAssign")
 theme_override_font_sizes/font_size = 12
 text = "BACK
 "
@@ -164,3 +223,6 @@ offset_bottom = 33.0
 theme = ExtResource("1_kue0p")
 theme_override_font_sizes/font_size = 17
 text = "CONTROLS"
+
+[connection signal="pressed" from="Buttons/Default" to="." method="_on_default_pressed"]
+[connection signal="pressed" from="Buttons/GoBack" to="." method="_on_go_back_pressed"]

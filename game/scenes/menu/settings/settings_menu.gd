@@ -52,3 +52,13 @@ func _on_brightness_slider_value_changed(value: float) -> void:
 
 func _on_contrast_slider_value_changed(value: float) -> void:
 	SettingsManager.set_contrast(value)
+
+
+func _on_controls_pressed() -> void:
+	var controls_menu = preload("res://scenes/menu/settings/ControlsMenu.tscn").instantiate()
+	$CenterContainer.visible = false
+	add_child(controls_menu)
+	controls_menu.tree_exited.connect(func():
+		$CenterContainer.visible = true
+		$CenterContainer/VBoxContainer/Controls.grab_focus()
+		)
