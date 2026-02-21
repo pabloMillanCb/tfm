@@ -26,13 +26,13 @@ func _process(delta: float) -> void:
 	#TODO DEBUG, TO DELETE
 	if Input.is_action_just_pressed("save"):
 		if Input.is_key_pressed(KEY_1):
-			DataManager.save_game_in_room(0, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		elif Input.is_key_pressed(KEY_2):
-			DataManager.save_game_in_room(1, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		elif Input.is_key_pressed(KEY_3):
-			DataManager.save_game_in_room(2, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		else:
-			DataManager.save_game_in_room(0, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		
 
 
