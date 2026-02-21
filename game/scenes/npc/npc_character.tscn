@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dh2u1x6m2ja5f"]
+
+[ext_resource type="Script" uid="uid://bs7klpcxncfy4" path="res://scenes/npc/npc_character.gd" id="1_8ce7w"]
+[ext_resource type="PackedScene" uid="uid://gee4th7onixo" path="res://dialogues/DialogComponent.tscn" id="2_jui7c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ce7w"]
+radius = 50.08992
+
+[node name="NpcCharacter" type="Node2D" unique_id=1778696213]
+script = ExtResource("1_8ce7w")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=640463565]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1698702126]
+shape = SubResource("CircleShape2D_8ce7w")
+
+[node name="DialogComponent" parent="." unique_id=84226614 instance=ExtResource("2_jui7c")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_player_entered"]
