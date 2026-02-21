@@ -47,7 +47,7 @@ func load_save_file(slot: int):
 
 
 func start_new_game(slot: int):
-	pass
+	GameEvent._on_new_game_start.emit()
 
 
 func update_file_data(slot: int):

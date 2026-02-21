@@ -5,7 +5,17 @@ func _ready() -> void:
 
 
 func _on_new_pressed() -> void:
-	GameEvent._on_new_game_start.emit()
+	var new_game_menu: ContinueMenu = preload("res://scenes/menu/select_file/SelectFile.tscn").instantiate()
+	add_child(new_game_menu)
+	new_game_menu.load_game = false
+	$CenterContainer/VBoxContainer/Load.release_focus()
+	$CenterContainer.visible = false
+	
+	new_game_menu.exited.connect(func (): 
+		get_node("SelectFile").queue_free()
+		$CenterContainer/VBoxContainer/New.grab_focus()
+		$CenterContainer.visible = true
+	)
 
 
 func _on_load_pressed() -> void:
