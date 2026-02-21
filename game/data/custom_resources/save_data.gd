@@ -1,7 +1,7 @@
 extends Resource
 class_name SaveData
 
-const first_room := "res://scenes/world/rooms/grey_area/GreyRoom3.tscn"
+const first_room := "res://scenes/world/rooms/FirstRoom.tscn"
 #"res://scenes/world/rooms/grey_area/GreyRoom3.tscn"
 #"res://scenes/world/rooms/FirstRoom.tscn"
 
