@@ -8,8 +8,8 @@ const first_room := "res://scenes/world/rooms/FirstRoom.tscn"
 @export var player_data: PlayerData
 @export var last_room: String
 @export var play_time: float
-
 @export var metsys_data: Dictionary
+@export var game_events: Dictionary
 
 
 func _init(p_player_data: PlayerData = PlayerData.new(), 

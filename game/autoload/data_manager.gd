@@ -77,3 +77,15 @@ func delete_all_data():
 	delete_data_from_slot(0)
 	delete_data_from_slot(1)
 	delete_data_from_slot(2)
+
+
+func register_event(event_name: String, value: Variant):
+	current_save.game_events.get_or_add(event_name, value)
+
+
+func is_event_registered(event_name: String) -> bool:
+	return current_save.game_events.get(event_name) != null
+
+
+func get_event_value(event_name: String) -> Variant:
+	return current_save.game_events.get(event_name, null)
