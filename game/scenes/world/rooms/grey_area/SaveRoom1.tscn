@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="1_1p1pi"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_nf3kr"]
 [ext_resource type="PackedScene" uid="uid://djyepdes4klgo" path="res://scenes/world/save/SavePoint.tscn" id="4_1p1pi"]
-[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_n5jj6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ftega"]
 texture = ExtResource("1_1p1pi")
@@ -137,13 +136,10 @@ sources/0 = SubResource("TileSetAtlasSource_ftega")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
 position = Vector2(0, -128)
-tile_map_data = PackedByteArray("AAADAA4AAAAAAAoAAAACAA4AAAABAAoAAAADAA0AAAABAAoAAAAEAA4AAAAAAAoAAAAEAA0AAAABAAoAAAAFAA4AAAABAAoAAAAAAA4AAAALAA4AAAAAAA8AAAABAAoAAAABAA8AAAALAA4AAAACAA8AAAALAA4AAAADAA8AAAALAA4AAAAEAA8AAAALAA4AAAAFAA8AAAALAA4AAAAGAA8AAAALAA4AAAAHAA8AAAAAAAoAAAAHAA4AAAALAA4AAAAAAAoAAAALAA4AAAAAAAkAAAALAA4AAAAAAAgAAAAAAAoAAAABAAgAAAALAA4AAAACAAgAAAALAA4AAAADAAgAAAALAA4AAAAEAAgAAAALAA4AAAAFAAgAAAALAA4AAAAGAAgAAAALAA4AAAAHAAgAAAABAAoAAAAHAAkAAAALAA4AAAAHAAoAAAALAA4AAAA=")
+tile_map_data = PackedByteArray("AAAAAA8AAAAAAAoAAAABAA8AAAALAA4AAAACAA8AAAALAA4AAAADAA8AAAALAA4AAAAEAA8AAAALAA4AAAAFAA8AAAALAA4AAAAGAA8AAAALAA4AAAAHAA8AAAABAAoAAAAAABAAAAALAA4AAAAAABEAAAALAA4AAAAAABUAAAALAA4AAAAAABYAAAABAAoAAAABABYAAAALAA4AAAACABUAAAABAAoAAAACABYAAAALAA4AAAADABQAAAABAAoAAAADABUAAAAAAAoAAAADABYAAAALAA4AAAAEABQAAAABAAoAAAAEABUAAAAAAAoAAAAEABYAAAALAA4AAAAFABUAAAABAAoAAAAFABYAAAALAA4AAAAGABYAAAALAA4AAAAHABAAAAALAA4AAAAHABEAAAALAA4AAAAHABUAAAALAA4AAAAHABYAAAAAAAoAAAA=")
 tile_set = SubResource("TileSet_y2tep")
 
 [node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_nf3kr")]
 
-[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_n5jj6")]
-position = Vector2(128, -86)
-
-[node name="SavePoint" parent="." unique_id=597677078 instance=ExtResource("4_1p1pi")]
-position = Vector2(65, 62)
+[node name="RoomRespawn" parent="." unique_id=597677078 instance=ExtResource("4_1p1pi")]
+position = Vector2(65, 184)
