@@ -84,7 +84,7 @@ func register_event(event_name: String, value: Variant):
 
 
 func is_event_registered(event_name: String) -> bool:
-	return current_save.game_events.get(event_name) != null
+	return current_save.game_events.get(event_name, null) != null
 
 
 func get_event_value(event_name: String) -> Variant:
