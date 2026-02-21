@@ -10,12 +10,12 @@ func _ready() -> void:
 	%JumpAssign.grab_focus()
 	
 	(%JumpAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %JumpAssign)))
-	(%AtackAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %AtackAssign)))   
-	(%WandAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %WandAssign)))
-	(%PauseAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %PauseAssign)))
-	(%AcceptAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %AcceptAssign)))
-	(%BackAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %BackAssign)))
-	(%MapAssign as Button).pressed.connect(func(): (select_action_to_remap("jump", %MapAssign)))
+	(%AtackAssign as Button).pressed.connect(func(): (select_action_to_remap("atack", %AtackAssign)))   
+	(%WandAssign as Button).pressed.connect(func(): (select_action_to_remap("teleport", %WandAssign)))
+	(%PauseAssign as Button).pressed.connect(func(): (select_action_to_remap("pause", %PauseAssign)))
+	(%AcceptAssign as Button).pressed.connect(func(): (select_action_to_remap("ui_accept", %AcceptAssign)))
+	(%BackAssign as Button).pressed.connect(func(): (select_action_to_remap("ui_cancel", %BackAssign)))
+	(%MapAssign as Button).pressed.connect(func(): (select_action_to_remap("map", %MapAssign)))
 
 
 func _input(event: InputEvent) -> void:
