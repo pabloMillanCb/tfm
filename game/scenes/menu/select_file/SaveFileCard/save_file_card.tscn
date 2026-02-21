@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8rt3ni2j4tlg"]
+[gd_scene format=3 uid="uid://c8rt3ni2j4tlg"]
 
-[ext_resource type="Script" uid="uid://bnmhgx4rafs41" path="res://scenes/menu/continue/SaveFileCard/save_file_card.gd" id="1_pqrde"]
+[ext_resource type="Script" uid="uid://bnmhgx4rafs41" path="res://scenes/menu/select_file/SaveFileCard/save_file_card.gd" id="1_pqrde"]
 
 [node name="SaveFileCard" type="Node2D"]
 script = ExtResource("1_pqrde")

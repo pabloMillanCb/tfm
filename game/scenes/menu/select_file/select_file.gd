@@ -3,6 +3,8 @@ class_name ContinueMenu
 
 @onready var file_card: SaveFileCard = %SaveFileCard
 
+var load_game = false
+
 signal exited
 
 func _ready() -> void:
@@ -11,30 +13,41 @@ func _ready() -> void:
 		update_file_data(0)
 	)
 	%Slot1.pressed.connect(func():
-			if DataManager.does_game_data_exist(0):
-				DataManager.load_game_data(0)
-				GameEvent._on_game_load.emit()
+			select_file(0)
 	)
 		
 	%Slot2.focus_entered.connect(func():
 		update_file_data(1)
 	)
 	%Slot2.pressed.connect(func():
-			if DataManager.does_game_data_exist(1):
-				DataManager.load_game_data(1)
-				GameEvent._on_game_load.emit()
+			select_file(1)
 	)
 	
 	%Slot3.focus_entered.connect(func():
 		update_file_data(2)
 	)
 	%Slot3.pressed.connect(func():
-			if DataManager.does_game_data_exist(3):
-				DataManager.load_game_data(3)
-				GameEvent._on_game_load.emit()
+			select_file(2)
 	)
 	
 	%Slot1.grab_focus()
+
+
+func select_file(slot:int):
+	if load_game:
+		load_save_file(slot)
+	else:
+		start_new_game(slot)
+
+
+func load_save_file(slot: int):
+	if DataManager.does_game_data_exist(slot):
+				DataManager.load_game_data(slot)
+				GameEvent._on_game_load.emit()
+
+
+func start_new_game(slot: int):
+	pass
 
 
 func update_file_data(slot: int):

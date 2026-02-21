@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bqrh12ljjgrvg"]
+
+[ext_resource type="Script" uid="uid://hs3y4iqrsr5" path="res://scenes/menu/select_file/select_file.gd" id="1_igedb"]
+[ext_resource type="PackedScene" uid="uid://c8rt3ni2j4tlg" path="res://scenes/menu/select_file/SaveFileCard/save_file_card.tscn" id="2_537gt"]
+
+[node name="SelectFile" type="Node2D" unique_id=1101009602]
+script = ExtResource("1_igedb")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=102304260]
+offset_left = 19.0
+offset_top = 43.0
+offset_right = 70.0
+offset_bottom = 179.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1528657483]
+layout_mode = 2
+
+[node name="Slot1" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1160535139]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Slot 1"
+
+[node name="Slot2" type="Button" parent="CenterContainer/VBoxContainer" unique_id=828427295]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Slot 2"
+
+[node name="Slot3" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1375691708]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Slot 3"
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1079541560]
+layout_mode = 2
+text = "BACK"
+
+[node name="SaveFileCard" parent="." unique_id=359290766 instance=ExtResource("2_537gt")]
+unique_name_in_owner = true
+position = Vector2(106, 85)
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_back_pressed"]

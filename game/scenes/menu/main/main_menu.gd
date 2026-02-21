@@ -9,13 +9,14 @@ func _on_new_pressed() -> void:
 
 
 func _on_load_pressed() -> void:
-	var continue_menu: ContinueMenu = preload("res://scenes/menu/continue/ContinueMenu.tscn").instantiate()
+	var continue_menu: ContinueMenu = preload("res://scenes/menu/select_file/SelectFile.tscn").instantiate()
 	add_child(continue_menu)
+	continue_menu.load_game = true
 	$CenterContainer/VBoxContainer/Load.release_focus()
 	$CenterContainer.visible = false
 	
 	continue_menu.exited.connect(func (): 
-		get_node("ContinueMenu").queue_free()
+		get_node("SelectFile").queue_free()
 		$CenterContainer/VBoxContainer/Load.grab_focus()
 		$CenterContainer.visible = true
 	)
