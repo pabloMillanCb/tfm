@@ -2,15 +2,63 @@
 
 [ext_resource type="Script" uid="uid://hs3y4iqrsr5" path="res://scenes/menu/select_file/select_file.gd" id="1_igedb"]
 [ext_resource type="PackedScene" uid="uid://c8rt3ni2j4tlg" path="res://scenes/menu/select_file/SaveFileCard/save_file_card.tscn" id="2_537gt"]
+[ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="2_yy7m7"]
 
 [node name="SelectFile" type="Node2D" unique_id=1101009602]
 script = ExtResource("1_igedb")
 
+[node name="ConfirmNewGame" type="VBoxContainer" parent="." unique_id=385263474]
+visible = false
+custom_minimum_size = Vector2(25.295, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = 17.0
+offset_right = 187.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_yy7m7")
+alignment = 1
+
+[node name="ConfirmTitle" type="Label" parent="ConfirmNewGame" unique_id=734247768]
+layout_mode = 2
+theme = ExtResource("2_yy7m7")
+text = "START_NEW_GAME?"
+horizontal_alignment = 1
+
+[node name="ConfirmDescription" type="Label" parent="ConfirmNewGame" unique_id=497704504]
+layout_mode = 2
+theme = ExtResource("2_yy7m7")
+theme_override_font_sizes/font_size = 7
+text = "DATA_WILL_BE_LOST"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmNewGame" unique_id=935705524]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ACCEPT" type="Button" parent="ConfirmNewGame/HBoxContainer" unique_id=835646712]
+unique_name_in_owner = true
+layout_mode = 2
+text = "YES"
+
+[node name="CANCEL" type="Button" parent="ConfirmNewGame/HBoxContainer" unique_id=1855556093]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CANCEL"
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=102304260]
-offset_left = 19.0
-offset_top = 43.0
-offset_right = 70.0
-offset_bottom = 179.0
+offset_left = 32.0
+offset_top = 75.0
+offset_right = 83.0
+offset_bottom = 211.0
+theme = ExtResource("2_yy7m7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1528657483]
 layout_mode = 2
@@ -36,6 +84,8 @@ text = "BACK"
 
 [node name="SaveFileCard" parent="." unique_id=359290766 instance=ExtResource("2_537gt")]
 unique_name_in_owner = true
-position = Vector2(106, 85)
+position = Vector2(119, 117)
 
+[connection signal="pressed" from="ConfirmNewGame/HBoxContainer/ACCEPT" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="ConfirmNewGame/HBoxContainer/CANCEL" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_back_pressed"]

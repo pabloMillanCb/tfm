@@ -66,7 +66,7 @@ func get_game_data(slot: int) -> SaveData:
 
 
 func _get_save_path(slot: int) -> String:
-	return save_files_route + save_files_name % str(slot) + ".tres"
+	return save_files_route + save_files_name % str(slot) + ".tres" 
 
 
 func delete_data_from_slot(slot: int):

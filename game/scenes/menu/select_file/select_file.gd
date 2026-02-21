@@ -4,6 +4,7 @@ class_name ContinueMenu
 @onready var file_card: SaveFileCard = %SaveFileCard
 
 var load_game = false
+var selected_slot: int
 
 signal exited
 
@@ -42,12 +43,18 @@ func select_file(slot:int):
 
 func load_save_file(slot: int):
 	if DataManager.does_game_data_exist(slot):
-				DataManager.load_game_data(slot)
-				GameEvent._on_game_load.emit()
+		DataManager.load_game_data(slot)
+		GameEvent._on_game_load.emit()
 
 
 func start_new_game(slot: int):
-	GameEvent._on_new_game_start.emit()
+	if DataManager.does_game_data_exist(slot):
+		selected_slot = slot
+		$ConfirmNewGame.visible = true
+		%CANCEL.grab_focus()
+	else:
+		DataManager.start_new_game(slot)
+		GameEvent._on_new_game_start.emit()
 
 
 func update_file_data(slot: int):
@@ -61,5 +68,17 @@ func _on_back_pressed() -> void:
 	exited.emit()
 
 
-func _on_slot_1_pressed() -> void:
-	pass # Replace with function body.
+func _on_accept_pressed() -> void:
+	DataManager.start_new_game(selected_slot)
+	GameEvent._on_new_game_start.emit()
+
+
+func _on_cancel_pressed() -> void:
+	$ConfirmNewGame.visible = false
+	match selected_slot:
+		0:
+			%Slot1.grab_focus()
+		1:
+			%Slot2.grab_focus()
+		2:
+			%Slot3.grab_focus()
