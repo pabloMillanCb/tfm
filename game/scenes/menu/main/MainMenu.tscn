@@ -15,6 +15,10 @@ region = Rect2(0, 0, 14, 8)
 atlas = ExtResource("3_8xst4")
 region = Rect2(14, 0, 14, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f0fq"]
+atlas = ExtResource("3_8xst4")
+region = Rect2(28, 0, 14, 8)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7hokf"]
 atlas = ExtResource("3_8xst4")
 region = Rect2(42, 0, 14, 8)
@@ -59,6 +63,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0wtue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f0fq")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7hokf")
@@ -233,7 +240,7 @@ position = Vector2(127, -35)
 scale = Vector2(5.5018024, 5.5018024)
 sprite_frames = SubResource("SpriteFrames_pnoq6")
 autoplay = "default"
-frame_progress = 0.5335699
+frame_progress = 0.25357556
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1892669448]
 root_node = NodePath("../..")
