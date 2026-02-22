@@ -142,10 +142,10 @@ tracks/0/path = NodePath("Node2D/AnimatedSprite2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.4666667, 3, 4.766667, 6.4666667, 7.6666665, 8.833333, 9.866668, 11.033334, 12.133333, 13.233334, 14.433332, 15.599999, 16.633335, 17.800003, 19.466667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.4666667, 3.3, 5.7, 7.3333335, 10.033334, 13.1, 15.966666, 17.466667),
+"transitions": PackedFloat32Array(1.5691692, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(127, -64.01), Vector2(127, 72.125), Vector2(127, 61.245), Vector2(127, 72.052), Vector2(127, 61.244995), Vector2(127, 72.052), Vector2(127, 61.244995), Vector2(127, 72.052), Vector2(127, 61.244995), Vector2(127, 72.052), Vector2(127, 61.244995), Vector2(127, 72.052), Vector2(127, 61.244995), Vector2(127, 72.052), Vector2(127, -31.775)]
+"values": [Vector2(127, -64.01), Vector2(127, 72.125), Vector2(127, 55.995), Vector2(127, 39.34), Vector2(127, 69.449), Vector2(127, 39.34), Vector2(127, 69.449), Vector2(127, -50.431)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -154,22 +154,22 @@ tracks/1/path = NodePath("Node2D/AnimatedSprite2D:speed_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.4666667, 2.5, 3, 3.7666667, 4.5, 16.7, 17.533333, 18.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.5, 3.1, 3.6666667, 4.866667, 6.0666666, 15.1, 15.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [3.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0]
+"values": [1.0, 1.0, 3.0, 3.0, 0.75, 0.75, 3.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/path = NodePath("Node2D/AnimatedSprite2D:scale")
-tracks/2/interp = 1
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(2.4666667, 3, 3.4333334, 4.266667, 17.9, 18.866667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(3.4666667, 4.4666667, 15.966666, 17.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2.58, 2.58), Vector2(3.672, 3.672), Vector2(5, 5), Vector2(4.5, 4.5), Vector2(4.5, 4.5), Vector2(2.58, 2.58)]
+"values": [Vector2(2, 2), Vector2(4, 4), Vector2(4, 4), Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_027ew"]
@@ -233,7 +233,7 @@ position = Vector2(127, -35)
 scale = Vector2(5.5018024, 5.5018024)
 sprite_frames = SubResource("SpriteFrames_pnoq6")
 autoplay = "default"
-frame_progress = 0.34230116
+frame_progress = 0.9995209
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1892669448]
 root_node = NodePath("../..")
