@@ -27,7 +27,7 @@ func _update_physics(_delta):
 	player.update_look_direction()
 	
 	if !player.is_on_floor():
-		finished.emit(FALLING)
+		finished.emit(FALLING, {"coyote_time": true})
 	elif Input.is_action_just_pressed("teleport") and player.data.has_teleport_update:
 		finished.emit(PREPARE_TELEPORT)
 	elif Input.is_action_just_pressed("jump"):

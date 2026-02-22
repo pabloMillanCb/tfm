@@ -703,6 +703,10 @@ script = ExtResource("4_rn7t0")
 [node name="Falling" type="Node" parent="StateMachine" unique_id=2138696669]
 script = ExtResource("5_8qjgm")
 
+[node name="CoyoteTime" type="Timer" parent="StateMachine/Falling" unique_id=772308251]
+wait_time = 0.07
+one_shot = true
+
 [node name="Atack" type="Node" parent="StateMachine" unique_id=327802204]
 script = ExtResource("6_ejd4k")
 
@@ -856,6 +860,7 @@ initial_velocity_max = 150.0
 angular_velocity_min = 15.0
 angular_velocity_max = 15.0
 
+[connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
 [connection signal="show_hit_particles" from="StateMachine/Hit" to="PlayerParticles" method="_on_hit"]
 [connection signal="timeout" from="StateMachine/Hit/KnockBackTimer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hit/InvencibleTimer" to="StateMachine/Hit" method="_on_invencible_timer_timeout"]

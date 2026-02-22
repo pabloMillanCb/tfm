@@ -1,7 +1,10 @@
 extends PlayerState
 
 func _enter(_previous_state_path: String, _init_data := {}):
-	player.set_animation("fall")
+	if _init_data.get("coyote_time") == true:
+		$CoyoteTime.start()
+	else:
+		player.set_animation("fall")
 
 func _update(_delta):
 	player.update_gravity(_delta)
@@ -19,7 +22,9 @@ func _update(_delta):
 			0.0, 
 			_delta * player.air_acceleration) 
 	
-	if (Input.is_action_just_pressed("atack")
+	if $CoyoteTime.time_left > 0 and Input.is_action_just_pressed("jump"):
+		finished.emit(JUMP)
+	elif (Input.is_action_just_pressed("atack")
 		and Input.is_action_pressed("aim_down")
 		and player.data.has_pogo_update):
 		finished.emit(POGO)
@@ -31,3 +36,7 @@ func _update(_delta):
 		finished.emit(IDLE)
 	
 	player.move_and_slide()
+
+
+func _on_coyote_time_timeout() -> void:
+	player.set_animation("fall")
