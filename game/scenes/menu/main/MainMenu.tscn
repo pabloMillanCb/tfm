@@ -176,7 +176,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(3.4666667, 4.4666667, 15.966666, 17.466667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(4, 4), Vector2(4, 4), Vector2(2, 2)]
+"values": [Vector2(2, 2), Vector2(3, 3), Vector2(3, 3), Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_027ew"]
@@ -240,7 +240,7 @@ position = Vector2(127, -35)
 scale = Vector2(5.5018024, 5.5018024)
 sprite_frames = SubResource("SpriteFrames_pnoq6")
 autoplay = "default"
-frame_progress = 0.25357556
+frame_progress = 0.35751322
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1892669448]
 root_node = NodePath("../..")
