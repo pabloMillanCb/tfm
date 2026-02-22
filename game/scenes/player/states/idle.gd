@@ -25,6 +25,7 @@ func _update_physics(_delta):
 		finished.emit(MOVE)
 	elif Input.is_action_just_pressed("aim_down"):
 		player.get_down_of_one_way_platform()
+	player.velocity.x = 0
 	
 	player.move_and_slide()
 

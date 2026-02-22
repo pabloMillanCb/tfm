@@ -704,7 +704,7 @@ script = ExtResource("4_rn7t0")
 script = ExtResource("5_8qjgm")
 
 [node name="CoyoteTime" type="Timer" parent="StateMachine/Falling" unique_id=772308251]
-wait_time = 0.07
+wait_time = 0.12
 one_shot = true
 
 [node name="Atack" type="Node" parent="StateMachine" unique_id=327802204]
