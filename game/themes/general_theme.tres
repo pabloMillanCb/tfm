@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bimhwhrmq1gxu" path="res://assets/fonts/Kenney Mini.ttf" id="1_o06hx"]
 [ext_resource type="Texture2D" uid="uid://cum20b4rt1cos" path="res://scenes/breakable/skull/skull.png" id="2_0bsi3"]
+[ext_resource type="FontFile" uid="uid://d232ubsdytxgp" path="res://assets/fonts/Kenney Pixel.ttf" id="3_mqsch"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_w1l5e"]
 color = Color(0.3882353, 0.60784316, 1, 1)
@@ -9,10 +10,11 @@ thickness = 2
 vertical = true
 
 [resource]
-Button/font_sizes/font_size = 12
+Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_o06hx")
 Button/styles/focus = SubResource("StyleBoxLine_w1l5e")
 HSlider/icons/grabber = ExtResource("2_0bsi3")
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = ExtResource("2_0bsi3")
+Label/fonts/font = ExtResource("3_mqsch")

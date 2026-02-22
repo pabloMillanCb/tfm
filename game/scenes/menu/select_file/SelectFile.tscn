@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqrh12ljjgrvg"]
 
 [ext_resource type="Script" uid="uid://hs3y4iqrsr5" path="res://scenes/menu/select_file/select_file.gd" id="1_igedb"]
+[ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_7lfnw"]
 [ext_resource type="PackedScene" uid="uid://c8rt3ni2j4tlg" path="res://scenes/menu/select_file/SaveFileCard/save_file_card.tscn" id="2_537gt"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="2_yy7m7"]
 
@@ -22,7 +23,7 @@ offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme = ExtResource("2_yy7m7")
+theme = ExtResource("2_7lfnw")
 alignment = 1
 
 [node name="ConfirmTitle" type="Label" parent="ConfirmNewGame" unique_id=734247768]
@@ -58,7 +59,7 @@ offset_left = 32.0
 offset_top = 75.0
 offset_right = 83.0
 offset_bottom = 211.0
-theme = ExtResource("2_yy7m7")
+theme = ExtResource("2_7lfnw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1528657483]
 layout_mode = 2

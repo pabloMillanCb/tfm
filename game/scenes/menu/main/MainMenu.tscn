@@ -233,7 +233,7 @@ position = Vector2(127, -35)
 scale = Vector2(5.5018024, 5.5018024)
 sprite_frames = SubResource("SpriteFrames_pnoq6")
 autoplay = "default"
-frame_progress = 0.9995209
+frame_progress = 0.5335699
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=1892669448]
 root_node = NodePath("../..")
