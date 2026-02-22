@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://urbt7tnc2r5"]
 
 [ext_resource type="Script" uid="uid://cxkkbwf45d7fa" path="res://scenes/menu/settings/settings_menu.gd" id="1_s351m"]
+[ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_mtdqx"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="2_vlqyx"]
 
 [sub_resource type="Theme" id="Theme_vlqyx"]
@@ -13,8 +14,10 @@ script = ExtResource("1_s351m")
 offset_top = 9.0
 offset_right = 256.0
 offset_bottom = 250.0
+theme = ExtResource("2_mtdqx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1023999176]
+clip_contents = true
 layout_mode = 2
 theme = ExtResource("2_vlqyx")
 alignment = 1
@@ -22,105 +25,9 @@ alignment = 1
 [node name="Language" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=835258463]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Language" unique_id=1970586421]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-text = "LANGUAGE"
-horizontal_alignment = 1
-
-[node name="LanguageSelection" type="OptionButton" parent="CenterContainer/VBoxContainer/Language" unique_id=1888218314]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-theme_override_font_sizes/font_size = 7
-alignment = 1
-
-[node name="Sound" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=694464978]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Sound" unique_id=1202211632]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-text = "VOLUME"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Sound" unique_id=1570041651]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Names" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer" unique_id=1309850289]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Names" unique_id=1046420910]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-theme_override_font_sizes/font_size = 7
-text = "GENERAL"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Names" unique_id=1398184462]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-theme_override_font_sizes/font_size = 7
-text = "MUSIC"
-horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Names" unique_id=1328513773]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-theme_override_font_sizes/font_size = 7
-text = "SFX"
-horizontal_alignment = 1
-
-[node name="Sliders" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer" unique_id=452467177]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="MasterVolSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders" unique_id=60576619]
-unique_name_in_owner = true
-layout_mode = 2
-theme = SubResource("Theme_vlqyx")
-max_value = 1.0
-step = 0.1
-value = 0.8
-scrollable = false
-
-[node name="MusicVolSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders" unique_id=429067857]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 1.0
-step = 0.1
-value = 0.8
-scrollable = false
-
-[node name="SfxVolSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders" unique_id=132621853]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 1.0
-step = 0.1
-value = 0.8
-scrollable = false
-
 [node name="Screen" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1927411451]
 layout_mode = 2
 alignment = 1
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Screen" unique_id=716731199]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-text = "SCREEN"
-horizontal_alignment = 1
-
-[node name="FullscreenCheckbox" type="CheckBox" parent="CenterContainer/VBoxContainer/Screen" unique_id=941548655]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 7
-text = "FULLSCREEN"
-alignment = 1
-icon_alignment = 2
-expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/Screen" unique_id=1685103084]
 custom_minimum_size = Vector2(100, 0)
@@ -130,26 +37,130 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer/Names" unique_id=1714700155]
+[node name="Sliders" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer" unique_id=124312705]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1350325701]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = 8.0
+offset_right = 194.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource("2_mtdqx")
+
+[node name="Language" type="Label" parent="GridContainer" unique_id=1970586421]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 9
+text = "LANGUAGE"
+horizontal_alignment = 1
+
+[node name="LanguageSelection" type="OptionButton" parent="GridContainer" unique_id=1888218314]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+alignment = 1
+
+[node name="Sound" type="Label" parent="GridContainer" unique_id=1202211632]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 9
+text = "VOLUME"
+horizontal_alignment = 1
+
+[node name="Volume" type="GridContainer" parent="GridContainer" unique_id=1035650969]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="GridContainer/Volume" unique_id=1046420910]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "GENERAL"
+horizontal_alignment = 1
+
+[node name="MasterVolSlider" type="HSlider" parent="GridContainer/Volume" unique_id=60576619]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(74.535, 0)
+layout_mode = 2
+theme = SubResource("Theme_vlqyx")
+max_value = 1.0
+step = 0.1
+value = 0.8
+scrollable = false
+
+[node name="Label2" type="Label" parent="GridContainer/Volume" unique_id=1398184462]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "MUSIC"
+horizontal_alignment = 1
+
+[node name="MusicVolSlider" type="HSlider" parent="GridContainer/Volume" unique_id=429067857]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+scrollable = false
+
+[node name="Label3" type="Label" parent="GridContainer/Volume" unique_id=1328513773]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SfxVolSlider" type="HSlider" parent="GridContainer/Volume" unique_id=132621853]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+scrollable = false
+
+[node name="Label" type="Label" parent="GridContainer" unique_id=716731199]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 9
+text = "SCREEN"
+horizontal_alignment = 1
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="GridContainer" unique_id=941548655]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+text = "FULLSCREEN"
+alignment = 1
+icon_alignment = 2
+expand_icon = true
+
+[node name="Volume2" type="GridContainer" parent="GridContainer" unique_id=1431319831]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="GridContainer/Volume2" unique_id=1714700155]
 layout_mode = 2
 theme = ExtResource("2_vlqyx")
 theme_override_font_sizes/font_size = 7
 text = "BRIGHTNESS"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer/Names" unique_id=88645672]
-layout_mode = 2
-theme = ExtResource("2_vlqyx")
-theme_override_font_sizes/font_size = 7
-text = "CONTRAST"
-horizontal_alignment = 1
-
-[node name="Sliders" type="VBoxContainer" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer" unique_id=124312705]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="BrightnessSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders" unique_id=232645639]
+[node name="BrightnessSlider" type="HSlider" parent="GridContainer/Volume2" unique_id=232645639]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(74.535, 0)
 layout_mode = 2
 theme = SubResource("Theme_vlqyx")
 min_value = 0.5
@@ -158,7 +169,14 @@ step = 0.1
 value = 1.0
 scrollable = false
 
-[node name="ContrastSlider" type="HSlider" parent="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders" unique_id=1476777679]
+[node name="Label2" type="Label" parent="GridContainer/Volume2" unique_id=88645672]
+layout_mode = 2
+theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 7
+text = "CONTRAST"
+horizontal_alignment = 1
+
+[node name="ContrastSlider" type="HSlider" parent="GridContainer/Volume2" unique_id=1476777679]
 unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_vlqyx")
@@ -168,21 +186,24 @@ step = 0.1
 value = 1.1
 scrollable = false
 
-[node name="Controls" type="Button" parent="CenterContainer/VBoxContainer" unique_id=152445551]
+[node name="Controls" type="Button" parent="GridContainer" unique_id=152445551]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "CONTROLS"
 
-[node name="Back" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1252957351]
+[node name="Back" type="Button" parent="GridContainer" unique_id=1252957351]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_vlqyx")
+theme_override_font_sizes/font_size = 8
 text = "BACK"
 
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/Language/LanguageSelection" to="." method="_on_option_button_item_selected"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/Sound/HBoxContainer/Sliders/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
-[connection signal="toggled" from="CenterContainer/VBoxContainer/Screen/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
-[connection signal="value_changed" from="CenterContainer/VBoxContainer/Screen/HBoxContainer/Sliders/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="GridContainer/LanguageSelection" to="." method="_on_option_button_item_selected"]
+[connection signal="value_changed" from="GridContainer/Volume/MasterVolSlider" to="." method="_on_master_vol_slider_value_changed"]
+[connection signal="value_changed" from="GridContainer/Volume/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="GridContainer/Volume/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="toggled" from="GridContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="value_changed" from="GridContainer/Volume2/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
+[connection signal="value_changed" from="GridContainer/Volume2/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
+[connection signal="pressed" from="GridContainer/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="GridContainer/Back" to="." method="_on_back_pressed"]

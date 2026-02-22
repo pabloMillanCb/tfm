@@ -5,7 +5,7 @@ signal exited
 
 func _ready() -> void:
 	# Languages
-	$CenterContainer/VBoxContainer/Back.grab_focus()
+	%Back.grab_focus()
 	for lang in LocalizationManager.Language.values():
 		%LanguageSelection.add_item(LocalizationManager.language_name.get(lang), lang) 
 	%LanguageSelection.select(LocalizationManager.get_current_language_index())

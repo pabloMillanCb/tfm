@@ -8,6 +8,8 @@ var sfx_bus_index = AudioServer.get_bus_index("SFX")
 
 func _ready() -> void:
 	apply_settings()
+	print(settings)
+	print(settings.screen_brightness)
 
 
 func save_data():
@@ -58,7 +60,7 @@ func set_music_volume(volume: float):
 	
 	
 func set_sfx_volume(volume: float):
-	settings.sfx_volume_volume = volume
+	settings.sfx_volume = volume
 	apply_settings()
 
 
