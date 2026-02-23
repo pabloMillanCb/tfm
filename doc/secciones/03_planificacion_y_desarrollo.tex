@@ -549,3 +549,128 @@ Y por tanto en los próximos sprints:
     \item Se dedicarán más esfuerzos al diseño de sistemas previos a la implementación.
     \item Se planificarán previamente las sesiones de trabajo para agrupar en estas tareas grandes o tareas pequeñas de la misma temática con el objetivo de mejorar la productividad.
 \end{itemize}
+
+\subsection{Sprint 3}
+
+El objetivo principal de este sprint fue diseñar una sección jugable completa para validar de forma más precisa el avance del proyecto. Para ello los esfuerzos se centraron en el diseño de niveles de esta sección y la implementación de los elementos jugables que la harían posible:
+
+\begin{itemize}
+    \item Implementar el desbloqueo de mejoras para el jugador a través de objetos \textit{pick-up}.
+    \item Sistema de puertas que bloquean el paso y se pueden abrir recogiendo llaves.
+    \item Enemigo con recorrido circular estático.
+    \item Enemigo con recorrido lineal estático.
+    \item Enemigo terrestre con inteligencia artificial.
+    \item Enemigo aéreo con inteligencia artificial.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-28 & Configurar canales de audio de godot para sonidos y música & 0,5 & 0,25 \\ \hline
+        SF-29 & Limitar el moveset del jugador en función de las mejoras obtenidas & 0,5 & 0,5 \\ \hline
+        SF-30 & Implementar objetos pick-up para desbloquear mejoras & 0,5 & 1 \\ \hline
+        SF-31 & Implementar fuente de letra pixelada por defecto en los textos del proyecto & 0,5 & 0,5 \\ \hline
+        SF-32 & Implementar mecánica de KEY y desbloqueo de puertas & 2 & 4,5 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        SF-33 & Implementar enemigo que recorre un camino aereo circular & 0,75 & 0,5 \\ \hline
+        SF-34 & Implementar enemigo que recorre un camino aéreo fijo & 0,75 & 0,5 \\ \hline
+        SF-35 & Implementar enemigo terrestre con inteligencia & 2 & 4 \\ \hline
+        SF-36 & Implementar enemigo aéreo con inteligencia & 2 & NO REALIZADA \\ \hline
+        SF-37 & Diseñar e implementar niveles & 5 & 5 \\ \hline
+        SF-38 & Reemplazar tilemap de test por tilemap real & 1 & 1 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 3.}
+    \label{tab:sprint3task}
+\end{table}
+
+En la tabla \ref{tab:sprint3task} se pueden ver las tareas del sprint. En las tareas \textbf{SF-32} y \textbf{SF-35} acabaron por tomar el doble de tiempo que el estimado. Para terminar el sprint en el tiempo establecido esto significó que la tarea \textbf{SF-36} quedaría pospuesta para el siguiente sprint. Se planificaron 21 horas y se acabaron empleando 23,25 horas. En la tabla \ref{tab:aditionalsprint3task} se tienen las tareas adicionales que surgieron durante la validación.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Tiempo \\ \hline
+        BUG-03 & El estado de player se mantiene cuando se muere y reaparece, cuando debería cargar la partida & 0,5 \\ \hline
+        BUG-04 & Las componentes hurtbox de los enemigos reciben la señal de ataque al salir el area de hitbox, y no al entrar & 1,5 \\ \hline
+        BUG-05 & Si se recibe daño durante una animación de ataque, se queda atrapado en la animación de ataque y/o se queda transparente & - \\ \hline
+        BUG-06 & Al morir la hitbox de daño no se desactiva y la animación de muerte puede llevar a aparecer varias veces seguidas & - \\ \hline
+        OBJ-07 & La animación del jugador de recibir daño es incorrecta. No transmite impacto y no se siente bien. & - \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 3.}
+    \label{tab:aditionalsprint3task}
+\end{table}
+
+En cuanto a \textit{qué fue mal}:
+\begin{itemize}
+    \item Las tareas \textbf{SF-32} y \textbf{SF-35} tomaron el doble de tiempo del estimado. Esto se debió a cuestiones técnicas concretas de Godot y de la librería \textit{Metsys} que por falta de experiencia se desconocían.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item La distribución de tareas fue correcta en función de las franjas de trabajo disponibles, mejorando la productividad.
+    \item Ante el imprevisto de las tareas que se demoraron se tuvo la capacidad de evaluar las prioridades del proyecto y posponer la tarea que menos impacto tendría a la meta del sprint.
+\end{itemize}
+
+Y por tanto en los próximos sprints se terminará de desarrollar la tarea pospuesta y se integrará en el diseño de nivel en el sprint 5.
+
+
+\subsection{Sprint 4}
+
+En el sprint 4 se terminaron de implementar los sistemas que componen el núcleo del juego y los requisitos funcionales que restaban:
+\begin{itemize}
+    \item Opciones de audio.
+    \item Opciones de configuración de pantalla.
+    \item Opciones de configuración de mandos.
+    \item Menú de mapa interactivo.
+    \item Sistema de registro de eventos para la progresión del juego.
+    \item Implementación de NPCs (\textit{Non-playable-characters})
+    \item Implementación de puntos de guardado.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-39 & Implementar ajuste para activar/desactivar la pantalla completa & 0,5 & 0,5 \\ \hline
+        SF-40 & Implementar ajuste de audio por canales (general, música y SFX) & 1 & 0,5 \\ \hline
+        SF-41 & Implementar menú para reasignación de botones & 2 & 2 \\ \hline
+        SF-42 & Implementar slider para ajuste de contrase y brillo en ajustes & 1 & 1 \\ \hline
+        SF-43 & Implementar menú de mapa & 3 & 2,3 \\ \hline
+        SF-44 & Implementar enemigo volador con inteligencia & 4 & 4,5 \\ \hline
+        SF-45 & Implementar NPC con diálogo & 2 & 1,5 \\ \hline
+        SF-46 & Implementar pantalla de selección de archivo en nueva partida & 1,5 & 0,75 \\ \hline
+        SF-47 & Implementar punto de guardado & 0,5 & 0,5 \\ \hline
+        SF-48 & Hacer las opciones persistentes & 1 & 1,25 \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 4.}
+    \label{tab:sprint4task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Tarea & Descripción & Estimación (h) \\ \hline
+        OBJ-08 & El mapa invade un área de la zona de juego. Se propone agregar un marco inferior o superior para integrar el minimapa y la UI & 1 \\ \hline
+        BUG-07 & Al entrar en estado de IDLE la velocidad horizontal no se reinicia y el jugador puede quedar deslizándose hasta topar con un muro & 0,25 \\ \hline
+        OBJ-09 & El tamaño de la hitbox de los erizos rojos es demasiado grande, se activa sin dar la sensación de haber impactado & ~ \\ \hline
+        OBJ-10 & El movimiento del jugador debe ser más lento y los valroes de la gravedad y la fuerza de salto deben ser ajustados. & ~ \\ \hline
+        OBJ-10 & El tamaño de la medusa es demasiado pequeño & ~ \\ \hline
+        BUG-08 & El usuario puede asignarse el mismo botón a distintas acciones & ~ \\ \hline
+        BUG-09 & El botón de aceptar y cancelar no pueden reasignarse & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 4.}
+    \label{tab:aditionalsprint4task}
+\end{table}
+
+En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 19,5 efectivas. El sprint se realizó en el tiempo estimado y sin ningún impreviso o problema. Por lo tanto en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico.
