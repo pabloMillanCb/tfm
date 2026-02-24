@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://byisd7iykr3xi"]
+
+[ext_resource type="Script" uid="uid://kmcmm14k3wy2" path="res://scenes/enemies/blob/blob.gd" id="1_tsyvq"]
+[ext_resource type="Texture2D" uid="uid://boipyll0ah6pb" path="res://scenes/enemies/blob/blob.png" id="2_vluvp"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="3_urwoc"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="4_3q56w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urwoc"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q56w"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bupes"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcvpg"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j16y4"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wf0r"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd4fs"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erjeo"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulvvd"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71ajf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urwoc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q56w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bupes")
+}],
+"loop": false,
+"name": &"to_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j16y4")
+}],
+"loop": false,
+"name": &"to_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wf0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd4fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erjeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulvvd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsyvq"]
+size = Vector2(10, 6)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_urwoc"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3q56w"]
+radius = 7.0
+
+[node name="Blob" type="CharacterBody2D" unique_id=1672671753]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_tsyvq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052876637]
+sprite_frames = SubResource("SpriteFrames_71ajf")
+animation = &"to_walk"
+autoplay = "idle"
+frame = 1
+frame_progress = 1.0
+flip_h = true
+
+[node name="Wait" type="Timer" parent="." unique_id=1566959179]
+wait_time = 1.25
+one_shot = true
+autostart = true
+
+[node name="Walk" type="Timer" parent="." unique_id=276337290]
+wait_time = 1.75
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=496763073]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_tsyvq")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1329618155]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_urwoc")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1983852568]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_urwoc")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=230637186]
+collision_layer = 8
+script = ExtResource("4_3q56w")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1717461183]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_3q56w")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]
+[connection signal="timeout" from="Walk" to="." method="_on_walk_timeout"]
