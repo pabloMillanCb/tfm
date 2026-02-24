@@ -15,7 +15,7 @@ tile_set = ExtResource("1_jbkby")
 [node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_l2amj")]
 
 [node name="RoomRespawn" parent="." unique_id=211073174 instance=ExtResource("3_jbkby")]
-position = Vector2(128, 42)
+position = Vector2(128, 201)
 
 [node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("4_ojyv6")]
 position = Vector2(40, 232)
