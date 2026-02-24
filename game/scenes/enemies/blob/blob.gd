@@ -1,6 +1,6 @@
 extends EnemyCharacter
 
-@export var speed = 50
+@export var speed = 35
 @export var gravity = 200
 @export var direction = 1.0
 
@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 	if $Walk.time_left > 0:
 		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, delta * 2)
+		velocity.x = move_toward(velocity.x, 0, delta * 100)
 	
 	move_and_slide()
 	
