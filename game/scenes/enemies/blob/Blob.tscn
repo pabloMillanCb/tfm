@@ -114,6 +114,10 @@ frame = 1
 frame_progress = 1.0
 flip_h = true
 
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1100757004]
+target_position = Vector2(10, 0)
+collision_mask = 2
+
 [node name="Wait" type="Timer" parent="." unique_id=1566959179]
 wait_time = 1.25
 one_shot = true
@@ -145,6 +149,10 @@ metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1717461183]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_3q56w")
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=1444562319]
+wait_time = 0.25
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]

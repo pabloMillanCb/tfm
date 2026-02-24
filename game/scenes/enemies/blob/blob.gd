@@ -2,7 +2,9 @@ extends EnemyCharacter
 
 @export var speed = 50
 @export var gravity = 200
-@export var direction = 1
+@export var direction = 1.0
+
+@onready var ray_cast = $AnimatedSprite2D/RayCast2D
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -16,6 +18,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, delta * 2)
 	
 	move_and_slide()
+	
+	if ray_cast.get_collider() and $TurnTimer.time_left == 0:
+		direction = -direction
+		$AnimatedSprite2D.scale.x = direction
+		$TurnTimer.start()
 
 func _on_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == StringName("to_walk"):
