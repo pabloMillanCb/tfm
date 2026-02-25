@@ -5,10 +5,14 @@ class_name Player
 
 @export var walking_speed = 80
 @export var walking_acceleration = 1200
+@export var walking_deceleration = 1200
 @export var pogo_acceleration = 2400
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
+@export var gravity_jumping = 200.0
+@export var gravity_falling = 400.0
+@export var max_fall_speed = 300.0
 @export var debug_data: PlayerData =  null
 
 @onready var data: PlayerData = (func set_debug_data() -> PlayerData:
@@ -68,8 +72,8 @@ func update_upgrades_information():
 
 func stop_animation():
 	$PlayerSprites.stop()
-	$PlayerSprites/AnimationPlayer.stop()
-	$PlayerSprites/SwordSprites.stop()
+	$PlayerSprites/AnimationPlayer.pause()
+	$PlayerSprites/SwordSprites.pause()
 
 
 func set_animation(animation_name: String):
@@ -99,14 +103,10 @@ func get_look_direction():
 
 func update_gravity(_delta):
 	
-	var JUMP_GRAVITY_FORCE = 200
-	var FALL_GRAVITY_FORCE = 400
-	var MAX_FALL_SPEED = 300
-	
 	if velocity.y > 0 or !Input.is_action_pressed("jump"):
-		velocity.y = move_toward(velocity.y, MAX_FALL_SPEED, _delta * FALL_GRAVITY_FORCE)
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling)
 	else:
-		velocity.y += JUMP_GRAVITY_FORCE * _delta
+		velocity.y += gravity_jumping * _delta
 
 
 func shoot():
