@@ -27,6 +27,7 @@
 
 [sub_resource type="Resource" id="Resource_8nn5r"]
 script = ExtResource("2_ro0t8")
+max_health = 5
 has_sword_update = true
 metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
@@ -36,8 +37,9 @@ height = 14.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v5i4m"]
 shader = ExtResource("15_kswpp")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_pct = 0.0
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1lr0"]
 atlas = ExtResource("15_pi3ps")
@@ -711,6 +713,13 @@ height = 16.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.51096493, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Gradient" id="Gradient_8nn5r"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_kvwax"]
+offsets = PackedFloat32Array(0.5014451, 0.51589596)
+colors = PackedColorArray(0.3882353, 0.60784316, 1, 1, 1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=128037168]
 z_index = 10
 collision_mask = 2
@@ -776,7 +785,8 @@ script = ExtResource("10_v5i4m")
 one_shot = true
 
 [node name="InvencibleTimer" type="Timer" parent="StateMachine/Hit" unique_id=980081913]
-wait_time = 3.0
+unique_name_in_owner = true
+wait_time = 2.0
 one_shot = true
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1464874425]
@@ -866,18 +876,22 @@ position = Vector2(5, 0)
 script = ExtResource("18_2xrq6")
 
 [node name="HitParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=1690821425]
+visible = false
 position = Vector2(-5, 0)
 emitting = false
-lifetime = 0.4
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.92
 spread = 23.0
-gravity = Vector2(-300, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+damping_min = 91.346
+damping_max = 91.346
 scale_amount_min = 2.0
-scale_amount_max = 2.0
+scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2xrq6")
+anim_speed_max = 48.92
 
 [node name="DeadHeadParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=956211342]
 position = Vector2(-5, -3)
@@ -889,8 +903,8 @@ one_shot = true
 direction = Vector2(0, -1)
 spread = 20.0
 gravity = Vector2(0, 300)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
 angular_velocity_min = 15.0
 angular_velocity_max = 15.0
 
@@ -905,9 +919,30 @@ direction = Vector2(0, -1)
 spread = 10.0
 gravity = Vector2(0, 300)
 initial_velocity_min = 120.0
-initial_velocity_max = 150.0
+initial_velocity_max = 120.0
 angular_velocity_min = 15.0
 angular_velocity_max = 15.0
+
+[node name="DeathParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=488743495]
+visible = false
+z_index = -1
+position = Vector2(-5, -4)
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_2xrq6")
+color_ramp = SubResource("Gradient_8nn5r")
+color_initial_ramp = SubResource("Gradient_kvwax")
 
 [connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="StateMachine/Falling/ToSuperFall" to="StateMachine/Falling" method="_on_to_super_fall_timeout"]

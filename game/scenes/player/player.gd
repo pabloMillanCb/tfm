@@ -41,8 +41,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 	
+	#if invencible:
+	#	$PlayerSprites/AnimationPlayer.play("blink")
 	if invencible:
-		$PlayerSprites/AnimationPlayer.play("blink")
+		$PlayerSprites.material.set_shader_parameter("whiten", true)
+		$PlayerSprites.material.set_shader_parameter("time", %InvencibleTimer.time_left)
+	else:
+		$PlayerSprites.material.set_shader_parameter("whiten", false)
 
 
 func set_player_data(loaded_data: PlayerData):
@@ -141,7 +146,7 @@ func _on_atack_hit(area: HurtboxComponent) -> void:
 
 func _on_hit_received(_area: Area2D) -> void:
 	if !invencible:
-		state_machine._transition_to_next_state(PlayerState.HIT)
+		(state_machine.state as PlayerState)._on_hit_received()
 
 
 func set_sprite_visibility(visible: bool):
@@ -161,4 +166,4 @@ func get_down_of_one_way_platform():
 
 func _on_tile_hazard_touched(body: Node2D) -> void:
 	if !invencible:
-		state_machine._transition_to_next_state(PlayerState.HIT)
+		(state_machine.state as PlayerState)._on_hit_received()

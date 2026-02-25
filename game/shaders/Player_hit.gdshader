@@ -1,20 +1,16 @@
 shader_type canvas_item;
 
-uniform vec4 flash_color: source_color = vec4(1.);
-uniform float flash_pct: hint_range(0.0, 1.0) = 0.0;
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
 
 void fragment() {
-	vec4 current_color = COLOR;
-	vec4 apply_flash_color = flash_color;
-	apply_flash_color.a = current_color.a;
-	COLOR = mix(current_color, apply_flash_color, flash_pct);
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten && sin(time*alpha) < 0.0) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, 1.0);
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
 }
-
-//void light() {
-	// Called for every pixel for every light affecting the CanvasItem.
-	// Uncomment to replace the default light processing function with this one.
-//}
