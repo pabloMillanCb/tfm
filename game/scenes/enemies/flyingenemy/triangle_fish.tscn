@@ -71,8 +71,8 @@ height = 18.0
 radius = 4.0
 height = 12.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ym17l"]
-radius = 84.095184
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ym17l"]
+size = Vector2(218, 58)
 
 [node name="TriangleFish" type="CharacterBody2D" unique_id=1261184046]
 collision_layer = 8
@@ -146,7 +146,7 @@ vertical_alignment = 1
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1222907089]
-shape = SubResource("CircleShape2D_ym17l")
+shape = SubResource("RectangleShape2D_ym17l")
 disabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=754048153]

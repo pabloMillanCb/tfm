@@ -17,7 +17,7 @@ func _update_physics(_delta):
 	
 	agent.target_position = player.global_position
 	
-	if agent.distance_to_target() > 20:
+	if agent.distance_to_target() > 0:
 		direction = direction.move_toward(get_direction_to_chase(), _delta)
 	fish.velocity = direction * fish.speed
 	
@@ -28,7 +28,16 @@ func _update_physics(_delta):
 		if sign(fish.velocity.x) == sign(get_direction_to_chase().x):
 			aligned_with_player = true
 	
+	#descent_to_player_height()
+	
 	fish.move_and_slide()
+
+
+func descent_to_player_height():
+	if  player.global_position.y - fish.global_position.y > 3 and aligned_with_player:
+		fish.velocity.y = 10
+
+
 
 
 func get_direction_to_chase():

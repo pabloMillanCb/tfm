@@ -27,8 +27,6 @@
 
 [sub_resource type="Resource" id="Resource_8nn5r"]
 script = ExtResource("2_ro0t8")
-max_health = 5
-has_sword_update = true
 metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]

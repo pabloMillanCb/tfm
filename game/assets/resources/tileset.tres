@@ -1,11 +1,15 @@
-[gd_scene format=4 uid="uid://dencfvhkxauyf"]
+[gd_resource type="TileSet" format=3 uid="uid://cypplp6srxpc"]
 
-[ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="1_7kou1"]
-[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_86p8l"]
-[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_tcpn2"]
+[ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="1_5mwl8"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_axw3x"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ftega"]
-texture = ExtResource("1_7kou1")
+texture = ExtResource("1_5mwl8")
 0:11/0 = 0
 0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.015651584, 0.0052171946, 8, -8, 8, 8, -8, 8)
 1:11/0 = 0
@@ -120,21 +124,13 @@ texture = ExtResource("1_7kou1")
 12:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:11/0 = 0
 2:11/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:11/0 = 0
+4:11/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_axw3x")
 
-[sub_resource type="TileSet" id="TileSet_y2tep"]
+[resource]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 32
 physics_layer_1/collision_mask = 0
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_ftega")
-
-[node name="LearnJump" type="Node2D" unique_id=801174312]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
-tile_map_data = PackedByteArray("AAAPAA8AAAAJAA4AAAAOAA8AAAAJAA4AAAANAA8AAAAJAA4AAAAMAA8AAAAJAA4AAAALAA8AAAAJAA4AAAAKAA8AAAAJAA4AAAAJAA8AAAAJAA4AAAAIAA8AAAAJAA4AAAAHAA8AAAAJAA4AAAAGAA8AAAAJAA4AAAAFAA8AAAAJAA4AAAAEAA8AAAAJAA4AAAADAA8AAAAJAA4AAAACAA8AAAAJAA4AAAABAA8AAAAJAA4AAAAAAA8AAAAJAA4AAAACAAYAAAALAA4AAAAGAAgAAAAMAA4AAAAGAAwAAAAMAA4AAAAJAA0AAAAMAA4AAAAKAAoAAAAMAA4AAAAHAAgAAAAMAA4AAAAHAAwAAAAMAA4AAAAKAA0AAAAMAA4AAAALAAoAAAAMAA4AAAAAAAYAAAALAA4AAAABAAYAAAALAA4AAAAAAAQAAAALAA4AAAABAAQAAAANAA4AAAACAAQAAAANAA4AAAADAAMAAAALAA4AAAADAAIAAAALAA4AAAADAAEAAAALAA4AAAADAAAAAAAJAA4AAAAAAAUAAAALAA4AAAAPAAQAAAACAA4AAAAPAAMAAAACAA4AAAAOAAMAAAACAA4AAAANAAMAAAACAA4AAAAMAAMAAAACAA4AAAALAAMAAAACAA4AAAALAAIAAAACAA4AAAAKAAIAAAACAA4AAAAKAAEAAAABAA4AAAAJAAEAAAACAA4AAAAIAAEAAAACAA4AAAAIAAAAAAACAA4AAAAHAAAAAAABAA4AAAAGAAAAAAACAA4AAAAJAAAAAAACAA4AAAAKAAAAAAABAA4AAAALAAAAAAACAA4AAAAMAAAAAAACAA4AAAANAAAAAAACAA4AAAAOAAAAAAACAA4AAAAPAAAAAAACAA4AAAAPAAEAAAACAA4AAAAPAAIAAAABAA4AAAAOAAIAAAACAA4AAAANAAIAAAACAA4AAAAMAAIAAAABAA4AAAALAAEAAAABAA4AAAAMAAEAAAABAA4AAAANAAEAAAACAA4AAAAOAAEAAAACAA4AAAACAAAAAAAJAA4AAAABAAAAAAAJAA4AAAAAAAAAAAAJAA4AAAACAAcAAAALAA4AAAACAAgAAAALAA4AAAACAAkAAAALAA4AAAACAAoAAAALAA4AAAACAAsAAAALAA4AAAACAAwAAAALAA4AAAACAA0AAAALAA4AAAACAA4AAAALAA4AAAABAAwAAAALAA4AAAAAAAwAAAALAA4AAAAAAAsAAAALAA4AAAAAAAoAAAALAA4AAAAAAAkAAAALAA4AAAAAAAgAAAALAA4AAAAAAAcAAAALAA4AAAABAAcAAAALAA4AAAABAAgAAAALAA4AAAABAAkAAAALAA4AAAABAAoAAAALAA4AAAABAAsAAAALAA4AAAABAA0AAAALAA4AAAA=")
-tile_set = SubResource("TileSet_y2tep")
-
-[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_86p8l")]
-
-[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_tcpn2")]
-position = Vector2(128, 42)

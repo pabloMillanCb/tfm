@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey or event is InputEventJoypadButton:
 		if event.pressed:
 			if event.is_action("map") and visible:
 				hide_map()
