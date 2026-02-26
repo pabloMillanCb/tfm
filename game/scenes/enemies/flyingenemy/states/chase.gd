@@ -38,7 +38,5 @@ func descent_to_player_height():
 		fish.velocity.y = 10
 
 
-
-
 func get_direction_to_chase():
 	return (agent.get_next_path_position() - fish.global_position).normalized()
