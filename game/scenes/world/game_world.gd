@@ -4,6 +4,7 @@ class_name GameWorld
 var do_respawn := true
 
 @export var debug_respawn: String
+@export var debug = false
 
 func _ready() -> void:
 	MetSys.reset_state()
@@ -42,7 +43,7 @@ func load_starting_room():
 	var room = DataManager.current_save.last_room
 	if room == null:
 		room = SaveData.first_room
-	if debug_respawn != null:
+	if debug_respawn != null and debug:
 		room = debug_respawn
 
 	load_room(room)
