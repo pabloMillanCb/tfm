@@ -7,22 +7,28 @@ extends EnemyCharacter
 @onready var ray_cast = $AnimatedSprite2D/RayCast2D
 
 func _physics_process(delta: float) -> void:
-	if !is_on_floor():
-		velocity.y += delta * 400
-	else:
-		velocity.y = 0
 	
-	if $Walk.time_left > 0:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, delta * 100)
+	if !is_on_floor():
+		velocity.y += delta * 200
+	
+	if !hit and is_on_floor():
+		if $Walk.time_left > 0:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, delta * 100)
+			
+		if ray_cast.get_collider() and $TurnTimer.time_left == 0:
+			direction = -direction
+			$AnimatedSprite2D.scale.x = direction
+			$TurnTimer.start()
 	
 	move_and_slide()
-	
-	if ray_cast.get_collider() and $TurnTimer.time_left == 0:
-		direction = -direction
-		$AnimatedSprite2D.scale.x = direction
-		$TurnTimer.start()
+
+
+func take_damage(direction: Vector2 = Vector2.ZERO):
+	$AnimationPlayer.play("hit_enemy")
+	super(direction)
+
 
 func _on_animation_finished() -> void:
 	if $AnimatedSprite2D.animation == StringName("to_walk"):

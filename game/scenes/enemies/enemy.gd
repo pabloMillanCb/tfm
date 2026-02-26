@@ -3,6 +3,9 @@ class_name Enemy
 
 @export var health := 1
 
+signal on_hit_received
+signal on_death
+
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	health -= 1
 	if health == 0:

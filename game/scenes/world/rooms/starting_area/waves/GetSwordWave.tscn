@@ -14,3 +14,7 @@ position = Vector2(24, 439)
 [node name="Blob2" parent="." unique_id=1859646167 instance=ExtResource("2_273of")]
 position = Vector2(231, 488)
 direction = -1.0
+
+[node name="Blob3" parent="." unique_id=1149805162 instance=ExtResource("2_273of")]
+position = Vector2(130, 376)
+direction = -1.0

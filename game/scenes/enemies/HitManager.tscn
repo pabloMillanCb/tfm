@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dumeycys4ghk6"]
+
+[ext_resource type="Script" uid="uid://8d8oe47lj72y" path="res://scenes/enemies/hit_manager.gd" id="1_5x4a6"]
+
+[node name="HitManager" type="Node2D" unique_id=659620569]
+script = ExtResource("1_5x4a6")
