@@ -150,7 +150,7 @@ tile_set = SubResource("TileSet_y2tep")
 position = Vector2(128, 42)
 
 [node name="Piranha" parent="." unique_id=810161683 instance=ExtResource("4_3kwoj")]
-position = Vector2(427, 106)
+position = Vector2(427, 104)
 speed = 60.0
 health = 1
 

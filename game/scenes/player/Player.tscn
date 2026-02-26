@@ -724,10 +724,9 @@ colors = PackedColorArray(0.3882353, 0.60784316, 1, 1, 1, 1, 1, 1)
 z_index = 10
 collision_mask = 2
 script = ExtResource("1_ov1oi")
-debug_mode = true
 walking_speed = 70
-walking_acceleration = 600
-walking_deceleration = 600
+walking_acceleration = 1000
+walking_deceleration = 1000
 air_acceleration = 100
 jump_force = -110
 gravity_jumping = 140.0
@@ -891,7 +890,6 @@ damping_max = 91.346
 scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2xrq6")
-anim_speed_max = 48.92
 
 [node name="DeadHeadParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=956211342]
 position = Vector2(-5, -3)

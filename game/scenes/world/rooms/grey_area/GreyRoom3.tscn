@@ -145,4 +145,5 @@ position = Vector2(128, 42)
 position = Vector2(216, 200)
 
 [node name="Key" parent="." unique_id=182301364 instance=ExtResource("5_qlnot")]
-position = Vector2(154, 219)
+position = Vector2(44, 84)
+is_pre_instanced = true
