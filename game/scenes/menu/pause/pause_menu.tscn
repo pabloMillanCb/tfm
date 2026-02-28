@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://cyx15g51cb4ro" path="res://scenes/menu/pause/pause_menu.gd" id="1_a3xnm"]
 [ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_ab405"]
 
-[node name="PauseMenu" type="Node2D" unique_id=1191413148]
+[node name="PauseMenu" type="CanvasLayer" unique_id=1605816820]
 process_mode = 3
-z_index = 100
 script = ExtResource("1_a3xnm")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=772163236]
