@@ -4,6 +4,8 @@ class_name TriangleFish
 
 @export var speed = 20.0
 
+var direction: Vector2 = Vector2.ZERO
+
 @onready var ray_cast: RayCast2D = $RayCast2D
 @onready var state_machine: StateMachine = (func get_state_machine() -> StateMachine:
 	return get_node("StateMachine")

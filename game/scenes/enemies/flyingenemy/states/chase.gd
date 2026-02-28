@@ -2,16 +2,14 @@ extends TriangleFishState
 
 @onready var agent: NavigationAgent2D = $"../../NavigationAgent2D"
 
-var direction: Vector2 = Vector2.ZERO
+
 var player: Player
-var aligned_with_player = false
 var ray_cast: RayCast2D
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	fish.set_animation("chase")
 	player = fish.player
-	direction = fish.velocity.normalized()
-	aligned_with_player = false
+	#fish.direction = fish.velocity.normalized()
 	ray_cast = fish.ray_cast
 
 
@@ -21,9 +19,9 @@ func _update_physics(_delta):
 	agent.target_position = player.global_position
 	
 	if agent.distance_to_target() > 0:
-		direction = direction.move_toward(get_direction_to_chase(), _delta * 1.5)
+		fish.direction = fish.direction.move_toward(get_direction_to_chase(), _delta)
 
-	fish.velocity = direction * fish.speed
+	fish.velocity = fish.direction * fish.speed
 	fish.update_direction(fish.velocity)
 	
 	fish.move_and_slide()

@@ -24,6 +24,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 
 func _exit():
 	fish.can_take_hits = true
+	fish.direction = Vector2.ZERO
 
 
 func _update_physics(_delta):
