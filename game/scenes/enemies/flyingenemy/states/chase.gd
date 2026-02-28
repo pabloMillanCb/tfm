@@ -17,10 +17,11 @@ func _update_physics(_delta):
 	
 	ray_cast.target_position = vector_to_player()
 	agent.target_position = player.global_position
-	
-	if agent.distance_to_target() > 0:
-		fish.direction = fish.direction.move_toward(get_direction_to_chase(), _delta)
 
+	fish.direction = fish.direction.move_toward(get_direction_to_chase(), _delta * 2)
+	
+	print(fish.direction)
+	
 	fish.velocity = fish.direction * fish.speed
 	fish.update_direction(fish.velocity)
 	

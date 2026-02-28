@@ -20,4 +20,5 @@ func vector_to_player() -> Vector2:
 
 
 func _on_player_detect_body_exited(body: Node2D) -> void:
-	finished.emit(SLEEP)
+	pass
+	#finished.emit(SLEEP)
