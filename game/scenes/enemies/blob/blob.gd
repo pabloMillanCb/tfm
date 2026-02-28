@@ -6,6 +6,10 @@ extends EnemyCharacter
 
 @onready var ray_cast = $AnimatedSprite2D/RayCast2D
 
+func _ready() -> void:
+	$AnimatedSprite2D.scale.x = direction
+
+
 func _physics_process(delta: float) -> void:
 	
 	if !is_on_floor():

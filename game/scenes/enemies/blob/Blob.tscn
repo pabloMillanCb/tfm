@@ -102,7 +102,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsyvq"]
-size = Vector2(10, 6)
+size = Vector2(16, 6)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_urwoc"]
 radius = 7.0
@@ -174,7 +174,6 @@ frame_progress = 1.0
 flip_h = true
 
 [node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1100757004]
-visible = false
 target_position = Vector2(10, 0)
 collision_mask = 2
 
@@ -188,7 +187,7 @@ wait_time = 1.25
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=496763073]
-position = Vector2(0, 10)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_tsyvq")
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=1329618155]
