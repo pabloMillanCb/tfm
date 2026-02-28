@@ -90,7 +90,7 @@ _data = {
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_pne4k")
-speed = 55.0
+speed = 80.0
 health = 3
 knockback_force = null
 
@@ -147,7 +147,6 @@ script = ExtResource("10_gmw86")
 
 [node name="DebugStateName" type="Label" parent="." unique_id=1390418854]
 unique_name_in_owner = true
-visible = false
 offset_left = -24.0
 offset_top = -25.0
 offset_right = 25.0
@@ -180,6 +179,12 @@ autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=11249488]
 libraries/ = SubResource("AnimationLibrary_pljoy")
+
+[node name="Label" type="Label" parent="." unique_id=1820633947]
+offset_left = -13.0
+offset_top = 9.0
+offset_right = 27.0
+offset_bottom = 32.0
 
 [connection signal="timeout" from="StateMachine/Hit/Timer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]

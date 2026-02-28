@@ -15,13 +15,12 @@ tile_set = ExtResource("1_axw3x")
 [node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_axw3x")]
 
 [node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_673ch")]
-position = Vector2(128, 42)
+position = Vector2(22, 72)
 
 [node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("4_la2fg")]
 position = Vector2(97, 104)
 
 [node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("5_axw3x")]
-position = Vector2(144, 168)
-speed = 50.0
+position = Vector2(144, 139)
 
 [editable path="TriangleFish"]
