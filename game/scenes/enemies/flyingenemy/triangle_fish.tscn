@@ -75,12 +75,11 @@ height = 16.0
 radius = 7.0
 height = 18.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ym17l"]
-radius = 4.0
-height = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmw86"]
+radius = 5.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ym17l"]
-size = Vector2(218, 58)
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkhlc"]
+radius = 76.02631
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pljoy"]
 _data = {
@@ -91,20 +90,17 @@ _data = {
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_pne4k")
-speed = 40.0
+speed = 55.0
 health = 3
 knockback_force = null
-hit = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601418126]
 material = SubResource("ShaderMaterial_w0mca")
 sprite_frames = SubResource("SpriteFrames_dwvfd")
 animation = &"chase"
 frame_progress = 0.09145771
-offset = Vector2(-2, -8)
 
 [node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1336580598]
-position = Vector2(0, -7)
 collision_layer = 40
 script = ExtResource("3_fr88r")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
@@ -114,7 +110,6 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_fk5pp")
 
 [node name="HurtboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=511676076]
-position = Vector2(0, -7)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("4_jgfb2")
@@ -125,9 +120,8 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_nd7lc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=605731751]
-position = Vector2(0, -7)
 rotation = -1.5707964
-shape = SubResource("CapsuleShape2D_ym17l")
+shape = SubResource("CircleShape2D_gmw86")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1418862076]
 script = ExtResource("5_fr88r")
@@ -165,18 +159,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PlayerDetect" type="Area2D" parent="." unique_id=701906977]
-position = Vector2(0, -7)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetect" unique_id=1222907089]
-shape = SubResource("RectangleShape2D_ym17l")
+shape = SubResource("CircleShape2D_kkhlc")
 disabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=754048153]
+target_position = Vector2(0, 100)
 collision_mask = 3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1386840502]
 path_postprocessing = 1
+debug_enabled = true
 
 [node name="StartTimer" type="Timer" parent="." unique_id=611721151]
 wait_time = 0.2
@@ -188,4 +183,5 @@ libraries/ = SubResource("AnimationLibrary_pljoy")
 
 [connection signal="timeout" from="StateMachine/Hit/Timer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]
+[connection signal="body_exited" from="PlayerDetect" to="StateMachine/Watch" method="_on_player_detect_body_exited"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

@@ -16,6 +16,8 @@ func _update_physics(_delta):
 
 
 func vector_to_player() -> Vector2:
-	#fish.global_position.direction_to(fish.player.global_position)
-	print(fish.player.global_position - fish.global_position)
 	return fish.player.global_position - fish.global_position
+
+
+func _on_player_detect_body_exited(body: Node2D) -> void:
+	finished.emit(SLEEP)
