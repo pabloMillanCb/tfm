@@ -46,7 +46,7 @@ MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
 
 [display]
 
-window/size/viewport_width=256
+window/size/viewport_width=262
 window/size/viewport_height=256
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
