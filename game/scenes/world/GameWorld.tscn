@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d023ksw5v333t" path="res://assets/mockup-ui.png" id="5_7vffv"]
 [ext_resource type="Texture2D" uid="uid://dkqi7nbtlh4ng" path="res://assets/heart.png" id="7_c3et1"]
 
-[node name="World" type="Node2D" unique_id=1365651245]
+[node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
 debug_respawn = "res://scenes/world/rooms/starting_area/EvadeEnemies.tscn"
 

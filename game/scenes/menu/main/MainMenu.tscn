@@ -204,9 +204,9 @@ scale_amount_max = 4.0
 color_ramp = SubResource("Gradient_4f0fq")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=617426832]
-offset_top = 151.0
+offset_top = 121.0
 offset_right = 256.0
-offset_bottom = 255.0
+offset_bottom = 225.0
 theme = ExtResource("2_4f0fq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1155298363]
