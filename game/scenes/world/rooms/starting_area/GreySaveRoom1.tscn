@@ -1,0 +1,21 @@
+[gd_scene format=4 uid="uid://sesal8jgmolm"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_6r15g"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_y1maw"]
+[ext_resource type="PackedScene" uid="uid://djyepdes4klgo" path="res://scenes/world/save/SavePoint.tscn" id="4_7mkxu"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_eipyd"]
+
+[node name="GreySaveRoom1" type="Node2D" unique_id=801174312]
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_y1maw")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_eipyd")]
+position = Vector2(128, 42)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1043403924]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAAAAAcAAAABAAoAAAABAAcAAAALAA4AAAACAAcAAAALAA4AAAADAAcAAAALAA4AAAAEAAcAAAALAA4AAAAMAAcAAAALAA4AAAAMAAgAAAALAA4AAAAMAAkAAAALAA4AAAAEAAUAAAALAA4AAAAFAAUAAAALAA4AAAAGAAUAAAALAA4AAAAHAAUAAAALAA4AAAAIAAUAAAALAA4AAAAJAAUAAAALAA4AAAAKAAUAAAALAA4AAAALAAUAAAALAA4AAAAMAAUAAAALAA4AAAAEAAYAAAALAA4AAAAMAAYAAAALAA4AAAALAAYAAAABAAoAAAAFAAYAAAAAAAoAAAAAAAoAAAABAAoAAAABAAoAAAALAA4AAAACAAoAAAALAA4AAAADAAoAAAALAA4AAAAEAAsAAAALAA4AAAAEAAwAAAALAA4AAAAFAAwAAAALAA4AAAAHAAwAAAALAA4AAAAIAAsAAAAMAA4AAAAIAAwAAAALAA4AAAAJAAwAAAALAA4AAAALAAwAAAALAA4AAAAMAAoAAAALAA4AAAAMAAsAAAALAA4AAAAMAAwAAAALAA4AAAAEAAoAAAALAA4AAAAFAAsAAAABAAoAAAAGAAwAAAALAA4AAAAHAAsAAAAMAA4AAAAIAAoAAAAAAAoAAAAJAAsAAAAMAA4AAAAKAAwAAAALAA4AAAALAAsAAAAAAAoAAAA=")
+tile_set = ExtResource("1_6r15g")
+
+[node name="RoomRespawn2" parent="." unique_id=597677078 instance=ExtResource("4_7mkxu")]
+position = Vector2(136, 120)
