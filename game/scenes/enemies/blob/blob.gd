@@ -8,7 +8,7 @@ extends EnemyCharacter
 
 func _ready() -> void:
 	$AnimatedSprite2D.scale.x = direction
-
+ 
 
 func _physics_process(delta: float) -> void:
 	

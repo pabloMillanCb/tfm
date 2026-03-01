@@ -8,5 +8,5 @@ language = 1
 master_volume = 0.8
 music_volume = 0.8
 sfx_volume = 0.8
-screen_brightness = 0.8
+screen_brightness = 1.0
 screen_contrast = 1.0
