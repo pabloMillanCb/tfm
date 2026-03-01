@@ -726,8 +726,9 @@ walking_speed = 60
 walking_acceleration = 1000
 walking_deceleration = 1000
 air_acceleration = 100
-jump_force = -110
-gravity_jumping = 140.0
+jump_force = -160
+gravity_jumping = 80.0
+gravity_falling = 300.0
 max_fall_speed = 180.0
 debug_data = SubResource("Resource_8nn5r")
 

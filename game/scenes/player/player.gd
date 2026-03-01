@@ -108,7 +108,9 @@ func get_look_direction():
 
 func update_gravity(_delta):
 	
-	if velocity.y > 0 or !Input.is_action_pressed("jump"):
+	if velocity.y < 0 and !Input.is_action_pressed("jump"):
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling * 2)
+	elif velocity.y > 10 or velocity.y < -10 or !Input.is_action_pressed("jump"):
 		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling)
 	else:
 		velocity.y += gravity_jumping * _delta
