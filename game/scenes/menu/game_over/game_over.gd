@@ -9,4 +9,5 @@ func _on_main_menu_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
+	DataManager.reload_current_save()
 	GameEvent._on_player_respawn.emit()

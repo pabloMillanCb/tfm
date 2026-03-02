@@ -58,4 +58,6 @@ func spawn_in_current_room():
 
 func load_player_data():
 	var data = DataManager.current_save.player_data
+	print("load_player_data")
+	print(data.has_sword_update)
 	($Player as Player).set_player_data(data)

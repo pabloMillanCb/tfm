@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
 [ext_resource type="Script" uid="uid://buyvsbbwh18js" path="res://scenes/player/states/idle.gd" id="2_20koh"]
 [ext_resource type="Script" uid="uid://ep1jxwrfqff6" path="res://scenes/player/player_controller.gd" id="2_gfjak"]
-[ext_resource type="Script" uid="uid://bjh6dkg0kgo4g" path="res://data/custom_resources/player_data.gd" id="2_ro0t8"]
 [ext_resource type="Script" uid="uid://ctf5oc3fdynj7" path="res://scenes/player/states/move.gd" id="3_ov1oi"]
 [ext_resource type="Script" uid="uid://dl8vgd7fwgpax" path="res://scenes/player/states/jump.gd" id="4_rn7t0"]
 [ext_resource type="Script" uid="uid://bu3my6ax5bmxy" path="res://scenes/player/states/fall.gd" id="5_8qjgm"]
@@ -24,10 +23,6 @@
 [ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="20_kswpp"]
 [ext_resource type="Texture2D" uid="uid://c47inqwe2u6x4" path="res://scenes/player/assets/player_body.png" id="21_v5i4m"]
-
-[sub_resource type="Resource" id="Resource_8nn5r"]
-script = ExtResource("2_ro0t8")
-metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
 radius = 2.0
@@ -726,11 +721,10 @@ walking_speed = 60
 walking_acceleration = 1000
 walking_deceleration = 1000
 air_acceleration = 100
-jump_force = -160
+jump_force = -150
 gravity_jumping = 80.0
 gravity_falling = 300.0
 max_fall_speed = 180.0
-debug_data = SubResource("Resource_8nn5r")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=216833047]
 shape = SubResource("CapsuleShape2D_pi3ps")

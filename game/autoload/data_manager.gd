@@ -61,6 +61,10 @@ func load_game_data(slot: int) -> bool:
 		return false
 
 
+func reload_current_save():
+	load_game_data(current_slot)
+
+
 func get_game_data(slot: int) -> SaveData:
 	return load(_get_save_path(slot))
 
