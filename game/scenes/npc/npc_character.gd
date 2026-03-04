@@ -3,6 +3,9 @@ extends Node2D
 @export var appear_event_name: String
 @export var disappear_event_name: String
 
+@export var dialog_script = preload("res://dialogues/test_dialog/test_dialogue.dialogue")
+@export var dialog_balloon = preload("res://dialogues/balloon.tscn")
+
 var player: Player
 
 func _ready() -> void:
@@ -12,6 +15,9 @@ func _ready() -> void:
 		(!DataManager.is_event_registered(appear_event_name) and appear_event_name != "")):
 		print("pop")
 		queue_free()
+		
+	$DialogComponent.dialog_script = dialog_script
+	$DialogComponent.dialog_balloon = dialog_balloon
 
 
 func _process(delta: float) -> void:
