@@ -54,6 +54,7 @@ func set_player_data(loaded_data: PlayerData):
 	if debug_data == null:
 		data = loaded_data.copy()
 		update_upgrades_information()
+		update_health_information()
 		instance_saved_key()
 
 
@@ -70,6 +71,14 @@ func get_new_upgrade(upgrade: Upgrade.UpgradeType):
 		data.has_teleport_update = true
 	
 	update_upgrades_information()
+	
+
+func update_health_information():
+	print("update_health")
+	print(data.max_health)
+	print(current_health)
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)
 
 
 func update_upgrades_information():

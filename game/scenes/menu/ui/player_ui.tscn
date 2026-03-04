@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cioe1206pm7vx"]
+
+[ext_resource type="Script" uid="uid://o56juqd8vr33" path="res://scenes/menu/ui/player_ui.gd" id="1_3mxqf"]
+[ext_resource type="Texture2D" uid="uid://d023ksw5v333t" path="res://assets/mockup-ui.png" id="1_ugqwg"]
+
+[node name="PlayerUi" type="CanvasLayer" unique_id=325291260]
+script = ExtResource("1_3mxqf")
+max_hearts = null
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1844535966]
+position = Vector2(128, 112)
+texture = ExtResource("1_ugqwg")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1041320574]
+offset_left = 96.0
+offset_top = -15.0
+offset_right = 160.0
+offset_bottom = 25.0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1292696558]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 2
