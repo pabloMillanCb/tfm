@@ -30,3 +30,7 @@ func _on_hit_received():
 		finished.emit(DEAD)
 	else:
 		finished.emit(HIT)
+
+
+func force_jump():
+	finished.emit(JUMP, {"extra_force": -60})

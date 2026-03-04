@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bw5ifi7vfl5r6" path="res://assets/placeholders/gordo.png" id="5_m78gm"]
 [ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="6_70qqv"]
 [ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="7_djco1"]
+[ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="8_djco1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_70qqv"]
 resource_local_to_scene = true
@@ -58,6 +59,15 @@ material = SubResource("ShaderMaterial_djco1")
 
 [node name="EndPoint" parent="Piranha2" index="4" unique_id=1382419134]
 position = Vector2(58, 0)
+
+[node name="Skull" parent="." unique_id=1204490723 instance=ExtResource("8_djco1")]
+position = Vector2(42, 408)
+
+[node name="Skull3" parent="." unique_id=303028520 instance=ExtResource("8_djco1")]
+position = Vector2(42, 392)
+
+[node name="Skull2" parent="." unique_id=135084952 instance=ExtResource("8_djco1")]
+position = Vector2(42, 424)
 
 [editable path="Piranha"]
 [editable path="Piranha2"]

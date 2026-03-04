@@ -1,0 +1,35 @@
+[gd_scene format=4 uid="uid://cgnq0c1xox1sa"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_1rqsv"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_b46tt"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_kgmlq"]
+[ext_resource type="PackedScene" uid="uid://d1u1qyvyla2bj" path="res://scenes/enemies/axolote/axolote.tscn" id="4_syc71"]
+[ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="5_1rqsv"]
+[ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="5_yv8s1"]
+[ext_resource type="PackedScene" uid="uid://7gc3goqj5bl6" path="res://scenes/enemies/flyingenemy/triangle_fish.tscn" id="6_b46tt"]
+
+[node name="FirstOrange" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAPAA0AAAAHAA8AAAAOAA0AAAAHAA8AAAANAA0AAAAHAA8AAAAMAA0AAAAHAA8AAAALAA0AAAAHAA8AAAAKAA0AAAAHAA8AAAAJAA0AAAAHAA8AAAAIAA0AAAAHAA8AAAAHAA0AAAAHAA8AAAAGAA0AAAAHAA8AAAAFAA0AAAAHAA8AAAAEAA0AAAAHAA8AAAADAA0AAAAHAA8AAAACAA0AAAAHAA8AAAABAA0AAAAHAA8AAAAAAA0AAAAHAA8AAAAGAAAAAAALAA8AAAAGAAEAAAALAA8AAAAHAAEAAAALAA8AAAAIAAEAAAAMAA8AAAAJAAEAAAALAA8AAAAKAAEAAAALAA8AAAALAAEAAAALAA8AAAAMAAEAAAALAA8AAAANAAEAAAALAA8AAAAOAAEAAAAMAA8AAAAPAAEAAAALAA8AAAAPAAAAAAALAA8AAAAOAAAAAAALAA8AAAANAAAAAAALAA8AAAAMAAAAAAALAA8AAAALAAAAAAAMAA8AAAAKAAAAAAALAA8AAAAJAAAAAAALAA8AAAAIAAAAAAALAA8AAAAHAAAAAAALAA8AAAAAAAkAAAAHAA8AAAAAAAgAAAAHAA8AAAAAAAcAAAAHAA8AAAAAAAYAAAAHAA8AAAAAAAUAAAAHAA8AAAAAAAQAAAAHAA8AAAAAAAMAAAAHAA8AAAAAAAIAAAAHAA8AAAAAAAEAAAAHAA8AAAAAAAAAAAAHAA8AAAAFAAAAAAAMAA8AAAAFAAEAAAALAA8AAAAEAAAAAAALAA8AAAAEAAEAAAALAA8AAAAHAAoAAAAJAA8AAAAIAAoAAAAJAA8AAAAJAAoAAAAJAA8AAAABAAcAAAAJAA8AAAACAAcAAAAJAA8AAAADAAcAAAAJAA8AAAAEAAcAAAAJAA8AAAABAAMAAAANAA4AAAACAAMAAAANAA4AAAADAAMAAAANAA4AAAABAAEAAAANAA4AAAACAAEAAAANAA4AAAADAAEAAAANAA4AAAAEAAIAAAALAA8AAAAFAAIAAAALAA8AAAAGAAIAAAAMAA8AAAAHAAIAAAALAA8AAAAIAAIAAAALAA8AAAAJAAIAAAALAA8AAAAKAAIAAAALAA8AAAALAAIAAAALAA8AAAAMAAIAAAAMAA8AAAANAAIAAAALAA8AAAAOAAIAAAALAA8AAAAPAAIAAAALAA8AAAAMAAgAAAAJAA8AAAANAAgAAAAJAA8AAAAOAAgAAAAJAA8AAAAPAAgAAAAJAA8AAAAPAAkAAAAIAA8AAAAPAAoAAAAIAA8AAAAPAAsAAAAIAA8AAAAPAAwAAAAIAA8AAAAPAAQAAAAIAA8AAAAPAAMAAAAIAA8AAAAAAAwAAAAHAA8AAAABAAwAAAAHAA8AAAABAAkAAAAJAA8AAAABAAgAAAAJAA8AAAACAAgAAAAJAA8AAAADAAgAAAAJAA8AAAA=")
+tile_set = ExtResource("1_1rqsv")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_b46tt")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_kgmlq")]
+position = Vector2(221, 112)
+
+[node name="Spring3" parent="." unique_id=1157912871 instance=ExtResource("5_yv8s1")]
+position = Vector2(136, 152)
+
+[node name="Spring4" parent="." unique_id=1546387936 instance=ExtResource("5_yv8s1")]
+position = Vector2(40, 104)
+
+[node name="Skull" parent="." unique_id=1204490723 instance=ExtResource("5_1rqsv")]
+position = Vector2(104, 200)
+
+[node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("6_b46tt")]
+position = Vector2(90, 60)
+
+[node name="Axolote" parent="." unique_id=227587289 instance=ExtResource("4_syc71")]
+position = Vector2(80, 208)

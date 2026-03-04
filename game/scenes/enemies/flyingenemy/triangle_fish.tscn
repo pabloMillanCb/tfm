@@ -146,6 +146,7 @@ script = ExtResource("10_gmw86")
 
 [node name="DebugStateName" type="Label" parent="." unique_id=1390418854]
 unique_name_in_owner = true
+visible = false
 offset_left = -24.0
 offset_top = -25.0
 offset_right = 25.0

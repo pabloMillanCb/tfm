@@ -115,11 +115,13 @@ func get_look_direction():
 	return $PlayerSprites.scale.x
 
 
-func update_gravity(_delta):
+func update_gravity(_delta, force = false):
 	
-	if velocity.y < 0 and !Input.is_action_pressed("jump"):
+	var is_jump_pressed = Input.is_action_pressed("jump") or force
+	
+	if velocity.y < 0 and !is_jump_pressed:
 		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling * 2)
-	elif velocity.y > 10 or velocity.y < -10 or !Input.is_action_pressed("jump"):
+	elif velocity.y > 10 or velocity.y < -10 or !is_jump_pressed:
 		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling)
 	else:
 		velocity.y += gravity_jumping * _delta
@@ -158,6 +160,10 @@ func _on_atack_hit(area: HurtboxComponent) -> void:
 func _on_hit_received(_area: Area2D) -> void:
 	if !invencible:
 		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func force_jump():
+	(state_machine.state as PlayerState).force_jump()
 
 
 func set_sprite_visibility(visible: bool):
