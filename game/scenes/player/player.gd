@@ -51,8 +51,8 @@ func _process(delta: float) -> void:
 
 
 func set_player_data(loaded_data: PlayerData):
-	#if debug_data == null:
-	data = loaded_data.copy()
+	if debug_data == null:
+		data = loaded_data.copy()
 	update_upgrades_information()
 	update_health_information()
 	instance_saved_key()

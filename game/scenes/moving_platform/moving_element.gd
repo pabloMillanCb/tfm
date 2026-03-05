@@ -8,7 +8,7 @@ extends Node2D
 
 var time = 0.0
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	time += delta
 	follow.progress_ratio = curve.sample((1+sin(time*speed*2))/2)
 	element.position = follow.position
