@@ -15,6 +15,7 @@
 [ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="13_gmw86"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0mca"]
+resource_local_to_scene = true
 shader = ExtResource("2_kkhlc")
 shader_parameter/whiten = true
 shader_parameter/time = 0.0

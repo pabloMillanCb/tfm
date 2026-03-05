@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://kwhbadc1yu2p"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_3b87o"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_36x41"]
+[ext_resource type="Script" uid="uid://bbqs3ag2l1fk0" path="res://addons/MetroidvaniaSystem/Scripts/RoomInstance.gd" id="3_y0hsa"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_yvyfg"]
+
+[node name="LongOrange1" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_set = ExtResource("1_3b87o")
+
+[node name="RoomInstance" type="Node2D" parent="." unique_id=71231764 instance=ExtResource("2_36x41")]
+script = ExtResource("3_y0hsa")
+
+[node name="RoomRespawn" type="Marker2D" parent="." unique_id=328631649 instance=ExtResource("4_yvyfg")]
+position = Vector2(128, 42)
