@@ -1,0 +1,72 @@
+[gd_scene format=4 uid="uid://ba780m88ccmex"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_hassm"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_vk48y"]
+[ext_resource type="PackedScene" uid="uid://djyepdes4klgo" path="res://scenes/world/save/SavePoint.tscn" id="3_hassm"]
+[ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="4_vk48y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hassm"]
+
+[sub_resource type="Animation" id="Animation_hassm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(155, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_vk48y"]
+resource_name = "boin"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.46666667, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(155, 40), Vector2(290.33, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urub8"]
+_data = {
+&"RESET": SubResource("Animation_hassm"),
+&"boin": SubResource("Animation_vk48y")
+}
+
+[node name="GetBreakSave" type="Node2D" unique_id=801174312]
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_vk48y")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1190802252]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAAEAAkAAAAMAA8AAAAEAAoAAAALAA8AAAAIAAoAAAALAA8AAAAJAAUAAAALAA8AAAABAAMAAAALAA8AAAABAAQAAAALAA8AAAABAAUAAAALAA8AAAABAAYAAAALAA8AAAABAAcAAAALAA8AAAABAAgAAAALAA8AAAABAAkAAAALAA8AAAABAAoAAAALAA8AAAACAAMAAAALAA8AAAACAAQAAAAAAAoAAAACAAkAAAABAAoAAAACAAoAAAALAA8AAAADAAMAAAALAA8AAAADAAoAAAALAA8AAAAEAAMAAAALAA8AAAAFAAMAAAALAA8AAAAFAAgAAAAAAAoAAAAFAAkAAAAMAA8AAAAFAAoAAAALAA8AAAAGAAMAAAALAA8AAAAGAAkAAAAMAA8AAAAGAAoAAAALAA8AAAAHAAMAAAALAA8AAAAHAAoAAAALAA8AAAAIAAMAAAALAA8AAAAIAAQAAAABAAoAAAAIAAkAAAAAAAoAAAAJAAMAAAALAA8AAAAJAAQAAAALAA8AAAAJAAkAAAALAA8AAAAJAAoAAAALAA8AAAAPAA4AAAALAA8AAAAOAA4AAAALAA8AAAANAA4AAAALAA8AAAAMAA4AAAALAA8AAAALAA4AAAALAA8AAAAKAA4AAAALAA8AAAAJAA4AAAALAA8AAAAIAA4AAAALAA8AAAAHAA4AAAALAA8AAAAGAA4AAAALAA8AAAAFAA4AAAALAA8AAAAEAA4AAAALAA8AAAADAA4AAAALAA8AAAACAA4AAAALAA8AAAAPAAsAAAALAA8AAAAOAAsAAAALAA8AAAANAAsAAAALAA8AAAAMAAsAAAALAA8AAAAMAAwAAAALAA8AAAALAAwAAAALAA8AAAAKAAwAAAALAA8AAAAJAAwAAAALAA8AAAAIAAwAAAALAA8AAAAHAAwAAAALAA8AAAAGAAwAAAALAA8AAAAFAAwAAAALAA8AAAAEAAwAAAALAA8AAAABAAsAAAALAA8AAAABAAwAAAALAA8AAAABAA0AAAALAA8AAAABAA4AAAALAA8AAAADAAwAAAALAA8AAAAKAAkAAAALAA8AAAALAAkAAAALAA8AAAAMAAkAAAALAA8AAAANAAkAAAALAA8AAAAKAAUAAAALAA8AAAALAAUAAAALAA8AAAAMAAUAAAALAA8AAAANAAUAAAALAA8AAAAOAAUAAAALAA8AAAAPAAUAAAALAA8AAAAPAAYAAAALAA8AAAAPAAcAAAALAA8AAAAPAAgAAAALAA8AAAAPAAkAAAALAA8AAAAPAAoAAAALAA8AAAALAAIAAAACAAsAAAA=")
+tile_set = ExtResource("1_hassm")
+
+[node name="RoomRespawn" parent="." unique_id=597677078 instance=ExtResource("3_hassm")]
+position = Vector2(88, 88)
+
+[node name="Spring" parent="." unique_id=1546387936 instance=ExtResource("4_vk48y")]
+position = Vector2(184, 40)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1958379110]
+position = Vector2(155, 40)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1506637463]
+shape = SubResource("CircleShape2D_hassm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1876570936]
+libraries/ = SubResource("AnimationLibrary_urub8")
+autoplay = &"boin"

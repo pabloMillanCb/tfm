@@ -2,5 +2,6 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	body.force_jump()
+	if body.has_method("force_jump"):
+		body.force_jump()
 	$AnimatedSprite2D.play("boing")
