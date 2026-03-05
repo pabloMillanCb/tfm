@@ -2,17 +2,24 @@
 
 [ext_resource type="Script" uid="uid://mj44wio0qhsu" path="res://scenes/world/game_world.gd" id="1_o21sk"]
 [ext_resource type="PackedScene" uid="uid://dt5id5s6k2sgf" path="res://scenes/player/Player.tscn" id="1_xro63"]
+[ext_resource type="Script" uid="uid://bjh6dkg0kgo4g" path="res://data/custom_resources/player_data.gd" id="3_7vffv"]
 [ext_resource type="Script" uid="uid://cv4lomcdgvq6b" path="res://scenes/world/keys/key_manager.gd" id="3_45itr"]
 [ext_resource type="PackedScene" uid="uid://dg1dpxljly2jl" path="res://scenes/menu/map/MapMenu.tscn" id="4_o21sk"]
-[ext_resource type="Texture2D" uid="uid://53pstfxbw28k" path="res://assets/border.png" id="5_5k6en"]
-[ext_resource type="Texture2D" uid="uid://d023ksw5v333t" path="res://assets/mockup-ui.png" id="5_7vffv"]
-[ext_resource type="Texture2D" uid="uid://dkqi7nbtlh4ng" path="res://assets/heart.png" id="7_c3et1"]
+[ext_resource type="PackedScene" uid="uid://cioe1206pm7vx" path="res://scenes/menu/ui/player_ui.tscn" id="5_5k6en"]
+
+[sub_resource type="Resource" id="Resource_c3et1"]
+script = ExtResource("3_7vffv")
+max_health = 5
+has_sword_update = true
+metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
-debug_respawn = "res://scenes/world/rooms/starting_area/EvadeEnemies.tscn"
+debug_respawn = "res://scenes/world/rooms/orange_area/GetBreak.tscn"
+debug = true
 
 [node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]
+debug_data = SubResource("Resource_c3et1")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=660065809]
 
@@ -27,27 +34,7 @@ offset_top = 3.0
 offset_right = 447.0
 offset_bottom = 159.22676
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1327990982]
-
-[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer" unique_id=1020682919]
-position = Vector2(128, 112)
-texture = ExtResource("5_7vffv")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=921302405]
-visible = false
-position = Vector2(128, 112)
-texture = ExtResource("5_5k6en")
-
-[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer" unique_id=5243767]
-position = Vector2(128, 4)
-texture = ExtResource("7_c3et1")
-
-[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer" unique_id=563911544]
-position = Vector2(135, 4)
-texture = ExtResource("7_c3et1")
-
-[node name="Sprite2D5" type="Sprite2D" parent="CanvasLayer" unique_id=1257663134]
-position = Vector2(121, 4)
-texture = ExtResource("7_c3et1")
+[node name="CanvasLayer" parent="." unique_id=325291260 instance=ExtResource("5_5k6en")]
+max_hearts = 8
 
 [editable path="MapMenu"]
