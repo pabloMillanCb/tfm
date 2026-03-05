@@ -1,17 +1,190 @@
-[gd_scene format=3 uid="uid://kwhbadc1yu2p"]
+[gd_scene format=4 uid="uid://kwhbadc1yu2p"]
 
 [ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_3b87o"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_36x41"]
-[ext_resource type="Script" uid="uid://bbqs3ag2l1fk0" path="res://addons/MetroidvaniaSystem/Scripts/RoomInstance.gd" id="3_y0hsa"]
+[ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="4_3b87o"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_yvyfg"]
+[ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="5_36x41"]
+[ext_resource type="PackedScene" uid="uid://d1u1qyvyla2bj" path="res://scenes/enemies/axolote/axolote.tscn" id="6_y0hsa"]
+
+[sub_resource type="Shader" id="Shader_y0hsa"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, abs(sin(time*alpha)));
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvyfg"]
+resource_local_to_scene = true
+shader = SubResource("Shader_y0hsa")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[sub_resource type="Shader" id="Shader_qv7qp"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, abs(sin(time*alpha)));
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uev71"]
+resource_local_to_scene = true
+shader = SubResource("Shader_qv7qp")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[sub_resource type="Shader" id="Shader_yvyfg"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, abs(sin(time*alpha)));
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qv7qp"]
+resource_local_to_scene = true
+shader = SubResource("Shader_yvyfg")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[sub_resource type="Shader" id="Shader_uev71"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool whiten = true;
+uniform float time = 0.0;
+uniform float alpha = 3.0;
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, abs(sin(time*alpha)));
+		COLOR = vec4(whitened_texture_rgb, texture_color.a);
+	} else {
+		COLOR = texture_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s082a"]
+resource_local_to_scene = true
+shader = SubResource("Shader_uev71")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
 
 [node name="LongOrange1" type="Node2D" unique_id=801174312]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAPAA0AAAAIAA8AAAAPAA4AAAAHAA8AAAAPAA8AAAAHAA8AAAAPABAAAAAHAA8AAAAPABEAAAAHAA8AAAAPABIAAAAHAA8AAAAPABMAAAAHAA8AAAAPABQAAAAHAA8AAAAPABUAAAAHAA8AAAAPABYAAAAHAA8AAAAPABcAAAAHAA8AAAAPABgAAAAHAA8AAAAPABkAAAAHAA8AAAAPABoAAAAHAA8AAAAPABsAAAAHAA8AAAAPABwAAAAHAA8AAAAPAB0AAAAHAA8AAAAPAB4AAAAHAA8AAAAPAB8AAAALAA8AAAAPACAAAAALAA8AAAAPACEAAAALAA8AAAAPACIAAAALAA8AAAAPACkAAAAHAA8AAAAOACkAAAAHAA8AAAANACkAAAAHAA8AAAAMACkAAAAJAA8AAAALACkAAAAJAA8AAAAKACkAAAAHAA8AAAAJACkAAAAJAA8AAAAIACkAAAAJAA8AAAAHACkAAAAJAA8AAAAGACkAAAAJAA8AAAAFACkAAAAJAA8AAAAEACkAAAAJAA8AAAADACkAAAAJAA8AAAACACkAAAAJAA8AAAABACkAAAAJAA8AAAAAACkAAAAJAA8AAAAPAAAAAAAJAA8AAAAOAAAAAAAJAA8AAAANAAAAAAAJAA8AAAAMAAAAAAAJAA8AAAALAAAAAAAJAA8AAAAKAAAAAAAJAA8AAAAJAAAAAAAJAA8AAAAIAAAAAAAJAA8AAAAHAAAAAAAJAA8AAAAGAAAAAAAJAA8AAAAAACgAAAAJAA8AAAAAACcAAAAJAA8AAAAAACYAAAAJAA8AAAAAACUAAAAJAA8AAAAAACQAAAAJAA8AAAAAACMAAAAJAA8AAAAAACIAAAAJAA8AAAAAACEAAAAJAA8AAAAAACAAAAAJAA8AAAAAAB8AAAAJAA8AAAAAAB4AAAAJAA8AAAAAAB0AAAAJAA8AAAAAABwAAAAJAA8AAAAAABsAAAAJAA8AAAAAABoAAAAJAA8AAAAAABkAAAAJAA8AAAAAABgAAAAJAA8AAAAAABcAAAAJAA8AAAAAABYAAAAJAA8AAAAAABUAAAAJAA8AAAAAABQAAAAJAA8AAAAAABMAAAAJAA8AAAAAABIAAAAJAA8AAAAAABEAAAAJAA8AAAAAABAAAAAJAA8AAAAAAA8AAAAJAA8AAAAAAA4AAAAJAA8AAAAAAA0AAAAJAA8AAAAAAAwAAAAJAA8AAAAAAAsAAAAJAA8AAAAAAAoAAAAJAA8AAAAAAAkAAAAJAA8AAAAAAAgAAAAJAA8AAAAAAAcAAAAJAA8AAAAAAAYAAAALAA8AAAAOAA4AAAAHAA8AAAANAA8AAAAIAA8AAAAMABAAAAAIAA8AAAAOAAwAAAAIAA8AAAANAAsAAAAIAA8AAAAMAAoAAAAIAA8AAAALAAsAAAAIAA8AAAAKAAwAAAAIAA8AAAAJAA0AAAAIAA8AAAAKAA4AAAAIAA8AAAALAA8AAAAIAA8AAAAMAA0AAAAIAA8AAAAMAAwAAAAIAA8AAAAMAAsAAAAIAA8AAAALAAwAAAAIAA8AAAALAA0AAAAIAA8AAAAKAA0AAAAIAA8AAAALAA4AAAAIAA8AAAAMAA4AAAAIAA8AAAAMAA8AAAAIAA8AAAANAA4AAAAIAA8AAAANAA0AAAAIAA8AAAANAAwAAAAIAA8AAAAOAA0AAAAIAA8AAAAPAAoAAAAJAA8AAAAPAAsAAAAJAA8AAAAPAAwAAAAJAA8AAAANAAoAAAAJAA8AAAAOAAoAAAAJAA8AAAAOAAsAAAAJAA8AAAAKAAsAAAACAAsAAAAKAAoAAAACAAsAAAAKAAkAAAACAAsAAAAKAAgAAAACAAsAAAAKAAcAAAACAAsAAAAKAAYAAAACAAsAAAABAAwAAAALAA8AAAACAAwAAAALAA8AAAADAAwAAAALAA8AAAAEAAwAAAALAA8AAAAFAAwAAAAMAA8AAAAEACgAAAAJAA8AAAADACcAAAAJAA8AAAACACUAAAAJAA8AAAACACQAAAAJAA8AAAABACMAAAAJAA8AAAABACYAAAAJAA8AAAABACUAAAAJAA8AAAABACQAAAAJAA8AAAABACcAAAAJAA8AAAABACgAAAAJAA8AAAACACgAAAAJAA8AAAACACcAAAAJAA8AAAACACYAAAAJAA8AAAADACgAAAAJAA8AAAAOACQAAAALAA8AAAAOACMAAAALAA8AAAAOACIAAAALAA8AAAANACIAAAAHAA8AAAANACEAAAAHAA8AAAANACAAAAAHAA8AAAANAB8AAAAHAA8AAAANAB4AAAAHAA8AAAAOABoAAAAHAA8AAAAOABkAAAAHAA8AAAAOABgAAAAHAA8AAAAOABcAAAAHAA8AAAAOABYAAAAHAA8AAAAOABUAAAAHAA8AAAANABMAAAAHAA8AAAANABIAAAAHAA8AAAANABEAAAAHAA8AAAAOABEAAAAHAA8AAAAOABAAAAAHAA8AAAAOAA8AAAAHAA8AAAANABAAAAAHAA8AAAAOABMAAAAHAA8AAAAOABQAAAAHAA8AAAAOABIAAAAHAA8AAAAOABsAAAAHAA8AAAAOABwAAAAHAA8AAAAOAB0AAAAHAA8AAAAOAB4AAAAHAA8AAAAOAB8AAAAHAA8AAAAOACAAAAAHAA8AAAAOACEAAAALAA8AAAAIAAwAAAAHAA8AAAAJAAwAAAAHAA8AAAAFABEAAAALAA8AAAAGABEAAAALAA8AAAAHABEAAAALAA8AAAAIABEAAAALAA8AAAAJABEAAAAMAA8AAAAEABEAAAAMAA8AAAABABUAAAAJAA8AAAACABUAAAAJAA8AAAADABUAAAAJAA8AAAAEABUAAAAJAA8AAAAFABUAAAAJAA8AAAAGABUAAAAJAA8AAAAHABUAAAAJAA8AAAAIABUAAAAJAA8AAAAJABUAAAAJAA8AAAABABgAAAANAA4AAAACABgAAAANAA4AAAADABgAAAANAA4AAAAEABgAAAANAA4AAAAFABgAAAAJAA8AAAAGABgAAAAJAA8AAAAHABgAAAAJAA8AAAAIABgAAAAJAA8AAAAJABgAAAAJAA8AAAAKABgAAAAJAA8AAAALABgAAAAJAA8AAAABABsAAAAJAA8AAAACABsAAAAJAA8AAAADABsAAAAJAA8AAAAEABsAAAAJAA8AAAAFABsAAAAJAA8AAAAGABsAAAAJAA8AAAAHABsAAAAJAA8AAAAIABsAAAAJAA8AAAAJABsAAAAJAA8AAAAKABsAAAAJAA8AAAALABsAAAANAA4AAAABAB4AAAANAA4AAAACAB4AAAAJAA8AAAADAB4AAAAJAA8AAAAEAB4AAAAJAA8AAAAFAB4AAAAJAA8AAAAGAB4AAAAJAA8AAAAHAB4AAAAJAA8AAAAIAB4AAAAJAA8AAAAJAB4AAAAJAA8AAAAKAB4AAAAJAA8AAAALAB4AAAAJAA8AAAAMABgAAAAJAA8AAAANABgAAAAJAA8AAAAMABsAAAANAA4AAAANABsAAAANAA4AAAAMAB4AAAAJAA8AAAAIAB8AAAAHAA8AAAAJACAAAAAHAA8AAAAKACEAAAAHAA8AAAAKACIAAAAHAA8AAAALACMAAAAHAA8AAAAMACQAAAAHAA8AAAANACUAAAAHAA8AAAANACQAAAAHAA8AAAANACMAAAAHAA8AAAALACAAAAAHAA8AAAALAB8AAAAHAA8AAAAKAB8AAAAHAA8AAAAJAB8AAAAHAA8AAAAKACAAAAAHAA8AAAAMAB8AAAAHAA8AAAAMACAAAAAHAA8AAAAMACEAAAAHAA8AAAALACEAAAAHAA8AAAALACIAAAAHAA8AAAAMACIAAAAHAA8AAAAMACMAAAAHAA8AAAALABcAAAACAAsAAAAPACMAAAALAA8AAAAPACQAAAALAA8AAAABABoAAAAMAA8AAAAMABcAAAAMAA8AAAAKABEAAAALAA8AAAALABEAAAALAA8AAAAMABEAAAALAA8AAAABABMAAAANAA4AAAAGAA8AAAAMAA8AAAAHAA0AAAAMAA8AAAAFAAgAAAALAA8AAAAGAAgAAAAMAA8AAAAOACUAAAALAA8AAAAPACUAAAALAA8AAAAAAAMAAAAMAAwAAAABAAMAAAAMAAwAAAAAAAUAAAALAA8AAAAAAAQAAAALAA8AAAAAAAAAAAAMAAwAAAABAAAAAAAMAAwAAAACAAAAAAAJAA8AAAADAAAAAAAJAA8AAAAEAAAAAAAJAA8AAAAFAAAAAAAJAA8AAAAHAAgAAAALAA8AAAAIAAgAAAALAA8AAAAJAAgAAAALAA8AAAA=")
 tile_set = ExtResource("1_3b87o")
 
-[node name="RoomInstance" type="Node2D" parent="." unique_id=71231764 instance=ExtResource("2_36x41")]
-script = ExtResource("3_y0hsa")
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_36x41")]
 
-[node name="RoomRespawn" type="Marker2D" parent="." unique_id=328631649 instance=ExtResource("4_yvyfg")]
-position = Vector2(128, 42)
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_yvyfg")]
+position = Vector2(167, 633)
+
+[node name="Spring" parent="." unique_id=1546387936 instance=ExtResource("4_3b87o")]
+position = Vector2(200, 152)
+
+[node name="Spring2" parent="." unique_id=1801739043 instance=ExtResource("4_3b87o")]
+position = Vector2(72, 184)
+
+[node name="Spring3" parent="." unique_id=260095041 instance=ExtResource("4_3b87o")]
+position = Vector2(120, 120)
+
+[node name="Piranha" parent="." unique_id=810161683 instance=ExtResource("5_36x41")]
+position = Vector2(25, 182)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_yvyfg")
+
+[node name="EndPoint" parent="Piranha" index="4" unique_id=1382419134]
+position = Vector2(71, 0)
+
+[node name="Piranha2" parent="." unique_id=2096355301 instance=ExtResource("5_36x41")]
+position = Vector2(51, 263)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha2" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_uev71")
+
+[node name="EndPoint" parent="Piranha2" index="4" unique_id=1382419134]
+position = Vector2(121, 0)
+
+[node name="Piranha3" parent="." unique_id=1895696425 instance=ExtResource("5_36x41")]
+position = Vector2(28, 323)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha3" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_qv7qp")
+
+[node name="EndPoint" parent="Piranha3" index="4" unique_id=1382419134]
+position = Vector2(165, 0)
+
+[node name="Piranha4" parent="." unique_id=249547347 instance=ExtResource("5_36x41")]
+position = Vector2(51, 302)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha4" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_s082a")
+
+[node name="StartPoint" parent="Piranha4" index="3" unique_id=1303859466]
+position = Vector2(142, 0)
+
+[node name="EndPoint" parent="Piranha4" index="4" unique_id=1382419134]
+position = Vector2(-23, 0)
+
+[node name="Axolote" parent="." unique_id=227587289 instance=ExtResource("6_y0hsa")]
+position = Vector2(39, 431)
+
+[node name="Axolote2" parent="." unique_id=1115822755 instance=ExtResource("6_y0hsa")]
+position = Vector2(39, 479)
+
+[node name="Axolote3" parent="." unique_id=699385208 instance=ExtResource("6_y0hsa")]
+position = Vector2(202, 479)
+move_direction = 1.0
+
+[editable path="Piranha"]
+[editable path="Piranha2"]
+[editable path="Piranha3"]
+[editable path="Piranha4"]

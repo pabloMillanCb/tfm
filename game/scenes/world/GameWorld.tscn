@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
-debug_respawn = "/home/slimbook/repo/tfm/game/scenes/world/rooms/orange_area/OrangeToGreen.tscn"
+debug_respawn = "res://scenes/world/rooms/orange_area/LongOrange1.tscn"
 debug = true
 
 [node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]

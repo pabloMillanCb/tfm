@@ -90,6 +90,7 @@ animations = [{
 }]
 
 [node name="Spring" type="Area2D" unique_id=1546387936]
+z_index = 13
 collision_layer = 0
 script = ExtResource("1_7q1cv")
 

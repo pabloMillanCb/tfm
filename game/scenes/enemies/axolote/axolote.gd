@@ -14,6 +14,9 @@ class_name Axolote
 
 var can_take_hits = true
 
+func _ready() -> void:
+	if move_direction == 1.0:
+		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 
 func update_gravity(_delta):
 	var GRAVITY_FORCE = 200
