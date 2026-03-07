@@ -41,3 +41,7 @@ func _get_configuration_warnings():
 
 	# Returning an empty array means "no warning".
 	return warnings
+
+
+func _on_enemy_wave_on_wave_end() -> void:
+	pass # Replace with function body.

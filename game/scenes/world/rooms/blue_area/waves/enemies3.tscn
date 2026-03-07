@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c8thbmo5ofuiv"]
+
+[ext_resource type="PackedScene" uid="uid://d1u1qyvyla2bj" path="res://scenes/enemies/axolote/axolote.tscn" id="1_5g4vh"]
+[ext_resource type="PackedScene" uid="uid://7gc3goqj5bl6" path="res://scenes/enemies/flyingenemy/triangle_fish.tscn" id="2_yju6f"]
+
+[node name="Enemies" type="Node2D" unique_id=1068723802]
+
+[node name="Axolote" parent="." unique_id=227587289 instance=ExtResource("1_5g4vh")]
+position = Vector2(212, 176)
+walk_speed = 40.0
+
+[node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("2_yju6f")]
+position = Vector2(107, 93)

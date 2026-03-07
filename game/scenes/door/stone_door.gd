@@ -4,7 +4,7 @@ class_name StoneDoor
 @export var locked = false
 
 func _ready() -> void:
-	if locked:
+	if !locked:
 		$CollisionShape2D.position.y = 49.5
 
 func unlock_door():
