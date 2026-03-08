@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cu3coffrldrdu"]
+
+[ext_resource type="Script" uid="uid://5et23adpnam7" path="res://scenes/breakable/wall/wall_breakable.gd" id="1_16lwq"]
+[ext_resource type="Texture2D" uid="uid://vfxs0y5e4ovf" path="res://assets/tilemaps/tilemap.png" id="2_xariq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awvan"]
+atlas = ExtResource("2_xariq")
+region = Rect2(224, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8c4q"]
+atlas = ExtResource("2_xariq")
+region = Rect2(224, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h0i7"]
+atlas = ExtResource("2_xariq")
+region = Rect2(224, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyhav"]
+atlas = ExtResource("2_xariq")
+region = Rect2(224, 240, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fklbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awvan")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8c4q")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h0i7")
+}],
+"loop": true,
+"name": &"grey",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyhav")
+}],
+"loop": true,
+"name": &"orange",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oq7l"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_324l4"]
+size = Vector2(16, 16)
+
+[node name="WallBreakable" type="Area2D" unique_id=1500639480]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_16lwq")
+color = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1263623155]
+sprite_frames = SubResource("SpriteFrames_fklbh")
+animation = &"orange"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1505050225]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1905374985]
+visible = false
+shape = SubResource("RectangleShape2D_8oq7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=112182999]
+visible = false
+shape = SubResource("RectangleShape2D_324l4")

@@ -152,7 +152,7 @@ func teleport():
 		teleport_crosshair.queue_free()
 
 
-func _on_atack_hit(area: HurtboxComponent) -> void:
+func _on_atack_hit(area: Area2D) -> void:
 	if area.has_method("take_damage") and data.has_break_update:
 		area.take_damage(-(area.global_position - global_position).normalized())
 

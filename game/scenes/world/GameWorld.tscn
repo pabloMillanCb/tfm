@@ -7,19 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://dg1dpxljly2jl" path="res://scenes/menu/map/MapMenu.tscn" id="4_o21sk"]
 [ext_resource type="PackedScene" uid="uid://cioe1206pm7vx" path="res://scenes/menu/ui/player_ui.tscn" id="5_5k6en"]
 
-[sub_resource type="Resource" id="Resource_c3et1"]
+[sub_resource type="Resource" id="Resource_7vffv"]
 script = ExtResource("3_7vffv")
-max_health = 5
+max_health = 3
 has_sword_update = true
+has_break_update = true
 metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
-debug_respawn = "res://scenes/world/rooms/orange_area/LongOrange1.tscn"
+debug_respawn = "res://scenes/world/rooms/blue_area/Church.tscn"
 debug = true
 
 [node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]
-debug_data = SubResource("Resource_c3et1")
+debug_data = SubResource("Resource_7vffv")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=660065809]
 

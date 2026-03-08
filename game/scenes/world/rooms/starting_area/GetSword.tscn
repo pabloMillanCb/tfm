@@ -25,6 +25,7 @@ enemies = ExtResource("5_gh6ys")
 
 [node name="Door" parent="." unique_id=2034733550 instance=ExtResource("6_5wxex")]
 position = Vector2(9, 417)
+locked = true
 
 [node name="Upgrade" parent="." unique_id=646503660 instance=ExtResource("8_4x83i")]
 position = Vector2(128, 406)
