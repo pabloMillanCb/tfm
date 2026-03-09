@@ -188,5 +188,9 @@ func _on_tile_hazard_touched(body: Node2D) -> void:
 
 func pick_up_heart():
 	data.max_health += 1
+	heal()
+
+
+func heal():
 	current_health = data.max_health
 	GameEvent.update_health.emit(data.max_health, current_health)
