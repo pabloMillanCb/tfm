@@ -5,7 +5,6 @@
 
 [node name="PlayerUi" type="CanvasLayer" unique_id=325291260]
 script = ExtResource("1_3mxqf")
-max_hearts = null
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1844535966]
 position = Vector2(128, 112)

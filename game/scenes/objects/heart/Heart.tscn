@@ -1,12 +1,48 @@
 [gd_scene format=3 uid="uid://crj8piwquvxio"]
 
 [ext_resource type="Script" uid="uid://b1x1y5vuodwag" path="res://scenes/objects/heart/heart.gd" id="1_ore8f"]
+[ext_resource type="Texture2D" uid="uid://ymcqgcfwnb50" path="res://scenes/objects/heart/heart.png" id="2_xgsch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ore8f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wn0d"]
+atlas = ExtResource("2_xgsch")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la1cg"]
+atlas = ExtResource("2_xgsch")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1qoq"]
+atlas = ExtResource("2_xgsch")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mixkx"]
+animations = [{
+"frames": [{
+"duration": 8.0,
+"texture": SubResource("AtlasTexture_6wn0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la1cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1qoq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="Heart" type="Area2D" unique_id=72603203]
 collision_layer = 0
 script = ExtResource("1_ore8f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=649810866]
+visible = false
 shape = SubResource("RectangleShape2D_ore8f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1384993353]
+sprite_frames = SubResource("SpriteFrames_mixkx")
+autoplay = "default"
+frame_progress = 0.9340726

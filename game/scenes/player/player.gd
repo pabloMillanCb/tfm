@@ -184,3 +184,9 @@ func get_down_of_one_way_platform():
 func _on_tile_hazard_touched(body: Node2D) -> void:
 	if !invencible:
 		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func pick_up_heart():
+	data.max_health += 1
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)

@@ -26,8 +26,6 @@ func add_texture_rect(texture_path: String, array: Array):
 
 func set_hearts(_max_hearts: int, current_hearts: int):
 	max_hearts = _max_hearts
-	print(_max_hearts)
-	print(current_hearts)
 	var current_empty_hearts = max_hearts - current_hearts
 	
 	for i in hearts.size():
