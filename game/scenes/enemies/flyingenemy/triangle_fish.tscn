@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dhacus4n85630" path="res://scenes/enemies/flyingenemy/states/dead.gd" id="10_gmw86"]
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="11_ym17l"]
 [ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="13_gmw86"]
+[ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="13_w0mca"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0mca"]
 resource_local_to_scene = true
@@ -82,8 +83,49 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkhlc"]
 radius = 76.02631
 
+[sub_resource type="Animation" id="Animation_kkhlc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:material:shader_parameter/time")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pljoy"]
 _data = {
+&"RESET": SubResource("Animation_kkhlc"),
+&"death": ExtResource("13_w0mca"),
 &"hit_enemy": ExtResource("13_gmw86")
 }
 
@@ -99,6 +141,7 @@ material = SubResource("ShaderMaterial_w0mca")
 sprite_frames = SubResource("SpriteFrames_dwvfd")
 animation = &"chase"
 frame_progress = 0.09145771
+offset = Vector2(-2, 0)
 
 [node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=1336580598]
 collision_layer = 40
@@ -171,7 +214,6 @@ collision_mask = 3
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1386840502]
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="StartTimer" type="Timer" parent="." unique_id=611721151]
 wait_time = 0.2
@@ -182,6 +224,7 @@ autostart = true
 libraries/ = SubResource("AnimationLibrary_pljoy")
 
 [node name="Label" type="Label" parent="." unique_id=1820633947]
+visible = false
 offset_left = -13.0
 offset_top = 9.0
 offset_right = 27.0

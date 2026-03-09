@@ -31,11 +31,15 @@ func update_direction(direction: Vector2):
 
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
-	print("ouch")
 	$AnimationPlayer.play("hit_enemy")
 	if can_take_hits:
 		state_machine._transition_to_next_state(TriangleFishState.HIT, {"push_direction" = direction})
 
+
+func die():
+	$AnimatedSprite2D/HurtboxComponent.queue_free()
+	$AnimatedSprite2D/HitboxComponent.queue_free()
+	$AnimationPlayer.play("death")
 
 func _on_start_timer_timeout() -> void:
 	$PlayerDetect/CollisionShape2D.disabled = false

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://csqxlxjyt8oow" path="res://scenes/enemies/axolote/states/idle.gd" id="10_qqln1"]
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="12_skik0"]
 [ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="14_b7ug0"]
+[ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="14_sjbf3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sjbf3"]
 shader = ExtResource("2_igthh")
@@ -142,10 +143,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector2(0, -8.17)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -159,10 +160,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ektfp"]
 _data = {
 &"RESET": SubResource("Animation_xcvpg"),
+&"death": ExtResource("14_sjbf3"),
 &"hit_enemy": ExtResource("14_b7ug0")
 }
 
@@ -176,7 +190,7 @@ material = SubResource("ShaderMaterial_sjbf3")
 sprite_frames = SubResource("SpriteFrames_bla43")
 animation = &"surprise"
 frame_progress = 0.18998577
-offset = Vector2(-2, -8)
+offset = Vector2(0, -8.17)
 
 [node name="HitboxComponent" type="Area2D" parent="AnimatedSprite2D" unique_id=981640590]
 position = Vector2(-1, -7)

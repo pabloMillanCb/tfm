@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="3_urwoc"]
 [ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="4_3q56w"]
 [ext_resource type="PackedScene" uid="uid://dumeycys4ghk6" path="res://scenes/enemies/HitManager.tscn" id="5_3q56w"]
+[ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="7_j16y4"]
 [ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="7_xcvpg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j16y4"]
@@ -149,10 +150,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erjeo"]
 _data = {
 &"RESET": SubResource("Animation_xcvpg"),
+&"death": ExtResource("7_j16y4"),
 &"hit_enemy": ExtResource("7_xcvpg")
 }
 

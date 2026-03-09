@@ -51,3 +51,7 @@ func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("ouch")
 	if can_take_hits:
 		state_machine._transition_to_next_state(AxoloteState.HIT)
+
+
+func die(direction: Vector2 = Vector2.ZERO):
+	$AnimationPlayer.play("death")

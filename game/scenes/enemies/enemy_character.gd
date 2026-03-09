@@ -1,13 +1,15 @@
 extends CharacterBody2D
 class_name EnemyCharacter
 
+var alive = true
+
 @export var health := 1
 @export var knockback_force = Vector2(25.0, 25.0)
 @export var hit = false
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	health -= 1
-	if health == 0:
+	if health <= 0:
 		die()
 	else:
 		react_to_damage(direction)

@@ -25,6 +25,9 @@ func _physics_process(delta: float) -> void:
 			direction = -direction
 			$AnimatedSprite2D.scale.x = direction
 			$TurnTimer.start()
+		
+	if !alive:
+		velocity = Vector2.ZERO
 	
 	move_and_slide()
 
@@ -32,6 +35,13 @@ func _physics_process(delta: float) -> void:
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	$AnimationPlayer.play("hit_enemy")
 	super(direction)
+
+
+func die():
+	alive = false
+	$HitboxComponent.queue_free()
+	$HurtboxComponent.queue_free()
+	$AnimationPlayer.play("death")
 
 
 func _on_animation_finished() -> void:

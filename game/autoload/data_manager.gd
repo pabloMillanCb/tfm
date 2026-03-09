@@ -46,6 +46,7 @@ func start_new_game(slot: int):
 	if save != null:
 		current_save = save
 		current_slot = slot
+		save_game_data(current_slot, current_save)
 		return true
 	else:
 		return false
