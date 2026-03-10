@@ -1,0 +1,24 @@
+[gd_scene format=4 uid="uid://ivtx4pdnr6d1"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_6t6hm"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_mhj42"]
+[ext_resource type="PackedScene" uid="uid://dh2u1x6m2ja5f" path="res://scenes/npc/npc_character.tscn" id="4_mhj42"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_n14ho"]
+[ext_resource type="Texture2D" uid="uid://bw5ifi7vfl5r6" path="res://assets/placeholders/gordo.png" id="5_1qw35"]
+
+[node name="OrangeToGreen" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAGAA0AAAALAA8AAAAFAA0AAAALAA8AAAAEAA0AAAALAA8AAAADAA0AAAALAA8AAAACAA0AAAALAA8AAAABAA0AAAALAA8AAAAJAA0AAAALAA8AAAAKAA0AAAALAA8AAAALAA0AAAALAA8AAAAMAA0AAAALAA8AAAANAA0AAAALAA8AAAAOAA0AAAALAA8AAAAPAAAAAAAHAA8AAAAPAAEAAAAHAA8AAAAPAAIAAAAHAA8AAAAPAAMAAAAHAA8AAAAPAAQAAAAHAA8AAAAPAAUAAAAHAA8AAAAPAAYAAAAHAA8AAAAPAAcAAAAHAA8AAAAPAAoAAAAHAA8AAAAPAAsAAAAHAA8AAAAPAAwAAAAHAA8AAAAPAA0AAAAHAA8AAAAAAA0AAAAJAA8AAAAAAAwAAAAJAA8AAAAAAAsAAAAJAA8AAAAAAAoAAAAJAA8AAAAAAAcAAAAJAA8AAAAAAAYAAAAJAA8AAAAAAAUAAAAJAA8AAAAAAAQAAAAJAA8AAAAAAAMAAAAJAA8AAAAAAAIAAAAJAA8AAAAAAAEAAAAJAA8AAAAAAAAAAAAJAA8AAAAGAAwAAAAKAA8AAAAFAAwAAAAKAA8AAAAEAAsAAAAKAA8AAAADAAsAAAAKAA8AAAACAAoAAAAKAA8AAAABAAoAAAAKAA8AAAAJAAwAAAAKAA8AAAAKAAwAAAAKAA8AAAALAAsAAAAKAA8AAAAMAAsAAAAKAA8AAAANAAoAAAAKAA8AAAAOAAoAAAAKAA8AAAAHAA0AAAANAA4AAAAIAA0AAAANAA4AAAALAAwAAAAMAA8AAAAMAAwAAAAMAA8AAAANAAwAAAAMAA8AAAAOAAwAAAAMAA8AAAANAAsAAAAMAA8AAAAOAAsAAAAMAA8AAAABAAsAAAAMAA8AAAACAAsAAAAMAA8AAAABAAwAAAAMAA8AAAACAAwAAAAMAA8AAAADAAwAAAAMAA8AAAAEAAwAAAAMAA8AAAA=")
+tile_set = ExtResource("1_6t6hm")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_mhj42")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_n14ho")]
+position = Vector2(128, 42)
+
+[node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("4_mhj42")]
+position = Vector2(187, 168)
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="NpcCharacter" unique_id=1213586217]
+texture = ExtResource("5_1qw35")

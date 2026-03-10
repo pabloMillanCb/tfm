@@ -4,8 +4,8 @@ var stored_speed = 0.0
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	
-	if Input.get_axis("move_left", "move_right") != 0:
-		player.update_look_direction(true)
+	#if Input.get_axis("move_left", "move_right") != 0:
+	#	player.update_look_direction(true)
 	
 	player.set_animation("atack")
 	
@@ -23,7 +23,9 @@ func _on_atack_animation_end():
 		finished.emit(MOVE)
 	else:
 		finished.emit(IDLE)
-	
+
+func _exit():
+	player.stop_animation()
 
 func shoot():
 	player.shoot()

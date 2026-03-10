@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://byisd7iykr3xi"]
+
+[ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="1_bupes"]
+[ext_resource type="Script" uid="uid://kmcmm14k3wy2" path="res://scenes/enemies/blob/blob.gd" id="1_tsyvq"]
+[ext_resource type="Texture2D" uid="uid://boipyll0ah6pb" path="res://scenes/enemies/blob/blob.png" id="2_vluvp"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="3_urwoc"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="4_3q56w"]
+[ext_resource type="PackedScene" uid="uid://dumeycys4ghk6" path="res://scenes/enemies/HitManager.tscn" id="5_3q56w"]
+[ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="7_j16y4"]
+[ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="7_xcvpg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j16y4"]
+resource_local_to_scene = true
+shader = ExtResource("1_bupes")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urwoc"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q56w"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bupes"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcvpg"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j16y4"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wf0r"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vd4fs"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erjeo"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulvvd"]
+atlas = ExtResource("2_vluvp")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71ajf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urwoc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3q56w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bupes")
+}],
+"loop": false,
+"name": &"to_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j16y4")
+}],
+"loop": false,
+"name": &"to_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wf0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vd4fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erjeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulvvd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tsyvq"]
+size = Vector2(16, 6)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_urwoc"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3q56w"]
+radius = 5.0990195
+
+[sub_resource type="Animation" id="Animation_xcvpg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:material:shader_parameter/time")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_erjeo"]
+_data = {
+&"RESET": SubResource("Animation_xcvpg"),
+&"death": ExtResource("7_j16y4"),
+&"hit_enemy": ExtResource("7_xcvpg")
+}
+
+[node name="Blob" type="CharacterBody2D" unique_id=1672671753]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_tsyvq")
+health = 2
+knockback_force = Vector2(50, -25)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2052876637]
+material = SubResource("ShaderMaterial_j16y4")
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_71ajf")
+animation = &"to_walk"
+autoplay = "idle"
+frame = 1
+frame_progress = 1.0
+flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="AnimatedSprite2D" unique_id=1100757004]
+target_position = Vector2(10, 0)
+collision_mask = 2
+
+[node name="Wait" type="Timer" parent="." unique_id=1566959179]
+wait_time = 1.25
+one_shot = true
+autostart = true
+
+[node name="Walk" type="Timer" parent="." unique_id=276337290]
+wait_time = 1.25
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=496763073]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_tsyvq")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1329618155]
+position = Vector2(0, 9)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_urwoc")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1983852568]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_urwoc")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=230637186]
+position = Vector2(0, 9)
+collision_layer = 8
+script = ExtResource("4_3q56w")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1717461183]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_3q56w")
+
+[node name="TurnTimer" type="Timer" parent="." unique_id=1444562319]
+wait_time = 0.25
+one_shot = true
+
+[node name="HitManager" parent="." unique_id=659620569 node_paths=PackedStringArray("enemy_body") instance=ExtResource("5_3q56w")]
+enemy_body = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1107341380]
+libraries/ = SubResource("AnimationLibrary_erjeo")
+movie_quit_on_finish = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]
+[connection signal="timeout" from="Walk" to="." method="_on_walk_timeout"]

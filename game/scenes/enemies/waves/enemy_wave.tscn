@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cko0fl73r1ve6"]
+
+[ext_resource type="Script" uid="uid://grguqox1lalg" path="res://scenes/enemies/waves/enemy_wave.gd" id="1_8nldy"]
+[ext_resource type="PackedScene" uid="uid://dc6ss7imd670i" path="res://scenes/enemies/waves/smoke_particle.tscn" id="2_aufvq"]
+
+[node name="EnemyWave" type="Node2D" unique_id=584316293]
+script = ExtResource("1_8nldy")
+appear_particle = ExtResource("2_aufvq")

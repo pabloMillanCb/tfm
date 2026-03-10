@@ -21,6 +21,11 @@ func _input(event):
 		input_maping.create_remap()
 		ResourceSaver.save(input_maping, REMAP_FILE_LOCATION)
 		action_to_remap = ""
+	if event is InputEventJoypadButton and not action_to_remap.is_empty():
+		input_maping.set_action_button(action_to_remap, event)
+		input_maping.create_remap()
+		ResourceSaver.save(input_maping, REMAP_FILE_LOCATION)
+		action_to_remap = ""
 
 
 func listen_for_action_remap(action: String):
@@ -36,6 +41,8 @@ func save_remap_changes():
 	input_maping.create_remap()
 
 
+func is_remap_correct():
+	print(input_maping.find_duplicates())
 func get_action_list():
 	return input_maping.action_list
 

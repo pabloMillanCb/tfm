@@ -3,6 +3,9 @@ class_name GameWorld
 
 var do_respawn := true
 
+@export var debug_respawn: String
+@export var debug = false
+
 func _ready() -> void:
 	MetSys.reset_state()
 	MetSys.set_save_data(DataManager.current_save.metsys_data)
@@ -26,13 +29,13 @@ func _process(delta: float) -> void:
 	#TODO DEBUG, TO DELETE
 	if Input.is_action_just_pressed("save"):
 		if Input.is_key_pressed(KEY_1):
-			DataManager.save_game_in_room(0, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		elif Input.is_key_pressed(KEY_2):
-			DataManager.save_game_in_room(1, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		elif Input.is_key_pressed(KEY_3):
-			DataManager.save_game_in_room(2, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		else:
-			DataManager.save_game_in_room(0, $Player.data)
+			DataManager.save_game_in_room($Player.data)
 		
 
 
@@ -40,6 +43,8 @@ func load_starting_room():
 	var room = DataManager.current_save.last_room
 	if room == null:
 		room = SaveData.first_room
+	if debug_respawn != null and debug:
+		room = debug_respawn
 
 	load_room(room)
 
@@ -53,4 +58,6 @@ func spawn_in_current_room():
 
 func load_player_data():
 	var data = DataManager.current_save.player_data
+	print("load_player_data")
+	print(data.has_sword_update)
 	($Player as Player).set_player_data(data)

@@ -5,6 +5,7 @@ const IDLE = "Idle"
 const MOVE = "Move"
 const JUMP = "Jump"
 const FALLING = "Falling"
+const SUPER_FALLING = "SuperFalling"
 const ATACK = "Atack"
 const PREPARE_TELEPORT = "PrepareTeleport"
 const RELEASE_TELEPORT = "ReleaseTeleport"
@@ -19,3 +20,17 @@ func _ready() -> void:
 	await owner.ready
 	player = owner as Player
 	assert(player != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
+
+
+func _on_hit_received():
+	print("on hit received")
+	player.current_health -= 1
+	GameEvent.update_health.emit(player.data.max_health, player.current_health)
+	if player.current_health <= 0:
+		finished.emit(DEAD)
+	else:
+		finished.emit(HIT)
+
+
+func force_jump():
+	finished.emit(JUMP, {"extra_force": -60})

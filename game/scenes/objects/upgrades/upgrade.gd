@@ -6,6 +6,8 @@ enum UpgradeType {SWORD, BREAK, BEAM, POGO, TELEPORT}
 @export var type: UpgradeType = UpgradeType.SWORD
 @export var wait_time := 5
 
+signal upgrade_picked
+
 func _ready() -> void:
 	super()
 	set_description()
@@ -19,6 +21,7 @@ func _collect(body: Node2D) -> void:
 	(body as Player).get_new_upgrade(type)
 	await get_tree().create_timer(wait_time).timeout
 	get_tree().paused = false
+	upgrade_picked.emit()
 	super(body)
 
 

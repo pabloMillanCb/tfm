@@ -13,7 +13,7 @@ class_name PlayerData
 
 func _init(p_sword_update = false, p_break_update = false, 
 			p_beam_update = false, p_pogo_update = false,
-			p_teleport_update = false, p_max_health = 2,
+			p_teleport_update = false, p_max_health = 3,
 			p_has_key = false):
 	
 	max_health = p_max_health
@@ -28,4 +28,4 @@ func _init(p_sword_update = false, p_break_update = false,
 
 func copy():
 	return PlayerData.new(has_sword_update, has_break_update, has_beam_update,
-				has_pogo_update, has_teleport_update, has_key)
+				has_pogo_update, has_teleport_update, max_health, has_key)

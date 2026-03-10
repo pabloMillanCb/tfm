@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	$AnimatedSprite2D.flip_h = (previous_position - global_position).x > 0
 
 
-func take_damage():
+func take_damage(direction: Vector2 = Vector2.ZERO):
 	going_backwards = !going_backwards
 	play_hit_animation()
 	$InvencibleTimer.start()

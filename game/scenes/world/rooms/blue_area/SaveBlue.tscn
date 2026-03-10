@@ -1,0 +1,28 @@
+[gd_scene format=4 uid="uid://dyq5a468pg8bw"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_bixfr"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_hmhdv"]
+[ext_resource type="PackedScene" uid="uid://djyepdes4klgo" path="res://scenes/world/save/SavePoint.tscn" id="3_nyhm2"]
+
+[node name="SaveBlue" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAAAAgAAAALAA0AAAABAAgAAAALAA0AAAACAAgAAAALAA0AAAAAAA0AAAALAA0AAAABAA0AAAALAA0AAAACAA0AAAALAA0AAAAKAAwAAAAAAAoAAAALAAwAAAAAAAoAAAADAA0AAAALAA0AAAAEAA0AAAALAA0AAAAFAA0AAAALAA0AAAAGAA0AAAALAA0AAAAHAA0AAAALAA0AAAAIAA0AAAALAA0AAAAJAA0AAAALAA0AAAAKAA0AAAALAA0AAAALAA0AAAALAA0AAAAMAA0AAAALAA0AAAADAAgAAAALAA0AAAAEAAgAAAALAA0AAAAFAAgAAAALAA0AAAAGAAgAAAALAA0AAAAHAAgAAAALAA0AAAAIAAgAAAALAA0AAAAJAAgAAAALAA0AAAAKAAgAAAALAA0AAAALAAgAAAALAA0AAAAMAAgAAAALAA0AAAANAAkAAAALAA0AAAANAAwAAAALAA0AAAAOAAsAAAALAA0AAAAOAAoAAAALAA0AAAA=")
+tile_set = ExtResource("1_bixfr")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_hmhdv")]
+
+[node name="RoomRespawn" parent="." unique_id=597677078 instance=ExtResource("3_nyhm2")]
+position = Vector2(176, 184)
+
+[node name="AnimatedSprite2D" parent="RoomRespawn" index="1" unique_id=1129734317]
+modulate = Color(0.84821427, 0.19312024, 0.19312024, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1178671118]
+offset_left = 40.0
+offset_top = 83.0
+offset_right = 219.0
+offset_bottom = 106.0
+text = "aquie se acaba el juego"
+
+[editable path="RoomRespawn"]

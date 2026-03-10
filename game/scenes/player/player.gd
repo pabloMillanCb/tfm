@@ -5,10 +5,14 @@ class_name Player
 
 @export var walking_speed = 80
 @export var walking_acceleration = 1200
+@export var walking_deceleration = 1200
 @export var pogo_acceleration = 2400
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
+@export var gravity_jumping = 200.0
+@export var gravity_falling = 400.0
+@export var max_fall_speed = 300.0
 @export var debug_data: PlayerData =  null
 
 @onready var data: PlayerData = (func set_debug_data() -> PlayerData:
@@ -37,15 +41,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 	
+	#if invencible:
+	#	$PlayerSprites/AnimationPlayer.play("blink")
 	if invencible:
-		$PlayerSprites/AnimationPlayer.play("blink")
+		$PlayerSprites.material.set_shader_parameter("whiten", true)
+		$PlayerSprites.material.set_shader_parameter("time", %InvencibleTimer.time_left)
+	else:
+		$PlayerSprites.material.set_shader_parameter("whiten", false)
 
 
 func set_player_data(loaded_data: PlayerData):
 	if debug_data == null:
 		data = loaded_data.copy()
-		update_upgrades_information()
-		instance_saved_key()
+	update_upgrades_information()
+	update_health_information()
+	instance_saved_key()
 
 
 func get_new_upgrade(upgrade: Upgrade.UpgradeType):
@@ -61,6 +71,14 @@ func get_new_upgrade(upgrade: Upgrade.UpgradeType):
 		data.has_teleport_update = true
 	
 	update_upgrades_information()
+	
+
+func update_health_information():
+	print("update_health")
+	print(data.max_health)
+	print(current_health)
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)
 
 
 func update_upgrades_information():
@@ -68,8 +86,8 @@ func update_upgrades_information():
 
 func stop_animation():
 	$PlayerSprites.stop()
-	$PlayerSprites/AnimationPlayer.stop()
-	$PlayerSprites/SwordSprites.stop()
+	$PlayerSprites/AnimationPlayer.pause()
+	$PlayerSprites/SwordSprites.pause()
 
 
 func set_animation(animation_name: String):
@@ -97,16 +115,16 @@ func get_look_direction():
 	return $PlayerSprites.scale.x
 
 
-func update_gravity(_delta):
+func update_gravity(_delta, force = false):
 	
-	var JUMP_GRAVITY_FORCE = 200
-	var FALL_GRAVITY_FORCE = 400
-	var MAX_FALL_SPEED = 300
+	var is_jump_pressed = Input.is_action_pressed("jump") or force
 	
-	if velocity.y > 0 or !Input.is_action_pressed("jump"):
-		velocity.y = move_toward(velocity.y, MAX_FALL_SPEED, _delta * FALL_GRAVITY_FORCE)
+	if velocity.y < 0 and !is_jump_pressed:
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling * 2)
+	elif velocity.y > 10 or velocity.y < -10 or !is_jump_pressed:
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling)
 	else:
-		velocity.y += JUMP_GRAVITY_FORCE * _delta
+		velocity.y += gravity_jumping * _delta
 
 
 func shoot():
@@ -134,15 +152,18 @@ func teleport():
 		teleport_crosshair.queue_free()
 
 
-func _on_atack_hit(area: HurtboxComponent) -> void:
-	print("area")
+func _on_atack_hit(area: Area2D) -> void:
 	if area.has_method("take_damage") and data.has_break_update:
-		area.take_damage()
+		area.take_damage(-(area.global_position - global_position).normalized())
 
 
 func _on_hit_received(_area: Area2D) -> void:
 	if !invencible:
-		state_machine._transition_to_next_state(PlayerState.HIT)
+		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func force_jump():
+	(state_machine.state as PlayerState).force_jump()
 
 
 func set_sprite_visibility(visible: bool):
@@ -162,4 +183,14 @@ func get_down_of_one_way_platform():
 
 func _on_tile_hazard_touched(body: Node2D) -> void:
 	if !invencible:
-		state_machine._transition_to_next_state(PlayerState.HIT)
+		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func pick_up_heart():
+	data.max_health += 1
+	heal()
+
+
+func heal():
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)

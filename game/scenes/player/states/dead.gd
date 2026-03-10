@@ -9,5 +9,8 @@ func _enter(_previous_state_path: String, _init_data := {}):
 		GameEvent._on_game_over.emit()
 	)
 
+func _on_hit_received():
+	pass
+
 func _exit():
 	player.set_sprite_visibility(false)

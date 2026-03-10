@@ -57,7 +57,6 @@ size = Vector2(16, 12)
 
 [node name="Piranha" type="Node2D" unique_id=810161683]
 script = ExtResource("1_cvmpw")
-speed = null
 health = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1814534361]

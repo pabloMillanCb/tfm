@@ -1,18 +1,25 @@
 extends CharacterBody2D
 class_name EnemyCharacter
 
-@export var health := 1
+var alive = true
 
-func take_damage():
+@export var health := 1
+@export var knockback_force = Vector2(25.0, 25.0)
+@export var hit = false
+
+func take_damage(direction: Vector2 = Vector2.ZERO):
 	health -= 1
-	if health == 0:
+	if health <= 0:
 		die()
 	else:
-		react_to_damage()
+		react_to_damage(direction)
 
 
-func react_to_damage():
-	pass
+func react_to_damage(direction: Vector2 = Vector2.ZERO):
+	hit = true
+	print("REACT TO")
+	print(direction)
+	velocity = Vector2(direction.x * knockback_force.x, knockback_force.y)
 
 
 func die():

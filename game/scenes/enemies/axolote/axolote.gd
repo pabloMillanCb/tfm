@@ -14,6 +14,9 @@ class_name Axolote
 
 var can_take_hits = true
 
+func _ready() -> void:
+	if move_direction == 1.0:
+		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
 
 func update_gravity(_delta):
 	var GRAVITY_FORCE = 200
@@ -44,7 +47,11 @@ func change_direction():
 		turn_cooldown.start(1.0)
 
 
-func take_damage():
+func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("ouch")
 	if can_take_hits:
 		state_machine._transition_to_next_state(AxoloteState.HIT)
+
+
+func die(direction: Vector2 = Vector2.ZERO):
+	$AnimationPlayer.play("death")

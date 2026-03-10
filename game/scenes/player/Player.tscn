@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://bu3my6ax5bmxy" path="res://scenes/player/states/fall.gd" id="5_8qjgm"]
 [ext_resource type="Script" uid="uid://b1sgfqw4kcqcm" path="res://scenes/player/states/atack.gd" id="6_ejd4k"]
 [ext_resource type="Script" uid="uid://b4s7mu1t2g70i" path="res://scenes/player/states/prepare_teleport.gd" id="7_2xrq6"]
+[ext_resource type="Script" uid="uid://ddkckoixb7uap" path="res://scenes/player/states/super_falling.gd" id="8_8nn5r"]
 [ext_resource type="Script" uid="uid://e13wgd807ncy" path="res://scenes/player/states/release_teleport.gd" id="8_pi3ps"]
 [ext_resource type="Script" uid="uid://cgw2ulqt8usnb" path="res://scenes/player/states/pogo.gd" id="9_kswpp"]
 [ext_resource type="Script" uid="uid://bthgpd6o3txnl" path="res://scenes/player/states/hit.gd" id="10_v5i4m"]
@@ -29,8 +30,9 @@ height = 14.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v5i4m"]
 shader = ExtResource("15_kswpp")
-shader_parameter/flash_color = Color(1, 1, 1, 1)
-shader_parameter/flash_pct = 0.0
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1lr0"]
 atlas = ExtResource("15_pi3ps")
@@ -128,6 +130,10 @@ region = Rect2(24, 288, 24, 24)
 atlas = ExtResource("15_pi3ps")
 region = Rect2(48, 288, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kfw2"]
+atlas = ExtResource("15_pi3ps")
+region = Rect2(24, 192, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_180ig"]
 animations = [{
 "frames": [{
@@ -148,10 +154,10 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_pi3ps")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -245,6 +251,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"release_teleport",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kfw2")
+}],
+"loop": false,
+"name": &"super_fall",
 "speed": 5.0
 }]
 
@@ -386,7 +400,7 @@ tracks/5/path = NodePath("AtackHitBox/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.2633),
+"times": PackedFloat32Array(0, 0.06666667, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -518,6 +532,10 @@ region = Rect2(144, 360, 24, 24)
 atlas = ExtResource("15_pi3ps")
 region = Rect2(168, 360, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydpy"]
+atlas = ExtResource("15_pi3ps")
+region = Rect2(24, 216, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_use2k"]
 atlas = ExtResource("15_pi3ps")
 region = Rect2(0, 360, 24, 24)
@@ -578,10 +596,10 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_wslmf")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -644,6 +662,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sydpy")
+}],
+"loop": false,
+"name": &"super_fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_use2k")
 }, {
 "duration": 1.25,
@@ -680,10 +706,25 @@ height = 16.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.51096493, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="Gradient" id="Gradient_8nn5r"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_kvwax"]
+offsets = PackedFloat32Array(0.5014451, 0.51589596)
+colors = PackedColorArray(0.3882353, 0.60784316, 1, 1, 1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=128037168]
 z_index = 10
 collision_mask = 2
 script = ExtResource("1_ov1oi")
+walking_speed = 60
+walking_acceleration = 1000
+walking_deceleration = 1000
+air_acceleration = 100
+jump_force = -150
+gravity_jumping = 80.0
+gravity_falling = 300.0
+max_fall_speed = 180.0
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=216833047]
 shape = SubResource("CapsuleShape2D_pi3ps")
@@ -700,8 +741,22 @@ script = ExtResource("3_ov1oi")
 [node name="Jump" type="Node" parent="StateMachine" unique_id=639476721]
 script = ExtResource("4_rn7t0")
 
-[node name="Falling" type="Node" parent="StateMachine" unique_id=2138696669]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=2138696669 node_paths=PackedStringArray("coyote_timer")]
 script = ExtResource("5_8qjgm")
+coyote_timer = NodePath("CoyoteTime")
+
+[node name="CoyoteTime" type="Timer" parent="StateMachine/Falling" unique_id=772308251]
+unique_name_in_owner = true
+wait_time = 0.12
+one_shot = true
+
+[node name="ToSuperFall" type="Timer" parent="StateMachine/Falling" unique_id=1135182758]
+wait_time = 0.5
+one_shot = true
+
+[node name="SuperFalling" type="Node" parent="StateMachine" unique_id=1269288117 node_paths=PackedStringArray("coyote_timer")]
+script = ExtResource("8_8nn5r")
+coyote_timer = NodePath("../Falling/CoyoteTime")
 
 [node name="Atack" type="Node" parent="StateMachine" unique_id=327802204]
 script = ExtResource("6_ejd4k")
@@ -722,7 +777,8 @@ script = ExtResource("10_v5i4m")
 one_shot = true
 
 [node name="InvencibleTimer" type="Timer" parent="StateMachine/Hit" unique_id=980081913]
-wait_time = 3.0
+unique_name_in_owner = true
+wait_time = 2.0
 one_shot = true
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1464874425]
@@ -813,17 +869,20 @@ position = Vector2(5, 0)
 script = ExtResource("18_2xrq6")
 
 [node name="HitParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=1690821425]
+visible = false
 position = Vector2(-5, 0)
 emitting = false
-lifetime = 0.4
+lifetime = 0.8
 one_shot = true
 explosiveness = 0.92
 spread = 23.0
-gravity = Vector2(-300, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+damping_min = 91.346
+damping_max = 91.346
 scale_amount_min = 2.0
-scale_amount_max = 2.0
+scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_2xrq6")
 
 [node name="DeadHeadParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=956211342]
@@ -836,8 +895,8 @@ one_shot = true
 direction = Vector2(0, -1)
 spread = 20.0
 gravity = Vector2(0, 300)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
 angular_velocity_min = 15.0
 angular_velocity_max = 15.0
 
@@ -852,10 +911,33 @@ direction = Vector2(0, -1)
 spread = 10.0
 gravity = Vector2(0, 300)
 initial_velocity_min = 120.0
-initial_velocity_max = 150.0
+initial_velocity_max = 120.0
 angular_velocity_min = 15.0
 angular_velocity_max = 15.0
 
+[node name="DeathParticle" type="CPUParticles2D" parent="PlayerParticles" unique_id=488743495]
+visible = false
+z_index = -1
+position = Vector2(-5, -4)
+emitting = false
+amount = 30
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_2xrq6")
+color_ramp = SubResource("Gradient_8nn5r")
+color_initial_ramp = SubResource("Gradient_kvwax")
+
+[connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
+[connection signal="timeout" from="StateMachine/Falling/ToSuperFall" to="StateMachine/Falling" method="_on_to_super_fall_timeout"]
 [connection signal="show_hit_particles" from="StateMachine/Hit" to="PlayerParticles" method="_on_hit"]
 [connection signal="timeout" from="StateMachine/Hit/KnockBackTimer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Hit/InvencibleTimer" to="StateMachine/Hit" method="_on_invencible_timer_timeout"]

@@ -1,0 +1,34 @@
+[gd_scene format=4 uid="uid://cdmliinga0m16"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_bq83t"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_jgmcl"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_750ct"]
+[ext_resource type="PackedScene" uid="uid://clk8frjg8p6o6" path="res://scenes/key/Key.tscn" id="4_bq83t"]
+[ext_resource type="PackedScene" uid="uid://cu3coffrldrdu" path="res://scenes/breakable/wall/WallBreakable.tscn" id="5_jgmcl"]
+
+[node name="Church" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAAAAsAAAAHAA0AAAABAAsAAAAHAA0AAAACAAwAAAALAA0AAAADAA0AAAALAA0AAAAEAA0AAAALAA0AAAAFAA0AAAALAA0AAAAGAA0AAAALAA0AAAAHAA0AAAALAA0AAAAIAA0AAAALAA0AAAAJAA0AAAALAA0AAAAKAA0AAAALAA0AAAALAA0AAAALAA0AAAAMAA0AAAALAA0AAAANAA0AAAALAA0AAAAOAA0AAAALAA0AAAAPAA0AAAALAA0AAAAAAAwAAAALAA0AAAABAAwAAAALAA0AAAABAA0AAAALAA0AAAACAA0AAAALAA0AAAAAAA0AAAALAA0AAAAAAAoAAAAHAA0AAAAAAAkAAAAHAA0AAAAAAAUAAAAJAA0AAAABAAQAAAAJAA0AAAABAAMAAAAJAA0AAAACAAIAAAAJAA0AAAAPAAUAAAAJAA0AAAAOAAQAAAAJAA0AAAAOAAMAAAAJAA0AAAANAAIAAAAJAA0AAAAMAAIAAAAJAA0AAAALAAIAAAAJAA0AAAAKAAIAAAAJAA0AAAADAAIAAAAJAA0AAAAEAAIAAAAJAA0AAAAFAAIAAAAJAA0AAAAGAAEAAAAJAA0AAAAHAAEAAAAJAA0AAAAIAAEAAAAJAA0AAAAJAAEAAAAJAA0AAAABAAUAAAAJAA0AAAACAAQAAAAJAA0AAAACAAMAAAAJAA0AAAADAAMAAAAJAA0AAAAEAAMAAAAJAA0AAAAFAAMAAAAJAA0AAAAGAAIAAAAJAA0AAAAHAAIAAAAJAA0AAAAIAAIAAAAJAA0AAAAJAAIAAAAJAA0AAAAKAAMAAAAJAA0AAAALAAMAAAAJAA0AAAAMAAMAAAAJAA0AAAANAAMAAAAJAA0AAAANAAQAAAAJAA0AAAAOAAUAAAAJAA0AAAABAAoAAAAIAA0AAAAAAAgAAAAIAA0AAAAPAAgAAAAJAA0AAAAPAAcAAAAJAA0AAAAPAAYAAAAJAA0AAAA=")
+tile_set = ExtResource("1_bq83t")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_jgmcl")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_750ct")]
+position = Vector2(128, 42)
+
+[node name="Key" parent="." unique_id=28283298 instance=ExtResource("4_bq83t")]
+position = Vector2(197, 155)
+is_pre_instanced = true
+
+[node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("5_jgmcl")]
+position = Vector2(248, 200)
+
+[node name="WallBreakable2" parent="." unique_id=849258520 instance=ExtResource("5_jgmcl")]
+position = Vector2(248, 184)
+
+[node name="WallBreakable3" parent="." unique_id=286782963 instance=ExtResource("5_jgmcl")]
+position = Vector2(248, 168)
+
+[node name="WallBreakable4" parent="." unique_id=956856458 instance=ExtResource("5_jgmcl")]
+position = Vector2(248, 152)

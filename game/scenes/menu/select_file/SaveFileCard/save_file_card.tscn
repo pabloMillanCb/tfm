@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c8rt3ni2j4tlg"]
+
+[ext_resource type="Script" uid="uid://bnmhgx4rafs41" path="res://scenes/menu/select_file/SaveFileCard/save_file_card.gd" id="1_pqrde"]
+[ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_yw677"]
+
+[node name="SaveFileCard" type="Node2D" unique_id=78140404]
+script = ExtResource("1_pqrde")
+
+[node name="Control" type="Control" parent="." unique_id=347256389]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_yw677")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=304829086]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_yw677")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=1753425279]
+layout_mode = 2
+columns = 2
+
+[node name="FileName" type="Label" parent="PanelContainer/GridContainer" unique_id=468954845]
+unique_name_in_owner = true
+layout_mode = 2
+text = "File name"
+
+[node name="FileName2" type="Label" parent="PanelContainer/GridContainer" unique_id=901502240]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Playtime" type="Label" parent="PanelContainer/GridContainer" unique_id=1180631575]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Playtime: "
+
+[node name="PlaytimeValue" type="Label" parent="PanelContainer/GridContainer" unique_id=1565756946]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
