@@ -450,7 +450,7 @@ _data = {
 size = Vector2(9, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xrq6"]
-size = Vector2(3, 9)
+size = Vector2(3, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pysui"]
 atlas = ExtResource("15_pi3ps")
@@ -722,6 +722,7 @@ walking_acceleration = 1000
 walking_deceleration = 1000
 air_acceleration = 100
 jump_force = -150
+bounce_force = -190
 gravity_jumping = 80.0
 gravity_falling = 300.0
 max_fall_speed = 180.0
@@ -826,7 +827,7 @@ script = ExtResource("17_p1lr0")
 metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/PogoHitbox" unique_id=816854487]
-position = Vector2(0.5, 13.5)
+position = Vector2(0.5, 15)
 shape = SubResource("RectangleShape2D_2xrq6")
 disabled = true
 debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
