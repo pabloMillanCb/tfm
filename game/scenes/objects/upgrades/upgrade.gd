@@ -42,10 +42,10 @@ func set_description():
 	if type == UpgradeType.SWORD:
 		$CanvasLayer/Label.text = "Has conseguido la espada"
 	elif type == UpgradeType.BREAK:
-		$CanvasLayer/Label.text = "Has conseguido el break"
+		$CanvasLayer/Label.text = "Has conseguido el break,\npuedes romper \nalgunos muros"
 	elif type == UpgradeType.BEAM:
 		$CanvasLayer/Label.text = "Has conseguido el beam"
 	elif type == UpgradeType.POGO:
-		$CanvasLayer/Label.text = "Has conseguido el pogo"
+		$CanvasLayer/Label.text = "Has conseguido el pogo,\nhaz como en el \nshovel knight"
 	elif type == UpgradeType.TELEPORT:
 		$CanvasLayer/Label.text = "Has conseguido teleport"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://m5ah4mbymn1d"]
+[gd_scene format=3 uid="uid://m5ah4mbymn1d"]
 
 [ext_resource type="Script" uid="uid://budx4jsv4lex7" path="res://scenes/objects/upgrades/upgrade.gd" id="1_dd37x"]
 [ext_resource type="Texture2D" uid="uid://decq3gh7kf1f7" path="res://scenes/objects/upgrades/assets/collectible_sheet.png" id="2_v0suv"]
@@ -128,38 +128,36 @@ _data = {
 &"ponder": SubResource("Animation_dd37x")
 }
 
-[node name="Upgrade" type="Area2D"]
+[node name="Upgrade" type="Area2D" unique_id=138866370]
 process_mode = 3
 collision_layer = 0
 script = ExtResource("1_dd37x")
 metadata/_custom_type_script = "uid://b0uhsbkeeqrha"
 
-[node name="ItemSprite" type="AnimatedSprite2D" parent="."]
+[node name="ItemSprite" type="AnimatedSprite2D" parent="." unique_id=1447003208]
 sprite_frames = SubResource("SpriteFrames_rosgi")
 animation = &"teleport"
 
-[node name="OrbSprite" type="AnimatedSprite2D" parent="ItemSprite"]
+[node name="OrbSprite" type="AnimatedSprite2D" parent="ItemSprite" unique_id=597282226]
 sprite_frames = SubResource("SpriteFrames_d3hpf")
 autoplay = "default"
 frame_progress = 0.9449347
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1925835925]
 visible = false
 shape = SubResource("RectangleShape2D_ctimp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=106252050]
 visible = false
 
-[node name="Label" type="Label" parent="CanvasLayer"]
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1722659424]
 offset_left = 45.0
 offset_top = 47.0
 offset_right = 214.0
 offset_bottom = 70.0
 text = "Objeto tal conseguido"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1079084526]
 process_mode = 1
-libraries = {
-&"": SubResource("AnimationLibrary_jtj40")
-}
-autoplay = "ponder"
+libraries/ = SubResource("AnimationLibrary_jtj40")
+autoplay = &"ponder"

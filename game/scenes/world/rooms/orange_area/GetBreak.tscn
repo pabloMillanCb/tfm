@@ -103,9 +103,12 @@ rotation = -2.0041502
 
 [node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("8_mmbay")]
 position = Vector2(40, 56)
+color = 1
 
 [node name="WallBreakable2" parent="." unique_id=258267690 instance=ExtResource("8_mmbay")]
 position = Vector2(40, 72)
+color = 1
 
 [node name="WallBreakable3" parent="." unique_id=1446069037 instance=ExtResource("8_mmbay")]
 position = Vector2(40, 88)
+color = 1
