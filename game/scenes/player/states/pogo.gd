@@ -25,8 +25,10 @@ func _update(_delta):
 			player.velocity.x, 
 			0.0, 
 			_delta * player.pogo_acceleration) 
-	
-	if player.is_on_floor():
+			
+	if Input.is_action_just_pressed("teleport") and player.data.has_teleport_update:
+		finished.emit(PREPARE_TELEPORT)	
+	elif player.is_on_floor():
 		finished.emit(IDLE)
 	
 	player.move_and_slide()
