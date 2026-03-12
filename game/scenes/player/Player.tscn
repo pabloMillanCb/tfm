@@ -848,6 +848,7 @@ debug_color = Color(0.42542985, 0, 0.48995537, 0.41960785)
 
 [node name="DebugStateName" type="Label" parent="." unique_id=544461891]
 unique_name_in_owner = true
+visible = false
 offset_left = -22.0
 offset_top = -29.0
 offset_right = 27.0
