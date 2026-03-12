@@ -713,6 +713,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0.5014451, 0.51589596)
 colors = PackedColorArray(0.3882353, 0.60784316, 1, 1, 1, 1, 1, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ro0t8"]
+size = Vector2(5, 5)
+
 [node name="Player" type="CharacterBody2D" unique_id=128037168]
 z_index = 10
 collision_mask = 2
@@ -938,6 +941,13 @@ scale_amount_curve = SubResource("Curve_2xrq6")
 color_ramp = SubResource("Gradient_8nn5r")
 color_initial_ramp = SubResource("Gradient_kvwax")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=332797322]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914684902]
+shape = SubResource("RectangleShape2D_ro0t8")
+
 [connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="StateMachine/Falling/ToSuperFall" to="StateMachine/Falling" method="_on_to_super_fall_timeout"]
 [connection signal="show_hit_particles" from="StateMachine/Hit" to="PlayerParticles" method="_on_hit"]
@@ -948,3 +958,5 @@ color_initial_ramp = SubResource("Gradient_kvwax")
 [connection signal="area_entered" from="PlayerSprites/PogoHitbox" to="StateMachine/Pogo" method="_on_pogo_hitbox_area_entered"]
 [connection signal="area_entered" from="PlayerSprites/Hurtbox" to="." method="_on_hit_received"]
 [connection signal="body_entered" from="PlayerSprites/Hurtbox" to="." method="_on_tile_hazard_touched"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/ReleaseTeleport" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="StateMachine/ReleaseTeleport" method="_on_area_2d_body_exited"]
