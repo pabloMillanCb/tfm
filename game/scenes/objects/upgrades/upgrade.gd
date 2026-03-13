@@ -16,9 +16,9 @@ func _ready() -> void:
 func _collect(body: Node2D) -> void:
 	$CanvasLayer.visible = true
 	$ItemSprite.visible = false
+	$AnimationPlayer.play("unlock")
 	get_tree().paused = true
 	(body as Player).get_new_upgrade(type)
-	$CanvasLayer.visible = true
 	await get_tree().create_timer(wait_time).timeout
 	get_tree().paused = false
 	upgrade_picked.emit()
