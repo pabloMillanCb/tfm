@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bdeh2in3a1nhm"]
 
+[ext_resource type="Script" uid="uid://bk4xy5fcjuyr2" path="res://scenes/cutscenes/ending/game_ending.gd" id="1_ekke1"]
 [ext_resource type="Texture2D" uid="uid://cdq01uis5cr2" path="res://scenes/cutscenes/ending/ending4.png" id="1_ga1de"]
 [ext_resource type="Texture2D" uid="uid://btox32groj4ye" path="res://scenes/cutscenes/ending/ending3.png" id="2_cd07n"]
 [ext_resource type="Shader" uid="uid://bt24x1e8ljket" path="res://shaders/wave.gdshader" id="3_4grkw"]
@@ -539,7 +540,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("TimeIs2:visible")
+tracks/15/path = NodePath("Time:visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -603,7 +604,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TimeIs2:visible")
+tracks/3/path = NodePath("Time:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -685,6 +686,7 @@ _data = {
 }
 
 [node name="GameEnding" type="Node2D" unique_id=336129360]
+script = ExtResource("1_ekke1")
 
 [node name="Background4" type="Sprite2D" parent="." unique_id=165593326]
 texture = ExtResource("1_ga1de")
@@ -777,7 +779,7 @@ theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Completion time: "
 
-[node name="TimeIs2" type="Label" parent="." unique_id=624578152]
+[node name="Time" type="Label" parent="." unique_id=624578152]
 visible = false
 offset_left = 31.0
 offset_top = -59.0
