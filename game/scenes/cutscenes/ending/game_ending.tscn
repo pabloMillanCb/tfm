@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dqgxedfsysf8v" path="res://scenes/cutscenes/ending/eye_extra.png" id="10_c1xr1"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="11_444p0"]
 [ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="12_nw6f2"]
+[ext_resource type="Animation" uid="uid://b027anirfcypq" path="res://assets/resources/animations/gamecredits.res" id="13_rq5vu"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ekke1"]
 
@@ -348,231 +349,104 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_y1qpl"]
-length = 20.0
+[sub_resource type="Animation" id="Animation_pqndj"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HeadHelper/Head:visible")
+tracks/0/path = NodePath("Title:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 7.1333003),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HeadHelper/Head:scale")
-tracks/1/interp = 0
+tracks/1/path = NodePath("GameByPavro:visible")
+tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(7.1333337, 7.633333, 9.333333, 9.366667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 0.685), Vector2(1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/2/type = "bezier"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HeadHelper:rotation")
+tracks/2/path = NodePath("TimeIs:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.3032875, 13.5, 29.83, -0.16666667, 0, 0, 0),
-"times": PackedFloat32Array(9.370804, 10.666666)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/3/type = "bezier"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HeadHelper/Head:position:x")
+tracks/3/path = NodePath("Time:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.15964031, 29.5, 0.5950413, -16.5, -143.457, -0.13829136, 58.957, 0, 0),
-"times": PackedFloat32Array(14.9, 15.799999)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/4/type = "bezier"
+tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HeadHelper/Head:position:y")
+tracks/4/path = NodePath("Thanks:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/5/type = "bezier"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HeadHelper:position:x")
+tracks/5/path = NodePath("Node2D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(7, -0.25, 0, 0.5822289, -41.5, -66, 0, 0, 0, 0),
-"times": PackedFloat32Array(9.366667, 10.403804)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
-tracks/6/type = "bezier"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("HeadHelper:position:y")
+tracks/6/path = NodePath("PlayerSprites:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(5, -0.25, 0, 0.44889545, -65.5, -23, 0, 0, 0, 0),
-"times": PackedFloat32Array(9.366667, 10.403804)
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("PlayerSprites:animation")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 3.9333334, 6.666667, 7.1333003),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [&"move", &"idle", &"idle", &"body"]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerSprites:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 3.8666666),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(131, 9), Vector2(-2, 9)]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerSprites")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0.033333335, 3.9333334, 6.6667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [&"move", 1.0, false],
-"method": &"play"
-}, {
-"args": [&"idle", 1.0, false],
-"method": &"play"
-}, {
-"args": [],
-"method": &"stop"
-}]
-}
-tracks/10/type = "method"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("HeadHelper/Head/Eye")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(10.933333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"blink", 1.0, false],
-"method": &"play"
-}]
-}
-tracks/11/type = "method"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("AnimationPlayer")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(20),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"credits", -1, 1.0, false],
-"method": &"play"
-}]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("SaveGameLable:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("GameByPavro:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("TimeIs:visible")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("Time:visible")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("TimeIs3:visible")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [Vector2(131, 9)]
 }
 
-[sub_resource type="Animation" id="Animation_444p0"]
-resource_name = "credits"
+[sub_resource type="Animation" id="Animation_rq5vu"]
+resource_name = "credits_2"
 length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SaveGameLable:visible")
+tracks/0/path = NodePath("Title:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 1.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -584,7 +458,7 @@ tracks/1/path = NodePath("GameByPavro:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.6666667),
+"times": PackedFloat32Array(0, 3.2333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -596,7 +470,7 @@ tracks/2/path = NodePath("TimeIs:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 6.0666666),
+"times": PackedFloat32Array(0, 5.3333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -608,7 +482,7 @@ tracks/3/path = NodePath("Time:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 6.0666666),
+"times": PackedFloat32Array(0, 5.3333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -616,14 +490,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TimeIs3:visible")
+tracks/4/path = NodePath("Thanks:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 8.7),
+"times": PackedFloat32Array(0, 7.5666666),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_c1xr1"]
@@ -680,25 +566,29 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_444p0"]
 _data = {
-&"RESET": SubResource("Animation_y1qpl"),
-&"credits": SubResource("Animation_444p0"),
+&"RESET": SubResource("Animation_pqndj"),
+&"credits": ExtResource("13_rq5vu"),
+&"credits_2": SubResource("Animation_rq5vu"),
 &"jump": SubResource("Animation_c1xr1")
 }
 
 [node name="GameEnding" type="Node2D" unique_id=336129360]
 script = ExtResource("1_ekke1")
 
-[node name="Background4" type="Sprite2D" parent="." unique_id=165593326]
+[node name="Node2D" type="Node2D" parent="." unique_id=1661726621]
+visible = false
+
+[node name="Background4" type="Sprite2D" parent="Node2D" unique_id=165593326]
 texture = ExtResource("1_ga1de")
 
-[node name="Background3" type="Sprite2D" parent="." unique_id=1879025623]
+[node name="Background3" type="Sprite2D" parent="Node2D" unique_id=1879025623]
 texture = ExtResource("2_cd07n")
 
-[node name="Background2" type="Sprite2D" parent="." unique_id=1723647129]
+[node name="Background2" type="Sprite2D" parent="Node2D" unique_id=1723647129]
 material = SubResource("ShaderMaterial_rq5vu")
 texture = ExtResource("3_77dxw")
 
-[node name="Background1" type="Sprite2D" parent="." unique_id=534460850]
+[node name="Background1" type="Sprite2D" parent="Node2D" unique_id=534460850]
 material = SubResource("ShaderMaterial_66bml")
 texture = ExtResource("4_y1qpl")
 
@@ -741,7 +631,7 @@ frame_progress = 1.0
 libraries/ = SubResource("AnimationLibrary_444p0")
 autoplay = &"RESET"
 
-[node name="SaveGameLable" type="RichTextLabel" parent="." unique_id=1854573795]
+[node name="Title" type="RichTextLabel" parent="." unique_id=1854573795]
 visible = false
 offset_left = -52.0
 offset_top = -96.0
@@ -789,7 +679,7 @@ theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
 
-[node name="TimeIs3" type="Label" parent="." unique_id=1497565776]
+[node name="Thanks" type="Label" parent="." unique_id=1497565776]
 visible = false
 offset_left = -47.0
 offset_top = -45.0
@@ -812,3 +702,9 @@ offset_top = -112.0
 offset_right = 146.0
 offset_bottom = -97.0
 color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=1904418257]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
