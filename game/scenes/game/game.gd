@@ -105,6 +105,7 @@ func enter_state(new_state: GameState, old_state: GameState):
 		
 	elif (new_state == GameState.GAME_ENDING):
 		$NewState.text = "GameState.GAME_ENDING"
+		add_child(preload("res://scenes/cutscenes/ending/game_ending.tscn").instantiate())
 		
 	elif (new_state == GameState.TITLE_SCREEN):
 		$NewState.text = "GameState.TITLE_SCREEN"
