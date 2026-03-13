@@ -10,7 +10,6 @@ signal upgrade_picked
 
 func _ready() -> void:
 	super()
-	set_description()
 	set_image()
 
 
@@ -19,6 +18,7 @@ func _collect(body: Node2D) -> void:
 	$ItemSprite.visible = false
 	get_tree().paused = true
 	(body as Player).get_new_upgrade(type)
+	$CanvasLayer.visible = true
 	await get_tree().create_timer(wait_time).timeout
 	get_tree().paused = false
 	upgrade_picked.emit()
@@ -28,24 +28,27 @@ func _collect(body: Node2D) -> void:
 func set_image():
 	if type == UpgradeType.SWORD:
 		$ItemSprite.play("sword")
+		%ItemName.text = "SWORD_NAME"
+		%ItemInstruction.text = "SWORD_INSTRUCTION"
+		%ItemTexture.texture = preload("res://scenes/objects/upgrades/assets/sword.png")
+		%ActionIcon.action_name = StringName("atack")
 	elif type == UpgradeType.BREAK:
 		$ItemSprite.play("break")
+		%ItemName.text = "BREAK_NAME"
+		%ItemInstruction.text = "BREAK_INSTRUCTION"
+		%ItemTexture.texture = preload("res://scenes/objects/upgrades/assets/break.png")
+		%ActionIcon.visible = false
 	elif type == UpgradeType.BEAM:
-		$ItemSprite.play("beam")
+		pass
 	elif type == UpgradeType.POGO:
 		$ItemSprite.play("pogo")
+		%ItemName.text = "POGO_NAME"
+		%ItemInstruction.text = "POGO_INSTRUCTION"
+		%ItemTexture.texture = preload("res://scenes/objects/upgrades/assets/pogo.png")
+		%ActionIcon.action_name = StringName("aim_down")
 	elif type == UpgradeType.TELEPORT:
 		$ItemSprite.play("teleport")
-
-#TODO: Traducir
-func set_description():
-	if type == UpgradeType.SWORD:
-		$CanvasLayer/Label.text = "Has conseguido la espada"
-	elif type == UpgradeType.BREAK:
-		$CanvasLayer/Label.text = "Has conseguido el break,\npuedes romper \nalgunos muros"
-	elif type == UpgradeType.BEAM:
-		$CanvasLayer/Label.text = "Has conseguido el beam"
-	elif type == UpgradeType.POGO:
-		$CanvasLayer/Label.text = "Has conseguido el pogo,\nhaz como en el \nshovel knight"
-	elif type == UpgradeType.TELEPORT:
-		$CanvasLayer/Label.text = "Has conseguido teleport"
+		%ItemName.text = "TELEPORT_NAME"
+		%ItemInstruction.text = "TELEPORT_INSTRUCTION"
+		%ItemTexture.texture = preload("res://scenes/objects/upgrades/assets/wand.png")
+		%ActionIcon.action_name = StringName("teleport")
