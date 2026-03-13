@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdq01uis5cr2" path="res://scenes/cutscenes/ending/ending4.png" id="1_ga1de"]
 [ext_resource type="Texture2D" uid="uid://btox32groj4ye" path="res://scenes/cutscenes/ending/ending3.png" id="2_cd07n"]
+[ext_resource type="Shader" uid="uid://bt24x1e8ljket" path="res://shaders/wave.gdshader" id="3_4grkw"]
 [ext_resource type="Texture2D" uid="uid://bhfsowr6m5hfc" path="res://scenes/cutscenes/ending/ending2.png" id="3_77dxw"]
 [ext_resource type="Texture2D" uid="uid://ca0c370u61dk" path="res://scenes/cutscenes/ending/ending1.png" id="4_y1qpl"]
 [ext_resource type="Shader" uid="uid://d17fs28cof1jp" path="res://shaders/change_color.gdshader" id="5_c1xr1"]
@@ -12,6 +13,30 @@
 [ext_resource type="Texture2D" uid="uid://dqgxedfsysf8v" path="res://scenes/cutscenes/ending/eye_extra.png" id="10_c1xr1"]
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="11_444p0"]
 [ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="12_nw6f2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ekke1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq5vu"]
+shader = ExtResource("3_4grkw")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ekke1")
+shader_parameter/amplitude = 0.0999999977648
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pqndj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66bml"]
+shader = ExtResource("3_4grkw")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_pqndj")
+shader_parameter/amplitude = 0.0999999977648
+shader_parameter/time_scale = 0.04
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nw6f2"]
 shader = ExtResource("5_c1xr1")
@@ -668,9 +693,11 @@ texture = ExtResource("1_ga1de")
 texture = ExtResource("2_cd07n")
 
 [node name="Background2" type="Sprite2D" parent="." unique_id=1723647129]
+material = SubResource("ShaderMaterial_rq5vu")
 texture = ExtResource("3_77dxw")
 
 [node name="Background1" type="Sprite2D" parent="." unique_id=534460850]
+material = SubResource("ShaderMaterial_66bml")
 texture = ExtResource("4_y1qpl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=100657061]
@@ -715,9 +742,9 @@ autoplay = &"RESET"
 [node name="SaveGameLable" type="RichTextLabel" parent="." unique_id=1854573795]
 visible = false
 offset_left = -52.0
-offset_top = -104.0
+offset_top = -96.0
 offset_right = 136.0
-offset_bottom = -24.0
+offset_bottom = -16.0
 scale = Vector2(0.56809676, 0.56809676)
 theme = ExtResource("11_444p0")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -733,9 +760,9 @@ horizontal_alignment = 1
 [node name="GameByPavro" type="Label" parent="." unique_id=1135075744]
 visible = false
 offset_left = -38.0
-offset_top = -81.0
+offset_top = -73.0
 offset_right = 42.0
-offset_bottom = -58.0
+offset_bottom = -50.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "a game by pavro"
@@ -743,9 +770,9 @@ text = "a game by pavro"
 [node name="TimeIs" type="Label" parent="." unique_id=629540242]
 visible = false
 offset_left = -52.0
-offset_top = -67.0
+offset_top = -59.0
 offset_right = 31.0
-offset_bottom = -44.0
+offset_bottom = -36.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Completion time: "
@@ -753,9 +780,9 @@ text = "Completion time: "
 [node name="TimeIs2" type="Label" parent="." unique_id=624578152]
 visible = false
 offset_left = 31.0
-offset_top = -67.0
+offset_top = -59.0
 offset_right = 114.0
-offset_bottom = -44.0
+offset_bottom = -36.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
@@ -763,9 +790,23 @@ text = "00:00"
 [node name="TimeIs3" type="Label" parent="." unique_id=1497565776]
 visible = false
 offset_left = -47.0
-offset_top = -53.0
+offset_top = -45.0
 offset_right = 50.0
-offset_bottom = -30.0
+offset_bottom = -22.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Thanks for playing!"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=300039540]
+offset_left = -141.0
+offset_top = 97.0
+offset_right = 146.0
+offset_bottom = 112.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=799421195]
+offset_left = -141.0
+offset_top = -112.0
+offset_right = 146.0
+offset_bottom = -97.0
+color = Color(0, 0, 0, 1)
