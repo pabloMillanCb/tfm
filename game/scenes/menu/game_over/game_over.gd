@@ -9,5 +9,7 @@ func _on_main_menu_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
+	$AnimatedSprite2D.play("open")
+	await get_tree().create_timer(1.5).timeout
 	DataManager.reload_current_save()
 	GameEvent._on_player_respawn.emit()

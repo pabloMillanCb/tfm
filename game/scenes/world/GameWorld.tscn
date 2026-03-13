@@ -17,7 +17,8 @@ metadata/_custom_type_script = "uid://bjh6dkg0kgo4g"
 
 [node name="GameWorld" type="Node2D" unique_id=1365651245]
 script = ExtResource("1_o21sk")
-debug_respawn = "res://scenes/world/rooms/final_area/End2.tscn"
+debug_respawn = "uid://4qqu35n1cxoh"
+debug = true
 
 [node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]
 debug_data = SubResource("Resource_7vffv")
