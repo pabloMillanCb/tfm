@@ -1,11 +1,21 @@
 extends Breakable
 
+@export var permanent = true
+
+func _ready() -> void:
+	if !permanent:
+		MetSys.register_storable_object(self)
+
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("take_damage")
-	$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
-	$HurtboxComponent/CollisionShape2D.set_deferred("disabled",true)
-	$Sprite2D.visible = false
-	$Timer.start()
+	if !permanent:
+		MetSys.store_object(self)
+		queue_free()
+	else:
+		$StaticBody2D/CollisionShape2D.set_deferred("disabled",true)
+		$HurtboxComponent/CollisionShape2D.set_deferred("disabled",true)
+		$Sprite2D.visible = false
+		$Timer.start()
 
 
 func _on_timer_timeout() -> void:

@@ -19,3 +19,4 @@ position = Vector2(128, 393)
 
 [node name="Skull" parent="." unique_id=1204490723 instance=ExtResource("4_l2amj")]
 position = Vector2(248, 392)
+permanent = false
