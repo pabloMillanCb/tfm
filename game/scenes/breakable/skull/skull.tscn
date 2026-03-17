@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://11itbu87h6os"]
 
 [ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="1_gtffm"]
-[ext_resource type="Script" uid="uid://coqgashasup83" path="res://scenes/breakable/breakable.gd" id="1_kjlyu"]
+[ext_resource type="Script" uid="uid://esb4mcq0v2os" path="res://scenes/breakable/skull/skull.gd" id="1_kjlyu"]
 [ext_resource type="Texture2D" uid="uid://cum20b4rt1cos" path="res://scenes/breakable/skull/skull.png" id="2_kjlyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32jbw"]
@@ -32,5 +32,10 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1653029050]
-visible = false
 shape = SubResource("RectangleShape2D_kjlyu")
+
+[node name="Timer" type="Timer" parent="." unique_id=315643041]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

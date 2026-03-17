@@ -25,8 +25,10 @@ func _update(_delta):
 			player.velocity.x, 
 			0.0, 
 			_delta * player.pogo_acceleration) 
-	
-	if player.is_on_floor():
+			
+	if Input.is_action_just_pressed("teleport") and player.data.has_teleport_update:
+		finished.emit(PREPARE_TELEPORT)	
+	elif player.is_on_floor():
 		finished.emit(IDLE)
 	
 	player.move_and_slide()
@@ -43,5 +45,7 @@ func bounce():
 	player.velocity.y = player.bounce_force
 
 
-func _on_pogo_hitbox_area_entered(area: HurtboxComponent) -> void:
+func _on_pogo_hitbox_area_entered(area: Area2D) -> void:
+	if area.has_method("take_damage") and player.data.has_break_update:
+		area.take_damage(-(area.global_position - player.global_position).normalized())
 	bounce()

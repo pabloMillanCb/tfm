@@ -1,0 +1,62 @@
+[gd_scene format=4 uid="uid://b633quq36qi5n"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_n6j6n"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_t80yc"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_mkga7"]
+[ext_resource type="PackedScene" uid="uid://m5ah4mbymn1d" path="res://scenes/objects/upgrades/Upgrade.tscn" id="4_t80yc"]
+[ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="5_uiibd"]
+
+[node name="GetPogo" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAPAA0AAAABAA0AAAAOAA0AAAABAA0AAAANAA0AAAABAA0AAAAMAA0AAAABAA0AAAALAA0AAAABAA0AAAAKAA0AAAABAA0AAAAJAA0AAAABAA0AAAAIAA0AAAABAA0AAAAHAA0AAAABAA0AAAAGAA0AAAABAA0AAAAFAA0AAAABAA0AAAAEAA0AAAABAA0AAAADAA0AAAABAA0AAAACAA0AAAABAA0AAAABAA0AAAABAA0AAAAAAA0AAAABAA0AAAABAAwAAAAAAA0AAAACAAwAAAAAAA0AAAADAAwAAAAAAA0AAAACAAsAAAAAAA0AAAAAAAwAAAAJAA0AAAAAAAsAAAAJAA0AAAAAAAoAAAAJAA0AAAAAAAkAAAAJAA0AAAAAAAgAAAAJAA0AAAAAAAcAAAAJAA0AAAAAAAYAAAAJAA0AAAAAAAUAAAAJAA0AAAAAAAQAAAAJAA0AAAAAAAMAAAAJAA0AAAAAAAIAAAAJAA0AAAAAAAEAAAAJAA0AAAAAAAAAAAAJAA0AAAABAAAAAAAJAA0AAAACAAAAAAAJAA0AAAADAAAAAAAJAA0AAAAEAAAAAAAJAA0AAAAFAAAAAAAJAA0AAAAGAAAAAAAJAA0AAAAHAAAAAAAJAA0AAAAIAAAAAAAJAA0AAAAJAAAAAAAJAA0AAAAKAAAAAAAJAA0AAAALAAAAAAAJAA0AAAAMAAAAAAAJAA0AAAANAAAAAAAJAA0AAAAOAAAAAAAJAA0AAAAPAAAAAAAJAA0AAAAPAAEAAAAJAA0AAAAPAAIAAAAJAA0AAAAPAAMAAAAJAA0AAAAPAAQAAAAJAA0AAAAPAAUAAAAJAA0AAAAPAAYAAAAJAA0AAAAPAAcAAAAJAA0AAAALAAsAAAAAAA0AAAALAAoAAAAAAA0AAAALAAkAAAAAAA0AAAALAAgAAAAAAA0AAAALAAcAAAAAAA0AAAAMAAsAAAANAA4AAAAMAAkAAAANAA4AAAAMAAcAAAANAA4AAAALAAwAAAAAAA0AAAA=")
+tile_set = ExtResource("1_n6j6n")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_t80yc")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_mkga7")]
+position = Vector2(128, 42)
+
+[node name="Upgrade" parent="." unique_id=209029822 instance=ExtResource("4_t80yc")]
+position = Vector2(40, 165)
+type = 3
+wait_time = 3
+
+[node name="Skull" parent="." unique_id=1204490723 instance=ExtResource("5_uiibd")]
+position = Vector2(152, 200)
+
+[node name="Skull2" parent="." unique_id=513698223 instance=ExtResource("5_uiibd")]
+position = Vector2(168, 200)
+
+[node name="Skull3" parent="." unique_id=269029716 instance=ExtResource("5_uiibd")]
+position = Vector2(136, 200)
+
+[node name="Skull4" parent="." unique_id=1198410728 instance=ExtResource("5_uiibd")]
+position = Vector2(120, 200)
+
+[node name="Skull6" parent="." unique_id=3591507 instance=ExtResource("5_uiibd")]
+position = Vector2(168, 184)
+
+[node name="Skull7" parent="." unique_id=1586443145 instance=ExtResource("5_uiibd")]
+position = Vector2(152, 184)
+
+[node name="Skull8" parent="." unique_id=1730194513 instance=ExtResource("5_uiibd")]
+position = Vector2(136, 184)
+
+[node name="Skull9" parent="." unique_id=440411508 instance=ExtResource("5_uiibd")]
+position = Vector2(120, 184)
+
+[node name="Skull10" parent="." unique_id=765862350 instance=ExtResource("5_uiibd")]
+position = Vector2(104, 184)
+
+[node name="Skull11" parent="." unique_id=15760398 instance=ExtResource("5_uiibd")]
+position = Vector2(104, 200)
+
+[node name="Skull12" parent="." unique_id=1273791806 instance=ExtResource("5_uiibd")]
+position = Vector2(88, 200)
+
+[node name="Skull13" parent="." unique_id=137123403 instance=ExtResource("5_uiibd")]
+position = Vector2(121, 168)
+
+[node name="Skull14" parent="." unique_id=1833208330 instance=ExtResource("5_uiibd")]
+position = Vector2(137, 168)

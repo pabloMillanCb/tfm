@@ -194,3 +194,7 @@ func pick_up_heart():
 func heal():
 	current_health = data.max_health
 	GameEvent.update_health.emit(data.max_health, current_health)
+
+
+func disable_collisions(disabled: bool):
+	$BodyCollision.disabled = disabled

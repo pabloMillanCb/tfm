@@ -9,6 +9,9 @@ color = Color(0.3882353, 0.60784316, 1, 1)
 thickness = 2
 vertical = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqsch"]
+bg_color = Color(0, 0, 0, 1)
+
 [resource]
 Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_o06hx")
@@ -18,3 +21,4 @@ HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = ExtResource("2_0bsi3")
 Label/fonts/font = ExtResource("3_mqsch")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_mqsch")
