@@ -658,13 +658,13 @@ En el sprint 4 se terminaron de implementar los sistemas que componen el núcleo
 
 \begin{table}[!ht]
     \centering
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{|l|p{8cm}|l|}
     \hline
         Tarea & Descripción & Estimación (h) \\ \hline
         OBJ-08 & El mapa invade un área de la zona de juego. Se propone agregar un marco inferior o superior para integrar el minimapa y la UI & 1 \\ \hline
         BUG-07 & Al entrar en estado de IDLE la velocidad horizontal no se reinicia y el jugador puede quedar deslizándose hasta topar con un muro & 0,25 \\ \hline
-        OBJ-09 & El tamaño de la hitbox de los erizos rojos es demasiado grande, se activa sin dar la sensación de haber impactado & ~ \\ \hline
-        OBJ-10 & El movimiento del jugador debe ser más lento y los valroes de la gravedad y la fuerza de salto deben ser ajustados. & ~ \\ \hline
+        OBJ-09 & El tamaño de la hitbox de los erizos rojos es demasiado grande, se activa sin dar la sensación de haber impactado & 0,25 \\ \hline
+        OBJ-10 & El movimiento del jugador debe ser más lento y los valroes de la gravedad y la fuerza de salto deben ser ajustados. & 0,5 \\ \hline
         OBJ-10 & El tamaño de la medusa es demasiado pequeño & ~ \\ \hline
         BUG-08 & El usuario puede asignarse el mismo botón a distintas acciones & ~ \\ \hline
         BUG-09 & El botón de aceptar y cancelar no pueden reasignarse & ~ \\ \hline
@@ -673,4 +673,57 @@ En el sprint 4 se terminaron de implementar los sistemas que componen el núcleo
     \label{tab:aditionalsprint4task}
 \end{table}
 
-En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 19,5 efectivas. El sprint se realizó en el tiempo estimado y sin ningún impreviso o problema. Por lo tanto en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico.
+En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 20,3 efectivas. El sprint se realizó en el tiempo estimado y sin ningún impreviso o problema. Por lo tanto en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico.
+
+\subsection{Sprint 5}
+
+Los esfuerzos de este sprint fueron concentrados en el diseño y producción de contenido para el juego. Es decir, diseño de niveles, enemigos adicionales, y pequeñas funcionalidades puntuales necesarias para los niveles como pudiera ser el sistema de oleadas. En lugar de las habituales 2,5 horas para validación y ajustes, en este sprint se planificaron 8 horas. Además, se contó con varios usuarios para realizar pruebas y recibir feedback sobre el estado actual del proyecto. Se planificarion 23 horas y se acabaron empleando 26,25 para realizar el sprint. En la tabla \ref{tab:sprint5task} se tienen las tareas planificadas para el sprint, y en la tabla \ref{tab:aditionalsprint5task} las tareas que surgieron durante las pruebas con jugadores.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-49 & Añadir enemigo terrestre unidireccional & 1,5 & 0,75 \\ \hline
+        SF-50 & Implementar feedback de golpes y muerte en enemigos & 3 & 1,5 \\ \hline
+        SF-51 & Diseñar e implementar zonas gris y naranja del juego & 8 & 12 \\ \hline
+        SF-52 & Implementar sistema para oleadas de enemigos & 1,5 & 1 \\ \hline
+        TEST & Validación y ajustes & 8 & 10 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 5.}
+    \label{tab:sprint5task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
+        OBJ-11 & El pez triángulo debe favorecer el descender en el pathfinding antes de acercarse al jugador para que el este pueda saltarlo. & 1,5 \\ \hline
+        OBJ-12 & Al pisar el suelo en el estado de SuperFall, debería haber algún feedback de haber tenido un salto grande & 0,5 \\ \hline
+        OBJ-13 & Al realizar el ataque en el aire se pierde la inercia, cambiando la trayectoria del salto. Es un cambio muy sutil que puede hacer que los cambios sean imprecisos & 0 \\ \hline
+        OBJ-14 & El aspect ratio debe ser cambiado de 1:1 a algo similar a 4:3, ya que el movimiento vertical está mucho más limitado que el horizontal. No tiene sentido tener mucho espacio vertical si la movilidad en ese eje está reducida. & 1,5 \\ \hline
+        BUG-10 & Al desbloquear una mejora y morir antes de volver a guardar, el juagdor spawnea con la mejora ya obtenida, interfiriendo con el avance natural del juego. & 0,25 \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 5.}
+    \label{tab:aditionalsprint5task}
+\end{table}
+
+En cuanto a \textit{qué fue mal}:
+\begin{itemize}
+    \item No se estimó correctamente el tiempo para el diseño de niveles.
+    \item Se planteó realizar un ajuste relativamente profundo en el proyecto como fue el cambio de resolución en un sprint bastante tardío.
+    \item Tras realizar este sprint fue más que evidente la necesidad de implementar parte del diseño de niveles mucho más temprano en el ciclo de desarrollo.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Las pruebas con usuarios fueron un acierto que permitieron sacar conclusiones críticas y precisas sobre cambios que el proyecto necesitaba.
+    \item Ante el reto de modificar la resolución del juego, se realizó una aproximación muy cauta, con bocetos y pruebas técnicas rápidas que permitieron terminar en una hora y media lo que podría haber sido una tarea larga con mucho prueba y error.
+\end{itemize}
+
+Para adaptarse en el siguiente y último sprint, se extenderá el tiempo necesario para el diseño de niveles de cada zona.
+
+\subsection{Sprint 6}
