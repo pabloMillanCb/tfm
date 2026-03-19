@@ -134,7 +134,7 @@ collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_pne4k")
 speed = 55.0
-health = 3
+health = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1601418126]
 material = SubResource("ShaderMaterial_w0mca")
