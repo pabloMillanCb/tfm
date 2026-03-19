@@ -8,3 +8,8 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	$AnimationPlayer.play("credits")
 	$Node2D.visible = true
+	$AudioStreamPlayer.play()
+
+
+func _on_audio_stream_player_finished() -> void:
+	$AudioStreamPlayer.play()

@@ -15,6 +15,9 @@
 [ext_resource type="Theme" uid="uid://cl5vrfwvccw62" path="res://assets/resources/menu_text.tres" id="11_444p0"]
 [ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="12_nw6f2"]
 [ext_resource type="Animation" uid="uid://b027anirfcypq" path="res://assets/resources/animations/gamecredits.res" id="13_rq5vu"]
+[ext_resource type="AudioStream" uid="uid://32bl3byn5vyc" path="res://assets/sound/waves.mp3" id="16_pqndj"]
+[ext_resource type="AudioStream" uid="uid://0ud1i1m8ma3y" path="res://assets/sound/jump.wav" id="17_ovul0"]
+[ext_resource type="AudioStream" uid="uid://6rr32y78tu57" path="res://assets/sound/blink.wav" id="18_6w0b2"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ekke1"]
 
@@ -435,6 +438,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(131, 9)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_rq5vu"]
 resource_name = "credits_2"
@@ -603,17 +618,17 @@ tile_set = ExtResource("6_444p0")
 material = SubResource("ShaderMaterial_4grkw")
 position = Vector2(131, 9)
 sprite_frames = SubResource("SpriteFrames_rq5vu")
-animation = &"move"
+animation = &"body"
 offset = Vector2(5, -1)
 flip_h = true
 
 [node name="HeadHelper" type="Node2D" parent="." unique_id=712922853]
-position = Vector2(7, 5)
+position = Vector2(-66, -23)
+rotation = 29.83
 
 [node name="Head" type="Sprite2D" parent="HeadHelper" unique_id=890560458]
-visible = false
 material = SubResource("ShaderMaterial_pqndj")
-position = Vector2(0, 3)
+position = Vector2(-143.457, 3)
 texture = ExtResource("9_444p0")
 offset = Vector2(1, -3)
 flip_h = true
@@ -704,7 +719,23 @@ offset_bottom = -97.0
 color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Timer" parent="." unique_id=1904418257]
+wait_time = 2.0
 one_shot = true
 autostart = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=574408458]
+stream = ExtResource("16_pqndj")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=1369394481]
+stream = ExtResource("17_ovul0")
+bus = &"SFX"
+
+[node name="Blink" type="AudioStreamPlayer" parent="." unique_id=1757889123]
+stream = ExtResource("18_6w0b2")
+bus = &"SFX"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="Jump" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="Blink" to="." method="_on_audio_stream_player_finished"]
