@@ -7,8 +7,12 @@ var time = 0.0
 var ground_collisions = 0
 var previous_player_position: Vector2
 var player_position_shift
+var audio_played = false
+var frame_number = 0
 
 func _enter(_previous_state_path: String, _init_data := {}):
+	audio_played = false
+	frame_number = 0
 	player.set_animation("release_teleport")
 	time = 0.0
 	previous_player_position = player.global_position
@@ -18,8 +22,17 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	player.velocity.y = 0
 
 
-func _update(_delta):
+func _update_physics(_delta):
 	time += _delta
+	
+	if !audio_played and frame_number > 6:
+		audio_played = true
+		if ground_collisions > 0:
+			player.play_sound("teleport_bad")
+		else:
+			player.play_sound("teleport")
+	
+	frame_number += 1
 	
 	if time > cooldown_time:
 		if ground_collisions > 0:

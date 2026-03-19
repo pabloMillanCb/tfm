@@ -219,6 +219,12 @@ func play_sound(name: String, pitch_range: float = 0.0):
 			sound = $Sounds/Death
 		"spring":
 			sound = $Sounds/Spring
+		"teleport":
+			sound = $Sounds/Teleport
+		"teleport_bad":
+			sound = $Sounds/TeleportBad
+		"launch_teleport":
+			sound = $Sounds/LaunchTeleport
 	
 	if sound != null:
 		sound.pitch_scale = pitch

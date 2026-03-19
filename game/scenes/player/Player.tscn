@@ -30,6 +30,9 @@
 [ext_resource type="AudioStream" uid="uid://bg20j4hxmjnkj" path="res://assets/sound/player_hit.wav" id="28_mndc6"]
 [ext_resource type="AudioStream" uid="uid://ucpss4bdmpvc" path="res://assets/sound/player_death.wav" id="29_1hh02"]
 [ext_resource type="AudioStream" uid="uid://cr7uy380mo8bp" path="res://assets/sound/bump.wav" id="30_5ttev"]
+[ext_resource type="AudioStream" uid="uid://bdxua5mtoea7l" path="res://assets/sound/key_unlock.wav" id="31_geaob"]
+[ext_resource type="AudioStream" uid="uid://io74tebq052e" path="res://assets/sound/bad_tp.wav" id="32_qsmrd"]
+[ext_resource type="AudioStream" uid="uid://mh3l632plqxq" path="res://assets/sound/launch_tp.wav" id="33_jtlb7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
 radius = 2.0
@@ -976,6 +979,7 @@ bus = &"SFX"
 
 [node name="Atack" type="AudioStreamPlayer" parent="Sounds" unique_id=301421129]
 stream = ExtResource("25_kvwax")
+bus = &"SFX"
 
 [node name="Land" type="AudioStreamPlayer" parent="Sounds" unique_id=524286655]
 stream = ExtResource("26_x3qp0")
@@ -984,15 +988,32 @@ bus = &"SFX"
 
 [node name="HeavyLand" type="AudioStreamPlayer" parent="Sounds" unique_id=880100597]
 stream = ExtResource("27_76i7i")
+bus = &"SFX"
 
 [node name="Hit" type="AudioStreamPlayer" parent="Sounds" unique_id=999385835]
 stream = ExtResource("28_mndc6")
+bus = &"SFX"
 
 [node name="Death" type="AudioStreamPlayer" parent="Sounds" unique_id=75372005]
 stream = ExtResource("29_1hh02")
+bus = &"SFX"
 
 [node name="Spring" type="AudioStreamPlayer" parent="Sounds" unique_id=240030216]
 stream = ExtResource("30_5ttev")
+bus = &"SFX"
+
+[node name="Teleport" type="AudioStreamPlayer" parent="Sounds" unique_id=1971616003]
+stream = ExtResource("31_geaob")
+bus = &"SFX"
+
+[node name="TeleportBad" type="AudioStreamPlayer" parent="Sounds" unique_id=393138394]
+stream = ExtResource("32_qsmrd")
+bus = &"SFX"
+
+[node name="LaunchTeleport" type="AudioStreamPlayer" parent="Sounds" unique_id=828123067]
+stream = ExtResource("33_jtlb7")
+volume_db = -5.0
+bus = &"SFX"
 
 [connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="StateMachine/Falling/ToSuperFall" to="StateMachine/Falling" method="_on_to_super_fall_timeout"]
