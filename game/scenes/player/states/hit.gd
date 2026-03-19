@@ -5,7 +5,15 @@ signal show_hit_particles
 var enter_dead = false
 
 func _enter(_previous_state_path: String, _init_data := {}):
+	
+	player.current_health -= 1
+	GameEvent.update_health.emit(player.data.max_health, player.current_health)
+	if player.current_health <= 0:
+		enter_dead = true
+		$KnockBackTimer.wait_time = 0.8
+	
 	player.set_animation("hit")
+	Input.start_joy_vibration(0,0.8,0.8,0.4)
 	player.invencible = true
 	
 	player.velocity.x = -player.velocity.normalized().x * 40
@@ -37,7 +45,10 @@ func _on_hit_received():
 
 
 func _on_timer_timeout() -> void:
-	finished.emit(IDLE)
+	if enter_dead:
+		finished.emit(DEAD)
+	else:
+		finished.emit(IDLE)
 
 
 func _on_invencible_timer_timeout() -> void:

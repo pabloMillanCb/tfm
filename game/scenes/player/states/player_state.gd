@@ -24,12 +24,7 @@ func _ready() -> void:
 
 func _on_hit_received():
 	print("on hit received")
-	player.current_health -= 1
-	GameEvent.update_health.emit(player.data.max_health, player.current_health)
-	if player.current_health <= 0:
-		finished.emit(DEAD)
-	else:
-		finished.emit(HIT)
+	finished.emit(HIT)
 
 
 func force_jump():

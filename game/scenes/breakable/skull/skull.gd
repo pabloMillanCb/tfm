@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	print("take_damage")
+	Input.start_joy_vibration(0,0.4,0.4,0.1)
 	if !permanent:
 		MetSys.store_object(self)
 		queue_free()

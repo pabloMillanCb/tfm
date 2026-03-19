@@ -2,6 +2,7 @@ extends AxoloteState
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	axolote.can_take_hits = false
+	Input.start_joy_vibration(0,axolote.vibration_force,axolote.vibration_force,axolote.vibration_time)
 	axolote.set_animation("hit_enemy")
 	axolote.health -= 1
 	if axolote.health == 0:

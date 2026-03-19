@@ -6,6 +6,8 @@ class_name FallState
 
 var animation_name = "fall"
 var sound_name = "land"
+var vibration_force = 0.05
+var vibration_time = 0.1
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	if _init_data.get("coyote_time") == true:
@@ -47,6 +49,7 @@ func _update(_delta):
 		player.set_animation("jump")
 	elif player.is_on_floor():
 		player.play_sound(sound_name, 0.1)
+		Input.start_joy_vibration(0,vibration_force,vibration_force,vibration_time)
 		if player.velocity.x != 0:
 			finished.emit(MOVE)
 		else:
