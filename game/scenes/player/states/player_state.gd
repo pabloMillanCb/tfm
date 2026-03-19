@@ -13,6 +13,7 @@ const POGO = "Pogo"
 const HIT = "Hit"
 const DEAD = "Dead"
 const TALKING = "Talking"
+const STOMP = "Stomp"
 
 var player: Player
 

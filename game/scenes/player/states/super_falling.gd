@@ -8,6 +8,8 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	vibration_force = 0.8
 	vibration_time = 0.3
 
+func _to_finish():
+	finished.emit(STOMP)
 
 func _exit():
 	pass
