@@ -260,6 +260,7 @@ shape = SubResource("RectangleShape2D_bu3y2")
 libraries/ = SubResource("AnimationLibrary_bsixq")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1353086971]
+visible = false
 position = Vector2(0, 24)
 emitting = false
 amount = 30
