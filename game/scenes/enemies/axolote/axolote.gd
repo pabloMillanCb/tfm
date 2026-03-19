@@ -16,7 +16,7 @@ var can_take_hits = true
 
 func _ready() -> void:
 	if move_direction == 1.0:
-		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x * -1
+		$AnimatedSprite2D.scale.x = $AnimatedSprite2D.scale.x
 
 func update_gravity(_delta):
 	var GRAVITY_FORCE = 200
@@ -38,6 +38,7 @@ func is_turn_around_needed():
 
 func set_animation(animation: String):
 	$AnimatedSprite2D.play(animation)
+	$AnimationPlayer.play(animation)
 
 
 func change_direction():
@@ -48,9 +49,8 @@ func change_direction():
 
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
-	print("ouch")
 	if can_take_hits:
-		state_machine._transition_to_next_state(AxoloteState.HIT)
+		state_machine._transition_to_next_state(AxoloteState.HIT, {"direction": direction})
 
 
 func die(direction: Vector2 = Vector2.ZERO):
