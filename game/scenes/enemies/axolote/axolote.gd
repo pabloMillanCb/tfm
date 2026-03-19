@@ -50,6 +50,7 @@ func change_direction():
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	if can_take_hits:
+		$Hit.play()
 		state_machine._transition_to_next_state(AxoloteState.HIT, {"direction": direction})
 
 

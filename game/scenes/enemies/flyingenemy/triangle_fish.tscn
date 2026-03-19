@@ -14,6 +14,8 @@
 [ext_resource type="FontFile" uid="uid://76cnh3q142hy" path="res://assets/fonts/my 3x5 tiny mono pixel font.ttf" id="11_ym17l"]
 [ext_resource type="Animation" uid="uid://cfo7svm1kdq" path="res://assets/resources/animations/hit_enemy.res" id="13_gmw86"]
 [ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="13_w0mca"]
+[ext_resource type="AudioStream" uid="uid://grgfe41tvnsw" path="res://assets/sound/hit_enemy.wav" id="15_pljoy"]
+[ext_resource type="AudioStream" uid="uid://bd3t3y04bolwp" path="res://assets/sound/enemy_death.wav" id="16_afahk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w0mca"]
 resource_local_to_scene = true
@@ -229,6 +231,15 @@ offset_left = -13.0
 offset_top = 9.0
 offset_right = 27.0
 offset_bottom = 32.0
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=2138901457]
+stream = ExtResource("15_pljoy")
+bus = &"SFX"
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1979221374]
+stream = ExtResource("16_afahk")
+volume_db = -8.0
+bus = &"SFX"
 
 [connection signal="timeout" from="StateMachine/Hit/Timer" to="StateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="PlayerDetect" to="." method="_on_player_detected"]

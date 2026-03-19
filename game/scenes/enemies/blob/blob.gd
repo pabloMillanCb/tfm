@@ -35,6 +35,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	$AnimationPlayer.play("hit_enemy")
+	$Hit.play()
 	super(direction)
 
 
