@@ -862,7 +862,7 @@ animation = &"atack"
 
 [node name="Hurtbox" type="Area2D" parent="PlayerSprites" unique_id=468577572]
 collision_layer = 0
-collision_mask = 40
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSprites/Hurtbox" unique_id=440473787]
 shape = SubResource("CapsuleShape2D_2xrq6")

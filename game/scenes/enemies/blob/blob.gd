@@ -5,6 +5,7 @@ extends EnemyCharacter
 @export var direction = 1.0
 
 @onready var ray_cast = $AnimatedSprite2D/RayCast2D
+@onready var down_ray_cast = $AnimatedSprite2D/RayCast2D2
 
 func _ready() -> void:
 	$AnimatedSprite2D.scale.x = direction
@@ -21,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, delta * 100)
 			
-		if ray_cast.get_collider() and $TurnTimer.time_left == 0:
+		if (ray_cast.get_collider() or !down_ray_cast.get_collider()) and $TurnTimer.time_left == 0:
 			direction = -direction
 			$AnimatedSprite2D.scale.x = direction
 			$TurnTimer.start()
