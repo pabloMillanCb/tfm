@@ -8,6 +8,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	get_tree().create_timer(4.0).timeout.connect(func():
 		GameEvent._on_game_over.emit()
 	)
+	player.play_sound("death")
 
 func _on_hit_received():
 	pass

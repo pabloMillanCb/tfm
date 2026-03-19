@@ -2,8 +2,10 @@ extends PlayerState
 class_name FallState
 
 @export var coyote_timer: Timer
+@export var super_fall_timer: Timer
 
 var animation_name = "fall"
+var sound_name = "land"
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	if _init_data.get("coyote_time") == true:
@@ -11,7 +13,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	else:
 		player.set_animation(animation_name)
 	
-	$ToSuperFall.start()
+	super_fall_timer.start()
 
 func _update(_delta):
 	player.update_gravity(_delta)
@@ -27,6 +29,10 @@ func _update(_delta):
 	if coyote_timer.time_left == 0:
 		player.set_animation(animation_name)
 	
+	if super_fall_timer != null:
+		if super_fall_timer.time_left < 0.25:
+			player.set_animation("super_fall")
+	
 	if coyote_timer.time_left > 0 and Input.is_action_just_pressed("jump"):
 		finished.emit(JUMP)
 	elif (Input.is_action_just_pressed("atack")
@@ -40,6 +46,7 @@ func _update(_delta):
 	elif player.velocity.y <= 0:
 		player.set_animation("jump")
 	elif player.is_on_floor():
+		player.play_sound(sound_name, 0.1)
 		if player.velocity.x != 0:
 			finished.emit(MOVE)
 		else:

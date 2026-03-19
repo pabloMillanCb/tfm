@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://5bmlmj75pw2l" path="res://scenes/player/player.gd" id="1_ov1oi"]
 [ext_resource type="Script" uid="uid://cml4nuk5k2ym2" path="res://utils/state_machine/state_machine.gd" id="1_wr5hl"]
 [ext_resource type="Script" uid="uid://buyvsbbwh18js" path="res://scenes/player/states/idle.gd" id="2_20koh"]
-[ext_resource type="Script" uid="uid://ep1jxwrfqff6" path="res://scenes/player/player_controller.gd" id="2_gfjak"]
 [ext_resource type="Script" uid="uid://ctf5oc3fdynj7" path="res://scenes/player/states/move.gd" id="3_ov1oi"]
 [ext_resource type="Script" uid="uid://dl8vgd7fwgpax" path="res://scenes/player/states/jump.gd" id="4_rn7t0"]
 [ext_resource type="Script" uid="uid://bu3my6ax5bmxy" path="res://scenes/player/states/fall.gd" id="5_8qjgm"]
@@ -23,6 +22,14 @@
 [ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
 [ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="20_kswpp"]
 [ext_resource type="Texture2D" uid="uid://c47inqwe2u6x4" path="res://scenes/player/assets/player_body.png" id="21_v5i4m"]
+[ext_resource type="Script" uid="uid://cxjsgyjr5o6p" path="res://scenes/player/sounds.gd" id="23_ro0t8"]
+[ext_resource type="AudioStream" uid="uid://0ud1i1m8ma3y" path="res://assets/sound/jump.wav" id="24_8nn5r"]
+[ext_resource type="AudioStream" uid="uid://d38s7b73aiffd" path="res://assets/sound/8bit_Sword_Slash.wav" id="25_kvwax"]
+[ext_resource type="AudioStream" uid="uid://bspfwgytouvyu" path="res://assets/sound/fall.wav" id="26_x3qp0"]
+[ext_resource type="AudioStream" uid="uid://dvh6f4jhegiwj" path="res://assets/sound/fall_heavy.wav" id="27_76i7i"]
+[ext_resource type="AudioStream" uid="uid://bg20j4hxmjnkj" path="res://assets/sound/player_hit.wav" id="28_mndc6"]
+[ext_resource type="AudioStream" uid="uid://ucpss4bdmpvc" path="res://assets/sound/player_death.wav" id="29_1hh02"]
+[ext_resource type="AudioStream" uid="uid://cr7uy380mo8bp" path="res://assets/sound/bump.wav" id="30_5ttev"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
 radius = 2.0
@@ -405,6 +412,20 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["atack", 0.05],
+"method": &"play_sound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_p1lr0"]
 resource_name = "blink"
@@ -745,9 +766,10 @@ script = ExtResource("3_ov1oi")
 [node name="Jump" type="Node" parent="StateMachine" unique_id=639476721]
 script = ExtResource("4_rn7t0")
 
-[node name="Falling" type="Node" parent="StateMachine" unique_id=2138696669 node_paths=PackedStringArray("coyote_timer")]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=2138696669 node_paths=PackedStringArray("coyote_timer", "super_fall_timer")]
 script = ExtResource("5_8qjgm")
 coyote_timer = NodePath("CoyoteTime")
+super_fall_timer = NodePath("ToSuperFall")
 
 [node name="CoyoteTime" type="Timer" parent="StateMachine/Falling" unique_id=772308251]
 unique_name_in_owner = true
@@ -755,7 +777,7 @@ wait_time = 0.12
 one_shot = true
 
 [node name="ToSuperFall" type="Timer" parent="StateMachine/Falling" unique_id=1135182758]
-wait_time = 0.5
+wait_time = 0.85
 one_shot = true
 
 [node name="SuperFalling" type="Node" parent="StateMachine" unique_id=1269288117 node_paths=PackedStringArray("coyote_timer")]
@@ -778,6 +800,7 @@ script = ExtResource("9_kswpp")
 script = ExtResource("10_v5i4m")
 
 [node name="KnockBackTimer" type="Timer" parent="StateMachine/Hit" unique_id=833021333]
+wait_time = 0.2
 one_shot = true
 
 [node name="InvencibleTimer" type="Timer" parent="StateMachine/Hit" unique_id=980081913]
@@ -790,9 +813,6 @@ script = ExtResource("11_p1lr0")
 
 [node name="Talking" type="Node" parent="StateMachine" unique_id=1815647377]
 script = ExtResource("13_v5i4m")
-
-[node name="PlayerController" type="Node" parent="." unique_id=320849704]
-script = ExtResource("2_gfjak")
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="." unique_id=773526594]
 material = SubResource("ShaderMaterial_v5i4m")
@@ -839,7 +859,6 @@ debug_color = Color(0.5666731, 0.39223716, 1, 0.41960785)
 position = Vector2(5, -1)
 sprite_frames = SubResource("SpriteFrames_jtlb7")
 animation = &"atack"
-frame = 2
 
 [node name="Hurtbox" type="Area2D" parent="PlayerSprites" unique_id=468577572]
 collision_layer = 0
@@ -947,6 +966,33 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1914684902]
 shape = SubResource("RectangleShape2D_ro0t8")
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1101426222]
+script = ExtResource("23_ro0t8")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds" unique_id=47803831]
+stream = ExtResource("24_8nn5r")
+bus = &"SFX"
+
+[node name="Atack" type="AudioStreamPlayer" parent="Sounds" unique_id=301421129]
+stream = ExtResource("25_kvwax")
+
+[node name="Land" type="AudioStreamPlayer" parent="Sounds" unique_id=524286655]
+stream = ExtResource("26_x3qp0")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="HeavyLand" type="AudioStreamPlayer" parent="Sounds" unique_id=880100597]
+stream = ExtResource("27_76i7i")
+
+[node name="Hit" type="AudioStreamPlayer" parent="Sounds" unique_id=999385835]
+stream = ExtResource("28_mndc6")
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds" unique_id=75372005]
+stream = ExtResource("29_1hh02")
+
+[node name="Spring" type="AudioStreamPlayer" parent="Sounds" unique_id=240030216]
+stream = ExtResource("30_5ttev")
 
 [connection signal="timeout" from="StateMachine/Falling/CoyoteTime" to="StateMachine/Falling" method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="StateMachine/Falling/ToSuperFall" to="StateMachine/Falling" method="_on_to_super_fall_timeout"]

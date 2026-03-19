@@ -7,7 +7,11 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	forced_jump = _init_data.get("extra_force") != null
 	if forced_jump:
 		player.velocity.y += _init_data.get("extra_force")
+		player.play_sound("spring")
+	else:
+		player.play_sound("jump")
 	player.set_animation("jump")
+	
 
 func _update(_delta):
 	player.update_gravity(_delta, forced_jump)

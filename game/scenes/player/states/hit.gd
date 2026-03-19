@@ -8,13 +8,22 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_animation("hit")
 	player.invencible = true
 	
-	player.velocity.y = -60
 	player.velocity.x = -player.velocity.normalized().x * 40
 	
 	show_hit_particles.emit(Vector2(player.velocity.x, 0.0))
 	
-	player.velocity.y = player.jump_force/1.5
 	player.velocity.x = 0.0
+	
+	var tween = get_tree().create_tween()
+	
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(player, "scale", Vector2(0.7, 1.0), 0.15)
+	tween.chain()
+	tween.tween_property(player, "scale", Vector2(1.0, 1.0), 0.15)
+	tween.play()
+	
+	player.play_sound("hit")
 	
 	$KnockBackTimer.start()
 	$InvencibleTimer.start()

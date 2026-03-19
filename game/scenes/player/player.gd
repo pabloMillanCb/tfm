@@ -198,3 +198,28 @@ func heal():
 
 func disable_collisions(disabled: bool):
 	$BodyCollision.disabled = disabled
+
+
+func play_sound(name: String, pitch_range: float = 0.0):
+	
+	var pitch = 1.0 + randf_range(-pitch_range, pitch_range)
+	var sound: AudioStreamPlayer
+	match name:
+		"jump":
+			sound = $Sounds/Jump
+		"atack":
+			sound = $Sounds/Atack
+		"land":
+			sound = $Sounds/Land
+		"heavy_land":
+			sound = $Sounds/HeavyLand
+		"hit":
+			sound = $Sounds/Hit
+		"death":
+			sound = $Sounds/Death
+		"spring":
+			sound = $Sounds/Spring
+	
+	if sound != null:
+		sound.pitch_scale = pitch
+		sound.play()
