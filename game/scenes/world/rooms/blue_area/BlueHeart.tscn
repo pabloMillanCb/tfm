@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cu0mnilwkqvpm" path="res://scenes/world/rooms/blue_area/waves/enemies2.tscn" id="6_br4jr"]
 [ext_resource type="PackedScene" uid="uid://c8thbmo5ofuiv" path="res://scenes/world/rooms/blue_area/waves/enemies3.tscn" id="7_gwbbt"]
 [ext_resource type="PackedScene" uid="uid://d222gfpsdfpet" path="res://scenes/door/stone_door.tscn" id="8_ocd8x"]
+[ext_resource type="PackedScene" uid="uid://crj8piwquvxio" path="res://scenes/objects/heart/Heart.tscn" id="10_iad4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocd8x"]
 size = Vector2(57, 96)
@@ -46,6 +47,9 @@ position = Vector2(131, 139)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=99148283]
 position = Vector2(-3.5, -11)
 shape = SubResource("RectangleShape2D_ocd8x")
+
+[node name="Heart" parent="." unique_id=72603203 instance=ExtResource("10_iad4g")]
+position = Vector2(114, 200)
 
 [connection signal="on_wave_end" from="EnemyWave" to="EnemyWave2" method="activate_wave"]
 [connection signal="on_wave_end" from="EnemyWave2" to="EnemyWave3" method="activate_wave"]

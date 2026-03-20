@@ -25,6 +25,9 @@ position = Vector2(160, 147)
 [node name="Skull2" parent="." unique_id=32423954 instance=ExtResource("4_5cu1f")]
 position = Vector2(167, 261)
 
+[node name="Skull19" parent="." unique_id=1188875895 instance=ExtResource("4_5cu1f")]
+position = Vector2(122, 225)
+
 [node name="Skull3" parent="." unique_id=677043820 instance=ExtResource("4_5cu1f")]
 position = Vector2(105, 339)
 
@@ -39,6 +42,18 @@ position = Vector2(24, 584)
 
 [node name="Skull10" parent="." unique_id=509473931 instance=ExtResource("4_5cu1f")]
 position = Vector2(23, 600)
+
+[node name="Skull15" parent="." unique_id=686410893 instance=ExtResource("4_5cu1f")]
+position = Vector2(151, 551)
+
+[node name="Skull16" parent="." unique_id=1023968354 instance=ExtResource("4_5cu1f")]
+position = Vector2(46, 455)
+
+[node name="Skull17" parent="." unique_id=1586834831 instance=ExtResource("4_5cu1f")]
+position = Vector2(79, 392)
+
+[node name="Skull18" parent="." unique_id=401481735 instance=ExtResource("4_5cu1f")]
+position = Vector2(79, 392)
 
 [node name="Skull11" parent="." unique_id=267258784 instance=ExtResource("4_5cu1f")]
 position = Vector2(232, 584)
