@@ -33,7 +33,7 @@ func is_turn_around_needed():
 	var point = raycast.get_collision_point()
 	var object = raycast.get_collider()
 	return (global_position.distance_to(point) <= 10
-		and not object is Player)
+		and not object is Player and object != null)
 
 
 func set_animation(animation: String):
@@ -56,3 +56,4 @@ func take_damage(direction: Vector2 = Vector2.ZERO):
 
 func die(direction: Vector2 = Vector2.ZERO):
 	$AnimationPlayer.play("death")
+	$AnimatedSprite2D/HitboxComponent.queue_free()

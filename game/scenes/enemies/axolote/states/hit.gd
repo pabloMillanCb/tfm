@@ -10,7 +10,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	else:
 		var direction = _init_data.get("direction")
 		axolote.change_direction()
-		axolote.velocity = Vector2(axolote.walk_speed/2 * direction.x, -60)
+		axolote.velocity = Vector2(axolote.walk_speed/1.5 * direction.x, -75)
 
 
 func _update_physics(_delta):
