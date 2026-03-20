@@ -187,6 +187,7 @@ func _on_tile_hazard_touched(body: Node2D) -> void:
 
 
 func pick_up_heart():
+	$Sounds/PickUpHeart.play()
 	data.max_health += 1
 	heal()
 
