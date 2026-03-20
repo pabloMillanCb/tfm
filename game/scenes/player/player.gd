@@ -86,8 +86,8 @@ func update_upgrades_information():
 
 func stop_animation():
 	$PlayerSprites.stop()
-	$PlayerSprites/AnimationPlayer.pause()
-	$PlayerSprites/SwordSprites.pause()
+	$PlayerSprites/AnimationPlayer.stop()
+	$PlayerSprites/SwordSprites.stop()
 
 
 func set_animation(animation_name: String):
