@@ -38,7 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://b5wt4e42150o1" path="res://assets/sound/get_heart.wav" id="36_05p8n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pi3ps"]
-radius = 2.0
+radius = 3.0
 height = 14.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v5i4m"]
