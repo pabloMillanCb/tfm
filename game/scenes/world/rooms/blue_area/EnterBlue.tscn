@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_b01mm"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_keqdj"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="3_fw6ne"]
+[ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="4_keqdj"]
 
 [node name="EnterGreen" type="Node2D" unique_id=801174312]
 
@@ -14,3 +15,6 @@ tile_set = ExtResource("1_b01mm")
 
 [node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("3_fw6ne")]
 position = Vector2(128, 42)
+
+[node name="Spring" parent="." unique_id=1546387936 instance=ExtResource("4_keqdj")]
+position = Vector2(324, 200)

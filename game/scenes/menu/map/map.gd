@@ -4,7 +4,7 @@ extends Panel
 
 var SIZE: Vector2i
 var map_view: MapView
-var zoom_level = 1.0
+var zoom_level = 4.0
 var player_location: Node2D
 var offset: Vector2i
 
