@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_vk48y"]
 [ext_resource type="PackedScene" uid="uid://djyepdes4klgo" path="res://scenes/world/save/SavePoint.tscn" id="3_hassm"]
 [ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="4_vk48y"]
+[ext_resource type="PackedScene" uid="uid://clk8frjg8p6o6" path="res://scenes/key/Key.tscn" id="5_vk48y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hassm"]
 
@@ -70,3 +71,7 @@ shape = SubResource("CircleShape2D_hassm")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1876570936]
 libraries/ = SubResource("AnimationLibrary_urub8")
 autoplay = &"boin"
+
+[node name="Key" parent="." unique_id=1499648206 instance=ExtResource("5_vk48y")]
+position = Vector2(180, 100)
+is_pre_instanced = true
