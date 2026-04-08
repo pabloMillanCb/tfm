@@ -768,10 +768,10 @@ size = Vector2(5, 5)
 z_index = 10
 collision_mask = 2
 script = ExtResource("1_ov1oi")
-walking_speed = 60
+walking_speed = 65
 walking_acceleration = 1000
 walking_deceleration = 1000
-air_acceleration = 100
+air_acceleration = 120
 jump_force = -150
 bounce_force = -200
 gravity_jumping = 80.0
@@ -800,7 +800,7 @@ super_fall_timer = NodePath("ToSuperFall")
 
 [node name="CoyoteTime" type="Timer" parent="StateMachine/Falling" unique_id=772308251]
 unique_name_in_owner = true
-wait_time = 0.12
+wait_time = 0.3
 one_shot = true
 
 [node name="ToSuperFall" type="Timer" parent="StateMachine/Falling" unique_id=1135182758]
