@@ -37,3 +37,11 @@ func stop_clock():
 	
 func reset_clock():
 	current_time_count = 0.0
+
+
+func get_time_formated(time = null) -> String:
+	if time == null:
+		time = current_time_count
+	var minutes = time / 60
+	var seconds = fmod(time, 60)
+	return "%02d:%02d" % [minutes, seconds]

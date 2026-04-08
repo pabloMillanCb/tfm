@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://oq7lsobwu6vk"]
+
+[ext_resource type="Script" uid="uid://b2s8cyd2daf8p" path="res://scenes/enemies/piranha/piranha.gd" id="1_cvmpw"]
+[ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="2_rn6c3"]
+[ext_resource type="Texture2D" uid="uid://hj2phostvbhn" path="res://scenes/enemies/piranha/piranha.png" id="2_sy6kx"]
+[ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="3_rn6c3"]
+[ext_resource type="Script" uid="uid://bp624mlidiwba" path="res://scenes/collisions/hurtbox/hurtbox_component.gd" id="4_v3811"]
+[ext_resource type="Animation" uid="uid://bovcsfc3qgetu" path="res://assets/resources/animations/death.res" id="6_v3811"]
+[ext_resource type="AudioStream" uid="uid://grgfe41tvnsw" path="res://assets/sound/hit_enemy.wav" id="7_nxc3q"]
+[ext_resource type="AudioStream" uid="uid://bd3t3y04bolwp" path="res://assets/sound/enemy_death.wav" id="8_u762j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v3811"]
+resource_local_to_scene = true
+shader = ExtResource("2_rn6c3")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdlic"]
+atlas = ExtResource("2_sy6kx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxc3q"]
+atlas = ExtResource("2_sy6kx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u762j"]
+atlas = ExtResource("2_sy6kx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsuy5"]
+atlas = ExtResource("2_sy6kx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_krgef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdlic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxc3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u762j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsuy5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sy6kx"]
+size = Vector2(13, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rn6c3"]
+size = Vector2(16, 12)
+
+[sub_resource type="Animation" id="Animation_sdlic"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D:material:shader_parameter/time")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxc3q"]
+_data = {
+&"RESET": SubResource("Animation_sdlic"),
+&"death": ExtResource("6_v3811")
+}
+
+[node name="Piranha" type="Node2D" unique_id=810161683]
+script = ExtResource("1_cvmpw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1814534361]
+material = SubResource("ShaderMaterial_v3811")
+sprite_frames = SubResource("SpriteFrames_krgef")
+autoplay = "default"
+frame_progress = 0.6323872
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1708945206]
+collision_layer = 32
+script = ExtResource("3_rn6c3")
+metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=723308712]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_sy6kx")
+
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=1639152657]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("4_v3811")
+metadata/_custom_type_script = "uid://bp624mlidiwba"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1894275561]
+shape = SubResource("RectangleShape2D_rn6c3")
+
+[node name="StartPoint" type="Marker2D" parent="." unique_id=1303859466]
+
+[node name="EndPoint" type="Marker2D" parent="." unique_id=1382419134]
+
+[node name="InvencibleTimer" type="Timer" parent="." unique_id=171676640]
+wait_time = 0.4
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1881182041]
+libraries/ = SubResource("AnimationLibrary_nxc3q")
+autoplay = &"RESET"
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=1277222121]
+stream = ExtResource("7_nxc3q")
+bus = &"SFX"
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1374725935]
+stream = ExtResource("8_u762j")
+volume_db = -8.0
+bus = &"SFX"

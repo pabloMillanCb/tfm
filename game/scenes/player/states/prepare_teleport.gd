@@ -3,6 +3,7 @@ extends PlayerState
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_animation("prepare_teleport")
+	player.play_sound("launch_teleport")
 	player.prepare_teleport()
 
 

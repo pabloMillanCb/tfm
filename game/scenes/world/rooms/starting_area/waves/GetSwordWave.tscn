@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cegn7km7ldrlx"]
+
+[ext_resource type="PackedScene" uid="uid://7gc3goqj5bl6" path="res://scenes/enemies/flyingenemy/triangle_fish.tscn" id="1_573xb"]
+[ext_resource type="PackedScene" uid="uid://byisd7iykr3xi" path="res://scenes/enemies/blob/Blob.tscn" id="2_273of"]
+
+[node name="Enemies" type="Node2D" unique_id=1973512462]
+
+[node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("1_573xb")]
+position = Vector2(130, 427)
+
+[node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("2_273of")]
+position = Vector2(24, 439)
+
+[node name="Blob2" parent="." unique_id=1859646167 instance=ExtResource("2_273of")]
+position = Vector2(231, 488)
+direction = -1.0
+
+[node name="Blob3" parent="." unique_id=1149805162 instance=ExtResource("2_273of")]
+position = Vector2(130, 376)
+direction = -1.0

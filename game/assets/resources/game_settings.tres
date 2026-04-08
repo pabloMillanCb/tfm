@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SettingsData" format=3]
+
+[ext_resource type="Script" path="res://data/custom_resources/settings_data.gd" id="1_dkb6r"]
+
+[resource]
+script = ExtResource("1_dkb6r")
+language = 1
+full_screen_enable = true
+master_volume = 0.8
+music_volume = 0.8
+sfx_volume = 0.8
+screen_brightness = 1.0
+screen_contrast = 1.0

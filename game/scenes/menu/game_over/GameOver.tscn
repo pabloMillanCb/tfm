@@ -1,34 +1,113 @@
-[gd_scene load_steps=2 format=3 uid="uid://viia14f4ovkj"]
+[gd_scene format=3 uid="uid://viia14f4ovkj"]
 
 [ext_resource type="Script" uid="uid://cpw52wwyo4l08" path="res://scenes/menu/game_over/game_over.gd" id="1_qbrnc"]
+[ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_h4ucm"]
+[ext_resource type="Texture2D" uid="uid://c58bdw7fhrxnk" path="res://scenes/cutscenes/intro/le_fishe.png" id="3_qtkvq"]
+[ext_resource type="Texture2D" uid="uid://bkmphx0irvk8r" path="res://scenes/menu/main/le_fishe.png" id="4_m0xj5"]
+[ext_resource type="AudioStream" uid="uid://6rr32y78tu57" path="res://assets/sound/blink.wav" id="5_qtkvq"]
 
-[node name="GameOver" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6joc7"]
+atlas = ExtResource("3_qtkvq")
+region = Rect2(0, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3umi"]
+atlas = ExtResource("3_qtkvq")
+region = Rect2(14, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8nilu"]
+atlas = ExtResource("3_qtkvq")
+region = Rect2(28, 0, 14, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487rp"]
+atlas = ExtResource("4_m0xj5")
+region = Rect2(28, 0, 14, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcrln"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6joc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3umi")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_8nilu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3umi")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6joc7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487rp")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[node name="GameOver" type="Node2D" unique_id=393743204]
 script = ExtResource("1_qbrnc")
 
-[node name="Label" type="Label" parent="."]
-offset_left = 82.0
-offset_top = 118.0
-offset_right = 169.0
-offset_bottom = 141.0
-text = "Game Over"
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=155157984]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -4.9237137
+offset_right = 43.5
+offset_bottom = 40.076286
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_h4ucm")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-offset_top = 104.0
-offset_right = 256.0
-offset_bottom = 240.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1168326233]
 layout_mode = 2
 
-[node name="Retry" type="Button" parent="CenterContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=147752746]
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" unique_id=881426134]
+layout_mode = 2
+theme = ExtResource("2_h4ucm")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer" unique_id=173579840]
+layout_mode = 2
+
+[node name="Retry" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=955110889]
 unique_name_in_owner = true
 layout_mode = 2
 text = "RETRY"
 
-[node name="Main Menu" type="Button" parent="CenterContainer/HBoxContainer"]
+[node name="Main Menu" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=197979001]
 unique_name_in_owner = true
 layout_mode = 2
 text = "MAIN MENU"
 
-[connection signal="pressed" from="CenterContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1357001966]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1368163187]
+position = Vector2(0, -32.423714)
+scale = Vector2(3.6440718, 3.6440718)
+sprite_frames = SubResource("SpriteFrames_bcrln")
+animation = &"open"
+autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=753365205]
+stream = ExtResource("5_qtkvq")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

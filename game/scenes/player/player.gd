@@ -5,12 +5,22 @@ class_name Player
 
 @export var walking_speed = 80
 @export var walking_acceleration = 1200
+@export var walking_deceleration = 1200
 @export var pogo_acceleration = 2400
 @export var air_acceleration = 300
 @export var jump_force = -120
 @export var bounce_force = -150
-@export var beam_update = false
-@export var break_update = false
+@export var gravity_jumping = 200.0
+@export var gravity_falling = 400.0
+@export var max_fall_speed = 300.0
+@export var debug_data: PlayerData =  null
+
+@onready var data: PlayerData = (func set_debug_data() -> PlayerData:
+	if debug_data != null:
+		return debug_data
+	else:
+		return PlayerData.new()
+).call()
 
 var invencible = false
 var current_health = 2
@@ -23,12 +33,56 @@ signal dialog_start_request(dialogue_component: DialogueComponent)
 
 var teleport_crosshair: TeleportCrosshair
 
+
+func _ready() -> void:
+	update_upgrades_information()
+
+
 func _process(delta: float) -> void:
 	%DebugStateName.visible = debug_mode
 	
+	#if invencible:
+	#	$PlayerSprites/AnimationPlayer.play("blink")
 	if invencible:
-		$PlayerSprites/AnimationPlayer.play("blink")
+		$PlayerSprites.material.set_shader_parameter("whiten", true)
+		$PlayerSprites.material.set_shader_parameter("time", %InvencibleTimer.time_left)
+	else:
+		$PlayerSprites.material.set_shader_parameter("whiten", false)
 
+
+func set_player_data(loaded_data: PlayerData):
+	if debug_data == null:
+		data = loaded_data.copy()
+	update_upgrades_information()
+	update_health_information()
+	instance_saved_key()
+
+
+func get_new_upgrade(upgrade: Upgrade.UpgradeType):
+	if upgrade == Upgrade.UpgradeType.SWORD:
+		data.has_sword_update = true
+	elif upgrade == Upgrade.UpgradeType.BREAK:
+		data.has_break_update = true
+	elif upgrade == Upgrade.UpgradeType.BEAM:
+		data.has_beam_update = true
+	elif upgrade == Upgrade.UpgradeType.POGO:
+		data.has_pogo_update = true
+	elif upgrade == Upgrade.UpgradeType.TELEPORT:
+		data.has_teleport_update = true
+	
+	update_upgrades_information()
+	
+
+func update_health_information():
+	print("update_health")
+	print(data.max_health)
+	print(current_health)
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)
+
+
+func update_upgrades_information():
+	$PlayerSprites/SwordSprites.visible = data.has_sword_update
 
 func stop_animation():
 	$PlayerSprites.stop()
@@ -61,20 +115,20 @@ func get_look_direction():
 	return $PlayerSprites.scale.x
 
 
-func update_gravity(_delta):
+func update_gravity(_delta, force = false):
 	
-	var JUMP_GRAVITY_FORCE = 200
-	var FALL_GRAVITY_FORCE = 400
-	var MAX_FALL_SPEED = 300
+	var is_jump_pressed = Input.is_action_pressed("jump") or force
 	
-	if velocity.y > 0 or !Input.is_action_pressed("jump"):
-		velocity.y = move_toward(velocity.y, MAX_FALL_SPEED, _delta * FALL_GRAVITY_FORCE)
+	if velocity.y < 0 and !is_jump_pressed:
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling * 2)
+	elif velocity.y > 10 or velocity.y < -10 or !is_jump_pressed:
+		velocity.y = move_toward(velocity.y, max_fall_speed, _delta * gravity_falling)
 	else:
-		velocity.y += JUMP_GRAVITY_FORCE * _delta
+		velocity.y += gravity_jumping * _delta
 
 
 func shoot():
-	if beam_update:
+	if data.has_beam_update:
 		var beam: Beam = preload("res://scenes/player/beam/beam.tscn").instantiate()
 		beam.direction = get_look_direction()
 		beam.global_position = %ShootingPoint.global_position
@@ -82,8 +136,7 @@ func shoot():
 
 
 func set_pogo_hitbox(active: bool):
-	$PlayerSprites/PogoHitbox.monitoring = active
-	$PlayerSprites/PogoHitbox.visible = active
+	$PlayerSprites/PogoHitbox/CollisionShape2D.disabled = !active
 
 
 func prepare_teleport():
@@ -100,14 +153,80 @@ func teleport():
 
 
 func _on_atack_hit(area: Area2D) -> void:
-	if area.has_method("break_self") and break_update:
-		area.break_self()
+	if area.has_method("take_damage") and data.has_break_update:
+		area.take_damage(-(area.global_position - global_position).normalized())
 
 
 func _on_hit_received(_area: Area2D) -> void:
 	if !invencible:
-		state_machine._transition_to_next_state(PlayerState.HIT)
+		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func force_jump():
+	(state_machine.state as PlayerState).force_jump()
 
 
 func set_sprite_visibility(visible: bool):
 	$PlayerSprites.visible = visible
+
+
+func instance_saved_key():
+	if DataManager.current_save.player_data.has_key:
+		var key = preload("res://scenes/key/Key.tscn").instantiate()
+		key.global_position = global_position
+		add_child(key)
+
+
+func get_down_of_one_way_platform():
+	position += Vector2(0.0, 1.0)
+
+
+func _on_tile_hazard_touched(body: Node2D) -> void:
+	if !invencible:
+		(state_machine.state as PlayerState)._on_hit_received()
+
+
+func pick_up_heart():
+	$Sounds/PickUpHeart.play()
+	data.max_health += 1
+	heal()
+
+
+func heal():
+	current_health = data.max_health
+	GameEvent.update_health.emit(data.max_health, current_health)
+
+
+func disable_collisions(disabled: bool):
+	$BodyCollision.disabled = disabled
+
+
+func play_sound(name: String, pitch_range: float = 0.0):
+	
+	var pitch = 1.0 + randf_range(-pitch_range, pitch_range)
+	var sound: AudioStreamPlayer
+	match name:
+		"jump":
+			sound = $Sounds/Jump
+		"atack":
+			sound = $Sounds/Atack
+		"land":
+			sound = $Sounds/Land
+		"heavy_land":
+			sound = $Sounds/HeavyLand
+		"hit":
+			sound = $Sounds/Hit
+		"death":
+			sound = $Sounds/Death
+		"spring":
+			sound = $Sounds/Spring
+		"teleport":
+			sound = $Sounds/Teleport
+		"teleport_bad":
+			sound = $Sounds/TeleportBad
+		"launch_teleport":
+			sound = $Sounds/LaunchTeleport
+	
+	if sound != null:
+		sound.pitch_scale = pitch
+		sound.play()

@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	GameEvent._on_game_intro_finished.emit()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	GameEvent._on_game_intro_finished.emit()

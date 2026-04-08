@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b84anlvw8yxe8"]
+
+[ext_resource type="Script" uid="uid://wtgh5j74n3vt" path="res://scenes/moving_platform/moving_element.gd" id="1_orucl"]
+
+[sub_resource type="Curve" id="Curve_orucl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="MovingElement" type="Node2D" unique_id=1308147215 node_paths=PackedStringArray("follow")]
+script = ExtResource("1_orucl")
+curve = SubResource("Curve_orucl")
+follow = NodePath("")
+
+[node name="Start" type="Marker2D" parent="." unique_id=1866816491]
+
+[node name="End" type="Marker2D" parent="." unique_id=325367644]
+
+[node name="Element" type="Node2D" parent="." unique_id=301706391]

@@ -1,0 +1,59 @@
+[gd_scene format=4 uid="uid://fyca61m4vp74"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_3hhbi"]
+[ext_resource type="Script" uid="uid://bahjdoqlrsboe" path="res://scenes/world/rooms/blue_area/blue_heart.gd" id="1_cqgc4"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_ajqej"]
+[ext_resource type="PackedScene" uid="uid://cko0fl73r1ve6" path="res://scenes/enemies/waves/enemy_wave.tscn" id="4_ajqej"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_gwbbt"]
+[ext_resource type="PackedScene" uid="uid://bik7qxxl3vgra" path="res://scenes/world/rooms/blue_area/waves/enemies.tscn" id="5_br4jr"]
+[ext_resource type="PackedScene" uid="uid://cu0mnilwkqvpm" path="res://scenes/world/rooms/blue_area/waves/enemies2.tscn" id="6_br4jr"]
+[ext_resource type="PackedScene" uid="uid://c8thbmo5ofuiv" path="res://scenes/world/rooms/blue_area/waves/enemies3.tscn" id="7_gwbbt"]
+[ext_resource type="PackedScene" uid="uid://d222gfpsdfpet" path="res://scenes/door/stone_door.tscn" id="8_ocd8x"]
+[ext_resource type="PackedScene" uid="uid://crj8piwquvxio" path="res://scenes/objects/heart/Heart.tscn" id="10_iad4g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocd8x"]
+size = Vector2(57, 96)
+
+[node name="BlueHeart" type="Node2D" unique_id=801174312]
+script = ExtResource("1_cqgc4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAAAAcAAAAHAA0AAAAPAAgAAAAHAA0AAAAOAAUAAAAHAA0AAAAPAAUAAAAHAA0AAAACAAkAAAAHAA0AAAACAAoAAAAHAA0AAAACAAsAAAAHAA0AAAADAAsAAAAHAA0AAAAEAAsAAAAHAA0AAAAFAAsAAAAHAA0AAAAGAAsAAAAHAA0AAAAHAAsAAAAHAA0AAAAIAAsAAAAHAA0AAAAJAAsAAAAHAA0AAAAKAAsAAAAHAA0AAAALAAsAAAAHAA0AAAAMAAsAAAAHAA0AAAANAAsAAAAHAA0AAAAOAAsAAAAHAA0AAAAOAAkAAAAHAA0AAAAOAAoAAAAHAA0AAAAAAAgAAAAHAA0AAAABAAgAAAAHAA0AAAAAAAkAAAAHAA0AAAABAAkAAAAHAA0AAAAAAAoAAAAHAA0AAAABAAoAAAAHAA0AAAABAAsAAAAHAA0AAAAPAAsAAAAHAA0AAAAPAAoAAAAHAA0AAAAPAAkAAAAHAA0AAAAAAA0AAAALAA0AAAABAA0AAAALAA0AAAACAA0AAAALAA0AAAADAA0AAAALAA0AAAAEAA0AAAALAA0AAAAFAA0AAAALAA0AAAAGAA0AAAALAA0AAAAHAA0AAAALAA0AAAAIAA0AAAALAA0AAAAJAA0AAAALAA0AAAAKAA0AAAALAA0AAAALAA0AAAALAA0AAAAMAA0AAAALAA0AAAANAA0AAAALAA0AAAAOAA0AAAALAA0AAAAPAA0AAAALAA0AAAAAAAMAAAAHAA0AAAABAAMAAAAHAA0AAAACAAMAAAAHAA0AAAADAAMAAAAHAA0AAAAEAAMAAAAHAA0AAAAFAAMAAAAHAA0AAAAGAAMAAAAHAA0AAAAHAAMAAAAHAA0AAAAIAAMAAAAHAA0AAAAJAAMAAAAHAA0AAAAKAAMAAAAHAA0AAAALAAMAAAAHAA0AAAAMAAMAAAAHAA0AAAANAAMAAAAHAA0AAAAAAAQAAAAHAA0AAAABAAQAAAAHAA0AAAACAAQAAAAHAA0AAAADAAQAAAAHAA0AAAAEAAQAAAAHAA0AAAAFAAQAAAAHAA0AAAAGAAQAAAAHAA0AAAAHAAQAAAAHAA0AAAAIAAQAAAAHAA0AAAAJAAQAAAAHAA0AAAAKAAQAAAAHAA0AAAALAAQAAAAHAA0AAAAMAAQAAAAHAA0AAAANAAQAAAAHAA0AAAANAAUAAAAHAA0AAAAOAAQAAAAHAA0AAAAPAAQAAAAHAA0AAAAIAAwAAAALAA0AAAAJAAwAAAALAA0AAAAKAAwAAAALAA0AAAALAAwAAAALAA0AAAAMAAwAAAALAA0AAAANAAwAAAALAA0AAAAOAAwAAAALAA0AAAAPAAwAAAALAA0AAAA=")
+tile_set = ExtResource("1_3hhbi")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_ajqej")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_gwbbt")]
+position = Vector2(7, 91)
+
+[node name="EnemyWave" parent="." unique_id=584316293 instance=ExtResource("4_ajqej")]
+enemies = ExtResource("5_br4jr")
+
+[node name="EnemyWave2" parent="." unique_id=1503994972 instance=ExtResource("4_ajqej")]
+enemies = ExtResource("6_br4jr")
+
+[node name="EnemyWave3" parent="." unique_id=126055283 instance=ExtResource("4_ajqej")]
+enemies = ExtResource("7_gwbbt")
+
+[node name="Door" parent="." unique_id=2034733550 instance=ExtResource("8_ocd8x")]
+position = Vector2(232, 120)
+
+[node name="Door2" parent="." unique_id=434032591 instance=ExtResource("8_ocd8x")]
+position = Vector2(24, 104)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=441578214]
+position = Vector2(131, 139)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=99148283]
+position = Vector2(-3.5, -11)
+shape = SubResource("RectangleShape2D_ocd8x")
+
+[node name="Heart" parent="." unique_id=72603203 instance=ExtResource("10_iad4g")]
+position = Vector2(114, 200)
+
+[connection signal="on_wave_end" from="EnemyWave" to="EnemyWave2" method="activate_wave"]
+[connection signal="on_wave_end" from="EnemyWave2" to="EnemyWave3" method="activate_wave"]
+[connection signal="on_wave_end" from="EnemyWave3" to="." method="_on_enemy_wave_3_on_wave_end"]
+[connection signal="on_wave_end" from="EnemyWave3" to="Door" method="unlock_door"]
+[connection signal="on_wave_end" from="EnemyWave3" to="Door2" method="unlock_door"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

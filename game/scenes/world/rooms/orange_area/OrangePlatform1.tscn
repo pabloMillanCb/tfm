@@ -1,0 +1,45 @@
+[gd_scene format=4 uid="uid://cd1opig3orgeo"]
+
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_5idkf"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_f3rwt"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_lxgfn"]
+[ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="5_lxgfn"]
+[ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="6_j0y86"]
+[ext_resource type="PackedScene" uid="uid://byisd7iykr3xi" path="res://scenes/enemies/blob/Blob.tscn" id="6_lxgfn"]
+[ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="7_uusof"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14mlk"]
+resource_local_to_scene = true
+shader = ExtResource("7_uusof")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[node name="OrangePlatform1" type="Node2D" unique_id=801174312]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+tile_map_data = PackedByteArray("AAAfAA0AAAALAA8AAAAeAA0AAAAMAA8AAAAdAA0AAAALAA8AAAAcAA0AAAALAA8AAAAbAA0AAAALAA8AAAAaAA0AAAAMAA8AAAAfAAoAAAAJAA8AAAAAAA0AAAALAA8AAAABAA0AAAALAA8AAAACAA0AAAAMAA8AAAADAA0AAAALAA8AAAAEAA0AAAALAA8AAAAeAAoAAAANAA4AAAAdAAoAAAAJAA8AAAAcAAkAAAAKAA8AAAAbAAkAAAALAA8AAAAbAAoAAAALAA8AAAAcAAoAAAALAA8AAAAbAAgAAAAJAA8AAAAXAAgAAAALAA8AAAAOAAYAAAALAA8AAAANAAYAAAALAA8AAAAMAAYAAAALAA8AAAAIAAUAAAALAA8AAAAfAAcAAAAJAA8AAAAfAAYAAAAJAA8AAAAfAAUAAAAKAA8AAAAfAAQAAAAJAA8AAAAfAAMAAAAJAA8AAAAfAAIAAAAJAA8AAAAfAAEAAAAKAA8AAAAfAAAAAAAJAA8AAAADAAYAAAALAA8AAAAEAAYAAAALAA8AAAAeAAwAAAANAA4AAAABAAkAAAAMAA8AAAABAAsAAAAMAA8AAAACAAkAAAANAA4AAAACAAsAAAANAA4AAAABAAYAAAALAA8AAAACAAcAAAANAA4AAAADAAkAAAAMAA8AAAADAAsAAAAMAA8AAAAAAAwAAAAJAA8AAAAAAAsAAAAJAA8AAAAAAAoAAAAJAA8AAAAAAAkAAAAJAA8AAAAAAAgAAAAJAA8AAAAAAAcAAAAJAA8AAAAAAAYAAAAJAA8AAAAAAAMAAAAJAA8AAAAAAAIAAAAJAA8AAAAAAAEAAAAJAA8AAAAAAAAAAAAJAA8AAAAfAAwAAAAJAA8AAAAfAAsAAAAKAA8AAAAFAAwAAAACAAsAAAAHAAwAAAACAAsAAAAIAAwAAAACAAsAAAAJAAwAAAACAAsAAAALAAwAAAACAAsAAAAMAAwAAAACAAsAAAANAAwAAAACAAsAAAAPAAwAAAACAAsAAAAQAAwAAAACAAsAAAARAAwAAAACAAsAAAATAAwAAAACAAsAAAAUAAwAAAACAAsAAAAVAAwAAAACAAsAAAAXAAwAAAACAAsAAAAYAAwAAAACAAsAAAAZAAwAAAACAAsAAAAFAA0AAAALAA8AAAAGAA0AAAALAA8AAAAHAA0AAAALAA8AAAAIAA0AAAALAA8AAAAJAA0AAAALAA8AAAAKAA0AAAAMAA8AAAALAA0AAAALAA8AAAAMAA0AAAALAA8AAAANAA0AAAALAA8AAAAOAA0AAAAMAA8AAAAPAA0AAAALAA8AAAAQAA0AAAALAA8AAAARAA0AAAALAA8AAAASAA0AAAAMAA8AAAATAA0AAAALAA8AAAAUAA0AAAALAA8AAAAVAA0AAAALAA8AAAAWAA0AAAAMAA8AAAAXAA0AAAALAA8AAAAYAA0AAAALAA8AAAAZAA0AAAALAA8AAAATAAgAAAALAA8AAAAUAAgAAAALAA8AAAASAAQAAAALAA8AAAATAAQAAAANAA4AAAAUAAQAAAANAA4AAAAVAAQAAAALAA8AAAAWAAwAAAAMAA8AAAASAAwAAAAMAA8AAAAOAAwAAAAMAA8AAAAKAAwAAAAMAA8AAAAGAAwAAAAMAA8AAAA=")
+tile_set = ExtResource("1_5idkf")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_f3rwt")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_lxgfn")]
+position = Vector2(458, 123)
+
+[node name="Spring" parent="." unique_id=1546387936 instance=ExtResource("5_lxgfn")]
+position = Vector2(320, 120)
+
+[node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("6_lxgfn")]
+position = Vector2(215, 80)
+
+[node name="Piranha" parent="." unique_id=810161683 instance=ExtResource("6_j0y86")]
+position = Vector2(279, 56)
+speed = 45.0
+
+[node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_14mlk")
+
+[node name="EndPoint" parent="Piranha" index="4" unique_id=1382419134]
+position = Vector2(81, 0)
+
+[editable path="Piranha"]

@@ -1,9 +1,9 @@
-[gd_resource type="Theme" load_steps=0 format=3 uid="uid://dfyoc5jqnnpf5"]
+[gd_resource type="Theme" format=3 uid="uid://dfyoc5jqnnpf5"]
 
 [resource]
 MetSys/colors/active_custom_element = Color(0.1, 0.1, 1, 0.8)
 MetSys/colors/assigned_scene = Color(0.235294, 0.701961, 0.443137, 0.8)
-MetSys/colors/border_highlight = Color(0, 1, 0, 0.5)
+MetSys/colors/border_highlight = Color(1, 1, 1, 0.5019608)
 MetSys/colors/current_scene_room = Color(1, 0, 0, 0.5)
 MetSys/colors/cursor_color = Color(0, 1, 0, 1)
 MetSys/colors/cursor_color_erase = Color(1, 0, 0, 1)

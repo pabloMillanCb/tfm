@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b2rok6puslnm"]
+
+[ext_resource type="PackedScene" uid="uid://byisd7iykr3xi" path="res://scenes/enemies/blob/Blob.tscn" id="1_uhk6v"]
+
+[node name="Enemies" type="Node2D" unique_id=373765306]
+
+[node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("1_uhk6v")]
+position = Vector2(205, 213)
+
+[node name="Blob2" parent="." unique_id=410303847 instance=ExtResource("1_uhk6v")]
+position = Vector2(36, 143)

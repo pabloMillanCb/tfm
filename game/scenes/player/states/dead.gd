@@ -4,10 +4,15 @@ signal show_death_particles
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_sprite_visibility(false)
+	Input.start_joy_vibration(0,1.0,1.0,1.5)
 	show_death_particles.emit(player.get_look_direction())
 	get_tree().create_timer(4.0).timeout.connect(func():
 		GameEvent._on_game_over.emit()
 	)
+	player.play_sound("death")
+
+func _on_hit_received():
+	pass
 
 func _exit():
 	player.set_sprite_visibility(false)

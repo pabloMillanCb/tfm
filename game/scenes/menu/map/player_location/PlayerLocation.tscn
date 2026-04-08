@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dkh20tmehekyu"]
+
+[ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="1_0rkkx"]
+
+[sub_resource type="Animation" id="Animation_wp6tr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_c6db7"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_md8r1"]
+_data = {
+&"RESET": SubResource("Animation_wp6tr"),
+&"blink": SubResource("Animation_c6db7")
+}
+
+[node name="Node2D" type="Node2D" unique_id=65521950]
+scale = Vector2(1.885, 1.885)
+
+[node name="PlayerLocation" type="Sprite2D" parent="." unique_id=2011517045]
+texture = ExtResource("1_0rkkx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerLocation" unique_id=115340185]
+libraries/ = SubResource("AnimationLibrary_md8r1")
+autoplay = &"blink"

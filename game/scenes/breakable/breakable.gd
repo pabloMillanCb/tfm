@@ -1,5 +1,6 @@
-extends Node
+extends Node2D
 class_name Breakable
 
-func break_self():
+func take_damage(direction: Vector2 = Vector2.ZERO):
+	print("take_damage")
 	queue_free()

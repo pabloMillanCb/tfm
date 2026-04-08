@@ -4,7 +4,7 @@ class_name PlayerParticles
 
 func _on_hit(direction: Vector2) -> void:
 	$HitParticle.direction = direction
-	$HitParticle.gravity = -direction.normalized() * 340
+	#$HitParticle.gravity = -direction.normalized() * 300
 	$HitParticle.restart()
 
 
@@ -15,3 +15,8 @@ func _on_death(scale: float) -> void:
 		$DeadHeadParticle.texture = ImageTexture.create_from_image(img)
 	$DeadBodyParticle.restart()
 	$DeadHeadParticle.restart()
+	$DeathParticle.restart()
+
+
+func _on_stomp_show_death_particles() -> void:
+	$StompParticle.restart()

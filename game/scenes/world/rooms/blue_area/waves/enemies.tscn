@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bik7qxxl3vgra"]
+
+[ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="1_uyy60"]
+[ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="2_rbpm4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyy60"]
+resource_local_to_scene = true
+shader = ExtResource("2_rbpm4")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbpm4"]
+resource_local_to_scene = true
+shader = ExtResource("2_rbpm4")
+shader_parameter/whiten = true
+shader_parameter/time = 0.0
+shader_parameter/alpha = 4.505
+
+[node name="Enemies" type="Node2D" unique_id=1878024502]
+
+[node name="Piranha" parent="." unique_id=810161683 instance=ExtResource("1_uyy60")]
+position = Vector2(59, 167)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_uyy60")
+
+[node name="EndPoint" parent="Piranha" index="4" unique_id=1382419134]
+position = Vector2(156, 0)
+
+[node name="Piranha2" parent="." unique_id=1487409763 instance=ExtResource("1_uyy60")]
+position = Vector2(59, 137)
+speed = 60.0
+
+[node name="AnimatedSprite2D" parent="Piranha2" index="0" unique_id=1814534361]
+material = SubResource("ShaderMaterial_rbpm4")
+
+[node name="StartPoint" parent="Piranha2" index="3" unique_id=1303859466]
+position = Vector2(156, 0)
+
+[editable path="Piranha"]
+[editable path="Piranha2"]
