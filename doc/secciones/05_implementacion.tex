@@ -23,15 +23,17 @@ Las escenas son funcionalmente similares a un nodo: empaquetan una funcionalidad
     \label{fig:scene-tree}
 \end{figure}
 
+Otro elemento fundamental de Godot que es necesario explicar son las \textbf{señales}. Las señales son un mecanismo de delegación de Godot que permite a un nodo reaccionar a un evento que ocurre en otro nodo. Por ejemplo, un nodo Jugador podría declarar una señal que se emite cuando este recibe daño. El nodo InterfazDeJuego, por otro lado, conectaría una función a la señal de Jugador que se encargaría de actualizar la salud restante en la interfaz. Esto permite la comunicación entre nodos que son lejanos entre si en el scene tree, reduciendo también el acoplamiento del proyecto.
+
 A la hora de diseñar arquitecturas en Godot, es indispensable pensarla en términos de nodos y escenas. Por eso mismo, en la figura \ref{fig:proyect-architecture} se describe la arquitectura del proyecto como un árbol de escenas y no como, por ejemplo, un diagrama de clases. En esta cada nodo es una escena del proyecto. A lo largo de este capíutlo se desarrollarán en detalle cada una de las escenas. Por ahora y para adquirir una visión general del proyecto, se destacan:
 
 \begin{itemize}
-    \item \textbf{Game}: La lógica de esta escena sigue el patrón de diseño de máquina de estados. Se encarga de instanciar y eliminar las distintas pantallas que conforman el juego (menú principal, menú de pausa, pantalla de juego, pantalla de game over, etc).
+    \item \textbf{Game}: La lógica de esta escena sigue un patrón de máquina de estados. Se encarga de instanciar y eliminar las distintas pantallas que conforman el juego (menú principal, menú de pausa, pantalla de juego, pantalla de game over, etc).
     \item \textbf{GameWorld}: Es el nodo que contiene y gestiona el mundo del videojuego: todos los niveles y elementos que lo componen, como el personaje del jugador.
     \item \textbf{PlayerCharacter}: Es de los nodos más complejos del proyecto. Se encarga de gestionar el personaje del jugador: desde sus visuales, animaciones, lógica, controles, sonido, etc.
 \end{itemize}
 
-os \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del árbol de escenas. Estos nodos son similares a un patrón Singleton: son cargados al inicio de la ejecución y existen como entidad única de su tipo. Son accesibles de forma global y normalmente su labor es la gestión de sistemas y prestación de servicios que pueden ser solicitados desde cualquier lugar del árbol de escena. Se desarrollarán más adelante en este capítulo.
+Los \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del árbol de escenas. Estos nodos son similares a un patrón Singleton: son cargados al inicio de la ejecución y existen como entidad única de su tipo. Son accesibles de forma global y normalmente su labor es la gestión de sistemas y prestación de servicios que pueden ser solicitados desde cualquier lugar del árbol de escena. Se desarrollarán más adelante en este capítulo.
 
 \begin{figure}[h]
     \centering
@@ -40,27 +42,72 @@ os \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del 
     \label{fig:proyect-architecture}
 \end{figure}
 
-%    \subsection{Game}
-%    \subsection{Autoloads}
-%
+\subsection{Nodo Game}
+
+El nodo Game es la raíz del proyecto. Su función es gestionar el ciclo de vida del juego, instanciando como hijos y liberando nodos para que el usuario pueda navegar por las distintas pantallas del programa. En la figura \ref{fig:game-state-diagram} se tiene el diagrama de estados para el nodo. Los estados corresponden a las siguientes pantallas de juego:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/GameLyfecycle.drawio.png}
+    \caption[Diagrama de estados de nodo Game]{Diagrama de máquina de estados del nodo Game, correspondiente al ciclo de vida del juego}
+    \label{fig:game-state-diagram}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{TITLE\_SCREEN}: Corresponde a la pantalla de título del juego. Desde aquí se puede iniciar o cargar una partida. También se tiene acceso al menú de ajustes del juego y la opción de cerrar el programa.
+    \item \textbf{GAME\_INTRO}: Esta escena contiene una animación que se reproduce cuando se inicia una nueva partida para dar contexto a la historia del juego.
+    \item \textbf{GAME\_WORLD}: Este es el nodo donde se desarrolla toda la acción del juego. En este se instancian el jugador y el mundo del juego, con todos los elementos que lo conforman.
+    \item \textbf{GAME\_OVER}: Cuando el jugador es derrotado se llega a esta pantalla, donde puede elegir si volver a intentarlo o regresar al menú.
+    \item \textbf{PAUSE\_MENU}: El menú de pausa del juego. El nodo Game es responsable también de pausar (es decir, congelar) todo el árbol de escenas que cuelga de él cuando es necesario.
+    \item \textbf{GAME\_ENDING}: Similar a GAME\_INTRO, esta escena contiene una animación con el final del juego. Tras acabar, se vuelve al menú principal.
+\end{itemize}
+
+La máquina de estados se realizó en el propio script del nodo, lo que suponía una implementación liviana apropiada para una máquina con una complejidad baja. El script define los estados posibles y hace que el nodo recuerde su estado actual, ya que está cargado en memoria en todo momento. Tiene funciones en las que se define qué debe ejecutar al entrar a un estado y al salir de otro. También define qué transiciones de estado están permitidas, y lanza errores cuando se intenta llevar a cabo una que no lo está. Cualquier nodo del scene tree puede solicitar un cambio de estado a través de una señal del nodo \textbf{GameEvent} (explicado a continuación). Game escucha las señales de GameEvent y lleva a cabo los cambios de estado pertinentes.
+
+\subsection{Autoloads y GameEvent}
+
+Los \textbf{Autoloads} son nodos que permiten la implementación del patrón singleton en Godot. Estos se cargan al inicio de la ejecución de un programa y permanecen siempre en memoria como hijos del nodo raíz. Godot guarda una referencia a ellos de tal forma que son accesibles desde cualquier nodo del scene tree aunque no estén directamente relacionados. En el proyecto se usan varios autoloads para distintas labores como se refleja en la figura \ref{fig:proyect-architecture}, siendo \textbf{GameEvent} la más relevante para la arquitectura del mismo.
+
+GameEvent implementa un patrón de bus de eventos para el proyecto. El patrón de bus de evento consiste en deinir un cauce de comunicación entre distintos actores. Los nodos pueden enviar señales a través de ese cauce. El resto de nodos lo reciben y deciden si quieren consumirlo. En este proyecto, ese cauce es el autoload GameEvent haciendo uso de las señales de Godot, y los actores son cualquier nodo que exista en el proyecto.
+
+GameEvent define y expone un catálogo de señales a las que otros nodos pueden conectarse o emitir. Esto permite, por ejemplo, que cuando el jugador es derrotado, el nodo Player emita la señal \textit{\_on\_game\_over}. El nodo Game recibe esta señal y cambia su estado interno, liberando el nodo GameWorld e instanciando GameOver. Cuando el jugador elige volver a intentarlo, se emite la señal \textit{\_on\_player\_respawn} y, de nuevo, Game vuelve a cambiar su estado.
+
+\subsection{Estructura de archivos}
+
+El proyecto está estructurado en las siguientes carpetas:
+
+\begin{itemize}
+    \item \textbf{/addons}: Plugins de Godot usados en el proyecto.
+    \item \textbf{/assets}: Assets gráficos, sonoros, fuentes, diccionarios y recursos generales del proyecto.
+    \item \textbf{/autoload}: Contiene los nodos autoload.
+    \item \textbf{/data}: Contiene recursos customizados de Godot, una suerte de estructuras de datos que se explicarán más adelante.
+    \item \textbf{/dialogues}: Contiene los diálogos del juego y escenas asociadas al plugin Dialogue Manager %TODO: Citar dialogue manager
+    \item \textbf{/scenes}: Aquí se encuentran organizadas en secciones todas las escenas que componen el juego: desde pantallas, personajes, menús a objetos.
+    \item \textbf{/shaders}: Archivos .gdshaders que contienen los shaders que se usan en diferentes escenas.
+    \item \textbf{/test}: Contiene todos los tests automáticos del proyecto.
+    \item \textbf{/themes}: Contiene los temas que se aplican a los nodos tipo Control para las interfaces y menús.
+    \item \textbf{/utils}: Contiene scripts de útiles varios.
+\end{itemize}
+
+La mayoría de assets gráficos del proyecto se encuentran en la carpeta de la escena correspondiente en la que se vaya a usar. Por ejemplo el sprite del jugador se encuentra en la carpeta \textit{/scenes/player/assets}. El resto de assets de uso más general se encuentran en la carpeta \textit{/assets}.
+
+%\section{Sistemas}
+%    \subsection{Mapeado e instanciación de niveles}
+%    \subsection{Funciones de guardado}
+%    \subsection{Asignación de controles}
+%    \subsection{Localización}
+%    \subsection{Reloj}
+%    \subsection{Diálogos}
+
 %\section{Nodo Player}
 
 %\section{Enemigos}
 
-%\section{Sistemas}
-%    \subsection{Mapeado e instanciación de niveles}
-%    \subsection{Guardado}
-%    \subsection{Asignación de controles}
-%    \subsection{Localización}
-%    \subsection{Guardado de partica}
-%    \subsection{Reloj}
-%    \subsection{Diálogos}
-
-%\section{Menus}
+%\section{UI y HUD}
 
 %\section{CI/CD/Testing}
 
 %\section{Accesibilidad}
 
-%\section{Shaders y sistemas de partículas}
+%\section{Shaders y sistemas de partículas} ?
 
