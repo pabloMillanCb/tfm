@@ -42,6 +42,10 @@ Los \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del
     \label{fig:proyect-architecture}
 \end{figure}
 
+\section{Ciclo de vida de un nodo}
+
+% Escribir sobre ready, process, delta time, etc
+
 \subsection{Nodo Game}
 
 El nodo Game es la raíz del proyecto. Su función es gestionar el ciclo de vida del juego, instanciando como hijos y liberando nodos para que el usuario pueda navegar por las distintas pantallas del programa. En la figura \ref{fig:game-state-diagram} se tiene el diagrama de estados para el nodo. Los estados corresponden a las siguientes pantallas de juego:
@@ -98,8 +102,135 @@ La mayoría de assets gráficos del proyecto se encuentran en la carpeta de la e
 %    \subsection{Localización}
 %    \subsection{Reloj}
 %    \subsection{Diálogos}
+%    \subsection{Implementación de máquina de estados}
 
-%\section{Nodo Player}
+\section{Escena Player}
+
+La escena Player recoge toda la funcionalidad referente al personaje controlado por el jugador. Se puede decir que el propio nodo es el personaje jugable. Se encarga de recoger la señal del mando, mover el personaje, actualizar su estado, actualizar su aspecto y animaciones en pantalla, reproducir sonidos, y disparar interacciones con elementos del entorno como por ejemplo enemigos. Es el elemento más presente e importante en el proyecto de cara a jugador, por lo que no es de extrañar que es también el más complejo y extenso. En la figura \ref{fig:player-architecture-diagram} se tiene un diagrama de la arquitectura de la escena. El script de la escena hereda del tipo nativo de Godot \textbf{CharacterBody2D}. Este está diseñado para implementar personajes controlados por un script, y cuenta con métodos que facilitan el movimiento, la detección de suelo y las colisiones, entre otras cosas.
+
+El corazón de la implementación de esta escena es un patrón de \textbf{máquina de estados}. Cada uno de los estados encapsula su correspondiente lógica y es responsable de realizar la transición a otros estados. Estos son gestionados desde el nodo \textit{StateMachine}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-architecture.drawio.png}
+    \caption[Diagrama de la arquitectura del nodo Player]{Diagrama de la arquitectura del nodo Player. Se indica tipo y nombre de cada nodo si tuviera.}
+    \label{fig:player-architecture-diagram}
+\end{figure}
+
+A continuación se repasarán los nodos principales de la figura \ref{fig:player-architecture-diagram}:
+\begin{itemize}
+    \item \textbf{BodyCollision}: Forma de colisión que usa \textit{CharacterBody2D} para detectar objetos sólidos del mundo.
+    \item \textbf{StateMachine}: Nodo que gestiona la máquina de estados. Tiene como hijos un nodos tipo \textit{PlayerState} por cada estado.
+    \item \textbf{PlayerSprites}: Aquí se crean y reproducen todas las animaciones de sprites del personaje. Tiene como hijos figuran todos los nodos que deben ser sensibles a sus transformaciones en el espacio, como los detectores de colisiones (AtackHitbox, Hurtbox, etc.)
+    \item \textbf{AnimationPlayer}: Si PlayerSprites reproduce visualmente la mayoría de animaciones, este nodo gestiona algunas más complejas, como la de ataque.
+    \item \textbf{PlayerParticles}: Contiene y se encarga de gestionar la reproducción de nodos \textit{CpuParticle2D}, para los sistemas de partículas del jugador.
+    \item \textbf{TeleportGroundCollision}: Detector de colisiones auxiliar para la función de teletransporte.
+\end{itemize}
+
+\subsection{Máquina de estados}
+
+Se usó la implementación de máquina de estados que se desarrolla en [TODO: METER REFERENCIA]. El nodo \textit{StateMachine} contiene un nodo hijo por cada estado de Player. Estos nodos heredan de la clase \textit{PlayerState}, el cual a su vez hereda de \textit{State}. Cada nodo encapsula toda la lógica asociada a su estado. Por ejemplo, el estado \textit{Move} gestiona el movimiento del jugador en el suelo. Sus responsabilidades serán, entre otras, inicializar la animación de caminar, recoger el \textit{input} del mando para obtener la dirección de movimiento, y actualizar la posición del jugador. Para ello, todos los estados guardan una referencia a Player y hacen uso de funciones suyas para controlarlo.
+
+A continuación se describen todos los estados:
+\begin{itemize}
+    \item \textbf{IDLE}: El jugador se encuentra en el suelo sin realizar ninguna acción.
+    \item \textbf{MOVE}: El jugador se mueve en el suelo en dirección izquierda o derecha.
+    \item \textbf{JUMP}: El jugador salta y asciende hacia arriba.
+    \item \textbf{FALL}: El jugador deja de ascender y comienza a descender en el aire.
+    \item \textbf{SUPER\_FALL}: El jugador lleva en caida libre durante un tiempo prolongado.
+    \item \textbf{STOMP}: El jugador cae con fuerza al suelo después de caer durante un tiempo prolongado.
+    \item \textbf{ATACK}: El jugador realiza un ataque con la espada.
+    \item \textbf{PREPARE\_TELEPORT}: El jugador comienza a apuntar a algún lugar para teletransportarse.
+    \item \textbf{RELEASE\_TELEPORT}: El jugador se teletransporta.
+    \item \textbf{POGO}: El jugador coloca su espada bajo el personaje para rebotar en objetos.
+    \item \textbf{HIT}: El jugador recibe un golpe.
+    \item \textbf{DEAD}: El jugador no cuenta con más puntos de vida y es derrotado.
+    \item \textbf{TALKING}: El jugador habla con un NPC.
+\end{itemize}
+
+Dado que la máquina de estados resultante es bastante compleja, representarla completa en un solo diagrama haría que fuese poco legible. En su lugar se representará por separado un diagrama para cada estado, en el que se indica a qué otros estados se puede transicionar partiendo desde ese y por qué motivo. Esto se puede consultar en las figuras \ref{fig:player-state-idle}, \ref{fig:player-state-jump}, \ref{fig:player-state-attack}, \ref{fig:player-state-pogo}, \ref{fig:player-state-move}, \ref{fig:player-state-fall}, \ref{fig:player-state-teleport} y \ref{fig:player-state-hit}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-idle.drawio.png}
+    \caption[Flujo de estados de IDLE, Player]{Diagrama de flujo de estados para el estado IDLE de Player.}
+    \label{fig:player-state-idle}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-jump.drawio.png}
+    \caption[Flujo de estados de JUMP, Player]{Diagrama de flujo de estados para el estado JUMP de Player.}
+    \label{fig:player-state-jump}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-atack.drawio.png}
+    \caption[Flujo de estados de ATTACK, Player]{Diagrama de flujo de estados para el estado ATTACK de Player.}
+    \label{fig:player-state-attack}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-pogo.drawio.png}
+    \caption[Flujo de estados de POGO, Player]{Diagrama de flujo de estados para el estado POGO de Player.}
+    \label{fig:player-state-pogo}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-move.drawio.png}
+    \caption[Flujo de estados de MOVE, Player]{Diagrama de flujo de estados para el estado MOVE de Player.}
+    \label{fig:player-state-move}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-fall.drawio.png}
+    \caption[Flujo de estados de FALL, Player]{Diagrama de flujo de estados para el estado FALL de Player.}
+    \label{fig:player-state-fall}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-teleport.drawio.png}
+    \caption[Flujo de estados de TELEPORT, Player]{Diagrama de flujo de estados para el estado TELEPORT de Player.}
+    \label{fig:player-state-teleport}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.5]{img/player-sm-hit.drawio.png}
+    \caption[Flujo de estados de HIT, Player]{Diagrama de flujo de estados para el estado HIT de Player.}
+    \label{fig:player-state-hit}
+\end{figure}
+
+
+\subsection{Gestión de colisiones}
+
+Gran parte de la gestión de colisiones viene dada por el tipo \textit{CharacterBody2D}, del que hereda la escena Player. Este cuenta con una variable \textit{velocity}, un vector 2D que representa hacia dónde se mueve la escena y cómo de rápido. Cuando se ejecuta la función \textit{move_and_slide()}, automaticamente el nodo es desplazado a la velocidad correcta. Si el nodo el nodo \textbf{BodyCollision} detecta una colisión con algún muro, se detiene en seco, y si lo hace con una pendiente, se desliza sobre ella.
+
+    % Esto cubriría las colisiones relacionadas con la física, queda hablar sobre las colisiones para interacción con el entorno.
+
+    % Poner ejemplo de qué cosas cubre
+
+    % Explicar cómo funcionan las Areas2D, máscaras y capas de godot
+
+    % Preguntarse... hay cosas que aplican a Player pero también a otras escenas como Enemy, deben ser extrapolables
+
+    % Introducción al patrón Componente
+
+    % Implementación de HitboxComponent y HurtboxComponent
+
+
+
+    
+%   \subsection{Gestión de datos y mejoras} //mencionar aqui los sprites de la espada
+%   \subsection{Mejora BEAM}
+%   \subsection{Mejora TELEPORT}
+%   \subsection{Sistemas de partículas}
+
 
 %\section{Enemigos}
 
