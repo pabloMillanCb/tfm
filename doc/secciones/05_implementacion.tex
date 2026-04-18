@@ -42,7 +42,7 @@ Los \textbf{Autoloads} son los nodos de arriba a la izquierda que no cuelgan del
     \label{fig:proyect-architecture}
 \end{figure}
 
-\section{Ciclo de vida de un nodo}
+\subsection{Ciclo de vida de un nodo}
 
 % Escribir sobre ready, process, delta time, etc
 
@@ -207,29 +207,72 @@ Dado que la máquina de estados resultante es bastante compleja, representarla c
 \end{figure}
 
 
-\subsection{Gestión de colisiones}
+\subsection{Gestión de colisiones y físicas}
 
-Gran parte de la gestión de colisiones viene dada por el tipo \textit{CharacterBody2D}, del que hereda la escena Player. Este cuenta con una variable \textit{velocity}, un vector 2D que representa hacia dónde se mueve la escena y cómo de rápido. Cuando se ejecuta la función \textit{move_and_slide()}, automaticamente el nodo es desplazado a la velocidad correcta. Si el nodo el nodo \textbf{BodyCollision} detecta una colisión con algún muro, se detiene en seco, y si lo hace con una pendiente, se desliza sobre ella.
+Podemos diferenciar dos tipos de colisiones que se necesitan gestionar: las que están relacionadas con la simulación de físicas (principalmente detectar choques para frenar al personaje) y las relacionadas con interacciones (cuando el jugador toca un enemigo debería recibir daño, y cuando entra en contacto con un item, debería recogerlo).
 
-    % Esto cubriría las colisiones relacionadas con la física, queda hablar sobre las colisiones para interacción con el entorno.
+Para las físicas del personaje se hace uso del motor por defecto de Godot. La gestión colisiones relacionadas con la física viene dada por el tipo \textit{CharacterBody2D}, del que hereda la escena Player. Este cuenta con una variable \textit{velocity}, un vector 2D que representa hacia dónde se mueve la escena y cómo de rápido. Al ejecut la función \textit{move\_and\_slide}, el jugador es desplazado, por lo que desde el script solo es necesario definir la dirección y magnitud deseado para \textit{velocity}. Si el nodo \textbf{BodyCollision} detecta una colisión con un objeto sólido al desplazarse, se detiene en seco, y si lo hace con una pendiente, se desliza sobre ella.
 
-    % Poner ejemplo de qué cosas cubre
+Para el resto de interacciones, se hace uso de \textit{Area2D}, un tipo nativo de Godot. Este permite definir un area de colisión y disparar una señal cada vez que un cuerpo u otro area entre dentro de esta (es decir, colisionen). La señal puede ser conectada a nodos de otros nodos para gestionar la interacción.
 
-    % Explicar cómo funcionan las Areas2D, máscaras y capas de godot
+Es necesario poder discernir qué objeto es el que provoca la colisión. El área \textit{Hurtbox} dispara una señal cuando el jugador choca con un enemigo para así restarle salud. Eso es algo que solo debe ocurrir si la colisión ha ocurrido con un enemigo, y no otro objeto. Para eso se hace uso de la propiedad de \textbf{capas y máscaras} de Godot. Todas las áreas y cuerpos en Godot deben declarar en qué cápa de las físicas se encuentran, y con qué otras capas puede interactuar (es decir, su \textit{máscara}). Para el caso de \textit{Hurtbox}, esta no necesitaría definir ninguna capa (ningún objeto necesita interactuar con esta) y en su máscara se define que interactuará con la capa \textit{EnemyAtack}, para poder detectarlos.
 
-    % Preguntarse... hay cosas que aplican a Player pero también a otras escenas como Enemy, deben ser extrapolables
+En el proyecto se definieron las siguientes capas:
 
-    % Introducción al patrón Componente
+\begin{itemize}
+    \item \textbf{Player}: Capa dedicada al jugador.
+    \item \textbf{Ground}: Contiene a todas las paredes, suelos y otros objetos sólidos.
+    \item \textbf{PlayerAtack}: Ataques que emite el jugador.
+    \item \textbf{Enemy}: Personajes enemigos.
+    \item \textbf{EnemyAtack}: Cualquier objeto que pueda causar daño al jugador.
+    \item \textbf{Breakable}: Objetos destruibles por el jugador.
+    \item \textbf{Key}: Llaves que el jugador puede recoger.
+\end{itemize}
 
-    % Implementación de HitboxComponent y HurtboxComponent
+El lector podrá apreciar que algunas de estas interacciones son comunes a varios elementos del juego: las áreas que reciben daño y las que producen daño. Tanto el jugador como todos los enemigos del juego e incluso los objetos destruibles necesitan implementar esta funcionalidad. Por tanto es deseable encontrar una abstracción que evite el tener que implementarla de forma redundante en cada una de esas escenas.
+
+Cuando varias entidades necesitan implementar cierto comportamiento en el paradigma de la programación orientada a objetos, se resuelve por herencia. Se crea un super tipo con la funcionalidad del que heredarían los objetos pertinentes. Sin embargo, por la estructura en nodos de Godot y la necesidad de usar sus tipos predefinidos, esta aproximación complicaría mucho el código del proyecto. En su lugar, se introduce el concepto de \textbf{componente}. Se entiende por componente una encapsulación de cierta funcionalidad que puede ser inyectada en cualquier ente del proyecto. En Godot, esto se traduce en un nodo que se añade como hijo a cualquier escena que necesite implementar su funcionalidad.
+
+Ante esta necesidad se implementaron los componentes \textbf{HitboxComponent} y \textbf{HurtboxComponent}. En desarrollo de videojuegos se denomina \textit{hitbox} al área de colisión que abarca el ataque de una entidad. Por otro lado, \textit{hurtbox} es el área de colisión que define las zonas impactables de un ente. En esencia, la hitbox de un ataque debe colisionar con la hurtbox de otro ente para impactarle.
+
+\textbf{HitboxComponent} hereda de Area2D. Define la función \textit{on\_atack\_detected}, que recibe como parámetro una \textit{HurtboxComponent}, y es conectada durante la instanciación del objeto a la señal \textit{\_on\_area\_entered}, heredada de Area2D. Esta función recoge la dirección desde la que se recibió el golpe y llama a la función \textit{take\_damage} de su nodo padre.
+
+La implementación de \textit{HurtboxComponent} es vacía, dado que este objeto existe solo para tipar este tipo de área, y que las hitbox detecten únicamente este tipo de área.
+
+Por tanto, para implementar estos componentes en cualquier escena (por ejemplo, la de player) se instancian en lugar de un Area2D, se añade como hijo una forma de colisión (requerida por el Area2D de la que se hereda) y el nodo padre deberá implementar la función \textit{take\_damage} para gestionar cómo se procesa el impacto. Por último, se indica una máscara para la hitbox (en este caso, Enemy) y una capa para la hurbox (Player).
+
+En el diagrama \ref{fig:hit-components} se tiene una representación de este esquema para la escena Player. En otras escenas se realizaría de forma similar.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.65]{img/hitbox-component-diagram.drawio.png}
+    \caption[HitboxComponent y HurtboxComponent]{Diagrama de componentes HitboxComponent y HurtboxComponent para el nodo Player}
+    \label{fig:hit-components}
+\end{figure}
 
 
+\subsection{Gestión de animaciones}
 
-    
-%   \subsection{Gestión de datos y mejoras} //mencionar aqui los sprites de la espada
+Las animaciones son gestionadas principalmente por el nodo \textit{AnimatedSprite2D}. Este permite definir una lista de animaciones que luego pueden ser llamadas desde el código. Una animación se define con un nombre y una colección de fotogramas. Es posible configurar la duración de la animación y de cada fotograma por separado. Para crear los fotogramas, se hacen uso de \textit{spritesheets}.
+
+Una \textbf{spritesheet} es una imagen dividida en cuadrículas que recoge una serie de fotogramas tematizados. Puede ser una paleta de bloques que se usan para dibujar el escenario, o en este caso, una colección de fotogramas de las animaciones de un personaje. En la figura \ref{fig:player-spritesheet} se muestra la correspondiente a Player.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{img/player_spritesheet.png}
+    \caption[Spritesheet de animaciones de Player]{Spritesheet de animaciones de Player}
+    \label{fig:player-spritesheet}
+\end{figure}
+
+Como el jugador comienza el juego sin una espada y la obtiene más adelante, se han separado las animaciones del jugador en 2 nodos: \textit{PlayerSprites} y \textit{SwordSprites}. Esto se hace para evitar duplicar todas las animaciones para tener una versión con arma y otra sin arma. En la figura \ref{fig:player-spritesheet} se aprecia esta separación. Mientras no se consiga la espada, \textit{SwordSprites} se mantiene invisible.
+
+Usando \textit{AnimatedSprite2D} se cubren la mayoría de animaciones, pero otras más complejas que necesitan coordinar los fotogramas con la modificación de parámetros de la escena. Para esos casos se emplea \textit{AnimationPlayer}, un nodo más completo que permite crear animaciones en una timeline en la que se pueden ordenar e interpolar fotogramas, valores de parámetros y llamadas a funciones. Esto es necesario para, por ejemplo, modificar la trasparencia del sprite o activar y desactivar las áreas de colisión.
+
+%   \subsection{Gestión de datos y mejoras}
 %   \subsection{Mejora BEAM}
 %   \subsection{Mejora TELEPORT}
 %   \subsection{Sistemas de partículas}
+%   \subsection{Tiempo Coyote}
 
 
 %\section{Enemigos}
