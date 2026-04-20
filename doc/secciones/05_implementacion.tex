@@ -95,15 +95,6 @@ El proyecto está estructurado en las siguientes carpetas:
 
 La mayoría de assets gráficos del proyecto se encuentran en la carpeta de la escena correspondiente en la que se vaya a usar. Por ejemplo el sprite del jugador se encuentra en la carpeta \textit{/scenes/player/assets}. El resto de assets de uso más general se encuentran en la carpeta \textit{/assets}.
 
-%\section{Sistemas}
-%    \subsection{Mapeado e instanciación de niveles}
-%    \subsection{Funciones de guardado}
-%    \subsection{Asignación de controles}
-%    \subsection{Localización}
-%    \subsection{Reloj}
-%    \subsection{Diálogos}
-%    \subsection{Implementación de máquina de estados}
-
 \section{Escena Player}
 
 La escena Player recoge toda la funcionalidad referente al personaje controlado por el jugador. Se puede decir que el propio nodo es el personaje jugable. Se encarga de recoger la señal del mando, mover el personaje, actualizar su estado, actualizar su aspecto y animaciones en pantalla, reproducir sonidos, y disparar interacciones con elementos del entorno como por ejemplo enemigos. Es el elemento más presente e importante en el proyecto de cara a jugador, por lo que no es de extrañar que es también el más complejo y extenso. En la figura \ref{fig:player-architecture-diagram} se tiene un diagrama de la arquitectura de la escena. El script de la escena hereda del tipo nativo de Godot \textbf{CharacterBody2D}. Este está diseñado para implementar personajes controlados por un script, y cuenta con métodos que facilitan el movimiento, la detección de suelo y las colisiones, entre otras cosas.
@@ -268,12 +259,101 @@ Como el jugador comienza el juego sin una espada y la obtiene más adelante, se 
 
 Usando \textit{AnimatedSprite2D} se cubren la mayoría de animaciones, pero otras más complejas que necesitan coordinar los fotogramas con la modificación de parámetros de la escena. Para esos casos se emplea \textit{AnimationPlayer}, un nodo más completo que permite crear animaciones en una timeline en la que se pueden ordenar e interpolar fotogramas, valores de parámetros y llamadas a funciones. Esto es necesario para, por ejemplo, modificar la trasparencia del sprite o activar y desactivar las áreas de colisión.
 
-%   \subsection{Gestión de datos y mejoras}
-%   \subsection{Mejora BEAM}
-%   \subsection{Mejora TELEPORT}
-%   \subsection{Sistemas de partículas}
-%   \subsection{Tiempo Coyote}
+\subsection{Gestión de datos y parametrización}
 
+En el script de Player se declaran una serie de variables con la etiqueta de Godot \textbf{@export}. Esta etiqueta hace que el valor de estas variables se pueda modificar desde la interfaz del motor y puedan cambiarse en tiempo de ejecución. Esto resulta muy práctico para realizar \textit{fine-tuning} mientras se prueba con el juego corriendo. Así se pueden ajustar parámetros que afectan a la experiencia de juego como la velocidad de caminado o altura del salto. La lista de parámetros es la siguiente:
+
+\begin{itemize}
+    \item \textbf{walking\_speed} (Float): Velocidad máxima al caminar.
+    \item \textbf{walking\_acceleration} (Float): Aceleración al caminar.
+    \item \textbf{walking\_deceleration} (Float): Deceleración al dejar de caminar.
+    \item \textbf{air\_acceleration} (Float): Acelerazión horizontal en el aire.
+    \item \textbf{pogo\_acceleration} (Float): Aceleración horizontal en el aire al realizar el pogo.
+    \item \textbf{jump\_force} (Float): Fuerza de salto.
+    \item \textbf{bounce\_force} (Float): Fuerza al rebotar con el pogo.
+    \item \textbf{gravity\_jumping} (Float): Fuerza gravitatoria al ascender.
+    \item \textbf{gravity\_falling} (Float): Fuerza gravitatoria al descender.
+    \item \textbf{max\_fall\_speed} (Float): Velocidad máxima de caída.
+\end{itemize}
+
+Para gestionar las variables persistentes del jugador entre partidas se creó la estructura de datos \textbf{PlayerData}. Esta es un recurso customizado de Godot y contiene información sobre las mejoras desbloqueadas y los puntos de salud máximos. Sus parámetros son:
+%TODO: METER REFERENCIA A DONDE SE EXPLIQUEN LOS RECURSOS
+
+\begin{itemize}
+    \item \textbf{has\_sword\_update} (Boolean): Espada desboqueada.
+    \item \textbf{has\_break\_update} (Boolean): Rompe-paredes desbloqueado.
+    \item \textbf{has\_beam\_update} (Boolean): Disparo desbloqueado.
+    \item \textbf{has\_pogo\_update} (Boolean): Pogo desbloqueado.
+    \item \textbf{has\_teleport\_update} (Boolean): Teletransporte desbloqueado.
+    \item \textbf{has\_key} (Boolean): Llave en posesión.
+    \item \textbf{max\_health} (Int): Puntos máximos de salud.
+\end{itemize}
+
+Se añadió además una variable \textit{@export} tipo PlayerData. Al inicializar Player, si esta variable no es nula, en lugar de cargar los datos de guardado pertinentes, se cargan esos. Esta utilidad permite realizar una depuración y testeo del juego mucho más fácil.
+
+\subsection{Mejora BEAM}
+
+Esta mejora permite al jugador disparar un rayo desde su espada al atacar. El rayo avanza en la dirección disparada y desaparece al transcurrir un tiempo o colisionar con un enemigo. Se creó la escena \textit{Beam} para gestionar este disparo. La architectura se puede observar en la figura \ref{fig:beam-architecture}. La escena hace uso de un nodo \textit{Line2D} para el efecto de estela que es más se afina cuanto más se va alejando del punto de impacto.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.75]{img/beam-architecture.drawio.png}
+    \caption[Arquitectura de escena Beam]{Arquitectura de escena Beam}
+    \label{fig:beam-architecture}
+\end{figure}
+
+El ciclo de vida de los disparos es el siguiente:
+
+\begin{enumerate}
+    \item Player crea una instancia de Beam. Indica la dirección del disparo en función de su orientación y lo posiciona en el mismo punto que \textit{ShootingPoint}, nodo alineado con la espada para hacer ver que el disparo aparece en esta.
+    \item Player añade este nodo como hijo de su padre (el nodo \textit{GameWorld}, consultar figura \ref{fig:proyect-architecture}).
+    \item La escena Beam actualiza su posición en cada fotograma. Cuando colisiona con una pared o un enemigo, se destruye a si misma.
+\end{enumerate}
+
+\subsection{Mejora TELEPORT}
+
+Para la mejora del teleport se creó la escena \textit{TeleportCrosshair}. Esta escena es responsable únicamente de avanzar en linea recta y reproducir una animación.
+
+La escena hace uso de una \textit{Curve}, que se puede observar en la figura \ref{fig:teleport-curve}. Este recurso de Godot permite definir gráficamente una curva dentro de un dominio. En este caso se usa la curva para determinar la posición del \textit{crosshair} en función del tiempo transcurrido. En este caso, al tener una curva \textit{ease-out}, la escena iniciará con velocidad máxima y según avance irá frenando hasta detenerse. De esta forma se consigue un efecto más vistoso y satisfactorio.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.55]{img/teleport-curve.png}
+    \caption[Recurso tipo Curve en Godot]{Recurso tipo Curve en Godot}
+    \label{fig:teleport-curve}
+\end{figure}
+
+El esquema de funcionamiento es el siguiente:
+\begin{enumerate}
+    \item El jugador mantiene pulsado el botón de teletransporte, esto hace que se transicione al estado PREPARE\_TELEPORT.
+    \item El estado PREPARE\_TELEPORT instancia una escena TeleportCrosshair. Indica la dirección apropiada en función de la orientación del jugador, y la añade como hijo de Player.
+    \item Cuando el jugador suelta el botón de teletransporte, se transiciona al estado RELEASE\_TELEPORT.
+    \item El estado RELEASE\_TELEPORT aplica una transformación a jugador para llevarlo al punto donde se encuentra el TeleportCrosshair y lo destruye.
+    \item Si en el punto de teletransporte se detecta alguna colisión con el suelo, significa que ese punto no está libre, revierte la transformación. En caso contrario, el jugador se teletransporta con éxito.
+\end{enumerate}
+
+\subsection{Sistemas de partículas}
+
+Los sistemas de partículas son una técnica empleada para recrear efectos visuales complejos como humo, fuego, explosiones o lluvia entre otros. Hacen uso de partículas, elementos cuyo aspecto y comportamiento se programa para lograr los efectos deseados. Es indispensable que el coste computacional de crear y destruir partículas sea muy liviano, ya que se necesita hacer uso de grandes conjuntos para lograr los efectos deseados.
+
+Godot cuenta con los nodos CPUParticle2D y GPUParticle2D, para la creación de sistemas de partículas con la CPU y GPU respectivamente. El primero es menos eficiente y ofrece menos posibilidades que el segundo, pero a cambio ofrece una mejor compatibilidad a la hora de exportar a plataformas como navegador web. Se decidió usar CPUParticle2D ya que los sistemas que se necesitaban implementar en el proyecto no eran muy costosos, por lo que su coste de computación no sería elevado. Así se asegura una mejor compatibilidad.
+
+Al configurar cada sistema de partículas se pueden establecer parámetros como la textura, la gravedad, la velocidad inicial, variación en color, variación en tamaño, rotación, etc. Se desarrollaron partículas para cuando el jugador es golpeado, para cuando cae desde muy alto y para cuando muere.
+
+Todos los sistemas de partículas se agruparon bajo el nodo \textit{PlayerParticles} y se añadió un script a este para gestionar su instanciación.
+
+%\subsection{Técnicas avanzadas} %coyote time, salto
+
+
+
+%\section{Sistemas}
+%    \subsection{Mapeado e instanciación de niveles}
+%    \subsection{Funciones de guardado}
+%    \subsection{Asignación de controles}
+%    \subsection{Localización}
+%    \subsection{Reloj}
+%    \subsection{Diálogos}
+%    \subsection{Implementación de máquina de estados}
 
 %\section{Enemigos}
 
