@@ -492,6 +492,85 @@ Para solucionarlo se añádió a GameWorld la el nodo \textit{KeyManager} cuya i
     \label{fig:keymanager-flow}
 \end{figure}
 
+\section{Enemigos}
+
+% Enemy y EnemyCharacter
+El juego cuenta con 5 tipos de enemigos distintos que tendrá que enfrentar el jugador. Cada uno de ellos tiene un aspecto único y exhibe comportamientos distintos. Para implementarlos se crearon dos clases que actuan a modo de interfaz, \textit{Enemy} y \textit{EnemyCharacter}. En funcion de las necesidades de cada enemigo sus nodos raíz heredarán de un tipo u otro. En la figura \ref{fig:enemy-diagram} se muestra este esquema en un diagrama de clases:
+
+\begin{itemize}
+    \item \textbf{Enemy}: Hereda de Node2D. Se usa en enemigos con patrones de movimiento fijos y simples que no interactúan con las físicas del juego.
+    \item \textbf{EnemyCharacter}: Se emplea en enemigos con comportamientos más complejos que requieren las funcionalidades de CharacterBody2D, del cual hereda la clase. Por ejemplo, modificar su trayectoria, velocidad o reaccionar a la gravedad.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/enemy-diagram.drawio.png}
+    \caption[Diagrama de clases de los enemigos del juego]{Diagrama de clases de los enemigos del juego.}
+    \label{fig:enemy-diagram}
+\end{figure}
+
+Para implementar las \textit{hitbox} y \textit{hurtbox} de los enemigos se usa el componente \textit{HitboxComponent} y \textit{HurtboxComponent} que se explicó en la sección de Player de este capítulo. Este se añade en la escena de cada enemigo y se configura con sus capas y/o máscara correspondiente. Todos ellos cuentan además con un nodo AnimationPlayer para reproducir efectos visuales al ser golpeados y al morir. Estos efectos son comunes para todos los enemigos y comparten un \textit{recurso} de Godot, de forma que si en alguna escena se modifica, se actualiza en el resto.
+
+A continuación se describirán las características de cada enemigo y los detalles concretos de su implementación.
+
+    % Medusa
+
+\subsection{Jellyfish}
+
+Este enemigo es una medusa que oscila siguiendo una trayectoria circular alrededor de un punto. Hereda de la clase \textit{Enemy}. Su \textbf{radio} y \textbf{velocidad de rotación} están indicadas como variables \textit{@export}, por lo que se pueden ajustar desde la interfaz de Godot, agilizando el diseño de los niveles. Su arquitectura se muestra en la figura \ref{fig:jellyfish-architecture}.
+
+Durante su instanciación, el nodo \textit{JellyPosition} se desplaza una longitud igual al radio en el eje y. En cada fotograma se aplica una rotación a \textit{RotationAxis}, consiguiendo que \textit{JellyPosition} describa una circunferencia. Por último, se coloca en su posición el nodo \textit{Character}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/jellyfish-architecture.drawio.png}
+    \caption[Arquitectura de la escena Jellyfish]{Arquitectura de la escena Jellyfish.}
+    \label{fig:jellyfish-architecture}
+\end{figure}
+
+    % Piraña
+
+\subsection{Piranha}
+
+Se trata de una piraña con una gran boca que recorre un camino lineal de ida y vuelta entre dos puntos. Hereda de la clase \textit{Enemy}. Se puede configurar su velocidad en cada instancia con una variable \textit{@export}. Se puede ver su arquitectura en la figura \ref{fig:piranha-architecture}.
+
+Cada vez que se instancia esta escena en alguna sala, se deben ajustar los nodos \textit{StartPoint} y \textit{EndPoint}. La escena registra las coordenadas globales de estos puntos como inicio y destino, e interpola la posición del enemigo en función de la velocidad.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/piranha-architecture.drawio.png}
+    \caption[Arquitectura de la escena Piranha]{Arquitectura de la escena Piranha.}
+    \label{fig:piranha-architecture}
+\end{figure}
+
+    % Blob
+
+\subsection{Blob}
+
+Este ememigo es un pez abisal que se arrastra por el suelo. Este hereda de \textit{EnemyCharacter}. Avanza en linea recta hasta toparse con un muro o hasta llegar al borde de una plataforma. Entonces, da media vuelta y avanza hacia al lado contrario. En la figura \ref{fig:blob-architecture} se muestra la arquitectura del nodo.
+
+Debido a que su patrón de comportamiento es muy simple se decidió no implementar una máquina de estados. Se muestra un diagrama de su rutina en la figura \ref{fig:blob-flow}.
+
+Los dos nodos \textit{Raycast2D} emplean una técnica de raycasting para detectar si el enemigo ha chocado contra una pared o está a punto de caer por un saliente. Consiste en trazar desde un punto un rayo con cierta dirección y longitud. El rayo devuelve información sobre los objetos con los que ha colisionado. En este caso, se configuraron ambos raycast para colisionar con la capa \textit{Ground} (suelo, paredes, etc.). Si el primer rayo colisiona con algo, se infiere que está frente a una pared, por lo que deberá girar. De igual forma, si el segundo raycast, que apunta hacia abajo, no colisiona con nada, significa que hay un saliente y se volteará.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/blob-architecture.drawio.png}
+    \caption[Arquitectura de la escena Blob]{Arquitectura de la escena Blob.}
+    \label{fig:blob-architecture}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/blob-behaivour.drawio.png}
+    \caption[Flujo de comportamiento de la escena Blob]{Flujo de comportamiento de la escena Blob.}
+    \label{fig:blob-flow}
+\end{figure}
+
+    % Axolote
+    % Triangle
+
 %\section{Otros sisetmas}
 %    \subsection{Funciones de guardado}
 %    \subsection{Asignación de controles}
@@ -499,13 +578,6 @@ Para solucionarlo se añádió a GameWorld la el nodo \textit{KeyManager} cuya i
 %    \subsection{Reloj}
 %    \subsection{Diálogos}
 %    \subsection{Implementación de máquina de estados}
-
-%\section{Enemigos}
-    % Enemy y EnemyCharacter
-    % Medusa
-    % Piraña
-    % Blob
-    % Axolote
 
 %\section{UI y HUD}
 
