@@ -569,7 +569,84 @@ Los dos nodos \textit{Raycast2D} emplean una técnica de raycasting para detecta
 \end{figure}
 
     % Axolote
+
+\subsection{Axolote}
+
+Este enemigo es un ajolote mexicano. Este camina por el suelo y se lanzará corriendo hacia el jugador a gran velocidad en caso de detectarle. Hereda de \textit{EnemyCharacter} e implementa una máquina de estados para codificar su comportamiento. Su arquitectura se muestra en la figura \ref{fig:axolote-architecture}. 
+
+Para la máquina de estados se usó la misma implementación que la clase \textit{Player}. El diagrama de esta se muestra en la figura \ref{fig:axolote-state-machine}. Los estados son los siguientes:
+
+\begin{itemize}
+    \item \textbf{MOVE}: Estado inicial. El ajolote se mueve en una dirección hasta choca con una pared, momento en el que se da la vuelta.
+    \item \textbf{SURPRISE}: Cuando tiene visión directa del jugador, se para en seco y se sorprende.
+    \item \textbf{RUN}: Tras sorprenderse empieza a correr. Si choca contra un muro, se da la vuelta. Si al darse la vuelta no está viendo al jugador, vuelve a andar.
+    \item \textbf{HIT}: Cuando recibe un golpe sale disparado algunos metros en el aire.
+    \item \textbf{DEAD}: Cuando se queda sin puntos de vida (HP) reproduce su animación de muerte y se destruye la escena.
+\end{itemize}
+
+Este enemigo usa raycasting para saber cuando tiene un muro y debe girar. También lo usa para saber si el jugador está delante suya, creando el efecto de sorpresa al verlo.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/axolote-architecture.drawio.png}
+    \caption[Arquitectura de la escena Axolote]{Arquitectura de la escena Axolote.}
+    \label{fig:axolote-architecture}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/axolote-state-machine.drawio.png}
+    \caption[Máquina de estados para el enemigo Axolote]{Máquina de estados para el enemigo Axolote.}
+    \label{fig:axolote-state-machine}
+\end{figure}
+
     % Triangle
+
+\subsection{Triangle Fish}
+
+Este pez triangular se desplaza flotando por el aire. Aparece estando dormido. Si el jugador se acerca lo suficiente, se despertará. Tras eso, en el momento que vea al jugador, empezará a perseguirlo. Su arquitectura puede verse en la figura \ref{fig:triangle-architecture} Esta clase hereda de \textit{EnemyCharacter} e implementa una máquina de estados que se ilustra en la figura \ref{fig:triangle-state-machine}. Los estados son los siguientes:
+
+\begin{itemize}
+    \item \textbf{SLEEP}: El enemigo comienza dormido. En este estado no se mueve. Si el jugador se mueve lo suficientemente cerca, se despertará.
+    \item \textbf{WATCH}: El enemigo ha escuchado al jugador y ha despertado. Pero permanecerá inmóvil apuntando con un raycast en dirección al jugador hasta que tena una visión directa de este.
+    \item \textbf{CHASE}: Comienza a perseguir al jugador aplicando una algoritmo de pathfinding para navegar el mapa.
+    \item \textbf{HIT}: Se ha recibido un golpe. Retrocede durante unos instantes.
+    \item \textbf{DEAD}: Cuando se queda sin puntos de vida (HP) reproduce su animación de muerte y se destruye la escena.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/trianglefish-architecture.drawio.png}
+    \caption[Arquitectura de la escena TriangleFish]{Arquitectura de la escena TriangleFish.}
+    \label{fig:triangle-architecture}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.50]{img/triangle-state-machine.drawio.png}
+    \caption[Máquina de estados para el enemigo Triangle Fish.]{Máquina de estados para el enemigo Triangle Fish}
+    \label{fig:triangle-state-machine}
+\end{figure}
+
+Para que el enemigo pudiera volar por todo el escenario y perseguir al jugador sin chocarse con elementos del escenario, se necesitaba usar un algoritmo de pathfinding que calculara un camino suficientemente corto hasta él. Para ello se usó el nodo \textit{Navigation2D}. Este permite generar rutas entre dos puntos dentro de un espacio definido.
+
+Para definir el espacio en el que se realiza la búsqueda, se configuró en el \textit{TileSet} de los niveles un tile invisible con la misma capa de navegación asignada que se tiene en \textit{Navigation2D}. Esta tile se rellena en todos los espacios vacíos navegables del nivel. El agente usa una estrategia \textit{A*} (A estrella) para calcular el camino en cada actualización de las físicas. En la figura \ref{fig:triangle-chase-2}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{img/triangle-chase-2.png}
+    \caption[Ejemplo del pathfinding del enemigo Triangle Fish]{Ejemplo del pathfinding del enemigo Triangle Fish.}
+    \label{fig:triangle-chase-2}
+\end{figure}
+
+Para lograr una jugabilidad más divertida, el enemigo solo genera un camino cuando pierde de vista al jugador, es decir, cuando hay algún obstáculo entre ellos. En caso contrario, se sigue una estrategia más simple: primero se desciende hasta alcanzar la altura del jugador, y luego se avanza en linea recta, como se muestra en la figura \ref{fig:triangle-chase-1}. Esto permite al jugador evadir al enemigo saltándolo, cosa que sería imposible si este siempre siguiera el camino más óptimo. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/triangle-chase-1.drawio.png}
+    \caption[Esquema de estrategia de persecución de Triangle Fish]{Esquema de estrategia de persecución de Triangle Fish. Primero desciende hasta la altura del jugador y luego avanza en línea recta.}
+    \label{fig:triangle-chase-1}
+\end{figure}
 
 %\section{Otros sisetmas}
 %    \subsection{Funciones de guardado}
