@@ -107,14 +107,14 @@ La mayoría de assets gráficos del proyecto se encuentran en la carpeta de la e
 
 \section{Escena Player}
 
-La escena Player recoge toda la funcionalidad referente al personaje controlado por el jugador. Se puede decir que el propio nodo es el personaje jugable. Se encarga de recoger la señal del mando, mover el personaje, actualizar su estado, actualizar su aspecto y animaciones en pantalla, reproducir sonidos, y disparar interacciones con elementos del entorno como por ejemplo enemigos. Es el elemento más presente e importante en el proyecto de cara a jugador, por lo que no es de extrañar que es también el más complejo y extenso. En la figura \ref{fig:player-architecture-diagram} se tiene un diagrama de la arquitectura de la escena. El script de la escena hereda del tipo nativo de Godot \textbf{CharacterBody2D}. Este está diseñado para implementar personajes controlados por un script, y cuenta con métodos que facilitan el movimiento, la detección de suelo y las colisiones, entre otras cosas.
+La escena Player recoge toda la funcionalidad referente al personaje controlado por el jugador. Se puede decir que el propio nodo es el personaje jugable. Se encarga de recoger la entrada del mando, mover el personaje, actualizar su estado, actualizar su aspecto y animaciones en pantalla, reproducir sonidos, y disparar interacciones con elementos del entorno como por ejemplo enemigos. Es la entidad más presente e importante en el proyecto de cara a jugador, por lo que no es de extrañar que es también el más complejo y extenso. En la figura \ref{fig:player-architecture-diagram} se tiene un diagrama de la arquitectura de la escena. Esta hereda de \textbf{CharacterBody2D}, nodo nativo de Godot, el cual está diseñado para implementar personajes controlados por un script. Cuenta con métodos que facilitan el movimiento, la detección de suelo y las físicas, entre otras cosas.
 
 El corazón de la implementación de esta escena es un patrón de \textbf{máquina de estados}. Cada uno de los estados encapsula su correspondiente lógica y es responsable de realizar la transición a otros estados. Estos son gestionados desde el nodo \textit{StateMachine}.
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{img/player-architecture.drawio.png}
-    \caption[Diagrama de la arquitectura del nodo Player]{Diagrama de la arquitectura del nodo Player. Se indica tipo y nombre de cada nodo si tuviera.}
+    \caption[Diagrama de la arquitectura del nodo Player]{Diagrama de la arquitectura del nodo Player. Se el tipo de nodo en cursiva y el nombre en negrita (si tuviera uno).}
     \label{fig:player-architecture-diagram}
 \end{figure}
 
@@ -122,22 +122,24 @@ A continuación se repasarán los nodos principales de la figura \ref{fig:player
 \begin{itemize}
     \item \textbf{BodyCollision}: Forma de colisión que usa \textit{CharacterBody2D} para detectar objetos sólidos del mundo.
     \item \textbf{StateMachine}: Nodo que gestiona la máquina de estados. Tiene como hijos un nodos tipo \textit{PlayerState} por cada estado.
-    \item \textbf{PlayerSprites}: Aquí se crean y reproducen todas las animaciones de sprites del personaje. Tiene como hijos figuran todos los nodos que deben ser sensibles a sus transformaciones en el espacio, como los detectores de colisiones (AtackHitbox, Hurtbox, etc.)
+    \item \textbf{PlayerSprites}: Aquí se crean y reproducen todas las animaciones de sprites del personaje. Como hijos figuran todos los nodos que deben ser sensibles a sus transformaciones de escala, como los detectores de colisiones (AtackHitbox, Hurtbox, etc.).
     \item \textbf{AnimationPlayer}: Si PlayerSprites reproduce visualmente la mayoría de animaciones, este nodo gestiona algunas más complejas, como la de ataque.
-    \item \textbf{PlayerParticles}: Contiene y se encarga de gestionar la reproducción de nodos \textit{CpuParticle2D}, para los sistemas de partículas del jugador.
+    \item \textbf{PlayerParticles}: Gestiona los sistemas de partículas del jugador.
     \item \textbf{TeleportGroundCollision}: Detector de colisiones auxiliar para la función de teletransporte.
 \end{itemize}
 
 \subsection{Máquina de estados}
 
-Se usó la implementación de máquina de estados que se desarrolla en [TODO: METER REFERENCIA]. El nodo \textit{StateMachine} contiene un nodo hijo por cada estado de Player. Estos nodos heredan de la clase \textit{PlayerState}, el cual a su vez hereda de \textit{State}. Cada nodo encapsula toda la lógica asociada a su estado. Por ejemplo, el estado \textit{Move} gestiona el movimiento del jugador en el suelo. Sus responsabilidades serán, entre otras, inicializar la animación de caminar, recoger el \textit{input} del mando para obtener la dirección de movimiento, y actualizar la posición del jugador. Para ello, todos los estados guardan una referencia a Player y hacen uso de funciones suyas para controlarlo.
+Se usó la implementación de máquina de estados que se desarrollará en el apartado \ref{sec:state-machine}. El nodo \textit{StateMachine} contiene un nodo hijo por cada estado de Player. Estos nodos son del tipo \textit{PlayerState}. Cada nodo encapsula toda la lógica asociada a su estado. 
+
+Por ejemplo se tiene el estado \textit{Move}, que gestiona el movimiento del jugador en el suelo. Sus responsabilidades serán, entre otras, inicializar la animación de caminar, recoger la entrada del mando para obtener la dirección de movimiento, y actualizar la posición del jugador.
 
 A continuación se describen todos los estados:
 \begin{itemize}
     \item \textbf{IDLE}: El jugador se encuentra en el suelo sin realizar ninguna acción.
-    \item \textbf{MOVE}: El jugador se mueve en el suelo en dirección izquierda o derecha.
-    \item \textbf{JUMP}: El jugador salta y asciende hacia arriba.
-    \item \textbf{FALL}: El jugador deja de ascender y comienza a descender en el aire.
+    \item \textbf{MOVE}: El jugador se mueve en el suelo hacia izquierda o derecha.
+    \item \textbf{JUMP}: El jugador salta y comienza a ganar altura.
+    \item \textbf{FALL}: El jugador, suspendido en el aire, comienza a perder altura.
     \item \textbf{SUPER\_FALL}: El jugador lleva en caida libre durante un tiempo prolongado.
     \item \textbf{STOMP}: El jugador cae con fuerza al suelo después de caer durante un tiempo prolongado.
     \item \textbf{ATACK}: El jugador realiza un ataque con la espada.
@@ -149,7 +151,7 @@ A continuación se describen todos los estados:
     \item \textbf{TALKING}: El jugador habla con un NPC.
 \end{itemize}
 
-Dado que la máquina de estados resultante es bastante compleja, representarla completa en un solo diagrama haría que fuese poco legible. En su lugar se representará por separado un diagrama para cada estado, en el que se indica a qué otros estados se puede transicionar partiendo desde ese y por qué motivo. Esto se puede consultar en las figuras \ref{fig:player-state-idle}, \ref{fig:player-state-jump}, \ref{fig:player-state-attack}, \ref{fig:player-state-pogo}, \ref{fig:player-state-move}, \ref{fig:player-state-fall}, \ref{fig:player-state-teleport} y \ref{fig:player-state-hit}.
+Dado que la máquina de estados resultante es bastante compleja, representarla en un solo diagrama haría que fuese poco legible. En su lugar se representará por separado un diagrama para cada estado, en el que se indica a qué otros estados se puede transicionar partiendo desde ese y por qué motivo. Esto se puede consultar en las figuras \ref{fig:player-state-idle}, \ref{fig:player-state-jump}, \ref{fig:player-state-attack}, \ref{fig:player-state-pogo}, \ref{fig:player-state-move}, \ref{fig:player-state-fall}, \ref{fig:player-state-teleport} y \ref{fig:player-state-hit}.
 
 \begin{figure}[h]
     \centering
@@ -210,13 +212,13 @@ Dado que la máquina de estados resultante es bastante compleja, representarla c
 
 \subsection{Gestión de colisiones y físicas}
 
-Podemos diferenciar dos tipos de colisiones que se necesitan gestionar: las que están relacionadas con la simulación de físicas (principalmente detectar choques para frenar al personaje) y las relacionadas con interacciones (cuando el jugador toca un enemigo debería recibir daño, y cuando entra en contacto con un item, debería recogerlo).
+Podemos diferenciar dos tipos de colisiones que se necesitan gestionar: las que están relacionadas con la simulación de \textbf{físicas} (velocidad de movimiento y colisión con objetos sólidos) y las relacionadas con \textbf{interacciones} (cuando el jugador toca un enemigo debería recibir daño, cuando entra en contacto con un item debería recogerlo, etc).
 
-Para las físicas del personaje se hace uso del motor por defecto de Godot. La gestión colisiones relacionadas con la física viene dada por el tipo \textit{CharacterBody2D}, del que hereda la escena Player. Este cuenta con una variable \textit{velocity}, un vector 2D que representa hacia dónde se mueve la escena y cómo de rápido. Al ejecut la función \textit{move\_and\_slide}, el jugador es desplazado, por lo que desde el script solo es necesario definir la dirección y magnitud deseado para \textit{velocity}. Si el nodo \textbf{BodyCollision} detecta una colisión con un objeto sólido al desplazarse, se detiene en seco, y si lo hace con una pendiente, se desliza sobre ella.
+Para las \textbf{físicas} se hace uso del motor por defecto de Godot. La gestión colisiones viene dada por el tipo \textit{CharacterBody2D}, del que hereda la escena Player. Este cuenta con una variable \textit{velocity}, un vector 2D que representa hacia dónde se mueve la escena y cómo de rápido. Al ejecut la función \textit{move\_and\_slide}, el jugador es desplazado, por lo que desde el script solo es necesario definir la dirección y magnitud deseado para el vector de velocidad. Si el nodo \textbf{BodyCollision} colisiona con un objeto sólido al desplazarse, se detiene en seco, y si lo hace con una pendiente, se desliza sobre ella.
 
-Para el resto de interacciones, se hace uso de \textit{Area2D}, un tipo nativo de Godot. Este permite definir un area de colisión y disparar una señal cada vez que un cuerpo u otro area entre dentro de esta (es decir, colisionen). La señal puede ser conectada a nodos de otros nodos para gestionar la interacción.
+Para las \textbf{interacciones} se hace uso del nodo \textit{Area2D}. Este permite definir un area de colisión y disparar una señal cada vez que un cuerpo u otro area entre dentro de esta (es decir, colisionen). La señal puede ser conectada a otros nodos para gestionar la interacción.
 
-Es necesario poder discernir qué objeto es el que provoca la colisión. El área \textit{Hurtbox} dispara una señal cuando el jugador choca con un enemigo para así restarle salud. Eso es algo que solo debe ocurrir si la colisión ha ocurrido con un enemigo, y no otro objeto. Para eso se hace uso de la propiedad de \textbf{capas y máscaras} de Godot. Todas las áreas y cuerpos en Godot deben declarar en qué cápa de las físicas se encuentran, y con qué otras capas puede interactuar (es decir, su \textit{máscara}). Para el caso de \textit{Hurtbox}, esta no necesitaría definir ninguna capa (ningún objeto necesita interactuar con esta) y en su máscara se define que interactuará con la capa \textit{EnemyAtack}, para poder detectarlos.
+Es necesario poder discernir qué objeto es el que provoca la colisión. Por ejemplo, el área \textit{Hurtbox} dispara una señal cuando el jugador choca con un enemigo para restarle salud. Eso es algo que solo debe ocurrir si la colisión ha ocurrido con un enemigo, y no otro objeto. Para eso se hace uso de la propiedad de \textbf{capas y máscaras}. Todas las áreas y cuerpos en Godot deben declarar en qué cápa de las físicas se encuentran, y con qué otras capas puede interactuar (es decir, su \textit{máscara}). Para el caso de \textit{Hurtbox}, esta no necesitaría definir ninguna capa (ningún objeto necesita interactuar con esta) y en su máscara se define que interactuará con la capa \textit{EnemyAtack}, para poder detectarlos.
 
 En el proyecto se definieron las siguientes capas:
 
@@ -230,19 +232,21 @@ En el proyecto se definieron las siguientes capas:
     \item \textbf{Key}: Llaves que el jugador puede recoger.
 \end{itemize}
 
-El lector podrá apreciar que algunas de estas interacciones son comunes a varios elementos del juego: las áreas que reciben daño y las que producen daño. Tanto el jugador como todos los enemigos del juego e incluso los objetos destruibles necesitan implementar esta funcionalidad. Por tanto es deseable encontrar una abstracción que evite el tener que implementarla de forma redundante en cada una de esas escenas.
+Algunas de las interacciones que se definen en distintas escenas del proyecto son recurrentes: las áreas que reciben daño y las que producen daño. El jugador, los enemigos y algunos objetos destruibles o dañinos necesitan implementarlas. Por tanto es deseable encontrar una abstracción que evite el tener que codificarlas de forma redundante en cada una de esas escenas.
 
-Cuando varias entidades necesitan implementar cierto comportamiento en el paradigma de la programación orientada a objetos, se resuelve por herencia. Se crea un super tipo con la funcionalidad del que heredarían los objetos pertinentes. Sin embargo, por la estructura en nodos de Godot y la necesidad de usar sus tipos predefinidos, esta aproximación complicaría mucho el código del proyecto. En su lugar, se introduce el concepto de \textbf{componente}. Se entiende por componente una encapsulación de cierta funcionalidad que puede ser inyectada en cualquier ente del proyecto. En Godot, esto se traduce en un nodo que se añade como hijo a cualquier escena que necesite implementar su funcionalidad.
+Cuando varias entidades necesitan implementar cierto comportamiento en el paradigma de la programación orientada a objetos, se resuelve por herencia. Se crea un super tipo con la funcionalidad del que heredarían los objetos pertinentes. Sin embargo, por la estructura en nodos de Godot y la necesidad particular de cada escena de heredar de según qué tipos, esta aproximación complicaría mucho el código del proyecto. En su lugar, se introduce el concepto de \textbf{componente}. Se entiende por componente una encapsulación de funcionalidad que puede ser inyectada en cualquier ente del proyecto. En Godot, esto se traduce en un nodo que se añade como hijo a cualquier escena que necesite implementar dicha funcionalidad.
 
-Ante esta necesidad se implementaron los componentes \textbf{HitboxComponent} y \textbf{HurtboxComponent}. En desarrollo de videojuegos se denomina \textit{hitbox} al área de colisión que abarca el ataque de una entidad. Por otro lado, \textit{hurtbox} es el área de colisión que define las zonas impactables de un ente. En esencia, la hitbox de un ataque debe colisionar con la hurtbox de otro ente para impactarle.
+Ante esta necesidad se implementaron los componentes \textbf{HitboxComponent} y \textbf{HurtboxComponent}. En desarrollo de videojuegos se denomina \textit{hitbox} al área de colisión que abarca el ataque de una actor. Por otro lado, \textit{hurtbox} es el área de colisión que define las zonas impactables de este, las que pueden recibir daño. En esencia, la hitbox de un ataque debe colisionar con una hurtbox de otro personaje para impactarle.
 
-\textbf{HitboxComponent} hereda de Area2D. Define la función \textit{on\_atack\_detected}, que recibe como parámetro una \textit{HurtboxComponent}, y es conectada durante la instanciación del objeto a la señal \textit{\_on\_area\_entered}, heredada de Area2D. Esta función recoge la dirección desde la que se recibió el golpe y llama a la función \textit{take\_damage} de su nodo padre.
+\textbf{HitboxComponent} hereda de Area2D. Define la función \textit{on\_atack\_detected}, que recibe como parámetro una \textit{HurtboxComponent}, y es conectada durante la instanciación del objeto a la señal \textit{\_on\_area\_entered}. Esta función recoge la dirección desde la que se recibió el golpe y llama a la función \textit{take\_damage} de su nodo padre.
 
-La implementación de \textit{HurtboxComponent} es vacía, dado que este objeto existe solo para tipar este tipo de área, y que las hitbox detecten únicamente este tipo de área.
+La implementación de \textbf{HurtboxComponent} es vacía, dado que este objeto existe solo para tipar esta clase de área, y que las hitbox detecten únicamente a estas y no otra Area2D.
 
-Por tanto, para implementar estos componentes en cualquier escena (por ejemplo, la de player) se instancian en lugar de un Area2D, se añade como hijo una forma de colisión (requerida por el Area2D de la que se hereda) y el nodo padre deberá implementar la función \textit{take\_damage} para gestionar cómo se procesa el impacto. Por último, se indica una máscara para la hitbox (en este caso, Enemy) y una capa para la hurbox (Player).
+Por tanto, para implementar estos componentes en cualquier escena (por ejemplo, la de Player) se instancian los respectivos componentes, se añade como hijo una forma de colisión (requerida por el Area2D de la que se hereda) y el nodo padre deberá implementar la función \textit{take\_damage} para gestionar cómo se procesa el impacto. Por último, se indica una máscara para la hitbox (en este caso, Enemy) y una capa para la hurbox (Player).
 
-En el diagrama \ref{fig:hit-components} se tiene una representación de este esquema para la escena Player. En otras escenas se realizaría de forma similar.
+En la figura \ref{fig:hit-components} se tiene una representación de este esquema para la escena Player. En otras escenas se realizaría de forma similar.
+
+%TODO: Añadir diagrama para hitbox y hurtbox?
 
 \begin{figure}[h]
     \centering
@@ -254,7 +258,7 @@ En el diagrama \ref{fig:hit-components} se tiene una representación de este esq
 
 \subsection{Gestión de animaciones}
 
-Las animaciones son gestionadas principalmente por el nodo \textit{AnimatedSprite2D}. Este permite definir una lista de animaciones que luego pueden ser llamadas desde el código. Una animación se define con un nombre y una colección de fotogramas. Es posible configurar la duración de la animación y de cada fotograma por separado. Para crear los fotogramas, se hacen uso de \textit{spritesheets}.
+Las animaciones son gestionadas principalmente por el nodo \textit{AnimatedSprite2D}. Este permite definir una lista de animaciones que luego pueden ser llamadas desde el código. Una animación se define con un nombre y una colección de fotogramas. Es posible configurar la duración de cada uno de los fotogramas que la componen. Para crear los fotogramas, se hacen uso de \textit{spritesheets}.
 
 Una \textbf{spritesheet} es una imagen dividida en cuadrículas que recoge una serie de fotogramas tematizados. Puede ser una paleta de bloques que se usan para dibujar el escenario, o en este caso, una colección de fotogramas de las animaciones de un personaje. En la figura \ref{fig:player-spritesheet} se muestra la correspondiente a Player.
 
@@ -265,13 +269,13 @@ Una \textbf{spritesheet} es una imagen dividida en cuadrículas que recoge una s
     \label{fig:player-spritesheet}
 \end{figure}
 
-Como el jugador comienza el juego sin una espada y la obtiene más adelante, se han separado las animaciones del jugador en 2 nodos: \textit{PlayerSprites} y \textit{SwordSprites}. Esto se hace para evitar duplicar todas las animaciones para tener una versión con arma y otra sin arma. En la figura \ref{fig:player-spritesheet} se aprecia esta separación. Mientras no se consiga la espada, \textit{SwordSprites} se mantiene invisible.
+Como el jugador comienza el juego sin una espada y la obtiene más adelante, se han separado las animaciones del jugador en 2 nodos: \textit{PlayerSprites} y \textit{SwordSprites}. Esto se hace para evitar el duplicar todas las acciones del personaje, haciendo versiones con y sin espada. En la figura \ref{fig:player-spritesheet} se aprecia esta separación. Mientras no se consiga la espada, \textit{SwordSprites} se mantiene invisible.
 
-Usando \textit{AnimatedSprite2D} se cubren la mayoría de animaciones, pero otras más complejas que necesitan coordinar los fotogramas con la modificación de parámetros de la escena. Para esos casos se emplea \textit{AnimationPlayer}, un nodo más completo que permite crear animaciones en una timeline en la que se pueden ordenar e interpolar fotogramas, valores de parámetros y llamadas a funciones. Esto es necesario para, por ejemplo, modificar la trasparencia del sprite o activar y desactivar las áreas de colisión.
+Usando \textit{AnimatedSprite2D} se cubren la mayoría de animaciones, pero otras más complejas necesitan coordinar los fotogramas con la modificación de parámetros de la escena. Para esos casos se emplea \textit{AnimationPlayer}, un nodo más completo que permite crear animaciones en una timeline en la que se pueden ordenar e interpolar fotogramas, valores de parámetros y llamadas a funciones. Esto es necesario para, por ejemplo, modificar la trasparencia del sprite o activar y desactivar las áreas de colisión de la animación de ataque.
 
 \subsection{Gestión de datos y parametrización}
 
-En el script de Player se declaran una serie de variables con la etiqueta de Godot \textbf{@export}. Esta etiqueta hace que el valor de estas variables se pueda modificar desde la interfaz del motor y puedan cambiarse en tiempo de ejecución. Esto resulta muy práctico para realizar \textit{fine-tuning} mientras se prueba con el juego corriendo. Así se pueden ajustar parámetros que afectan a la experiencia de juego como la velocidad de caminado o altura del salto. La lista de parámetros es la siguiente:
+En el script de Player se declaran una serie de variables con la etiqueta de Godot \textbf{@export}. Esta etiqueta hace que el valor de estas variables se pueda modificar desde la interfaz del motor y en tiempo de ejecución. Esto resulta muy práctico para realizar \textit{fine-tuning}, facilitando el ajuste de parámetros que afectan enormemente a la experiencia de juego como la velocidad de movimiento o altura del salto. La lista de parámetros es la siguiente:
 
 \begin{itemize}
     \item \textbf{walking\_speed} (Float): Velocidad máxima al caminar.
@@ -286,7 +290,7 @@ En el script de Player se declaran una serie de variables con la etiqueta de God
     \item \textbf{max\_fall\_speed} (Float): Velocidad máxima de caída.
 \end{itemize}
 
-Para gestionar las variables persistentes del jugador entre partidas se creó la estructura de datos \textbf{PlayerData}. Esta es un recurso customizado de Godot y contiene información sobre las mejoras desbloqueadas y los puntos de salud máximos. Sus parámetros son:
+Para gestionar las variables persistentes del jugador entre partidas se creó la estructura de datos \textbf{PlayerData}. Este es un recurso customizado de Godot y contiene información sobre las mejoras desbloqueadas y los puntos de salud máximos. Sus parámetros son:
 %TODO: METER REFERENCIA A DONDE SE EXPLIQUEN LOS RECURSOS
 
 \begin{itemize}
@@ -303,7 +307,7 @@ Se añadió además una variable \textit{@export} tipo PlayerData. Al inicializa
 
 \subsection{Mejora BEAM}
 
-Esta mejora permite al jugador disparar un rayo desde su espada al atacar. El rayo avanza en la dirección disparada y desaparece al transcurrir un tiempo o colisionar con un enemigo. Se creó la escena \textit{Beam} para gestionar este disparo. La architectura se puede observar en la figura \ref{fig:beam-architecture}. La escena hace uso de un nodo \textit{Line2D} para el efecto de estela que es más se afina cuanto más se va alejando del punto de impacto.
+Esta mejora permite al jugador disparar un rayo desde su espada al atacar. El rayo avanza en línea recta y desaparece al transcurrir un tiempo o colisionar con un enemigo. Se creó la escena \textit{Beam} para gestionar este disparo. La arquitectura se puede observar en la figura \ref{fig:beam-architecture}. La escena hace uso de un nodo \textit{Line2D} para el efecto de estela.
 
 \begin{figure}[h]
     \centering
@@ -322,9 +326,9 @@ El ciclo de vida de los disparos es el siguiente:
 
 \subsection{Mejora TELEPORT}
 
-Para la mejora del teleport se creó la escena \textit{TeleportCrosshair}. Esta escena es responsable únicamente de avanzar en linea recta y reproducir una animación.
+Para la mejora del teleport se creó la escena \textit{TeleportCrosshair}. Esta es responsable únicamente de avanzar en linea recta y reproducir una animación.
 
-La escena hace uso de una \textit{Curve}, que se puede observar en la figura \ref{fig:teleport-curve}. Este recurso de Godot permite definir gráficamente una curva dentro de un dominio. En este caso se usa la curva para determinar la posición del \textit{crosshair} en función del tiempo transcurrido. En este caso, al tener una curva \textit{ease-out}, la escena iniciará con velocidad máxima y según avance irá frenando hasta detenerse. De esta forma se consigue un efecto más vistoso y satisfactorio.
+La escena hace uso de una \textit{Curve}, que se puede observar en la figura \ref{fig:teleport-curve}. Este recurso de Godot permite definir gráficamente una curva dentro de un dominio. En este caso se usa la curva para determinar la posición del \textit{crosshair} en función del tiempo transcurrido. Al tener una curva \textit{ease-out}, la escena iniciará con velocidad máxima y según avance irá frenando hasta detenerse. De esta forma se consigue un efecto más vistoso y satisfactorio.
 
 \begin{figure}[h]
     \centering
@@ -346,21 +350,19 @@ El esquema de funcionamiento es el siguiente:
 
 Los sistemas de partículas son una técnica empleada para recrear efectos visuales complejos como humo, fuego, explosiones o lluvia entre otros. Hacen uso de partículas, elementos cuyo aspecto y comportamiento se programa para lograr los efectos deseados. Es indispensable que el coste computacional de crear y destruir partículas sea muy liviano, ya que se necesita hacer uso de grandes conjuntos para lograr los efectos deseados.
 
-Godot cuenta con los nodos CPUParticle2D y GPUParticle2D, para la creación de sistemas de partículas con la CPU y GPU respectivamente. El primero es menos eficiente y ofrece menos posibilidades que el segundo, pero a cambio ofrece una mejor compatibilidad a la hora de exportar a plataformas como navegador web. Se decidió usar CPUParticle2D ya que los sistemas que se necesitaban implementar en el proyecto no eran muy costosos, por lo que su coste de computación no sería elevado. Así se asegura una mejor compatibilidad.
+Godot cuenta con los nodos CPUParticle2D y GPUParticle2D, para la creación de sistemas de partículas con la CPU y GPU respectivamente. El primero es menos eficiente y ofrece menos posibilidades que el segundo, pero a cambio ofrece una mejor compatibilidad a la hora de exportar a plataformas como navegador web. Se decidió usar CPUParticle2D ya que los sistemas que se necesitaban implementar en el proyecto no tenían un coste computacional elevado. Así se asegura una mejor compatibilidad.
 
-Al configurar cada sistema de partículas se pueden establecer parámetros como la textura, la gravedad, la velocidad inicial, variación en color, variación en tamaño, rotación, etc. Se desarrollaron partículas para cuando el jugador es golpeado, para cuando cae desde muy alto y para cuando muere.
-
-Todos los sistemas de partículas se agruparon bajo el nodo \textit{PlayerParticles} y se añadió un script a este para gestionar su instanciación.
+Al configurar cada sistema de partículas se pueden establecer parámetros como la textura, la gravedad, la velocidad inicial, variación en color, variación en tamaño, rotación, etc. Se desarrollaron partículas para cuando el jugador es golpeado, para cuando cae desde muy alto y para cuando muere. Todos los sistemas de partículas se agruparon bajo el nodo \textit{PlayerParticles} y se añadió un script a este para gestionar su instanciación.
 
 %\subsection{Técnicas avanzadas} %coyote time, salto
 
 \section{Gestión de niveles y mapeado}
 
-Como se mencionó en apartados anteriores, la escena \textit{GameWorld} es la responsable de gestionar los espacio virtuales que componen el juego (es decir, los niveles). Esta escena se integró con la funcionalidad de \textbf{Metroidvania System}\cite{metsys} (abreviado como \textit{MetSys}), un plugin de Godot. MetSys es una colección de herramientas que facilitan el desarrollo de juegos metroidvania. Facilita el proceso de diseño de mapa, gestiona la navegación entre instancias del juego, parte de la interfaz de usuario y de la gestión de datos de guardado.
+Como se mencionó en apartados anteriores, la escena \textit{GameWorld} es la responsable de gestionar los espacios virtuales que componen el juego (es decir, los niveles). Esta escena se integró con la funcionalidad de \textbf{Metroidvania System}\cite{metsys} (abreviado como \textit{MetSys}), un plugin de Godot. MetSys contiene una colección de herramientas recurrentes en el desarrollo de juegos metroidvania. Facilita el proceso de diseño de mapa, procesa la navegación entre instancias del juego, gestiona las interfaces de usuario relacionadas con el mapa y se ocupa de parte de los datos de guardado.
 
 %Menú de diseño de mapas
 
-MetSys añade un editor de mapa integrado en Godot, se puede ver en la figura \ref{fig:metsys-map-editor}. Desde esta interfaz se puede diseñar visualmente todo el mapeado del juego. El mapa está compuesto de \textbf{salas}, que se crean y se disponen dibujando sobre el editor de mapa.
+MetSys añade un editor de mapa integrado en Godot, se puede ver en la figura \ref{fig:metsys-map-editor}. Desde esta interfaz se puede diseñar visualmente todo el mapeado del juego. El mapa está compuesto de \textbf{salas}, que se crean y se disponen dibujando sobre el editor.
 
 \begin{figure}[h]
     \centering
@@ -371,7 +373,7 @@ MetSys añade un editor de mapa integrado en Godot, se puede ver en la figura \r
 
 \subsection{Salas y células}
 
-Una \textbf{sala} en MetSys es un espacio virtual que puede ser recorrido por el jugador. Este se asigna a una escena de Godot, la cual describe su contenido. Las salas están colocadas en unas coordenadas del mapa y tienen otras salas adyacentes. Desde el editor se puede definir el color con el que se representará a la sala y su tipo de borde (abierto o cerrado) para con cada una de sus salas adyacentes.
+Una \textbf{sala} en MetSys es un espacio virtual que puede ser recorrido por el jugador. Este se asigna a una escena de Godot, la cual describe su contenido. Las salas están colocadas en unas coordenadas del mapa y tienen otras salas adyacentes. Desde el editor se puede definir el color con el que se representará y su tipo de borde (abierto o cerrado) para con cada una de sus salas adyacentes.
 
 Una sala está dividida en \textbf{células}. Cada célula es un cuadrante en las coordenadas del mapa y tienen una resolución fija. Es posible tener una sala de una sola célula. Se decidió que para este proyecto la resolución de una célula fuera de \textit{256x224} píxeles, la misma que la ventana del ejecutable. Esto se debe a que en el diseño de niveles se contemplaban principalmente salas de una sola pantalla (sin desplazamiento), y pocas pantallas con desplazamiento, por lo que no era necesario desgranar las salas en secciones menores y así se facilita la iteración sobre el diseño del mapa.
 
@@ -396,7 +398,7 @@ Al añadir una sala al mapa, se crea su escena tomando \textit{RoomTemplate} com
 
 \subsection{Creación de TileSet}
 
-Para configurar un TileSet es necesario disponer de un \textit{tile atlas}, una imagen que recoge todos los tiles que pertenecen a una zona del juego. Por ejemplo, se podría tener un \textit{tile atlas de los niveles del bosque}. Por el alcance de este proyecto, en un solo atlas se recogen todos los tiles para el juego completo. Se puede observar en la figura \ref{fig:tile-atlas}. Para producirlo tanto este como el resto de recursos visuales del proyecto se empleó el editor de imágenes \textit{pixel art} Aseprite \cite{aseprite}.
+Para configurar un TileSet es necesario disponer de un \textit{tile atlas}, una imagen que recoge todos los tiles que pertenecen a una zona del juego. Por ejemplo, se podría tener un \textit{tile atlas de los niveles del bosque}. Por el alcance de este proyecto, en un solo atlas se recogen todos los tiles del juego. Se puede observar en la figura \ref{fig:tile-atlas}. Para producirlo tanto este como el resto de recursos visuales del proyecto se empleó el editor de imágenes \textit{pixel art} Aseprite \cite{aseprite}.
 
 \begin{figure}[h]
     \centering
@@ -405,7 +407,7 @@ Para configurar un TileSet es necesario disponer de un \textit{tile atlas}, una 
     \label{fig:tile-atlas}
 \end{figure}
 
-El atlas está dividido en regiones del mismo tamaño (los tiles). Es posible que un elemento visual del juego esté representado por varias tiles si fuera muy grande. El TileSet de Godot se configura para reconocer estas regiones y poder asignarle propiedades de forma individual.
+El atlas está dividido en regiones del mismo tamaño (los tiles). Es posible que un elemento del juego ocupe varios tiles si fuera muy grande. El TileSet de Godot se configura para reconocer estas regiones y poder asignarle propiedades de forma individual.
 
 Una de las propiedades a configurar son las capas de física. Para cada tile se puede definir un área de colisión asignada a una capa de físicas del proyecto. Se le asignó la capa \textit{Ground} a los suelos y paredes para que colisionen con las físicas del jugador y los enemigos. Por otro lado se usó la capa \textit{EnemyAtack} en un tile para hacer que el jugador se dañe al tocarla.
 
@@ -438,13 +440,13 @@ A la hora de instanciar GameWorld, esta realiza los siguientes pasos:
 
 \begin{enumerate}
     \item En caso de haber datos de guardado, carga en la base de datos de MetSys aquellos relacionados con la gestión del mapa: los objetos recogidos, las salas exploradas y los eventos registrados.
-    \item Designa a la escena \textit{Player} como la escena del jugador de MetSys pueda rastrear su posición en las coordenadas globales del mapa.
+    \item Designa a la escena \textit{Player} como la escena del jugador de MetSys para que pueda rastrear su posición en las coordenadas globales del mapa.
     \item Delega en MetSys la carga de la habitación en la que comenzará el jugador obtenida del autoload \textit{DataManager}.
 \end{enumerate}
 
-De esta forma, MetSys tiene presente la posición del jugador dentro de una sala, y esa sala está posicionada en unas coordenadas del mapa. Al salirse el jugador de las coordenadas del mapa, se dispara automáticamente la carga de la escena adyacente y la destrucción de la escena anterior. El resto de funcionalidades de MetSys ya pueden ser usadas y se integrarán con GameWorld sin necesitar de ninguna implementación extra.
+De esta forma, MetSys tiene presente la posición del jugador dentro de una sala, y esa sala está posicionada en unas coordenadas del mapa. Al salirse el jugador de esas coordenadas, se dispara automáticamente la carga de la escena adyacente y la destrucción de la escena anterior. El resto de funcionalidades de MetSys ya pueden ser usadas y se integrarán con GameWorld sin necesitar de ninguna implementación extra.
 
-Los nodos \textit{Map} y \textit{Minimap} están asignados a scripts de MetSys para renderizar el mapa creado a través del editor gráfico previamente. Estos centran su vista en las coordenadas del jugador automáticamente. Las salas que ya han sido visitadas son dibujadas en el mapa, mientras que el resto no aparecen. En la figura \ref{fig:map-menu} se puede ver el menú de visualización del mapa.
+Los nodos \textit{Map} y \textit{Minimap} están asignados a scripts de MetSys para renderizar el mapa creado previamente a través del editor gráfico. Estos centran su vista en las coordenadas del jugador automáticamente. Las salas que ya han sido visitadas son dibujadas en el mapa, mientras que el resto no aparecen. En la figura \ref{fig:map-menu} se puede ver el menú de visualización del mapa.
 
 \begin{figure}[h]
     \centering
@@ -457,7 +459,7 @@ Los nodos \textit{Map} y \textit{Minimap} están asignados a scripts de MetSys p
 
 %Objetos pickable
 
-En el juego hay objetos que el jugador puede recoger por el mapa como las mejoras que dotan al personaje de nuevas habilidades o corazones que aumentan su vida máxima. Estos deben ser instanciados en salas del mapa, pero una vez recogidos no deben volver a aparecer si se vuelve a visitar dicho lugar más adelante. Además, es de interés que se marque en el mapa dónde se encuentran esos objetos para que el jugador interprete fácilmente el mapa.
+En el juego hay objetos que el jugador puede recoger por el mapa como las mejoras que dotan al personaje de nuevas habilidades o corazones que aumentan su vida máxima. Una vez recogidos, estos no deben volver a ser instanciados en sus respectivas salas. Además, es de interés que se marquen con un icono las salas en las que se encuentran esos objetos para que el jugador interprete fácilmente el mapa.
 
 MetSys cuenta con funciones para registrar nodos como \textit{storable object} (objeto que se puede recoger). De esta forma, los objetos recogibles se marcan a si mismos como tal durante su creación. Al entrar en contacto con el jugador, registran que ya han sido obtenidos. La próxima vez que se entre a la sala donde se encontraba, MetSys no lo instanciará.
 
@@ -472,7 +474,7 @@ Se crearon las clases \textbf{Collectible} y \textbf{CollectibleWithMarker} para
 
 %Explicar problemática de llaves y KeyManager
 
-Uno de los objetos que el jugador puede recojer son llaves (escena \textit{Key}). Cuando el jugador toca una llave, esta le sigue flotando por el mapa. Cuando está lo suficientemente cerca de una puerta cerrada, la abre y desaparece. Esto crea un problema con el funcionamiento de MetSys y las salas. El plugin solo permite transportar de una sala a otra al jugador. Al hacerlo, no es consistente con las coordenadas blobales de Godot. Es decir, si el jugador está en el borde de la sala A, coordenadas (100,0) y se mueve 10 píxeles a la derecha para pasar a la sala B, es posible que su posición no sea (110, 0) al completarse la transición sino, por ejemplo, (-50, 0).
+Uno de los objetos que el jugador puede recojer son llaves (escena \textit{Key}). Cuando el jugador toca una llave, esta le sigue flotando por el mapa. Cuando está lo suficientemente cerca de una puerta cerrada, la abre y desaparece. Esto crea un problema con el funcionamiento de MetSys y las salas. El plugin solo permite transportar de una sala a otra al jugador. Al hacerlo, no es consistente con las coordenadas globales de Godot. Es decir, si el jugador está en el borde de la sala A (coordenadas (100,0)) y se mueve 10 píxeles a la derecha para pasar a la sala B, es posible que su posición no sea (110, 0) al completarse la transición.
 
 Para el jugador esto no es ningún problema porque MetSys gestiona los límites de la cámara del jugador para que este cambio interno no sea perceptible al ojo humano. Pero si se quiere transportar una llave de una sala a otra haciendo parecer que sigue al jugador, esta tendrá un comportamiento errático.
 
@@ -480,7 +482,7 @@ Para solucionarlo se añádió a GameWorld la el nodo \textit{KeyManager} cuya i
 
 \begin{enumerate}
     \item El jugador obtiene una llave, haciéndola hija suya. Player emite un evento a través de GameEvent, el cual consume KeyManager. Así este obtiene una referencia a Player y a Key. La escena Key es responsable de perseguir la posición del jugador por la habitación actual.
-    \item GameWorld emite una señal avisando que se ha comenzado una transición entre habitaciones. KeyManager guarda el vector de distancia entre Player y Key. A continuación, corta a Key de la escena Player para hacerla hija de la escena KeyManager.
+    \item GameWorld emite una señal avisando que se ha comenzado una transición entre habitaciones. KeyManager guarda el vector de distancia entre Player y Key. A continuación, corta a Key de la escena Player para hacerla hija de KeyManager.
     \item La escena finaliza la transición. KeyManager devuelve a Player la llave y la coloca a la distancia a la que se encontraba respecto al jugador previa a la transición.
     \item Al abrir la llave una puerta, esta lo notifica a través de GameEvent. KeyManager consume esa señal y elimina la referencia a Key.
 \end{enumerate}
@@ -495,7 +497,7 @@ Para solucionarlo se añádió a GameWorld la el nodo \textit{KeyManager} cuya i
 \section{Enemigos}
 
 % Enemy y EnemyCharacter
-El juego cuenta con 5 tipos de enemigos distintos que tendrá que enfrentar el jugador. Cada uno de ellos tiene un aspecto único y exhibe comportamientos distintos. Para implementarlos se crearon dos clases que actuan a modo de interfaz, \textit{Enemy} y \textit{EnemyCharacter}. En funcion de las necesidades de cada enemigo sus nodos raíz heredarán de un tipo u otro. En la figura \ref{fig:enemy-diagram} se muestra este esquema en un diagrama de clases:
+El juego cuenta con 5 tipos de enemigos distintos a los que tendrá que enfrentarse el jugador. Cada uno de ellos tiene un aspecto único y exhibe comportamientos distintos. Para implementarlos se crearon dos clases que actuan a modo de interfaz, \textit{Enemy} y \textit{EnemyCharacter}. En funcion de las necesidades de cada enemigo sus nodos raíz heredarán de un tipo u otro. En la figura \ref{fig:enemy-diagram} se muestra este esquema en un diagrama de clases:
 
 \begin{itemize}
     \item \textbf{Enemy}: Hereda de Node2D. Se usa en enemigos con patrones de movimiento fijos y simples que no interactúan con las físicas del juego.
@@ -519,7 +521,7 @@ A continuación se describirán las características de cada enemigo y los detal
 
 Este enemigo es una medusa que oscila siguiendo una trayectoria circular alrededor de un punto. Hereda de la clase \textit{Enemy}. Su \textbf{radio} y \textbf{velocidad de rotación} están indicadas como variables \textit{@export}, por lo que se pueden ajustar desde la interfaz de Godot, agilizando el diseño de los niveles. Su arquitectura se muestra en la figura \ref{fig:jellyfish-architecture}.
 
-Durante su instanciación, el nodo \textit{JellyPosition} se desplaza una longitud igual al radio en el eje y. En cada fotograma se aplica una rotación a \textit{RotationAxis}, consiguiendo que \textit{JellyPosition} describa una circunferencia. Por último, se coloca en su posición el nodo \textit{Character}.
+Durante su instanciación, el nodo \textit{JellyPosition} se desplaza una longitud igual al radio en el eje y. En cada fotograma se aplica una rotación a \textit{RotationAxis}, consiguiendo que \textit{JellyPosition} describa una circunferencia. Por último, se coloca en la posición de este al nodo \textit{Character}.
 
 \begin{figure}[h]
     \centering
@@ -534,7 +536,7 @@ Durante su instanciación, el nodo \textit{JellyPosition} se desplaza una longit
 
 Se trata de una piraña con una gran boca que recorre un camino lineal de ida y vuelta entre dos puntos. Hereda de la clase \textit{Enemy}. Se puede configurar su velocidad en cada instancia con una variable \textit{@export}. Se puede ver su arquitectura en la figura \ref{fig:piranha-architecture}.
 
-Cada vez que se instancia esta escena en alguna sala, se deben ajustar los nodos \textit{StartPoint} y \textit{EndPoint}. La escena registra las coordenadas globales de estos puntos como inicio y destino, e interpola la posición del enemigo en función de la velocidad.
+Cada vez que se instancia esta escena en alguna sala, se deben posicionar los nodos \textit{StartPoint} y \textit{EndPoint}. La escena registra las coordenadas globales de estos puntos como inicio y destino, e interpola la posición del enemigo en función de la velocidad.
 
 
 \begin{figure}[h]
@@ -548,11 +550,11 @@ Cada vez que se instancia esta escena en alguna sala, se deben ajustar los nodos
 
 \subsection{Blob}
 
-Este ememigo es un pez abisal que se arrastra por el suelo. Este hereda de \textit{EnemyCharacter}. Avanza en linea recta hasta toparse con un muro o hasta llegar al borde de una plataforma. Entonces, da media vuelta y avanza hacia al lado contrario. En la figura \ref{fig:blob-architecture} se muestra la arquitectura del nodo.
+Este ememigo es un pez abisal que se arrastra por el suelo. Hereda de \textit{EnemyCharacter}. Avanza en linea recta hasta toparse con un muro o hasta llegar al borde de una plataforma. Entonces, da media vuelta y avanza hacia al lado contrario. En la figura \ref{fig:blob-architecture} se muestra la arquitectura del nodo.
 
 Debido a que su patrón de comportamiento es muy simple se decidió no implementar una máquina de estados. Se muestra un diagrama de su rutina en la figura \ref{fig:blob-flow}.
 
-Los dos nodos \textit{Raycast2D} emplean una técnica de raycasting para detectar si el enemigo ha chocado contra una pared o está a punto de caer por un saliente. Consiste en trazar desde un punto un rayo con cierta dirección y longitud. El rayo devuelve información sobre los objetos con los que ha colisionado. En este caso, se configuraron ambos raycast para colisionar con la capa \textit{Ground} (suelo, paredes, etc.). Si el primer rayo colisiona con algo, se infiere que está frente a una pared, por lo que deberá girar. De igual forma, si el segundo raycast, que apunta hacia abajo, no colisiona con nada, significa que hay un saliente y se volteará.
+Los dos nodos \textit{Raycast2D} emplean una técnica de raycasting para detectar si el enemigo ha chocado contra una pared o está a punto de caer por un saliente. Esta técnica consiste en trazar desde un punto un rayo con cierta dirección y longitud. El rayo devuelve información sobre los objetos con los que ha colisionado. En este caso, se configuraron ambos raycast para colisionar con la capa \textit{Ground} (suelo, paredes, etc.). Si el primer rayo colisiona con algo, se infiere que está frente a una pared, por lo que deberá girar. De igual forma, si el segundo raycast, que apunta hacia abajo, no colisiona con nada, significa que hay un saliente y se volteará.
 
 \begin{figure}[h]
     \centering
@@ -572,7 +574,7 @@ Los dos nodos \textit{Raycast2D} emplean una técnica de raycasting para detecta
 
 \subsection{Axolote}
 
-Este enemigo es un ajolote mexicano. Este camina por el suelo y se lanzará corriendo hacia el jugador a gran velocidad en caso de detectarle. Hereda de \textit{EnemyCharacter} e implementa una máquina de estados para codificar su comportamiento. Su arquitectura se muestra en la figura \ref{fig:axolote-architecture}. 
+Este enemigo es un ajolote mexicano. Camina por el suelo y se lanzará corriendo hacia el jugador a gran velocidad en caso de detectarle. Hereda de \textit{EnemyCharacter} e implementa una máquina de estados para codificar su comportamiento. Su arquitectura se muestra en la figura \ref{fig:axolote-architecture}. 
 
 Para la máquina de estados se usó la misma implementación que la clase \textit{Player}. El diagrama de esta se muestra en la figura \ref{fig:axolote-state-machine}. Los estados son los siguientes:
 
@@ -584,7 +586,7 @@ Para la máquina de estados se usó la misma implementación que la clase \texti
     \item \textbf{DEAD}: Cuando se queda sin puntos de vida (HP) reproduce su animación de muerte y se destruye la escena.
 \end{itemize}
 
-Este enemigo usa raycasting para saber cuando tiene un muro y debe girar. También lo usa para saber si el jugador está delante suya, creando el efecto de sorpresa al verlo.
+Este enemigo usa raycasting para saber cuando tiene delante un muro y debe girar. También lo usa para saber si el jugador está delante suya, creando el efecto de sorpresa al verlo.
 
 \begin{figure}[h]
     \centering
@@ -604,7 +606,7 @@ Este enemigo usa raycasting para saber cuando tiene un muro y debe girar. Tambi�
 
 \subsection{Triangle Fish}
 
-Este pez triangular se desplaza flotando por el aire. Aparece estando dormido. Si el jugador se acerca lo suficiente, se despertará. Tras eso, en el momento que vea al jugador, empezará a perseguirlo. Su arquitectura puede verse en la figura \ref{fig:triangle-architecture} Esta clase hereda de \textit{EnemyCharacter} e implementa una máquina de estados que se ilustra en la figura \ref{fig:triangle-state-machine}. Los estados son los siguientes:
+Este pez triangular se desplaza flotando por el aire. Aparece estando dormido. Si el jugador se acerca lo suficiente, se despertará. Tras eso, en el momento que vea al jugador, empezará a perseguirlo. Su arquitectura puede verse en la figura \ref{fig:triangle-architecture}. Esta clase hereda de \textit{EnemyCharacter} e implementa una máquina de estados que se ilustra en la figura \ref{fig:triangle-state-machine}. Los estados son los siguientes:
 
 \begin{itemize}
     \item \textbf{SLEEP}: El enemigo comienza dormido. En este estado no se mueve. Si el jugador se mueve lo suficientemente cerca, se despertará.
@@ -628,9 +630,9 @@ Este pez triangular se desplaza flotando por el aire. Aparece estando dormido. S
     \label{fig:triangle-state-machine}
 \end{figure}
 
-Para que el enemigo pudiera volar por todo el escenario y perseguir al jugador sin chocarse con elementos del escenario, se necesitaba usar un algoritmo de pathfinding que calculara un camino suficientemente corto hasta él. Para ello se usó el nodo \textit{Navigation2D}. Este permite generar rutas entre dos puntos dentro de un espacio definido.
+Para que el enemigo pudiera volar por todo el escenario y perseguir al jugador sin chocarse con ningún obstáculo, se necesitaba usar un algoritmo de pathfinding que calcule un camino suficientemente corto hasta él. Para ello se usó el nodo \textit{Navigation2D}. Este permite generar rutas entre dos puntos dentro de un espacio definido.
 
-Para definir el espacio en el que se realiza la búsqueda, se configuró en el \textit{TileSet} de los niveles un tile invisible con la misma capa de navegación asignada que se tiene en \textit{Navigation2D}. Esta tile se rellena en todos los espacios vacíos navegables del nivel. El agente usa una estrategia \textit{A*} (A estrella) para calcular el camino en cada actualización de las físicas. En la figura \ref{fig:triangle-chase-2}.
+Para definir el espacio en el que se realiza la búsqueda, se configuró en el \textit{TileSet} de los niveles un tile invisible con la misma capa de navegación asignada que se tiene en \textit{Navigation2D}. Esta tile se rellena en todos los espacios vacíos navegables del nivel. El agente usa una estrategia \textit{A*} (A estrella) para calcular el camino en cada actualización de las físicas. En la figura \ref{fig:triangle-chase-2} se tiene un ejemplo visual de un camino generado.
 
 \begin{figure}[h]
     \centering
@@ -639,7 +641,7 @@ Para definir el espacio en el que se realiza la búsqueda, se configuró en el \
     \label{fig:triangle-chase-2}
 \end{figure}
 
-Para lograr una jugabilidad más divertida, el enemigo solo genera un camino cuando pierde de vista al jugador, es decir, cuando hay algún obstáculo entre ellos. En caso contrario, se sigue una estrategia más simple: primero se desciende hasta alcanzar la altura del jugador, y luego se avanza en linea recta, como se muestra en la figura \ref{fig:triangle-chase-1}. Esto permite al jugador evadir al enemigo saltándolo, cosa que sería imposible si este siempre siguiera el camino más óptimo. 
+Con el objetivo de lograr una jugabilidad más divertida, el enemigo solo genera un camino cuando pierde de vista al jugador, es decir, cuando hay algún obstáculo entre ellos. En caso contrario, se sigue una estrategia más simple y menos eficiente: primero se desciende hasta alcanzar la altura del jugador, y luego se avanza en linea recta, como se muestra en la figura \ref{fig:triangle-chase-1}. Esto permite al jugador evadir al enemigo saltándolo, cosa que sería imposible si este siempre siguiera el camino óptimo. 
 
 \begin{figure}[h]
     \centering
@@ -652,13 +654,13 @@ Para lograr una jugabilidad más divertida, el enemigo solo genera un camino cua
 
 \section{Otros sistemas}
 
-En este apartado se describirán implementaciones y funcionalidades del proyecto.
+En este apartado se describirán otras implementaciones y funcionalidades del proyecto.
 
 \subsection{Funciones de guardado}
 
-El juego cuenta con tres espacios (\textit{slots}) para que el jugador guarde partida. Es decir, se puede guardar el progreso de tres partidas distintas de forma simultánea. La funcionalidad de guardad está encapsulada en el autoload \textit{DataManager}. Este expone funciones que otras escenas hacen uso para solicitar guardar o cargar el progreso de la partida. Por ejemplo, en la escena \textit{SelectFile} el usuario elige uno de los tres slots para cargar partida. Esta escena recoge los datos de todas las partidas guardadas para exponerlas en forma de menú.
+El juego cuenta con tres espacios (\textit{slots}) para que el jugador guarde partida. Es decir, se puede guardar el progreso de tres partidas distintas de forma simultánea. La funcionalidad de guardado está encapsulada en el autoload \textit{DataManager}. Este expone funciones que otras escenas usan para solicitar guardar o cargar el progreso de la partida. Por ejemplo, en la escena \textit{SelectFile} el usuario elige uno de los tres slots para cargar partida. Esta escena recoge los datos de todas las partidas guardadas para exponerlas en forma de menú.
 
-Para almacenar de forma persistente los datos de guardado se utilizaron los \textbf{recursos} de Godot. Mientras que los nodos son unidades de funcionalidad, los recursos son contenedores de datos. Pueden ser asignados como el tipo de una variable en una escena. Además, Godot cuenta con funciones para guardarlos fácilmente en el disco. Cuando se carga un recurso, el motor guarda una única copia del mismo en memoria. Eso quiere decir que si se modifica y otra escena lo carga posteriormente, tendrá acceso a la versión modificada de este.
+Para almacenar de forma persistente los datos de guardado se utilizaron los \textbf{recursos} de Godot. Mientras que los nodos son unidades de funcionalidad, los recursos son contenedores de datos. Pueden ser asignados como el tipo de una variable en una escena. Además, Godot cuenta con funciones para guardarlos fácilmente en el disco. Cuando se carga un recurso, el motor guarda una única copia del mismo en memoria. Eso quiere decir que si se modifica y otra escena lo carga posteriormente, tendrá acceso a la versión modificada del mismo.
 
 Algunos nodos en Godot cuentan con recursos por defecto como Sprite2D, que contiene un nodo Texture2D para añadir una imagen. Sin embargo se pueden definir recursos personalizados. En este caso, se definieron los recursos \textbf{SaveData} para almacenar el progreso de la partida y \textbf{PlayerData} para el estado actual del jugador. En la figura \ref{fig:save-diagram} se muestra un diagrama de clases para \textit{DataManager} y sus recursos.
 
@@ -669,13 +671,13 @@ Algunos nodos en Godot cuentan con recursos por defecto como Sprite2D, que conti
     \label{fig:save-diagram}
 \end{figure}
 
-Los datos de progreso usados internamente por el plugin MetSys (mapa explorado, objetos coleccionados, etc.) están en formato de diccionario y cuenta con funciones para cargarlos, por lo que se guardan fácilmente en \textit{SaveData}. Se también un diccionario adicional para guardar ciertos eventos. Por ejemplo, si una horda de enemigos ya ha sido derrotada en una sala, se almacena esa información para no instanciar la misma horda la próxima vez que el jugador visite la sala.
+Los datos de progreso usados internamente por el plugin MetSys (mapa explorado, objetos coleccionados, etc.) están en formato de diccionario y cuenta con funciones para cargarlos, por lo que se guardan fácilmente en \textit{SaveData}. Se añadió también un diccionario adicional para guardar ciertos eventos. Por ejemplo, si una horda de enemigos ya ha sido derrotada en una sala, se almacena esa información para no instanciar la misma horda la próxima vez que el jugador visite la sala.
 
 \subsection{Asignación de controles}
 
 Godot cuenta con un mapa de controles para el jugador. En este se pueden definir acciones como podrían ser \textit{jump}, \textit{atack} o \textit{move\_left} y asignarlas a un botón de un mando o teclado. Sin embargo, esta asignación es estática. El jugador requiere por accesibilidad la opción de poder modificar el esquema de controles en su teclado o mando.
 
-Para implementar esta funcionalidad se incluyó el plugin \textbf{Godot Controls Remap (CGR)}\cite{controls-remap}. Este permite reasignar de forma dinámica las acciones de Godot a cualquier otro input. Se implementó el autoload \textbf{InputMapper}. Este hace de interfaz para la reasignación de controles. Se encarga de operar la librería \textit{CGR}, de cargar y guardar en memoria el esquema actual de controles y de captar inputs del usuario para asignarlos a la acción correspondiente. Una vez hecha la reasignación, el resto de escenas que capten la entrada del usuario podrán hacerlo de forma normal, con la función \textit{\_input(event)} o el singleton \textit{Input}.
+Para implementar esta funcionalidad se incluyó el plugin \textbf{Godot Controls Remap (GCR)}\cite{controls-remap}. Este permite reasignar de forma dinámica las acciones de Godot a cualquier otro input. Para operarlo se implementó el autoload \textbf{InputMapper}, que hace de interfaz para la reasignación de controles. Se encarga de cargar y guardar en memoria el esquema actual de controles y de captar inputs del usuario para asignarlos a la acción correspondiente. Una vez hecha la reasignación, el resto de escenas que capten la entrada del usuario podrán hacerlo de forma normal, con la función \textit{\_input(event)} o el singleton \textit{Input}.
 
 Para comunicar los controles del juego, es necesario mostrar para cada acción el icono de su tecla o botón asociado. Como estos pueden reasignarse, este icono no puede ser estático. Para solventar esto se usó \textbf{Godot Action Icon}\cite{action-icon}. Este plugin permite definir un mapa acción-icono para mostrar en pantalla. Además, actualiza el esquema de iconos entre teclado y mando en función de cual esté usando el usuario actualmente. Incluye también un pack de iconos por defecto de uso libre\cite{icon-pack}.
 
@@ -683,7 +685,7 @@ Para comunicar los controles del juego, es necesario mostrar para cada acción e
 
 Todos los textos del juego están disponibles tanto en inglés como en español. El usuario puede seleccionar le idioma en el menú de opciones. Para gestionar el cambio de idioma se implementó el autoload \textbf{LocalizationManager}. Este define los idiomas en los que está disponible el juego y aplica los cambios a través de \textit{TranslationServer}, el autoload de Godot responsable gestionar las traducciones. 
 
-Se creó una hoja de cálculo con el formato que se muestra en la tabla \ref{tab:localization-table}. Para cada texto se tiene una etiqueta y una traducción en inglés y español. En los elementos del juego en lugar de ecribir los textos finales, se escriben las etiquetas. Una vez se define un código de idioma como activo en el TranslationServer, todas las etiquetas del juego son sustituidos por la traducción en tiempo de ejecución.
+Se creó una hoja de cálculo con el formato que se muestra en la tabla \ref{tab:localization-table}. Para cada texto se tiene una etiqueta y una traducción en inglés y español. En los elementos del juego en lugar de ecribir los textos finales, se escriben sus etiquetas. Una vez se define un código de idioma como activo en el TranslationServer, todas las etiquetas del juego son sustituidos por la traducción en tiempo de ejecución.
 
 \begin{table}[!ht]
     \centering
@@ -720,14 +722,14 @@ Para implementar los diálogos se incluyó en el proyecto el plugin \textbf{Godo
     \item Reproducción de voces.
 \end{itemize}
 
-Los diálogos se instancian a través del autoload del plugin \textit{DialogueManager}. Para ello se necesitan dos elementos:
+Los diálogos se instancian a través del autoload del plugin, \textit{DialogueManager}. Para ello se necesitan dos elementos:
 
 \begin{itemize}
     \item Un \textit{script} que contenga todo el texto del diálogo. Esto se almacena en un archivo con extensión .dialogue.
     \item Una escena que contenga los elementos visuales del diálgo como el marco o la tipografía. Para este proyecto se usa la escena \textit{Balloon}.
 \end{itemize}
 
-Los diálogos siempre son emitidos por un NPC (personaje no jugable) cuando el jugador interactua con este. Se creó el componente \textit{DialogueComponent} (ver figura \ref{fig:dialogue-component}), que está incluido por defecto en todas las escenas \textit{NpcCharacter}. Este hereda de un \textit{Area2D}. Cuando este área detecta que el jugador ha entrado en el rango en el que puede interactuar con el NPC, se muestra un \textit{sprite} de una flecha para indicárselo. Cuando detecta que el jugador ha interactuado, emite una señal que empieza el flujo de interacción que instanciará el diálogo, como se puede comprobar en la figura \ref{fig:dialogue-flow}.
+Los diálogos siempre son emitidos por un NPC (personaje no jugable) cuando el jugador interactua con este. Se creó el componente \textit{DialogueComponent} (ver figura \ref{fig:dialogue-component}), que está incluido por defecto en todas las escenas \textit{NpcCharacter}. Este hereda de un \textit{Area2D}. Cuando este área detecta que el jugador ha entrado en el rango en el que puede interactuar con el NPC, se muestra una flecha para indicárselo. Cuando recibe el \textit{input} del jugador, se arranca el flujo de interacción que instanciará el diálogo, el cual se muestra en la figura \ref{fig:dialogue-flow}.
 
 \begin{figure}[h]
     \centering
@@ -738,16 +740,17 @@ Los diálogos siempre son emitidos por un NPC (personaje no jugable) cuando el j
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.45]{img/dialogue-flow.drawio.png}
+    \includegraphics[scale=0.55]{img/dialogue-flow.drawio.png}
     \caption[Flujo de interacciones para iniciar y finalizar un diálogo.]{Flujo de interacciones para iniciar y finalizar un diálogo desde una interacción del jugador.}
     \label{fig:dialogue-flow}
 \end{figure}
 
 \subsection{Implementación de máquina de estados}
+\label{sec:state-machine}
 
 La implementación del patrón de máquina de estados de este proyecto está basado en el propuesto por GDQuest\cite{fsm-gdquest}. En la figura \ref{fig:state-machine-diagram} se tiene un diagrama de clases. Cuando una escena necesita de una máquina de estados se le añade un nodo \textbf{StateMachine}. Este tiene como hijos tantos nodos \textbf{State} como estados existan, los cuales contienen el código asociado a su lógica. StateMachine se encarga de realizar las transiciones entre estados.
 
-Cuando un estado entra en activo, ejecuta su código de iniciación (\textit{\_enter()}). Al darse la condición para que transicione, llama a StateMachine a través de la señal \textit{finished}. StateMachine se encarga de ejecutar su código de finalización (\textit{\_exit()}) y transiciona al siguiente estado.
+Cuando un estado entra en activo, ejecuta su código de iniciación (\textit{\_enter()}). Al darse la condición para que transicione, emite la señal \textit{finished}. StateMachine la recibe y se encarga de ejecutar su código de finalización (\textit{\_exit()}) y transicionar al siguiente estado.
 
 \textit{State} es una interfaz. Para cada máquina de estados es necesario crear una clase que herede de esta, como se ve en la figura \ref{fig:state-machine-diagram}. En el caso del jugador, se tiene la clase \textit{PlayerState}, que guarda una referencia a \textit{Player} y define en constantes todos los estados posibles para esta máquina. Posteriormente, se crea un script para cada estado que herede de este (\textit{idle.gd, move.gd, jump.gd, etc}).
 
@@ -766,7 +769,7 @@ Por último, es posible que un estado necesite de ciertos datos para su funciona
 
 % cómo están hechos los menús (nodos control)
 
-Los menús del juego como la pantalla de título o de ajustes están hechos con \textbf{nodos de control}. Estos son una colección de nodos nativos de Godot diseñados para construir interfaces de usuario. Cuentan con utilidades para crear botones, \textit{sliders}, \textit{checkbox} y centrar elementos entre otras. Tiene soporte por defecto para interacción con mando, teclado o ratón.
+Los menús del juego tales como la pantalla de título o de ajustes están hechos con \textbf{nodos de control}. Estos son una colección de nodos nativos de Godot diseñados para construir interfaces de usuario. Cuentan con utilidades para crear botones, \textit{sliders}, \textit{checkbox} y centrar elementos entre otras. Tiene soporte por defecto para interacción con mando, teclado o ratón.
 
 Como se muestra en la figura \ref{fig:controls-menu}, la interfaz se contruye añadiendo nodos de forma jerárquica para cada uno de los elementos. Cada pantalla de menú es una escena. Un script asociado a la raíz de la escena contiene su lógica y dota de funcionalidad a todos los botones y demás elementos interactuables.
 
@@ -814,13 +817,13 @@ El jugador accede a estas opciones desde la escena \textit{SettingsMenu}. Esta o
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.45]{img/setteings.drawio.png}
+    \includegraphics[scale=0.55]{img/setteings.drawio.png}
     \caption[Diagrama de clases y escenas para los ajustes del juego.]{Diagrama de clases y escenas para los ajustes del juego.}
     \label{fig:settings-diagram}
 \end{figure}
 
 %% ACCESIBILIDAD
-A continuación se repasará las consideraciones que se tuvieron respecto a la accesibilidad y su relación con los ajustes previamente explicados si la tuvieran.
+A continuación se repasarán las consideraciones que se tuvieron respecto a la accesibilidad y su relación con los ajustes previamente explicados si la tuvieran.
 
 % auditiva
 % todos los textos del juego son más grandes que el mínimo de píxeles recomendado, con fondo negro. El usuario puede ajustar el volumen de los 3 canales. No hay ningún elemento que requiera de sonido para avanzar
@@ -830,7 +833,7 @@ En cuanto a \textbf{accesibilidad auditiva y visual}, todos los textos del juego
 % visual/daltonismo
 % mencionar colores del mapeado
 
-Para garantizar la \textbf{accesibilidad de las personas con daltinismo} se usó la herramienta ColorBlindnessTest\cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tileset} del mapa y se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, son diferenciados en todos los principales tipos de daltonismo.
+Para garantizar la \textbf{accesibilidad de las personas con daltonismo} se usó la herramienta ColorBlindnessTest\cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tile atlas} del mapa. Finalmente se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, las tres últimas filas de color son diferenciadas en todos los principales tipos de daltonismo.
 
 \begin{figure}[h]
     \centering
