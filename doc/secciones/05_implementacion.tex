@@ -766,9 +766,9 @@ Por último, es posible que un estado necesite de ciertos datos para su funciona
 
 % cómo están hechos los menús (nodos control)
 
-Los menús del juego como la pantalla de título o de ajustes están hechos con \textbf{nodos de control}. Estos son una colección de nodos nativos de Godot diseñados específicamente para construir interfaces de usuario. Cuentan con utilidades para crear botones, \textit{sliders}, \textit{checkbox} y centrar elementos entre otras cosas. Tiene soporte por defecto para interacción con mando, teclado o ratón.
+Los menús del juego como la pantalla de título o de ajustes están hechos con \textbf{nodos de control}. Estos son una colección de nodos nativos de Godot diseñados para construir interfaces de usuario. Cuentan con utilidades para crear botones, \textit{sliders}, \textit{checkbox} y centrar elementos entre otras. Tiene soporte por defecto para interacción con mando, teclado o ratón.
 
-Como se muestra en la figura \ref{fig:controls-menu}, la interfaz se contruye añadiendo nodos de forma jerárquica para cada uno de los elementos. Cada pantalla de menú será una escena que se instanciará o eliminará en función de cuando se necesite. Un script asociado a la raíz de la escena contiene su lógica y dota de funcionalidad a todos los botones y demás elementos interactuables.
+Como se muestra en la figura \ref{fig:controls-menu}, la interfaz se contruye añadiendo nodos de forma jerárquica para cada uno de los elementos. Cada pantalla de menú es una escena. Un script asociado a la raíz de la escena contiene su lógica y dota de funcionalidad a todos los botones y demás elementos interactuables.
 
 \begin{figure}[h]
     \centering
@@ -779,17 +779,166 @@ Como se muestra en la figura \ref{fig:controls-menu}, la interfaz se contruye a�
 
 % comentar la aplicación de tema
 
-El aspecto de todos los elementos de tipo control puede ser modificado. Esto incluye su color, tamaño, borde, tipografía, etc. Ajustar esto para cada elemento sería muy costoso, por lo que se ahce el uso de los \textbf{temas} de Godot. Estos son un recurso usado para estilizar nodos de tipo \textit{window} o control. Estos pueden definir aspecto para los elementos de la interfaz. Los temas se establecen en el nodo raíz de la escena y sus nodos hijos lo heredan. Es posible también establecer un tema como predeterminado, de tal forma que se asignen a todos los nodos control al crearlos.
+El aspecto de todos los elementos de tipo control puede ser modificado. Esto incluye su color, tamaño, borde, tipografía, etc. Ajustar esto para cada elemento sería muy costoso, por lo que se hace uso de los \textbf{temas} de Godot. Estos son recursos usados para estilizar nodos de tipo \textit{window} o control. Pueden definir el aspecto para todos los elementos de la interfaz. Los temas se establecen en el nodo raíz de la escena y sus nodos hijos lo heredan. Es posible también establecer un tema como predeterminado, de tal forma que se asignen a todos los nodos control al crearlos.
 
 % mencionar que los menús de mapa son componentes importados de metsys
 
+En apartados anteriores se comentó que los menús de mapa y mini-mapa son componentes importados del plugin MetSys, por lo que no hay mucho que comentar sobre ellos. Estos renderizan una vista que permanece estática en la pantalla, por lo que ambos se dispusieron sobre un nodo \textit{CanvasLayer}. Este permite la renderización independiente de objetos 2D en una escena. Esto quiere decir que las coordenadas heredadas del nodo padre serán ignoradas y el posicionamiento será, a efectos prácticos, relativo al \textit{viewport} del juego.
+
 % playerui, interacción con player y game event
 
+El resto de la interfaz consiste en un marco que rodea toda la pantalla y contiene los puntos de salud totales y restantes del jugador. Estos se renderizan a través de la escena \textit{PlayerUi}. La escena escucha una señal del autoload \textit{GameEvent} que se emite desde la escena Player cuando el jugador gana o pierde salud, o cuando obtiene un objeto para aumentar su vida máxima. Una vez se recibe la señal, se actualiza el estado y se renderiza en pantalla los elementos correspondientes. En la figura \ref{fig:ui-hearts} se tiene una captura de pantalla de esta interfaz.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{img/ui-hearts.png}
+    \caption[Captura de pantalla de la interfaz de salud del jugador.]{Captura de pantalla de la interfaz de salud del jugador. Se tienen 4 corazones como máximo. El jugador ha sido golpeado, por lo que solo le quedan otros 3.}
+    \label{fig:ui-hearts}
+\end{figure}
 
-%\section{Accesibilidad (opciones en general)}
+\section{Accesibilidad y ajustes}
 
-%\section{CI/CD/Testing}
+% Mencionar la implementación de los ajustes, diagramas de clase para los parámetros
 
+En el menú de ajustes, el jugador tiene una serie de opciones para configurar su experiencia:
 
+\begin{itemize}
+    \item Selección de idioma.
+    \item Selección de volumen en tres canales: se puede regualr el volumen general o de música y sonido por separado. Esto se hizo configurando en el proyecto 3 buses de audio (\textit{master}, \textit{music} y \textit{SFX}). Cada nodo de audio del juego está asociado al bus \textit{music} o \textit{SFX}. Desde el menú de ajuste se baja el volumen asociado a estos buses o al general.
+    \item Entrar o salir de pantalla completa.
+    \item Ajuste de brillo y contraste de la pantalla. Este efecto se implementó utilizando los \textit{WorldEnvironment} de Godot, usados para el postprocesado de escenas.
+    \item Reasignación de controles.
+\end{itemize}
 
+El jugador accede a estas opciones desde la escena \textit{SettingsMenu}. Esta opera la interfaz del autoload \textit{SettingsManager} para aplicar las configuracones. Es este último también el encargado de guardarlas en memoria usando el recurso customizado \textit{SettingsData}. En la figura \ref{fig:settings-diagram} se tiene un diagrama de este planteamiento.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/setteings.drawio.png}
+    \caption[Diagrama de clases y escenas para los ajustes del juego.]{Diagrama de clases y escenas para los ajustes del juego.}
+    \label{fig:settings-diagram}
+\end{figure}
+
+%% ACCESIBILIDAD
+A continuación se repasará las consideraciones que se tuvieron respecto a la accesibilidad y su relación con los ajustes previamente explicados si la tuvieran.
+
+% auditiva
+% todos los textos del juego son más grandes que el mínimo de píxeles recomendado, con fondo negro. El usuario puede ajustar el volumen de los 3 canales. No hay ningún elemento que requiera de sonido para avanzar
+
+En cuanto a \textbf{accesibilidad auditiva y visual}, todos los textos del juego son más grandes que el tamaño mínimo de fuente recomendado (46 píxeles). Aparecen siempre sobre un fondo negro y es el usuario el que avanza el texto a voluntad. El juego no tiene voces, por lo que el texto es el único canal de comunicación en ese sentido. El usuario puede regular el volumen diferenciando entre general, música y sonido. Tampoco existe ningún elemento de juego que requiera de escuchar audio para poder progresar.
+
+% visual/daltonismo
+% mencionar colores del mapeado
+
+Para garantizar la \textbf{accesibilidad de las personas con daltinismo} se usó la herramienta ColorBlindnessTest\cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tileset} del mapa y se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, son diferenciados en todos los principales tipos de daltonismo.
+
+\begin{figure}[h]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/tritanomalía.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/tritanopia.png}
+    \end{minipage}
+
+    \vspace{0.3cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/protanomaly.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/protanopia.png}
+    \end{minipage}
+
+    \caption{Simulación de diferentes tipos de daltonismo para el tileset del juego. Los colores originales de las filas corresponden a verde, azul, gris y naranja respectivamente.}
+    \label{fig:daltonismo-comparacion}
+\end{figure}
+
+% motora
+% reasignación de controles, compatible con cualquier entrada
+
+Para la \textbf{accesibilidad motora} se cuenta con la ya expuesta reasignación de controles. Esta es compatible para cualquier entrada tanto de teclado como de mando, por lo que incluso usuarios con mandos especializados para su diversidad funcional motora podrán jugar. El juego además tiene un ritmo lento en su jugabilidad. No es exigente ni difícil en lo que al control se refiere y se centra más en la exploración, lo cual supone un impedimento menos para usuarios de este perfil.
+
+% cognitiva
+% analisis de sobrecarga sensorial
+% mencionar ajuste de brillo y contraste
+
+En cuanto a \textbf{accesibilidad cognitiva}, se realizó un análisis de un segmento del juego utilizando la herramienta \textit{Video Flash Analysis}\cite{video-flash-analysis} para asegurar que cumple los estándares para la protección de usuario con epilepsia fotosensible y otras sensibilidades. El resultado del análisis fue positivo como se muestra en al figura \ref{fig:settings-diagram}. Además, el usuario puede modificar el brillo y el contraste por si siente alguna molestia.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.30]{img/test-fotosensible.png}
+    \caption[Resultado de análisis de fotosensibilidad para un fragmento de video del juego.]{Resultado de análisis de fotosensibilidad para un fragmento de video del juego.}
+    \label{fig:settings-diagram}
+\end{figure}
+
+% 
+
+\section{CI/CD/Testing}
+
+% hablar de gdunit
+
+Para desarrollar los tests automáticos del proyecto se usó \textit{GDUnit4}\cite{gdunit4}, un framework embebido en Godot que permite el desarrollo de tests unitarios y de integración. También permite detectar filtraciones de memoria, monitorizar el rendimiento y detectar escenas huérfanas en el árbol de escena. Se priorizó el desarrollo de tests para las funciones centrales y estructurales del proyecto, dejando de lado otros sistemas más tangentes que posiblemente cambiarían a lo largo del desarrollo. En la figura \ref{fig:gdunit-execution} se tiene un ejemplo de ejecución de los tests del proyecto. En la tabla \ref{tab:test-table} se tiene el listado de tests del proyecto.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.30]{img/gdunit.png}
+    \caption[Captura de pantalla de interfaz de gdUnit4 embebida en godot.]{Resultado de ejecución de tests del proyecto en la interfaz de gdUnit4. Como se puede observar, un test de Player ha fallado.}
+    \label{fig:gdunit-execution}
+\end{figure}
+
+% poner tabla con tests
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|p{4cm}|p{6cm}|p{2cm}|}
+    \hline
+        Nombre de test & Descripción & Módulo \\ \hline
+        test teleport & Verifica que el jugador entra en estados de teletransporte y cambia posición correctamente & Player \\ \hline
+        test pogo bounce & Comprueba que el ataque hacia abajo en el aire activa el estado POGO y rebote vertical & Player \\ \hline
+        test move right and left & Valida el movimiento horizontal del jugador hacia derecha e izquierda y estados asociados & Player \\ \hline
+        test jump and fall & Comprueba que el jugador puede saltar y entra en estado de salto sin estar en el suelo & Player \\ \hline
+        test atack & Verifica que el ataque activa el estado ATACK y detiene el movimiento horizontal & Player \\ \hline
+        test hit and death & Comprueba el sistema de daño, invencibilidad temporal y transición a estado DEAD & Player \\ \hline
+        test remap action key & Verifica que las acciones pueden remapearse correctamente y responden a la nueva tecla asignada & InputManager \\ \hline
+        test starting state & Comprueba que el juego inicia en el estado de pantalla de título & Game \\ \hline
+        test start new game & Verifica la transición desde título a intro y luego a GameWorld & Game \\ \hline
+        test load game and pause game & Comprueba que el juego puede pausarse y reanudarse correctamente desde el GameWorld & Game \\ \hline
+        test return to title screen & Verifica que se puede volver a la pantalla de título desde el menú de pausa & Game \\ \hline
+        test load game die and respawn & Comprueba la transición a GAME\_OVER y la correcta reaparición en el mundo de juego & Game \\ \hline
+        test load game finish game and return to title & Verifica el flujo de final del juego y retorno a la pantalla de título & Game \\ \hline
+        test forbidden game state changes & Comprueba que transiciones de estado no permitidas son ignoradas correctamente & Game \\ \hline
+    \end{tabular}
+    \caption{Tabla de tests automáticos del proyecto.}
+    \label{tab:test-table}
+\end{table}
+
+% hablar de github action para ejecución de tests en remoto
+
+Para asegurar que los cambios producidos durante el desarrollo no rompían ninguna funcionalidad previa, se configuró en el repositorio de Github una Github Action (GdUnit4 Test\cite{gdunit4-action}) que se ejecuta cada vez que se pushea algún commit a remoto. Esta crea una máquina virtual y ejecuta todos los test del proyecto. Si algún test falla, se notifica al usuario a través de correo electrónico. Esta comprobación se realiza también antes de cerrar un pull request, impidiendo que alguna rama con fallos se mezcle en otra. Para configurar esta acción se añadió el siguiente archivo .yaml a la carpeta \textit{.github/workflows}:
+
+\begin{verbatim}
+name: GdUnit4 Tests (wip)
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: godot-gdunit-labs/gdUnit4-action@v1
+        with:
+          godot-version: '4.6'
+          project_dir: './game/'
+          paths: 'res://test'
+\end{verbatim}
