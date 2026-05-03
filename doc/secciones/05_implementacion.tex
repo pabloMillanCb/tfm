@@ -648,19 +648,148 @@ Para lograr una jugabilidad más divertida, el enemigo solo genera un camino cua
     \label{fig:triangle-chase-1}
 \end{figure}
 
-%\section{Otros sisetmas}
-%    \subsection{Funciones de guardado}
-%    \subsection{Asignación de controles}
-%    \subsection{Localización}
-%    \subsection{Reloj}
-%    \subsection{Diálogos}
-%    \subsection{Implementación de máquina de estados}
+%% FALTA EXPLICAR LAS OLEADAS
 
-%\section{UI y HUD}
+\section{Otros sistemas}
 
-%\section{Accesibilidad}
+En este apartado se describirán implementaciones y funcionalidades del proyecto.
+
+\subsection{Funciones de guardado}
+
+El juego cuenta con tres espacios (\textit{slots}) para que el jugador guarde partida. Es decir, se puede guardar el progreso de tres partidas distintas de forma simultánea. La funcionalidad de guardad está encapsulada en el autoload \textit{DataManager}. Este expone funciones que otras escenas hacen uso para solicitar guardar o cargar el progreso de la partida. Por ejemplo, en la escena \textit{SelectFile} el usuario elige uno de los tres slots para cargar partida. Esta escena recoge los datos de todas las partidas guardadas para exponerlas en forma de menú.
+
+Para almacenar de forma persistente los datos de guardado se utilizaron los \textbf{recursos} de Godot. Mientras que los nodos son unidades de funcionalidad, los recursos son contenedores de datos. Pueden ser asignados como el tipo de una variable en una escena. Además, Godot cuenta con funciones para guardarlos fácilmente en el disco. Cuando se carga un recurso, el motor guarda una única copia del mismo en memoria. Eso quiere decir que si se modifica y otra escena lo carga posteriormente, tendrá acceso a la versión modificada de este.
+
+Algunos nodos en Godot cuentan con recursos por defecto como Sprite2D, que contiene un nodo Texture2D para añadir una imagen. Sin embargo se pueden definir recursos personalizados. En este caso, se definieron los recursos \textbf{SaveData} para almacenar el progreso de la partida y \textbf{PlayerData} para el estado actual del jugador. En la figura \ref{fig:save-diagram} se muestra un diagrama de clases para \textit{DataManager} y sus recursos.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/save-data-diagram.drawio.png}
+    \caption[Diagrama de clases de funciones de guardado]{Diagrama de clases de funciones de guardado. SaveManager hace de interfaz para que otras escenas accedan a los datos de guardado.}
+    \label{fig:save-diagram}
+\end{figure}
+
+Los datos de progreso usados internamente por el plugin MetSys (mapa explorado, objetos coleccionados, etc.) están en formato de diccionario y cuenta con funciones para cargarlos, por lo que se guardan fácilmente en \textit{SaveData}. Se también un diccionario adicional para guardar ciertos eventos. Por ejemplo, si una horda de enemigos ya ha sido derrotada en una sala, se almacena esa información para no instanciar la misma horda la próxima vez que el jugador visite la sala.
+
+\subsection{Asignación de controles}
+
+Godot cuenta con un mapa de controles para el jugador. En este se pueden definir acciones como podrían ser \textit{jump}, \textit{atack} o \textit{move\_left} y asignarlas a un botón de un mando o teclado. Sin embargo, esta asignación es estática. El jugador requiere por accesibilidad la opción de poder modificar el esquema de controles en su teclado o mando.
+
+Para implementar esta funcionalidad se incluyó el plugin \textbf{Godot Controls Remap (CGR)}\cite{controls-remap}. Este permite reasignar de forma dinámica las acciones de Godot a cualquier otro input. Se implementó el autoload \textbf{InputMapper}. Este hace de interfaz para la reasignación de controles. Se encarga de operar la librería \textit{CGR}, de cargar y guardar en memoria el esquema actual de controles y de captar inputs del usuario para asignarlos a la acción correspondiente. Una vez hecha la reasignación, el resto de escenas que capten la entrada del usuario podrán hacerlo de forma normal, con la función \textit{\_input(event)} o el singleton \textit{Input}.
+
+Para comunicar los controles del juego, es necesario mostrar para cada acción el icono de su tecla o botón asociado. Como estos pueden reasignarse, este icono no puede ser estático. Para solventar esto se usó \textbf{Godot Action Icon}\cite{action-icon}. Este plugin permite definir un mapa acción-icono para mostrar en pantalla. Además, actualiza el esquema de iconos entre teclado y mando en función de cual esté usando el usuario actualmente. Incluye también un pack de iconos por defecto de uso libre\cite{icon-pack}.
+
+\subsection{Traducción}
+
+Todos los textos del juego están disponibles tanto en inglés como en español. El usuario puede seleccionar le idioma en el menú de opciones. Para gestionar el cambio de idioma se implementó el autoload \textbf{LocalizationManager}. Este define los idiomas en los que está disponible el juego y aplica los cambios a través de \textit{TranslationServer}, el autoload de Godot responsable gestionar las traducciones. 
+
+Se creó una hoja de cálculo con el formato que se muestra en la tabla \ref{tab:localization-table}. Para cada texto se tiene una etiqueta y una traducción en inglés y español. En los elementos del juego en lugar de ecribir los textos finales, se escriben las etiquetas. Una vez se define un código de idioma como activo en el TranslationServer, todas las etiquetas del juego son sustituidos por la traducción en tiempo de ejecución.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        keys & en & es \\ \hline
+        NEWGAME & New game & Nueva partida \\ \hline
+        CONTINUE & Continue & Continuar \\ \hline
+        SETTINGS & Settings & Ajustes \\ \hline
+        EXIT & Exit & Salir \\ \hline
+        RESUME & Resume & Continuar \\ \hline
+        BACK & Back & Volver \\ \hline
+        EXIT & Exit & Salir \\ \hline
+        LANGUAGE & Language & Idioma \\ \hline
+    \end{tabular}
+    \caption{Ejemplo de la tabla de traducciones.}
+    \label{tab:localization-table}
+\end{table}
+
+\subsection{Reloj}
+
+En la pantalla final del juego, cuando el jugador lo completa, se muestra el tiempo que este ha tardado en hacerlo. Este tiempo cuenta únicamente los momentos en los que el jugador se encuentra en el mundo, no cuando se pausa el juego, por ejemplo. Para gestionar este conteo, se hizo el autoload \textbf{Clock}. Este lleva una sumatoria del tiempo transcurrido, la cual se guarda junto al resto de datos de la partida. Se conecta a una colección de señales de \textit{GameEvent} y estas, al emitirse, llaman a funciones de \textit{Clock} que inician, pausan o reinician el conteo de tiempo.
+
+De esta manera, si un nodo emite la señal de \textit{GameEvent} para pausar el juego, \textit{Clock} la recibe y detiene el cronómetro. La escena que emitió la pausa sin embargo no es consciente del reloj, reduciendo el acoplamiento de la funcionalidad.
+
+\subsection{Diálogos}
+
+Para implementar los diálogos se incluyó en el proyecto el plugin \textbf{Godot Dialogue Manager}. Entre sus funcionalidades destacan:
+
+\begin{itemize}
+    \item Instanciación de burbujas de diálogo con aspecto personalizable.
+    \item Scripting de diálogos potente con opción a ramificaciones, condicionales y lectura de variables entre otros.
+    \item Soporte para traducciones.
+    \item Reproducción de voces.
+\end{itemize}
+
+Los diálogos se instancian a través del autoload del plugin \textit{DialogueManager}. Para ello se necesitan dos elementos:
+
+\begin{itemize}
+    \item Un \textit{script} que contenga todo el texto del diálogo. Esto se almacena en un archivo con extensión .dialogue.
+    \item Una escena que contenga los elementos visuales del diálgo como el marco o la tipografía. Para este proyecto se usa la escena \textit{Balloon}.
+\end{itemize}
+
+Los diálogos siempre son emitidos por un NPC (personaje no jugable) cuando el jugador interactua con este. Se creó el componente \textit{DialogueComponent} (ver figura \ref{fig:dialogue-component}), que está incluido por defecto en todas las escenas \textit{NpcCharacter}. Este hereda de un \textit{Area2D}. Cuando este área detecta que el jugador ha entrado en el rango en el que puede interactuar con el NPC, se muestra un \textit{sprite} de una flecha para indicárselo. Cuando detecta que el jugador ha interactuado, emite una señal que empieza el flujo de interacción que instanciará el diálogo, como se puede comprobar en la figura \ref{fig:dialogue-flow}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/dialogue-component.drawio.png}
+    \caption[Arquitectura de la escena DialogueComponent]{Arquitectura de la escena DialogueComponent.}
+    \label{fig:dialogue-component}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/dialogue-flow.drawio.png}
+    \caption[Flujo de interacciones para iniciar y finalizar un diálogo.]{Flujo de interacciones para iniciar y finalizar un diálogo desde una interacción del jugador.}
+    \label{fig:dialogue-flow}
+\end{figure}
+
+\subsection{Implementación de máquina de estados}
+
+La implementación del patrón de máquina de estados de este proyecto está basado en el propuesto por GDQuest\cite{fsm-gdquest}. En la figura \ref{fig:state-machine-diagram} se tiene un diagrama de clases. Cuando una escena necesita de una máquina de estados se le añade un nodo \textbf{StateMachine}. Este tiene como hijos tantos nodos \textbf{State} como estados existan, los cuales contienen el código asociado a su lógica. StateMachine se encarga de realizar las transiciones entre estados.
+
+Cuando un estado entra en activo, ejecuta su código de iniciación (\textit{\_enter()}). Al darse la condición para que transicione, llama a StateMachine a través de la señal \textit{finished}. StateMachine se encarga de ejecutar su código de finalización (\textit{\_exit()}) y transiciona al siguiente estado.
+
+\textit{State} es una interfaz. Para cada máquina de estados es necesario crear una clase que herede de esta, como se ve en la figura \ref{fig:state-machine-diagram}. En el caso del jugador, se tiene la clase \textit{PlayerState}, que guarda una referencia a \textit{Player} y define en constantes todos los estados posibles para esta máquina. Posteriormente, se crea un script para cada estado que herede de este (\textit{idle.gd, move.gd, jump.gd, etc}).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.45]{img/state-machine.drawio.png}
+    \caption[Diagrama de clases para la implementación de la máquina de estados.]{Diagrama de clases para la implementación de la máquina de estados.}
+    \label{fig:state-machine-diagram}
+\end{figure}
+
+Normalmente, es la lógica interna del estado la que define cuando es momento de transicionar a otro. Es posible que esta transición necesite responder a un evento externo, como ocurre con \textit{HIT}, que se inicia al ser golpeado. Para no tener que implementar la lógica de detección de golpes en todos los estados de Player, se puede añadir una puerta de entrada en PlayerState para este tipo de eventos, como \textit{\_on\_hit\_received().}
+
+Por último, es posible que un estado necesite de ciertos datos para su funcionamiento. Cuando un enemigo es golpeado, sale disparado en una dirección. El estado \textit{HIT} necesita esa dirección. Es por esto que la función \textit{\_enter()} cuenta con un parámetro de tipo diccionario, donde se le pueden pasar los parámetros que necesite.
+
+\section{Interfaz de usuario}
+
+% cómo están hechos los menús (nodos control)
+
+Los menús del juego como la pantalla de título o de ajustes están hechos con \textbf{nodos de control}. Estos son una colección de nodos nativos de Godot diseñados específicamente para construir interfaces de usuario. Cuentan con utilidades para crear botones, \textit{sliders}, \textit{checkbox} y centrar elementos entre otras cosas. Tiene soporte por defecto para interacción con mando, teclado o ratón.
+
+Como se muestra en la figura \ref{fig:controls-menu}, la interfaz se contruye añadiendo nodos de forma jerárquica para cada uno de los elementos. Cada pantalla de menú será una escena que se instanciará o eliminará en función de cuando se necesite. Un script asociado a la raíz de la escena contiene su lógica y dota de funcionalidad a todos los botones y demás elementos interactuables.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.35]{img/controls-menu.png}
+    \caption[Captura de pantalla de la estructura del menú de controles.]{Captura de pantalla de la estructura del menú de controles.}
+    \label{fig:controls-menu}
+\end{figure}
+
+% comentar la aplicación de tema
+
+El aspecto de todos los elementos de tipo control puede ser modificado. Esto incluye su color, tamaño, borde, tipografía, etc. Ajustar esto para cada elemento sería muy costoso, por lo que se ahce el uso de los \textbf{temas} de Godot. Estos son un recurso usado para estilizar nodos de tipo \textit{window} o control. Estos pueden definir aspecto para los elementos de la interfaz. Los temas se establecen en el nodo raíz de la escena y sus nodos hijos lo heredan. Es posible también establecer un tema como predeterminado, de tal forma que se asignen a todos los nodos control al crearlos.
+
+% mencionar que los menús de mapa son componentes importados de metsys
+
+% playerui, interacción con player y game event
+
+
+
+%\section{Accesibilidad (opciones en general)}
 
 %\section{CI/CD/Testing}
 
-%\section{Shaders y sistemas de partículas} ? En principio no se mete esto
+
 

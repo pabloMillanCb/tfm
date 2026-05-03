@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="VJsqHxatsDggqHNSabwj">
+    <mxGraphModel dx="2051" dy="869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-5" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-3" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" target="yYRLu3sr6y1xsU5LOuee-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-60" y="530" as="sourcePoint" />
+            <mxPoint x="-10" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;DialogueComponent&lt;/b&gt;: &lt;i&gt;Area2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="-270" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;i&gt;CollisionShape2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="-221" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;b&gt;Arrow: &lt;/b&gt;&lt;i&gt;Sprite2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="60" width="190" x="-221" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-14" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="yYRLu3sr6y1xsU5LOuee-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-20" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="yYRLu3sr6y1xsU5LOuee-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="DialogueComponent" vertex="1">
+          <mxGeometry height="60" width="170" x="255" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-16" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="yYRLu3sr6y1xsU5LOuee-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Player" vertex="1">
+          <mxGeometry height="60" width="170" x="680" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-22" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="yYRLu3sr6y1xsU5LOuee-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-24" edge="1" parent="1" source="yYRLu3sr6y1xsU5LOuee-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="yYRLu3sr6y1xsU5LOuee-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="DialogueManager" vertex="1">
+          <mxGeometry height="60" width="170" x="470" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="1. Al recibir la interacción del jugador, emite una señal de Player para entrar en estado TALK" vertex="1">
+          <mxGeometry height="30" width="240" x="430" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="2. Estado TALK solicita que se muestre diálogo" vertex="1">
+          <mxGeometry height="30" width="180" x="460" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="3. Instancia diálogo" vertex="1">
+          <mxGeometry height="30" width="60" x="320" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="4. Al terminar diálogo, se emite señal dialogue_ended" vertex="1">
+          <mxGeometry height="30" width="130" x="490" y="287" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="4.1. Al recibir señal, se abandona estado TALK" vertex="1">
+          <mxGeometry height="30" width="130" x="770" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="yYRLu3sr6y1xsU5LOuee-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="4.1. Al recibir señal, se vuelve a esperar interacción del jugador" vertex="1">
+          <mxGeometry height="30" width="110" x="190" y="420" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
