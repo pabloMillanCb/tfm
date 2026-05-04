@@ -15,6 +15,8 @@ func _update(_delta):
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	
+	player.update_look_direction()
+	
 	if direction:
 		player.velocity.x = move_toward(
 			player.velocity.x, 
