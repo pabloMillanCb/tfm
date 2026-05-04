@@ -16,7 +16,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	player.set_animation("release_teleport")
 	time = 0.0
 	previous_player_position = player.global_position
-	player.disable_collisions(true)
+	#player.disable_collisions(true)
 	player.teleport()
 	player_position_shift = player.global_position - previous_player_position
 	player.velocity.y = 0
@@ -40,8 +40,8 @@ func _update_physics(_delta):
 		finished.emit(IDLE)
 
 
-func _exit():
-	player.disable_collisions(false)
+#func _exit():
+#	player.disable_collisions(false)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
