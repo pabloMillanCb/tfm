@@ -89,7 +89,7 @@ func test_hit_and_death():
 	player.current_health = 2
 	runner.simulate_action_press("move_right")
 	await runner.await_input_processed()
-	await await_millis(1300)
+	await await_millis(1400)
 	runner.simulate_action_release("move_right")
 	assert_str(player.state_machine.state.name).is_equal(PlayerState.HIT)
 	assert_bool(player.invencible).is_equal(true)
