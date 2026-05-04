@@ -14,4 +14,4 @@ tile_map_data = PackedByteArray("AAAMAAUAAAALAA4AAAAMAAYAAAALAA4AAAAMAAsAAAALAA4
 tile_set = ExtResource("1_v4bni")
 
 [node name="RoomRespawn" parent="." unique_id=597677078 instance=ExtResource("3_8one3")]
-position = Vector2(104, 184)
+position = Vector2(104, 168)
