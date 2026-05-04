@@ -108,6 +108,7 @@ autoplay = "default"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=753365205]
 stream = ExtResource("5_qtkvq")
+volume_db = -15.0
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]
