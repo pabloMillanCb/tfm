@@ -5,6 +5,7 @@ var forced_jump = false
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.velocity.y = player.jump_force
 	forced_jump = _init_data.get("extra_force") != null
+	player.free_crosshair()
 	if forced_jump:
 		player.velocity.y += _init_data.get("extra_force")
 		player.play_sound("spring")
