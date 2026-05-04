@@ -6,7 +6,7 @@
 [node name="Enemies" type="Node2D" unique_id=1973512462]
 
 [node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("1_573xb")]
-position = Vector2(130, 427)
+position = Vector2(209, 421)
 
 [node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("2_273of")]
 position = Vector2(24, 439)
