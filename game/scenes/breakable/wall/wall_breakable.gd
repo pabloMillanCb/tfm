@@ -13,5 +13,6 @@ func _ready() -> void:
 	MetSys.register_storable_object(self)
 
 func take_damage(_vector: Vector2):
+	Input.start_joy_vibration(0,0.8,0.8,0.4)
 	MetSys.store_object(self)
 	queue_free()

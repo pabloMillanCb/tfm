@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvtp4qph8bjs3"]
+[gd_scene format=3 uid="uid://dvtp4qph8bjs3"]
 
 [ext_resource type="Texture2D" uid="uid://dp57dsg7twad8" path="res://scenes/door/door.png" id="1_bu3y2"]
 [ext_resource type="Script" uid="uid://dh22sixdu4a41" path="res://scenes/door/door.gd" id="1_odsy8"]
@@ -37,6 +37,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_iwle0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_bsixq"]
 resource_name = "rumble"
 length = 0.4
@@ -54,21 +69,6 @@ tracks/0/keys = {
 "values": [Vector2(0.5, 0), Vector2(-0.5, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_iwle0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ht72"]
 _data = {
 &"RESET": SubResource("Animation_iwle0"),
@@ -77,6 +77,45 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu3y2"]
 size = Vector2(72, 48)
+
+[sub_resource type="Animation" id="Animation_u3mo4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CPUParticles2D:one_shot")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_odsy8"]
 resource_name = "open"
@@ -132,84 +171,42 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_u3mo4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CPUParticles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CPUParticles2D:one_shot")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bsixq"]
 _data = {
 &"RESET": SubResource("Animation_u3mo4"),
 &"open": SubResource("Animation_odsy8")
 }
 
-[node name="Door" type="StaticBody2D"]
+[node name="Door" type="StaticBody2D" unique_id=352584087]
 z_index = -11
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_odsy8")
 key_movement_curve = SubResource("Curve_odsy8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499702856]
 shape = SubResource("RectangleShape2D_iwle0")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1689425071]
 sprite_frames = SubResource("SpriteFrames_bsixq")
 animation = &"close"
 autoplay = "close"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/AnimatedSprite2D"]
-libraries = {
-&"": SubResource("AnimationLibrary_5ht72")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/AnimatedSprite2D" unique_id=226994073]
+libraries/ = SubResource("AnimationLibrary_5ht72")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=595833922]
 collision_layer = 0
 collision_mask = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=540195268]
 shape = SubResource("RectangleShape2D_bu3y2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_bsixq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1785902135]
+libraries/ = SubResource("AnimationLibrary_bsixq")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=800224477]
+visible = false
 position = Vector2(0, 24)
 emitting = false
 amount = 30

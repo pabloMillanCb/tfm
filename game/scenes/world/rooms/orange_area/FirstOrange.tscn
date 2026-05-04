@@ -3,10 +3,10 @@
 [ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_1rqsv"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_b46tt"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_kgmlq"]
-[ext_resource type="PackedScene" uid="uid://d1u1qyvyla2bj" path="res://scenes/enemies/axolote/axolote.tscn" id="4_syc71"]
 [ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="5_1rqsv"]
 [ext_resource type="PackedScene" uid="uid://dqcssw6c5frgy" path="res://scenes/spring/Spring.tscn" id="5_yv8s1"]
 [ext_resource type="PackedScene" uid="uid://7gc3goqj5bl6" path="res://scenes/enemies/flyingenemy/triangle_fish.tscn" id="6_b46tt"]
+[ext_resource type="PackedScene" uid="uid://byisd7iykr3xi" path="res://scenes/enemies/blob/Blob.tscn" id="7_b46tt"]
 
 [node name="FirstOrange" type="Node2D" unique_id=801174312]
 
@@ -29,7 +29,7 @@ position = Vector2(40, 104)
 position = Vector2(104, 200)
 
 [node name="TriangleFish" parent="." unique_id=1261184046 instance=ExtResource("6_b46tt")]
-position = Vector2(90, 60)
+position = Vector2(72, 73)
 
-[node name="Axolote" parent="." unique_id=227587289 instance=ExtResource("4_syc71")]
-position = Vector2(80, 208)
+[node name="Blob" parent="." unique_id=1672671753 instance=ExtResource("7_b46tt")]
+position = Vector2(61, 192)

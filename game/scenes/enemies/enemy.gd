@@ -2,12 +2,15 @@ extends Node2D
 class_name Enemy
 
 @export var health := 1
+@export var vibration_force = 0.2
+@export var vibration_time = 0.2
 
 signal on_hit_received
 signal on_death
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	health -= 1
+	Input.start_joy_vibration(0,vibration_force,vibration_force,vibration_time)
 	if health == 0:
 		die()
 	else:

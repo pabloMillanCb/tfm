@@ -16,3 +16,7 @@ func _on_death(scale: float) -> void:
 	$DeadBodyParticle.restart()
 	$DeadHeadParticle.restart()
 	$DeathParticle.restart()
+
+
+func _on_stomp_show_death_particles() -> void:
+	$StompParticle.restart()

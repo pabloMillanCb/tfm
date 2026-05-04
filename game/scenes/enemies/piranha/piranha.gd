@@ -32,7 +32,13 @@ func _process(delta: float) -> void:
 
 
 func take_damage(direction: Vector2 = Vector2.ZERO):
+	$Hit.play()
 	going_backwards = !going_backwards
 	play_hit_animation()
 	$InvencibleTimer.start()
 	super()
+	
+func die():
+	speed = 0
+	$HitboxComponent.queue_free()
+	$AnimationPlayer.play("death")

@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://c0tuheqgw57lx" path="res://themes/general_theme.tres" id="2_h4ucm"]
 [ext_resource type="Texture2D" uid="uid://c58bdw7fhrxnk" path="res://scenes/cutscenes/intro/le_fishe.png" id="3_qtkvq"]
 [ext_resource type="Texture2D" uid="uid://bkmphx0irvk8r" path="res://scenes/menu/main/le_fishe.png" id="4_m0xj5"]
+[ext_resource type="AudioStream" uid="uid://6rr32y78tu57" path="res://assets/sound/blink.wav" id="5_qtkvq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6joc7"]
 atlas = ExtResource("3_qtkvq")
@@ -104,6 +105,9 @@ scale = Vector2(3.6440718, 3.6440718)
 sprite_frames = SubResource("SpriteFrames_bcrln")
 animation = &"open"
 autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=753365205]
+stream = ExtResource("5_qtkvq")
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

@@ -23,12 +23,16 @@ is_pre_instanced = true
 
 [node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("5_jgmcl")]
 position = Vector2(248, 200)
+color = 1
 
 [node name="WallBreakable2" parent="." unique_id=849258520 instance=ExtResource("5_jgmcl")]
 position = Vector2(248, 184)
+color = 1
 
 [node name="WallBreakable3" parent="." unique_id=286782963 instance=ExtResource("5_jgmcl")]
 position = Vector2(248, 168)
+color = 1
 
 [node name="WallBreakable4" parent="." unique_id=956856458 instance=ExtResource("5_jgmcl")]
 position = Vector2(248, 152)
+color = 1

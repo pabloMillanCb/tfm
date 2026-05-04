@@ -7,8 +7,12 @@ var alive = true
 @export var knockback_force = Vector2(25.0, 25.0)
 @export var hit = false
 
+@export var vibration_force = 0.4
+@export var vibration_time = 0.2
+
 func take_damage(direction: Vector2 = Vector2.ZERO):
 	health -= 1
+	Input.start_joy_vibration(0,vibration_force,vibration_force,vibration_time)
 	if health <= 0:
 		die()
 	else:

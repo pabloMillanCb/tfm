@@ -7,6 +7,8 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	
 	fish.health -= 1
 	
+	Input.start_joy_vibration(0,fish.vibration_force,fish.vibration_force,fish.vibration_time)
+	
 	if fish.health == 0:
 		finished.emit(DEAD)
 		return

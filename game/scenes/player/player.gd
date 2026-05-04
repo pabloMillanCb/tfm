@@ -86,8 +86,8 @@ func update_upgrades_information():
 
 func stop_animation():
 	$PlayerSprites.stop()
-	$PlayerSprites/AnimationPlayer.pause()
-	$PlayerSprites/SwordSprites.pause()
+	$PlayerSprites/AnimationPlayer.stop()
+	$PlayerSprites/SwordSprites.stop()
 
 
 func set_animation(animation_name: String):
@@ -187,6 +187,7 @@ func _on_tile_hazard_touched(body: Node2D) -> void:
 
 
 func pick_up_heart():
+	$Sounds/PickUpHeart.play()
 	data.max_health += 1
 	heal()
 
@@ -198,3 +199,34 @@ func heal():
 
 func disable_collisions(disabled: bool):
 	$BodyCollision.disabled = disabled
+
+
+func play_sound(name: String, pitch_range: float = 0.0):
+	
+	var pitch = 1.0 + randf_range(-pitch_range, pitch_range)
+	var sound: AudioStreamPlayer
+	match name:
+		"jump":
+			sound = $Sounds/Jump
+		"atack":
+			sound = $Sounds/Atack
+		"land":
+			sound = $Sounds/Land
+		"heavy_land":
+			sound = $Sounds/HeavyLand
+		"hit":
+			sound = $Sounds/Hit
+		"death":
+			sound = $Sounds/Death
+		"spring":
+			sound = $Sounds/Spring
+		"teleport":
+			sound = $Sounds/Teleport
+		"teleport_bad":
+			sound = $Sounds/TeleportBad
+		"launch_teleport":
+			sound = $Sounds/LaunchTeleport
+	
+	if sound != null:
+		sound.pitch_scale = pitch
+		sound.play()
