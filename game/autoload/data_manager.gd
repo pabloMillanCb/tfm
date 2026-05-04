@@ -29,6 +29,10 @@ func save_game_in_room(player_data: PlayerData) -> bool:
 		return false
 
 
+func complete_game():
+	current_save.play_time += Clock.current_time_count
+
+
 func save_game_data(slot: int, save_data: SaveData) -> bool:
 	if slot >= 0 and slot <= 3:
 		var save = ResourceSaver.save(save_data, _get_save_path(slot))
