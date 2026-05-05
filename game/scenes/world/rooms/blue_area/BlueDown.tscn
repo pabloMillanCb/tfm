@@ -24,10 +24,10 @@ position = Vector2(128, 42)
 position = Vector2(301, 118)
 
 [node name="Skull5" parent="." unique_id=2032836846 instance=ExtResource("4_ek36g")]
-position = Vector2(192, 131)
+position = Vector2(215, 131)
 
 [node name="Skull3" parent="." unique_id=1885183884 instance=ExtResource("4_ek36g")]
-position = Vector2(91, 116)
+position = Vector2(114, 116)
 
 [node name="Skull4" parent="." unique_id=1458694793 instance=ExtResource("4_ek36g")]
 position = Vector2(35, 73)
