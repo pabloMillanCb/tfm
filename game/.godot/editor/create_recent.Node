@@ -1,0 +1,14 @@
+CanvasLayer
+Label
+AudioStreamPlayer
+CPUParticles2D
+Timer
+Node
+ColorRect
+CollisionShape2D
+Area2D
+AudioStreamPlayer2D
+AnimationPlayer
+RayCast2D
+Node2D
+Sprite2D

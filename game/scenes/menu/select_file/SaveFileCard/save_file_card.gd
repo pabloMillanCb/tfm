@@ -4,7 +4,7 @@ func set_data(data: SaveData, slot: int):
 	
 	if data != null:
 		%FileName.text = "Saved data " + str(slot+1)
-		%PlaytimeValue.text = str(data.play_time)
+		%PlaytimeValue.text = Clock.get_time_formated(data.play_time)
 	else:
 		%FileName.text = "no data"
 		%PlaytimeValue.text = "-"
