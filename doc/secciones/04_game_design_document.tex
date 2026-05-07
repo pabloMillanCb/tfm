@@ -5,7 +5,7 @@ Como se explicaba en el \autoref{chap:stateofart}, el \textit{Game Design Docume
 
 En este capítulo se recopila por tanto el GDD completo en su versión final, es decir, con todos los cambios que se han aplicado a lo largo del desarrollo.
 
-\section{Introducción: The mysterious journey of Sir. Swimalot in the deep caves of Ugrh}
+\section{Introducción: MERO-MERO}
 
 El proyecto cimienta sus bases sobre el juego Zelda II: The Adventure of Link. Pese a ser de los juegos menos comprendidos de su franquicia, detrás de su dificultad frustrante propia de la época hay una base jugable que puede ser fácilmente transladable a las sensibilidades actuales.
 
@@ -13,15 +13,19 @@ El objetivo de este proyecto es desarrollar un metroidvania de perfil bajo con u
 
 \section{Premisa y tono}
 
-Un pequeño pez nada tranquilamente por el océano hasta que, en un descuido... ¡Una gaviota lo pesca al vuelo! Qué mala suerte... La gaviota lo lleva volando lejos, muy lejos, hasta que de repente un rayo la golpea, haciendo que deje caer al pequeño pez en el acto. Este cae dentro de una gran gruta, y para su suerte, aterriza justo encima de una armadura que estaba ahí en medio, por alguna razón. El pez misteriosamente era capaz de controlar esa armadura como si de su cuerpo se tratase, convirtiendose en... ¡Sir. Swimalot! Ahora tendrá que explorar estas misteriosas cuevas y encontrar el camino a su casa, el mar.
+El juego comienza con un pequeño pez cayendo al vacío en una misteriosa gruta. Sin desearlo, este aterriza sobre una armadura abandonada. Ahora puede usar la armadura como si de su cuerpo se tratase, sin entender por qué. 
 
-El tono general del juego es inocente, cómico y algo absurdo en ocasiones. Se usará un lenguaje sencillo en los diálogos. La trama no debe tener mucha presencia ni tener interés por si misma, relegándose a simplemente dar contexto a los elementos y objetivos que se encuentran en el juego además de servir de vehículo para introducir chascarrillos en los diálogos. Es por esto mismo que no debe encontrarse demasiados diálogos, ni necesite prestar atención a los mismos para poder progresar.
+Estas cuevas están llenas de otros seres del mar. Algunos de ellos libres y agresivos. Otros sin embargo también encontraron armaduras y les fue otorgado el don del habla. Nadie sabe cómo acabó ahí, qué significan las armaduras, por qué solo algunos de ellos pudieron conseguir una y... lo más importante, cómo salir de estas cuevas.
+
+Pero estas grutas no solo están pobladas de criaturas agresivas o desamparadas; también de antiguos secretos y reliquias que serán la clave para escapar de este lugar.
+
+El tono del juego busca ser críptico, ambiguo y a veces inocente. Se le da muy poco contexto al jugador deliberadamente. Se hace uso de iconografía universal para marcar los objetivos y ofrecer guía discreta al jugador. Se evita dar pistas o información explícita en pos de que el jugador ate cabos para avanzar por las zonas del juego. También se busca un toque de humor blanco y estúpido a través de las interacciones con NPCs y sus diseños.
 
 \section{Mecánicas principales y objetivos}
 
-En términos de ambientación, el objetivo es que Sir. Swimalot regrese al mar. En términios mecánicos, el jugador participará en el siguiente \textit{bucle de juego}\footnote{estructura jugable principal que el jugador repite a lo largo de todo el juego.}: va explorando el mundo sorteando trampas y enemigos hasta que encuentra un \textbf{bloqueo} que le impida avanzar en cierta dirección. Entonces debe cambiar su rumbo, encontrar una \textbf{mejora} que le permita atravesar el bloqueo. Entonces podrá volver al punto anterior y seguir avanzando. Es importante que estas mejoras sirvan tanto para desbloquear el camino principal como otras estancias que lleven a recompensas secundarias.
+En términos de ambientación, el objetivo es que MERO, el protagonista, es simplemente regresar al mar. En términios mecánicos, el jugador participará en el siguiente \textit{bucle de juego}\footnote{estructura jugable principal que el jugador repite a lo largo de todo el juego.}: va explorando el mundo sorteando trampas y enemigos hasta que encuentra un \textbf{bloqueo} que le impida avanzar en cierta dirección. Entonces debe cambiar su rumbo, encontrar una \textbf{mejora} que le permita atravesar el bloqueo. Entonces podrá volver al punto anterior y seguir avanzando. Es importante que estas mejoras sirvan tanto para desbloquear el camino principal como otras estancias que lleven a recompensas secundarias.
 
-Como objetivo secundario, el jugador deberá recoger una serie de \textit{doblones} que estarán escondidos por todo el mapa. Al completar el juego habiendose hecho con todos los doblones se desbloquea un final secundario en el que Sir. Swimalot puede \textbf{pagar la entrada de una hipoteca} en el fondo del mar.
+Como objetivo secundario, el jugador deberá recoger una serie de \textit{corazones} escondidos por todo el mapa que aumentarán su salud. Esto recompensará la curiosidad de los perfiles de jugador que disfruten más de la exploración y facilitará su partida.
 
 Como \textbf{mecánicas jugables principales}, personaje podrá moverse de izquierda a derecha, saltar y atacar. El salto es sencillo, ausero, rígido. Una vez ejecutado un salto no debería ser posible alterar considerablemente su trayectoria. La intención es transmitir sensación de peso. El ataque, por las mismas razones, debe tener un pequeño retardo desde que se pulsa el botón hasta que se realiza. Los desafíos plataformeros y combates, por tanto, deben ser sencillos y legibles, para poder operar fácilmente con este esquema de control.
 
@@ -34,7 +38,7 @@ Como \textbf{mecánicas secundarias} se tienen todas las \textit{mejoras} que se
     \item \textbf{Cetro}: Permite a Sir Swimalot teletransportarse algunos metros hacia izquierda y derecha. El esquema de funcionamiento puede observarse en la figura \ref{fig:cetro}.
 \end{itemize}
 
-Para que el jugador pueda guardar su progreso, deberá encontrar unas salas especiales llamadas \textbf{salas de guardado}. En esas habrá una pecera donde Sir Swimalot podrá saltar para guardar su progreso. Si Sir Swimalot es derrotado, volverá a aparecer en la última sala de guardado que haya visitado.
+Para que el jugador pueda guardar su progreso, deberá encontrar unas salas especiales llamadas \textbf{salas de guardado}. En esas habrá una misteriosa estatua dorada que clavará su espada en el suelo.
 
 \begin{figure}[h]
     \centering
