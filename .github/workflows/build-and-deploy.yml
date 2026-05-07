@@ -1,0 +1,128 @@
+
+### BUILD + DEPLOY GODOT PROJECT IN WEB, LINUX AND WINDOWS ###
+# Based on Nepo's blog post: https://nepo.dev/posts/ci-config-para-jams.html
+
+## --- HOW TO USE THIS --- ##
+
+# 1. Copy this file into .github/workflows/main.yml
+
+# 2. Change the Godot version to yours where it says 'barichello/godot-ci:4.6.2'
+
+# 2. Update this script's env variables:
+
+      # ITCHIO_USERNAME:  Your itch.io user exactly as in your page url (https://pavro-o.itch.io/)
+      # ITCHIO_GAME:      Your game name as in their url page (https://pavro-o.itch.io/mero-mero)
+      # GODOT_VERSION:    You wouldn't belive what goes here
+      # PROJECT_FOLDER:   Where is your Godot project located inside your repository. If your project
+      #                   is in the root, leave it as a . 
+
+# 3. Generate itch api key in https://itch.io/user/settings/api-keys
+
+# 4. Go to your repo > Settings > Secrets and Variables > Actions
+#    Add your step 3. key in Repository secrets named BUTLER_API_KEY
+
+# 5.1 IF YOU WANT WEB BUILD:
+#     In Godot go to Porject > Export > Add > Web.
+#     Leave "Web" as the name
+#     Set the Export Path as build/web/index.html
+
+# 5.2 IF YOU WANT WINDOWS BUILD:
+#     In Godot go to Porject > Export > Add > Web.
+#     Set "Windows" as the name
+#     Set the Export Path as build/windows/game.exe
+
+# 5.3 IF YOU WANT LINUX BUILD:
+#     In Godot go to Porject > Export > Add > Web.
+#     Set "Linux" as the name
+#     Set the Export Path as build/linux/game.exe
+
+# 6. A file named export_presets.cfg should have been created/modified in your repo. 
+#    Make sure you commit it.
+
+# 7. Push all of the changes
+
+# 8. In your guthub repo go to Actions > Build + Deploy > Run workflow
+
+
+### TROUBLESHOOTING ###
+
+#   If you have problems, check if your Godot version is available here: https://hub.docker.com/r/barichello/godot-ci/
+#   If it isn't available yet, you'll have to wait or check out this blog post by Nepo: https://nepo.dev/posts/ci-config-para-jams-2.html
+
+
+# enjoy! :<
+
+name: Build + Deploy
+on:
+  push:
+    branches:
+      - 'release/**'
+      - 'playtest/**'
+
+  pull_request:
+    branches:
+      - 'release/**'
+      - 'playtest/**'
+
+  workflow_dispatch:
+
+env:
+  ITCHIO_USERNAME: pavro-o
+  ITCHIO_GAME: mero-mero
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+  GODOT_VERSION: 4.6.2
+  PROJECT_FOLDER: game
+
+jobs:
+  web:
+    name: Build and deploy to itch.io
+    runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:4.6.2
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      
+      - name: Import assets
+        run: |
+          cd ${PROJECT_FOLDER}
+          godot --headless --import
+
+      - name: Disable editor plugins
+        run: |
+          sed -i 's/enabled=1/enabled=0/g' ${PROJECT_FOLDER}/project.godot
+
+      # If you don't want to do a web build, remove the following section
+      - name: Web Build
+        run: |
+          cd ${PROJECT_FOLDER}
+          mkdir -p build/web
+          godot --export-release --headless "Web" ./build/web/index.html
+      
+      # If you don't want to do a windows build, remove the following section
+      - name: Windows Build
+        run: |
+          cd ${PROJECT_FOLDER}
+          mkdir -p build/windows
+          godot --export-release --headless "Windows" ./build/windows/game.exe
+      
+      # If you don't want to do a linux build, remove the following section
+      - name: Linux Build
+        run: |
+          cd ${PROJECT_FOLDER}
+          mkdir -p build/linux
+          godot --export-release --headless "Linux" ./build/linux/game.x86_64
+      - name: Itch.io Deploy
+
+        # If you want to discard any of the 3 builds (wwb, linux or windows) remove the corresponding line
+        run: |
+          ls ./${PROJECT_FOLDER}/build
+          butler push ./${PROJECT_FOLDER}/build/web $ITCHIO_USERNAME/$ITCHIO_GAME:html5
+          butler push ./${PROJECT_FOLDER}/build/windows $ITCHIO_USERNAME/$ITCHIO_GAME:windows
+          butler push ./${PROJECT_FOLDER}/build/linux $ITCHIO_USERNAME/$ITCHIO_GAME:linux

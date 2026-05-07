@@ -41,4 +41,5 @@ func take_damage(direction: Vector2 = Vector2.ZERO):
 func die():
 	speed = 0
 	$HitboxComponent.queue_free()
+	$HurtboxComponent.queue_free()
 	$AnimationPlayer.play("death")

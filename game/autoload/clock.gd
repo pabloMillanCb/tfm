@@ -6,6 +6,7 @@ var is_clock_active = false
 func _ready() -> void:
 	GameEvent._on_return_to_title_screen.connect(stop_clock)
 	GameEvent._on_game_intro_finished.connect(start_clock)
+	GameEvent._on_game_completed.connect(pause_clock)
 	GameEvent._on_game_load.connect(start_clock)
 	GameEvent._on_game_paused.connect(pause_clock)
 	GameEvent._on_game_resumed.connect(resume_clock)
@@ -41,7 +42,7 @@ func reset_clock():
 
 func get_time_formated(time = null) -> String:
 	if time == null:
-		time = current_time_count
+		time = DataManager.current_save.play_time
 	var minutes = time / 60
 	var seconds = fmod(time, 60)
 	return "%02d:%02d" % [minutes, seconds]
