@@ -89,7 +89,7 @@
 [7,7,0]
 1,0,1,1|1793ce,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://50cbmnsyniv4
 [8,7,0]
-0,0,1,0|1793ce,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://cu728jxfcxbl2
+0,0,1,0|1793ce,dbdbdb,dbdbdb,dbdbdb,dbdbdb|0|uid://cu728jxfcxbl2
 [7,8,0]
 0,0,-1,0|1793ce,dbdbdb,dbdbdb,,dbdbdb||uid://ki4p12chsy52
 [6,8,0]
