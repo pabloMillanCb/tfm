@@ -11,7 +11,7 @@
 [1,3,0]
 0,-1,0,-1|747474,dadada,,dadada,||uid://d2nopxjla5c36
 [1,4,0]
-1,-1,1,-1|747474,dadada,,dadada,||uid://d2nopxjla5c36
+1,-1,1,-1|1793ce,dadada,,dadada,||uid://d2nopxjla5c36
 [1,5,0]
 1,1,1,-1|747474,dbdbdb,dbdbdb,dbdbdb,||uid://d2nopxjla5c36
 [4,0,0]
@@ -67,7 +67,7 @@
 [6,4,0]
 0,1,1,0|1793ce,dbdbdb,dbdbdb,dbdbdb,dbdbdb|0|uid://dyq5a468pg8bw
 [1,6,0]
-1,-1,1,1|747474,dbdbdb,,dbdbdb,dbdbdb||uid://b7tunx1s7akkh
+1,-1,0,1|747474,dbdbdb,,dbdbdb,dbdbdb||uid://b7tunx1s7akkh
 [1,7,0]
 1,-1,1,-1|747474,dbdbdb,,dbdbdb,||uid://b7tunx1s7akkh
 [1,8,0]
@@ -75,7 +75,7 @@
 [3,6,0]
 1,-1,0,0|747474,dbdbdb,,dbdbdb,dbdbdb||uid://mxq5cl3nclnx
 [3,7,0]
-1,0,-1,-1|747474,dbdbdb,dbdbdb,,||uid://mxq5cl3nclnx
+0,0,-1,-1|747474,dbdbdb,dbdbdb,,||uid://mxq5cl3nclnx
 [2,7,0]
 -1,0,1,0|747474,,dbdbdb,dbdbdb,dbdbdb||uid://mxq5cl3nclnx
 [4,6,0]
@@ -83,7 +83,7 @@
 [5,7,0]
 -1,0,-1,0|1793ce,,dbdbdb,,dbdbdb||uid://s41otqc3fpvh
 [4,7,0]
--1,0,1,0|1793ce,,dbdbdb,dbdbdb,dbdbdb||uid://s41otqc3fpvh
+-1,0,0,0|1793ce,,dbdbdb,dbdbdb,dbdbdb||uid://s41otqc3fpvh
 [6,7,0]
 1,1,-1,0|1793ce,dbdbdb,dbdbdb,,dbdbdb||uid://s41otqc3fpvh
 [7,7,0]
@@ -97,7 +97,7 @@
 [1,9,0]
 0,0,0,1|747474,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://cuit8tuhx2xja
 [0,6,0]
-1,1,0,0|dd9821,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://ibqlarx7kha
+0,1,0,0|dd9821,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://ibqlarx7kha
 [0,7,0]
 1,0,1,1|dd9821,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://cgnq0c1xox1sa
 [-1,5,0]
@@ -129,7 +129,7 @@
 [-2,6,0]
 0,1,0,0|dd9821,dbdbdb,dbdbdb,dbdbdb,dbdbdb||uid://cgmbbgkihse8n
 [-3,5,0]
--1,0,0,0|dd9821,,dbdbdb,dbdbdb,dbdbdb||uid://q7cqe0enaeuo
+-1,0,1,0|dd9821,,dbdbdb,dbdbdb,dbdbdb||uid://q7cqe0enaeuo
 [-3,7,0]
 1,0,0,0|dd9821,dbdbdb,dbdbdb,dbdbdb,dbdbdb|0|uid://ba780m88ccmex
 [-1,8,0]
