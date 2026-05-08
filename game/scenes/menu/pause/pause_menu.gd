@@ -6,11 +6,11 @@ func _ready() -> void:
 	$CenterContainer/VBoxContainer/Resume.grab_focus()
 	$Timer.start()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action("pause"):
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
 		if $Timer.time_left == 0:
 			_on_resume_pressed()
-
+	
 func _on_resume_pressed() -> void:
 	GameEvent._on_game_resumed.emit()
 

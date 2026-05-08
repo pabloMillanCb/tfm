@@ -26,8 +26,9 @@ func _ready() -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") and current_state == GameState.GAME_WORLD:
-		GameEvent._on_game_paused.emit()
+	#if event.is_action_pressed("pause") and current_state == GameState.GAME_WORLD:
+	#	GameEvent._on_game_paused.emit()
+	pass
 
 
 func set_state(new_state: GameState):

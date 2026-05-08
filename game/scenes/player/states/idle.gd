@@ -11,6 +11,8 @@ func _enter(_previous_state_path: String, _init_data := {}):
 func _exit():
 	player.dialog_start_request.disconnect(start_talking)
 
+func _update(_delta):
+	player.pause_controls()
 
 func _update_physics(_delta):
 	if !player.is_on_floor():

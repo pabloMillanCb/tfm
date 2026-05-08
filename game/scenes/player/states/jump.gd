@@ -13,8 +13,12 @@ func _enter(_previous_state_path: String, _init_data := {}):
 		player.play_sound("jump")
 	player.set_animation("jump")
 	
-
+	
 func _update(_delta):
+	player.pause_controls()
+
+
+func _update_physics(_delta):
 	player.update_gravity(_delta, forced_jump)
 	
 	var direction = Input.get_axis("move_left", "move_right")

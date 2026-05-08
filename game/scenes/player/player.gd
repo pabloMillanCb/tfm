@@ -235,3 +235,8 @@ func play_sound(name: String, pitch_range: float = 0.0):
 	if sound != null:
 		sound.pitch_scale = pitch
 		sound.play()
+
+
+func pause_controls():
+	if Input.is_action_just_pressed("pause"):
+		GameEvent._on_game_paused.emit()

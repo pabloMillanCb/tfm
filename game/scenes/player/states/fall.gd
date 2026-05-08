@@ -17,7 +17,12 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	
 	super_fall_timer.start()
 
+
 func _update(_delta):
+	player.pause_controls()
+
+
+func _update_physics(_delta):
 	player.update_gravity(_delta)
 
 	var direction = Input.get_axis("move_left", "move_right")
