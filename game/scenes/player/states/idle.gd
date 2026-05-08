@@ -23,7 +23,7 @@ func _update_physics(_delta):
 		finished.emit(ATACK)
 	elif Input.get_axis("move_left", "move_right"):
 		finished.emit(MOVE)
-	elif Input.is_action_just_pressed("aim_down"):
+	elif Input.is_action_just_pressed("aim_down") or Input.get_vector("move_left", "move_right", "aim_down", "aim_up").y < -0.7:
 		player.get_down_of_one_way_platform()
 	player.velocity.x = 0
 	
