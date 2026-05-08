@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://gee4th7onixo"]
 
 [ext_resource type="Script" uid="uid://gxnylruuw6fq" path="res://dialogues/dialog_component.gd" id="1_ik04r"]
-[ext_resource type="Texture2D" uid="uid://r0cq0irb3dmt" path="res://assets/icons/arrow_up.png" id="2_8px3n"]
+[ext_resource type="Texture2D" uid="uid://bg0x4ofmbkn2e" path="res://scenes/npc/arrow.png" id="2_8px3n"]
+[ext_resource type="Resource" uid="uid://xexyh6j6ul51" path="res://dialogues/blob_npc.dialogue" id="2_sgapl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wdg6u"]
 size = Vector2(38, 20)
@@ -9,13 +10,13 @@ size = Vector2(38, 20)
 [node name="DialogComponent" type="Area2D" unique_id=790345726 groups=["dialogs"]]
 collision_layer = 0
 script = ExtResource("1_ik04r")
+dialog_script = ExtResource("2_sgapl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668421362]
 shape = SubResource("RectangleShape2D_wdg6u")
 
 [node name="Arrow" type="Sprite2D" parent="." unique_id=450550885]
-position = Vector2(0, -20)
-scale = Vector2(0.375, 0.375)
+position = Vector2(0, -14)
 texture = ExtResource("2_8px3n")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

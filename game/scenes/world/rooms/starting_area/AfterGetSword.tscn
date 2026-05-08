@@ -4,21 +4,57 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_70qqv"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_1kexb"]
 [ext_resource type="PackedScene" uid="uid://dh2u1x6m2ja5f" path="res://scenes/npc/npc_character.tscn" id="4_ww128"]
-[ext_resource type="Texture2D" uid="uid://bw5ifi7vfl5r6" path="res://assets/placeholders/gordo.png" id="5_m78gm"]
+[ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="5_lwyyw"]
 [ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="6_70qqv"]
 [ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="7_djco1"]
 [ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="8_djco1"]
 [ext_resource type="PackedScene" uid="uid://cu3coffrldrdu" path="res://scenes/breakable/wall/WallBreakable.tscn" id="9_1kexb"]
 [ext_resource type="PackedScene" uid="uid://crj8piwquvxio" path="res://scenes/objects/heart/Heart.tscn" id="10_lwyyw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahqe5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahqe5"]
+atlas = ExtResource("5_lwyyw")
+region = Rect2(0, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcl3j"]
+atlas = ExtResource("5_lwyyw")
+region = Rect2(18, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fru37"]
+atlas = ExtResource("5_lwyyw")
+region = Rect2(36, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m71af"]
+atlas = ExtResource("5_lwyyw")
+region = Rect2(54, 54, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o7q6w"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ahqe5")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_tcl3j")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_fru37")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_m71af")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvhxl"]
 resource_local_to_scene = true
 shader = ExtResource("7_djco1")
 shader_parameter/whiten = true
 shader_parameter/time = 0.0
 shader_parameter/alpha = 4.505
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcl3j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fnmu1"]
 resource_local_to_scene = true
 shader = ExtResource("7_djco1")
 shader_parameter/whiten = true
@@ -39,15 +75,17 @@ position = Vector2(498, 196)
 [node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("4_ww128")]
 position = Vector2(138, 424)
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="NpcCharacter" unique_id=553475582]
-texture = ExtResource("5_m78gm")
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=507158694]
+sprite_frames = SubResource("SpriteFrames_o7q6w")
+autoplay = "default"
+frame_progress = 0.50990635
 
 [node name="Piranha" parent="." unique_id=810161683 instance=ExtResource("6_70qqv")]
 position = Vector2(253, 423)
 speed = 70.0
 
 [node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
-material = SubResource("ShaderMaterial_ahqe5")
+material = SubResource("ShaderMaterial_yvhxl")
 
 [node name="EndPoint" parent="Piranha" index="4" unique_id=1382419134]
 position = Vector2(93, 0)
@@ -57,7 +95,7 @@ position = Vector2(406, 311)
 speed = 45.0
 
 [node name="AnimatedSprite2D" parent="Piranha2" index="0" unique_id=1814534361]
-material = SubResource("ShaderMaterial_tcl3j")
+material = SubResource("ShaderMaterial_fnmu1")
 
 [node name="EndPoint" parent="Piranha2" index="4" unique_id=1382419134]
 position = Vector2(58, 0)
