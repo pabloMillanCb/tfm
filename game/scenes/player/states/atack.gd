@@ -27,7 +27,7 @@ func _on_atack_animation_end():
 	if !player.is_on_floor() and player.velocity.y >= 0:
 		finished.emit(FALLING)
 	elif !player.is_on_floor() and player.velocity.y < 0:
-		finished.emit(JUMP)
+		finished.emit(JUMP, {"with_trick": true})
 	elif (stored_speed != 0):
 		finished.emit(MOVE)
 	else:

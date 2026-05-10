@@ -206,10 +206,16 @@ func disable_collisions(disabled: bool):
 	$BodyCollision.disabled = disabled
 
 
-func play_sound(name: String, pitch_range: float = 0.0):
+func play_sound(name: String, pitch_range: float = 0.0, pitch_modifier = null):
 	
 	var pitch = 1.0 + randf_range(-pitch_range, pitch_range)
 	var sound: AudioStreamPlayer
+	
+	if pitch_modifier != null:
+		pitch = 1.0 + pitch_modifier
+	
+	print(pitch)
+	
 	match name:
 		"jump":
 			sound = $Sounds/Jump
