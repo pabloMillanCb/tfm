@@ -40,7 +40,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [node name="NpcCharacter" type="Node2D" unique_id=1778696213]

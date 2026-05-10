@@ -57,5 +57,5 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_65svs")
 Label/fonts/font = ExtResource("3_mqsch")
 OptionButton/constants/arrow_margin = 4
 OptionButton/constants/icon_max_width = 1
-OptionButton/icons/arrow = null
+OptionButton/constants/modulate_arrow = 9
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_mqsch")

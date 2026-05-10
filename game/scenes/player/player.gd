@@ -56,6 +56,8 @@ func set_player_data(loaded_data: PlayerData):
 	update_upgrades_information()
 	update_health_information()
 	instance_saved_key()
+	print("has sword update")
+	print(data.has_sword_update)
 
 
 func get_new_upgrade(upgrade: Upgrade.UpgradeType):

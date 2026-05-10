@@ -321,7 +321,6 @@ _data = {
 script = ExtResource("1_qteve")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=542648513]
-visible = false
 
 [node name="Background4" type="Sprite2D" parent="Node2D" unique_id=1529740489]
 texture = ExtResource("1_p8xhh")
@@ -345,7 +344,7 @@ texture = ExtResource("6_uxe6k")
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="." unique_id=381304934]
 material = SubResource("ShaderMaterial_inirt")
 position = Vector2(2.000001, -15)
-scale = Vector2(0.06, 0.06)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_r0qgb")
 animation = &"jump"
 offset = Vector2(5, -1)
