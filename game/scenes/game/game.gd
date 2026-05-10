@@ -8,6 +8,7 @@ enum GameState {
 	GAME_OVER,
 	GAME_INTRO,
 	GAME_ENDING,
+	ESCAPE,
 }
 
 var current_state: GameState = GameState.TITLE_SCREEN
@@ -23,6 +24,7 @@ func _ready() -> void:
 	GameEvent._on_game_resumed.connect(func(): set_state(GameState.GAME_WORLD))
 	GameEvent._on_game_intro_finished.connect(func(): set_state(GameState.GAME_WORLD))
 	GameEvent._on_player_respawn.connect(func(): set_state(GameState.GAME_WORLD))
+	GameEvent._on_game_escaped.connect(func(): set_state(GameState.ESCAPE))
 	
 
 func _input(event: InputEvent) -> void:
@@ -73,6 +75,10 @@ func set_state(new_state: GameState):
 			enter_state(new_state, old_state)
 		else:
 			print_state_change_error(new_state, old_state)
+	
+	elif (new_state == GameState.ESCAPE):
+		exit_state(old_state, new_state)
+		enter_state(new_state, old_state)
 		
 	elif (new_state == GameState.TITLE_SCREEN):
 		var allowed_states: Array = [GameState.PAUSE_MENU, GameState.GAME_ENDING, GameState.GAME_OVER]
@@ -107,6 +113,10 @@ func enter_state(new_state: GameState, old_state: GameState):
 	elif (new_state == GameState.GAME_ENDING):
 		$NewState.text = "GameState.GAME_ENDING"
 		add_child(preload("res://scenes/cutscenes/ending/game_ending.tscn").instantiate())
+		
+	elif (new_state == GameState.ESCAPE):
+		$NewState.text = "GameState.ESCAPE"
+		add_child(preload("res://scenes/cutscenes/escape/escape.tscn").instantiate())
 		
 	elif (new_state == GameState.TITLE_SCREEN):
 		$NewState.text = "GameState.TITLE_SCREEN"
