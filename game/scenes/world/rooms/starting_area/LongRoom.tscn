@@ -106,7 +106,6 @@ position = Vector2(40, 344)
 
 [node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("7_ybyv3")]
 position = Vector2(56, 664)
-color = 0
 
 [editable path="Piranha"]
 [editable path="Piranha2"]
