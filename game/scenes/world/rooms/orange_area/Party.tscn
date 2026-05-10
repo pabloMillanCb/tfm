@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://di3ooou20mead"]
 
+[ext_resource type="Script" uid="uid://dufc5tmh3kf8y" path="res://scenes/world/rooms/orange_area/party.gd" id="1_dlhnd"]
 [ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_kpo5r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_4tdsl"]
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_2iccv"]
@@ -89,6 +90,7 @@ offsets = PackedFloat32Array(0.8633441, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [node name="Room" type="Node2D" unique_id=801174312]
+script = ExtResource("1_dlhnd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
 position = Vector2(262, 56)
@@ -107,7 +109,7 @@ dialog_script = ExtResource("5_wak10")
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=1082345752]
 sprite_frames = SubResource("SpriteFrames_wkslc")
 autoplay = "default"
-frame_progress = 0.034582358
+frame_progress = 0.517984
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2090939530]
 position = Vector2(369, 168)
@@ -135,5 +137,7 @@ color_ramp = SubResource("Gradient_iud80")
 stream = ExtResource("8_iud80")
 volume_db = -5.0
 autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 
 [editable path="NpcCharacter"]
