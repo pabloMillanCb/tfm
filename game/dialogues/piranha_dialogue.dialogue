@@ -1,0 +1,41 @@
+~ start
+if DataManager.get_event_value("talked_piranha") == true
+	=> already_talked
+HOLAAAAAAAAAAAA
+:O [wait=1.5] ENTIENDES LO QUE DIGO!!!!!!!
+ME LLAMOOOOOOOO
+EEEEEEEEEEEEEEE
+ME LLAMOOOOOOOO
+cómo me llamo.
+NO LO SE [wait=1.5] :D
+DESDE QUE CAÍ EN ESTA ARMADURA MI CEREBRO ES MUY GORDO Y PUEDO MOVERME DE FORMAS NUNCA ANTES VISTAS
+CREO QUE APROVECHARÉ ESTE FRUTO DEL CONOCIMIENTO PARA HACER MUCHOS AMIGOS
+
+$> DataManager.register_event("talked_piranha", true)
+quieres ser mi amigo? :3c
+- Si
+	VALEP [wait=1.5] :P
+	$> DataManager.register_event("friend_piranha", true)
+- No
+	ou...
+	$> DataManager.register_event("friend_piranha", false)
+=> END
+
+~ already_talked
+if DataManager.get_event_value("is_friend") == true
+	=> is_friend
+if DataManager.get_event_value("is_friend") == false
+	=> is_not_friend
+
+~ is_friend
+HOLA AMIGO
+=> END
+~ is_not_friend
+Y AHORA QUIERES SER MI AMIGO?
+- Si
+	VIVAAAAAAAA [wait=1.5] :P
+	$> DataManager.register_event("friend_piranha", true)
+- No
+	ou...
+	$> DataManager.register_event("friend_piranha", false)
+=> END

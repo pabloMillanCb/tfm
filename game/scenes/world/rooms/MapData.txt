@@ -148,3 +148,9 @@
 -1,0,-1,0|cdcdcd,,2f2f2f,,2f2f2f||uid://4qqu35n1cxoh
 [-7,2,0]
 1,0,-1,0|cdcdcd,2f2f2f,2f2f2f,,2f2f2f||uid://4qqu35n1cxoh
+[-1,3,0]
+-1,0,-1,0|dd9821,dbdbdb,dbdbdb,dbdbdb,dd9821||uid://di3ooou20mead
+[-2,3,0]
+-1,0,0,0|dd9821,,dd9821,dd9821,dd9821||uid://di3ooou20mead
+[0,3,0]
+0,0,-1,0|dd9821,dd9821,dd9821,,dd9821||uid://di3ooou20mead

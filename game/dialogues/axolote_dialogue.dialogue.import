@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://co3chorhtc01w"
+path="res://.godot/imported/axolote_dialogue.dialogue-3393b2d7def29c1bb3c54fb51f41e452.tres"
+
+[deps]
+
+source_file="res://dialogues/axolote_dialogue.dialogue"
+dest_files=["res://.godot/imported/axolote_dialogue.dialogue-3393b2d7def29c1bb3c54fb51f41e452.tres"]
+
+[params]
+
+defaults=true
