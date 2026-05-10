@@ -28,6 +28,8 @@ func save_game_in_room(player_data: PlayerData) -> bool:
 	else:
 		return false
 
+func force_save():
+	save_game_in_room(current_save.player_data)
 
 func complete_game():
 	current_save.play_time += Clock.current_time_count

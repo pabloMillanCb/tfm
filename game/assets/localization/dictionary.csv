@@ -37,3 +37,6 @@ PAUSE,Pause,Pausar
 ,,
 DEFAULT,Default,Por defecto
 BACK,Back,Atras
+,,
+START_NEW_GAME,Start new game in this slot?,¿Empezar juego en este archivo?
+DATA_WILL_BE_LOST,Previous data will be lost,Los datos anteriores se borraran
