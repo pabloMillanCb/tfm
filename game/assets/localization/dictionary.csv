@@ -7,3 +7,33 @@ RESUME,Resume,Continuar
 BACK,Back,Volver
 EXIT,Exit,Salir
 LANGUAGE,Language,Idioma
+,,
+SWORD_NAME,The sword,La espada
+SWORD_INSTRUCTION,Atack pressing,Ataca con 
+BREAK_NAME,Super force,Super fuerza
+BREAK_INSTRUCTION,Destroy the X blocks,Destruye los bloques X
+POGO_NAME,The secret technique,La técnica secreta
+POGO_INSTRUCTION,Press while atacking on air,Presiona mientras atacas en el aire
+TELEPORT_NAME,The wand,El cetro
+TELEPORT_INSTRUCTION,Cast the spell with,Usa el hechizo con
+YOU_OBTAINED,You obtained,Has obtenido
+,,
+VOLUME,Volume,Volumen
+GENERAL,General,General
+MUSIC,Music,Musica
+SCREEN,Screen,Pantalla
+FULLSCREEN,Fullscreen,Pantalla completa
+BRIGHTNESS,Brightness,Brillo
+CONTRAST,Contrast,Contraste
+CONTROLS,Controls,Controles
+,,
+JUMP,Jump,Saltar
+ATACK,Atack pressing,Atacar
+WAND,Wand,Cetro
+ACCEPT,Accept,Aceptar
+CANCEL,Cancel,Cancelar
+MAP,Map,Mapa
+PAUSE,Pause,Pausar
+,,
+DEFAULT,Default,Por defecto
+BACK,Back,Atras
