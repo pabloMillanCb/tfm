@@ -42,7 +42,7 @@ START_NEW_GAME?,Start new game in this slot?,Empezar juego en este archivo?
 DATA_WILL_BE_LOST,Previous data will be lost,Los datos anteriores se borraran
 ,,
 YES,Yes,Si
-NO,No,Si
+NO,No,No 
 ,,
 PARTY_1,Hey.,Ey.
 PARTY_2,You shouldn't be able to get up here.,No deberías haber llegado aquí.

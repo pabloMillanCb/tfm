@@ -1,6 +1,7 @@
 ~ start
 if DataManager.is_event_registered("blob_talked"):
 	=> talked
+$> DataManager.register_event("blob_talked", true)
 B_1
 B_2
 B_3
@@ -12,7 +13,6 @@ B_8
 B_9
 B_10
 B_11
-$> DataManager.register_event("blob_talked")
 => END
 ~ talked
 B_12

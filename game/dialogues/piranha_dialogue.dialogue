@@ -1,6 +1,10 @@
 ~ start
 if DataManager.get_event_value("talked_piranha") == true
-	=> already_talked
+	if DataManager.get_event_value("friend_piranha") == true
+		=> is_friend
+	else:
+		=> is_not_friend 
+
 P_1
 P_2
 P_3
@@ -18,14 +22,7 @@ P_9
 	$> DataManager.register_event("friend_piranha", true)
 - NO
 	ou...
-	$> DataManager.register_event("friend_piranha", false)
 => END
-
-~ already_talked
-if DataManager.get_event_value("is_friend") == true
-	=> is_friend
-if DataManager.get_event_value("is_friend") == false
-	=> is_not_friend
 
 ~ is_friend
 P_11
@@ -37,5 +34,4 @@ P_12
 	$> DataManager.register_event("friend_piranha", true)
 - NO
 	ou...
-	$> DataManager.register_event("friend_piranha", false)
 => END
