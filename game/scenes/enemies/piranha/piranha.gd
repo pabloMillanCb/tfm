@@ -46,4 +46,5 @@ func die():
 
 
 func _on_hitbox_setup_timeout() -> void:
-	$HitboxComponent/CollisionShape2D.disabled = false
+	if $HitboxComponent/CollisionShape2D != null:
+		$HitboxComponent/CollisionShape2D.disabled = false
