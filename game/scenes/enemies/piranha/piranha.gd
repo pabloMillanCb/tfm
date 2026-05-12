@@ -43,3 +43,7 @@ func die():
 	$HitboxComponent.queue_free()
 	$HurtboxComponent.queue_free()
 	$AnimationPlayer.play("death")
+
+
+func _on_hitbox_setup_timeout() -> void:
+	$HitboxComponent/CollisionShape2D.disabled = false

@@ -132,6 +132,7 @@ metadata/_custom_type_script = "uid://cvs40xxj8pkjd"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=723308712]
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_sy6kx")
+disabled = true
 
 [node name="HurtboxComponent" type="Area2D" parent="." unique_id=1639152657]
 collision_layer = 8
@@ -162,3 +163,10 @@ bus = &"SFX"
 stream = ExtResource("8_u762j")
 volume_db = -8.0
 bus = &"SFX"
+
+[node name="HitboxSetup" type="Timer" parent="." unique_id=525077685]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="HitboxSetup" to="." method="_on_hitbox_setup_timeout"]
