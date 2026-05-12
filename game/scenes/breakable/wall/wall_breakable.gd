@@ -7,8 +7,10 @@ enum COLOR {GREY, ORANGE, BLUE}
 func _ready() -> void:
 	if color == COLOR.ORANGE:
 		$AnimatedSprite2D.play("orange")
-	if color == COLOR.BLUE:
+	elif color == COLOR.BLUE:
 		$AnimatedSprite2D.play("blue")
+	else:
+		$AnimatedSprite2D.play("grey")
 		
 	MetSys.register_storable_object(self)
 
