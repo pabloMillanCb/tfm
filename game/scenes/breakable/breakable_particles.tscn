@@ -53,9 +53,11 @@ scale_amount_curve = SubResource("Curve_6c76d")
 
 [node name="WallSound" type="AudioStreamPlayer" parent="." unique_id=89121020]
 stream = ExtResource("3_upg0e")
+volume_db = -12.0
 
 [node name="SkullSound" type="AudioStreamPlayer" parent="." unique_id=579269044]
 stream = ExtResource("3_upg0e")
+volume_db = -12.0
 
 [connection signal="finished" from="WallSound" to="." method="_on_wall_sound_finished"]
 [connection signal="finished" from="SkullSound" to="." method="_on_skull_sound_finished"]
