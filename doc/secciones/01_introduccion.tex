@@ -1,14 +1,16 @@
 \chapter{Introducción}
 
-Este proyecto es de código abierto y está publicado en \href{https://github.com/pabloMillanCb/tfm}{GitHub}, donde se puede acceder al código y documentación íntegros.
+En este trabajo se propone una metodología para el desarrollo de un videojuego y se realiza una implementación completa del mismo. \textbf{El juego resultante puede jugarse} desde el navegador \href{https://pavro-o.itch.io/mero-mero}{en este enlace} con la contraseña \textit{meromero}.
 
-\section{Contexto}
+El proyecto es software libre y está publicado en \href{https://github.com/pabloMillanCb/tfm}{GitHub}, donde se puede acceder al código y documentación íntegros.
 
-\textbf{La industria del videojuego genera más ingresos que la música y el cine juntos}\footnote{\url{https://mediacat.uk/dentsu-gaming-is-bigger-than-music-and-movies-combined/}}. Esta frase tan contundente ha sonado mucho en los últimos años, y no es de extrañar. Lo que antes era percibido como entretenimiento para una demografía infantil y adolescente se ha expandido en las últimas décadas ganando cada vez más presencia en el mercado. Jugar ya no es considerado una cosa solo de niños, y los formatos en los que se pueden encontrar los videojuegos a día de hoy son tan variados como el público que los consume. Se siguen produciendo a juegos de corte clásico para un solo jugador, pero los jóvenes también utilizan juegos con conexión a internet como \textit{Fortnite} como método de socialización fuera de clase. En los transportes públicos pueden verse personas jugando en sus teléfonos móviles experiencias algo más ligeras mientras esperan llegar a su parada. Incluso la tercera edad encontró en \textit{Pokémon Go}, el fenómeno de masas del 2016, una excusa para salir de casa y conocer a otras personas con los mismos intereses. Es muy probable que el lector de este trabajo haya tenido contacto con el mundo del videojuego de una forma u otra, aunque fuera a través del famoso \textit{juego del dinosaurio} que \textit{Google Chrome} muestra cuando no tiene conexión. 
+\section{Contexto} 
 
-Los videojuegos son productos culturales. Su identidad y las razones de su éxito o fracaso dependen en gran medida de decisiones artísticas y de diseño. Pero, \textbf{los videojuegos antes de nada, son piezas de software} y necesitan de este para existir. Por ello, es de especial interés estudiar y refinar los procesos de ingeniería por los cuales afrontar un desarrollo de estas características. 
+\textbf{La industria del videojuego genera más ingresos que la música y el cine juntos}\footnote{\url{https://mediacat.uk/dentsu-gaming-is-bigger-than-music-and-movies-combined/}}. Esta contundente frase ha sonado mucho en los últimos años, y no es de extrañar. Lo que antes se percibía como un juguete para niños ha ido ganando presencia en el mercadado de jóvenes y adultos a lo largo de décadas. También han crecido las formas y formatos en las que se distribuyen los videojuegos: desde juegos para un jugador que narran una historia épica, juegos online en los que conectar con otras personas, o apps para matar el rato en un smartphone sin mayor pretensión. Es probable que el lector haya tenido contacto con este mundo de una forma u otra, aunque fuera a través del \textit{juego del dinosaurio} que muestra el navegador \textit{Chrome} cuando no tiene conexión a internet.
 
-En este trabajo, se implementará un videojuego comercial del género \textit{Metroidvania} de principio a fin, poniendo especial interés en el estudio de la metodología de desarrollo.
+Los videojuegos \textbf{son productos culturales}. Su identidad y las razones de su éxito o fracaso dependen en gran medida de decisiones artísticas y de diseño ajenas a la ingeniería. Pero \textbf{también son necesariamente piezas de software}. Necesitan de un proceso de ingeniería para poder existir. Por ello, es de especial interés estudiar y refinar las metodologías para afrontar un desarrollo de estas características. 
+
+En este trabajo se estudiarán las características y necesidades software particulares para el desarrollo de un videojuego. A partir de las conclusiones extraidas, se diseñará una metodología que se aplicará para producir un proyecto completo del género \textit{Metroidvania}. Tras eso, se hará una retrospectiva de la metodología para determinar su eficacia.
 
 A continuación se definirán una serie de términos esenciales para el entendimiento del trabajo a realizar.
 
@@ -38,22 +40,22 @@ El mercado del videojuegos global acumuló un valor de 184 mil millones de dóla
     \label{fig:prevlibroblanco}
 \end{figure}
 
-El interés comercial en desarrollar un producto de valor en esta disciplina se hace evidente ante estos datos.
+Según el informe de Newzoo\cite{videogame-user-growth}, en 2025 el número activo de usuarios de videojuegos se situaba en 3.6 mil millones en todo el mundo. Esto supone un incremento del 33\% en tan solo los últimos 5 años. Con estos datos se quiere transmitir la importancia del videojuego a nivel comercial y cultural. Esto refuerza el interés en el desarrollo de estos productos y el estudio sobre los procesos que lo hacen posible.
 
 \subsection{Metodologías de desarrollo}
 
-El software ya es de por si un producto complejo de diseñar, construir o mantener. En el caso de los videojuegos, al ser proyectos de índole creativa se le añaden una serie de características particulares que los diferencian de una aplicación informática genérica.
+El software ya es de por si complejo de diseñar, construir y mantener. En el caso de los videojuegos, al ser proyectos de índole creativa se le añaden una serie de características particulares que los diferencian de una aplicación informática genérica.
 
-En primer lugar, un proyecto de software convencional pretende resolver un problema, cubrir una necesidad, o responder a los requisitos de un cliente. Un programa de gestión de agenda, por ejemplo, debe permitir al usuario crear eventos a horas concretas, apuntar tareas pendientes o visualizar un calendario. Estos requisitos pueden ser enumerados y concretados de manera relativamente simple. Ahora bien, ¿cuales son los requisitos de un videojuego? ¿Qué necesidad cubre? En última instancia debe entretener o divertir a un público objetivo. Pero, ¿cómo se especifica eso? ¿Qué elementos debe tener para ser divertido? ¿Cómo se sabe si una idea será divertida antes de invertir tiempo y recursos en implementarla por completo? ¿Cómo se encajan estas cuestiones en el ciclo de desarrollo? Nada de esto evidente desde un principio y añaden difícultades al desarrollo de productos que ya son suficientemente complejos.
+En primer lugar, el software normalmente pretende resolver un problema, cubrir una necesidad, o responder a los requisitos de un cliente. Un programa de gestión de agenda, por ejemplo, debe permitir al usuario crear eventos a horas concretas, apuntar tareas pendientes o visualizar un calendario. Estos requisitos pueden ser enumerados y concretados de manera relativamente simple. Ahora bien, ¿cuales son los requisitos de un videojuego? ¿Qué necesidad cubre? En última instancia debe entretener o divertir a un público objetivo. Pero, ¿cómo se especifica eso? ¿Qué elementos debe tener para ser divertido? ¿Cómo se sabe si una idea será divertida antes de invertir tiempo y recursos en implementarla por completo? ¿Cómo se encajan estas cuestiones en el ciclo de desarrollo? Nada de esto evidente.
 
-Además, al tratarse de proyectos creativos, junto a la programación conviven materias como arte, música y narrativa entre otras. Se cuenta con perfiles tan diversos como artistas conceptuales, modeladores 3D, animadores, compositores, escritories, diseñadores, etc. Todas estas disciplinas se solapan e interconectan unas con otras y dotan de identidad y atractivo al producto final, por lo que es de suma importancia tener en cuenta su gestión en el proceso de desarrollo.
+Además, los videojuegos son proyectos creativos. Junto a la programación conviven materias como arte, música y narrativa entre otras. Los equipos de desarrollo cuentan con perfiles tan diversos como artistas conceptuales, modeladores 3D, animadores, compositores, escritories, diseñadores, etc. Todas estas disciplinas se solapan e interconectan unas con otras y dotan de identidad y atractivo al producto final, por lo que es de suma importancia tener en cuenta su gestión en el proceso de desarrollo.
 
-Las grandes producciones del sector (bautizadas como \textit{AAA}) no han hecho más que aumentar en presupuesto y tiempos de desarrollo en los últimos años, llegando a tener algunos proyectos casi una década de duración y cientos de millones de dólares de costo.
+Las grandes producciones del sector (bautizadas como \textit{AAA}, triple A) no han hecho más que aumentar en presupuesto y tiempos de desarrollo en los últimos años, llegando proyectos a abarcar casi una década de desarrollo y un coste de cientos de millones de dólares.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.15]{img/tlou.jpg}
-    \caption[The Last of Us Parte II]{The Last of Us Parte II, desarrollado por \textit{Naughty Dog}, tuvo un costo de 220 millones de dólares y un desarrollo de 70 meses.}
+    \includegraphics[scale=0.09]{img/tlou.jpg}
+    \caption[The Last of Us Parte II]{The Last of Us Parte II, desarrollado por \textit{Naughty Dog}, tuvo un coste de 220 millones de dólares y un desarrollo de 70 meses. Imagen extraida de \href{https://www.anaitgames.com/analisis/analisis-the-last-of-us-parte-ii}{Anait}.}
     \label{fig:tlou2}
 \end{figure}
 
@@ -61,27 +63,28 @@ La complejidad software, la naturaleza creativa del diseño lúdico, la multidis
 
 De esto solo se puede extraer una conclusión: \textbf{el desarrollo de videojuegos tiene necesidades particulares}, no cubiertas por la ingeniería del software genérica, por lo que es de especial interes estudiar y adaptar los procesos de desarrollo para cubrir estas necesidades.
 
-\subsection{Tecnologías y sistemas específicos}
-
-Existen multitud de técnicas y tecnologías que se pueden aplicar a un videojuego para enriquecer la experiencia del jugador. Por ejemplo los \textit{shaders}, programas especializados que hacen uso del hardware de las \textit{GPUs} para generar efectos gráficos avanzados con un coste computacional muy bajo.
-
-Por otro lado, como ya se estableció previamente, los \textit{Metroidvania} tratan sobre la exploración de un enorme y laberíntico mapa. Para hacer de esto una tarea divertida para el jugador, se necesitan implementar sistemas e interfaces de mapeado, a través de las cuales orientarse y llevar la cuenta de qué sitios se ha visitado y cuales no. Sería interesante que interfaces contaran con un sistema de navegación asistida que haga uso de técnicas inteligentes de pathfinding para indicar al jugador la ruta entre dos puntos del mapa.
-
-El jugador rara vez se encuentra solo en juegos del género. El mundo está habitado por NPC (\textit{Non-playable characters}), personajes que no controla el jugador. Estos pueden ser tanto amistosos como hostiles, y para ello se les debe dotar de cierto comportamiento. Esto se puede lograr implementando un sistema de gestión para el comportamiento de NPCs, con el que a partir de ciertos parámetros el desarrollador pueda configurarlos fácilmente, acelerando en el largo plazo el proceso de desarrollo.
-
 
 \section{Objetivos}
 
-El objetivo principal de este trabajo será desarrollar un videojuego de género \textit{Metroidvania} empleando el motor \textit{Godot}. El resultado será un producto completo de principio a fin, integrando todos los ámbitos del desarrollo a parte del técnico como el arte, sonido y diseño. Este objetivo se desgrana en los siguientes objetivos específicos:
+El objetivo principal de este trabajo será formular una metodología para desarrollo de videojuegos y usarla para implementar un juego del género \textit{Metroidvania}. El resultado será un producto completo de principio a fin, integrando todos los ámbitos del desarrollo a parte del técnico como el arte, sonido y diseño. Este objetivo se desgrana en los siguientes objetivos específicos:
 
 \begin{itemize}
-    \item \textbf{OE1}: Estudio y aplicación de metodologías de desarrollo y testeo de videojuegos para asegurar un producto de calidad, ajustándose a las necesidades específicas de este tipo de software.
-    \item \textbf{OE2}: Estudio y aplicación de patrones, arquitecturas y convenciones del motor Godot para producir un código mantenible en el tiempo y un buen rendimiento del juego en tiempo de ejecución.
-    \item \textbf{OE3}: Implementación de los sistemas y módulos necesarios para realizar un juego \textit{Metroidvania} como un menú de mapas dinámico, registro de zonas exploradas, sistema de cálculo de rutas por pathfinding y un sistema de comportamiento para NPC (non-player characters).
-    \item \textbf{OE4}: Desarrollo y aplicación de \textit{shaders} para lograr efectos visuales llamativos.
+    \item \textbf{OE1}: Estudio de la literatura existente de los procesos de desarrollo en videojuegos con el objetivo de entender sus retos y particularidades respecto a la ingeniería de software genérica.
+    \item \textbf{OE2}: Uso del motor \textit{Godot} para producir un videojuego completo. Estudio y aplicación de patrones, arquitecturas y convenciones del motor para producir un código mantenible.
+    \item \textbf{OE3}: Diseño e implementación de un juego de género Metroidvania.
+    \item \textbf{OE4}: Aplicación de mecanismos de gestión de calidad y validación en videojuegos para entregar un producto sólido, de calidad y que entretiene con éxito al usuario.
 
 \end{itemize} 
 
 \section{Estructura de la memoria}
 
-//to do
+Esta memoria se divide en los siguientes capítulos:
+
+\begin{enumerate}
+    \item \textbf{Introducción}: El capítulo actual. Introduce a la materia y da el contexto necesario para entender el resto del trabajo.
+    \item \textbf{Estado del arte}: Se realiza un estudio sobre las características y retos del desarrollo de videojuegos, el género Metroidvania, las herramientas para la gestión de calidad y la accesibilidad en este ámbito.
+    \item \textbf{Planificación y desarrollo}: A partir de las conclusiones extraidas del capítulo anterior, se propone una metodología para el desarrollo del proyecto y se realiza una planificación. Posteriormente, se realiza un reporte de todo el desarrollo por etapas.
+    \item \textbf{Game Design Document}: Este capítulo es el \textit{GDD}, documentación central en el desarrollo de un videojuego que recopila su visión y alcance.
+    \item \textbf{Implementación}: Se desarrollan todos los detalles técnicos de la implementación del proyecto en Godot.
+    \item \textbf{Conclusiones}: %TODO
+\end{enumerate}
