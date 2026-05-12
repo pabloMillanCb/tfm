@@ -1,0 +1,41 @@
+~ start
+if DataManager.get_event_value("talked_piranha") == true
+	=> already_talked
+P_1
+P_2
+P_3
+P_4
+P_3
+P_5
+P_6
+P_7
+P_8
+
+$> DataManager.register_event("talked_piranha", true)
+P_9
+- YES
+	P_10
+	$> DataManager.register_event("friend_piranha", true)
+- NO
+	ou...
+	$> DataManager.register_event("friend_piranha", false)
+=> END
+
+~ already_talked
+if DataManager.get_event_value("is_friend") == true
+	=> is_friend
+if DataManager.get_event_value("is_friend") == false
+	=> is_not_friend
+
+~ is_friend
+P_11
+=> END
+~ is_not_friend
+P_12
+- YES
+	P_13
+	$> DataManager.register_event("friend_piranha", true)
+- NO
+	ou...
+	$> DataManager.register_event("friend_piranha", false)
+=> END

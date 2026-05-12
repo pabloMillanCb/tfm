@@ -8,6 +8,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 
 
 func _update(_delta):
+	player.pause_controls()
 	player.update_gravity(_delta)
 	
 	if player.is_on_floor():

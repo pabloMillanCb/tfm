@@ -11,6 +11,10 @@ func _exit():
 
 
 func _update(_delta):
+	player.pause_controls()
+
+
+func _update_physics(_delta):
 	update_gravity(_delta)
 	
 	var direction = Input.get_axis("move_left", "move_right")

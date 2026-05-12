@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if player != null:
-		$AnimatedSprite2D.scale.x = sign(global_position.direction_to(player.global_position).x)
+		scale.x = -sign(global_position.direction_to(player.global_position).x)
 
 
 func _get_configuration_warnings():

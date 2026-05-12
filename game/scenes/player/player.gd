@@ -56,6 +56,8 @@ func set_player_data(loaded_data: PlayerData):
 	update_upgrades_information()
 	update_health_information()
 	instance_saved_key()
+	print("has sword update")
+	print(data.has_sword_update)
 
 
 func get_new_upgrade(upgrade: Upgrade.UpgradeType):
@@ -206,10 +208,16 @@ func disable_collisions(disabled: bool):
 	$BodyCollision.disabled = disabled
 
 
-func play_sound(name: String, pitch_range: float = 0.0):
+func play_sound(name: String, pitch_range: float = 0.0, pitch_modifier = null):
 	
 	var pitch = 1.0 + randf_range(-pitch_range, pitch_range)
 	var sound: AudioStreamPlayer
+	
+	if pitch_modifier != null:
+		pitch = 1.0 + pitch_modifier
+	
+	print(pitch)
+	
 	match name:
 		"jump":
 			sound = $Sounds/Jump
@@ -235,3 +243,8 @@ func play_sound(name: String, pitch_range: float = 0.0):
 	if sound != null:
 		sound.pitch_scale = pitch
 		sound.play()
+
+
+func pause_controls():
+	if Input.is_action_just_pressed("pause"):
+		GameEvent._on_game_paused.emit()

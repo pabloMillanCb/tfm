@@ -9,6 +9,11 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	
 	player.set_animation("atack")
 	
+
+func _update(_delta):
+	player.pause_controls()
+
+
 func _update_physics(_delta):
 	
 	if !player.is_on_floor():
@@ -22,7 +27,7 @@ func _on_atack_animation_end():
 	if !player.is_on_floor() and player.velocity.y >= 0:
 		finished.emit(FALLING)
 	elif !player.is_on_floor() and player.velocity.y < 0:
-		finished.emit(JUMP)
+		finished.emit(JUMP, {"with_trick": true})
 	elif (stored_speed != 0):
 		finished.emit(MOVE)
 	else:

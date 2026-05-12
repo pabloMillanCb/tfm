@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://dnpbrat3p1pp3"]
+
+[ext_resource type="PackedScene" uid="uid://dh2u1x6m2ja5f" path="res://scenes/npc/npc_character.tscn" id="1_f8soa"]
+[ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="2_wp6l2"]
+[ext_resource type="Resource" uid="uid://chej1w03qeuu2" path="res://dialogues/f.dialogue" id="2_wxgmc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaxyh"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qle2d"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6rl6"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6ex4"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(54, 18, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxgmc"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yaxyh")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_qle2d")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_w6rl6")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_w6ex4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gptys"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(0, 108, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2svc7"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(18, 108, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_garrn"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(36, 108, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l4up"]
+atlas = ExtResource("2_wp6l2")
+region = Rect2(54, 108, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6d25h"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_gptys")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_2svc7")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_garrn")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_1l4up")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="F" type="Node2D" unique_id=1414846488]
+
+[node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("1_f8soa")]
+position = Vector2(127, 392)
+dialog_script = ExtResource("2_wxgmc")
+
+[node name="AnimatedSprite2D" parent="NpcCharacter" index="2" unique_id=1113815183]
+visible = false
+sprite_frames = SubResource("SpriteFrames_wxgmc")
+frame_progress = 0.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=815245233]
+sprite_frames = SubResource("SpriteFrames_6d25h")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=210552985]
+sprite_frames = SubResource("SpriteFrames_wxgmc")
+autoplay = "default"
+
+[editable path="NpcCharacter"]

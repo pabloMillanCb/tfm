@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dx8a78jqipy2v"
+path="res://.godot/imported/piranha_dialogue.dialogue-43d61c70ebc2332b0a2af1258d839270.tres"
+
+[deps]
+
+source_file="res://dialogues/piranha_dialogue.dialogue"
+dest_files=["res://.godot/imported/piranha_dialogue.dialogue-43d61c70ebc2332b0a2af1258d839270.tres"]
+
+[params]
+
+defaults=true

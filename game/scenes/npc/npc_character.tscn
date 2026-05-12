@@ -2,9 +2,46 @@
 
 [ext_resource type="Script" uid="uid://bs7klpcxncfy4" path="res://scenes/npc/npc_character.gd" id="1_8ce7w"]
 [ext_resource type="PackedScene" uid="uid://gee4th7onixo" path="res://dialogues/DialogComponent.tscn" id="2_jui7c"]
+[ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="3_yp44p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ce7w"]
 radius = 50.08992
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaxyh"]
+atlas = ExtResource("3_yp44p")
+region = Rect2(0, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qle2d"]
+atlas = ExtResource("3_yp44p")
+region = Rect2(18, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6rl6"]
+atlas = ExtResource("3_yp44p")
+region = Rect2(36, 18, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6ex4"]
+atlas = ExtResource("3_yp44p")
+region = Rect2(54, 18, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_foppi"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yaxyh")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_qle2d")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_w6rl6")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_w6ex4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="NpcCharacter" type="Node2D" unique_id=1778696213]
 script = ExtResource("1_8ce7w")
@@ -16,5 +53,10 @@ collision_layer = 0
 shape = SubResource("CircleShape2D_8ce7w")
 
 [node name="DialogComponent" parent="." unique_id=84226614 instance=ExtResource("2_jui7c")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1113815183]
+sprite_frames = SubResource("SpriteFrames_foppi")
+autoplay = "default"
+frame_progress = 0.032749634
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_player_entered"]

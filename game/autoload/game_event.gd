@@ -10,6 +10,8 @@ signal _on_game_load
 signal _on_game_intro_finished
 	
 signal _on_game_completed
+
+signal _on_game_escaped
 	
 signal _on_game_ending_finished
 	

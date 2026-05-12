@@ -1,0 +1,7 @@
+~ start
+$> DataManager.register_event("forbiden", true)
+$> DataManager.force_save()
+FORBIDDEN
+$> GameEvent._on_game_paused.emit()
+$> GameEvent._on_return_to_title_screen.emit()
+=> END
