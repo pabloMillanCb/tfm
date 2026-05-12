@@ -382,6 +382,8 @@ Para el control de versiones del proyecto se empleó Git. Tanto el código como 
     \item Ramas \textbf{system/X}: Hace referencia a las ramas en las que se desarrolla un sistema más amplio y transversal para el proyecto, como \textit{system/menus} o \textit{system/controls-interface}.
     \item Ramas \textbf{ci/X}: Ramas para realizar la configuraciones relacionadas con la integración o despliegue continuos.
     \item Ramas \textbf{bugfix/X}: Ramas para resolución de bugs concretos.
+    \item Ramas \textbf{playtest/X}: En esta rama se despliegan versiones beta del juego para realizar pruebas con usuarios.
+    \item Ramas \textbf{release/X}: Ramas para el despliegue de versiones completas.
 \end{itemize}
 
 \subsection{Sprint 1}
@@ -748,3 +750,57 @@ El objetivo de este sprint era producir una versión completa del juego jugable 
     \caption{Tareas y estimación del sprint 6.}
     \label{tab:sprint6task}
 \end{table}
+
+%TODO: Añadir horas totales de producción
+
+\section{Postproducción}
+
+La fase de postproducción consistió en un ciclo intensivo de pruebas con jugadores reales y ajustes al proyecto en función de la retroalimentación dada por los usuario y los \textit{bugs} que surgieran durante las partidas. Para ello se creó un \textit{backlog} de tareas adicional. Las tareas se dividen en los siguientes tipos:
+
+\begin{itemize}
+    \item \textit{PLAYTEST}: Representa el tiempo empleado monitorizando pruebas con usuarios.
+    \item \textit{CI}: Tareas relacionadas con la integración continua del proeycto.
+    \item \textit{BUG}: Errores de programación.
+    \item \textit{OBJ}: Observaciones de juego. Son cambios en el diseño del juego motivados por la opinión de los jugadores y las observaciones eralizadas durante las pruebas.
+\end{itemize}
+
+En la siguiente tabla se tiene el backlog completo de postproducción:
+
+% TODO METER BACKLOG POSTPRO
+
+Las pruebas de usuario consistieron en sesiones en las que el jugador completaba el juego de principio a fin. Siempre que fue posible, la sesión se monitorizó con el objetivo de tomar nota de cualquier error y recibir \textit{feedback} directo según se progresaba en el juego. En ningún momento se dieron pistas o instrucciones de cómo jugar para verificar que el diseño era correcto y que cualquier persona sabría operar el juego sin ayuda externa. Solo se ofrecían pistas si el jugador se encontraba atascado, sin forma de progresar. En la siguiente tabla se recogen todos las pruebas realizadas:
+
+% METER TABLA POSTPRO
+
+Tras la partida, los usuarios rellenaron una encuesta anónima con el objetivo de formalizar por escrito su opinión y conocer sus preferencias para tomar decisiones informadas sobre su retroalimentación. Por ejemplo, si un jugador indicara que no ha disfrutado de la exploración del juego y además tiene poca experiencia en el género metroidvania, se puede estimar que no existe un problema de diseño en el juego, sino que el jugador no es el público objetivo de este.
+
+El cuestionario recogía la siguiente información:
+
+\begin{itemize}
+    \item ¿Cuanto tardaste en completar el juego?
+    \item ¿Qué porcentaje de compleción conseguiste?
+    \item ¿Cuanta experiencia previa tienes jugando videojuegos? (1-5)
+    \item ¿Cuanta experiancia previa tienes en juegos de exploración y/o metroidvanias? (1-5)
+    \item ¿Cuanta experiencia previa tienes en juegos plataformas? (1-5)
+    \item ¿Cuanto dirías que has disfrutado del juego?
+    \item ¿Qué es lo que más te ha gustado?
+    \item ¿Qué es lo que menos te ha gustado?
+    \item ¿Has tenido alguna dificultad relacionada con la accesibilidad del juego? (Respuesta múltiple)
+\end{itemize}
+
+Se expuso además el proyecto en el evento UGR LAN Party, organizado en la ETSIIT de la Universidada de Granada. En este distintas personas probaron el juego a lo largo de toda la jornada. Fueron partidas más cortas, casuales y con menor monitorización, pero sirvieron igualmente para recoger la opinión informal de un gran número de usuarios.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.21]{img/ugr-lan-party.png}
+    \caption[Pruebas con usuarios en la UGR LAN Party]{Foto realizada en el evento UGR LAN Party 2026, donde se expuso el juego.}
+    \label{fig:ugrlanparty}
+\end{figure}
+
+Para facilitar es despligue y distribución de las versiones de prueba, se configuró una \textit{Github Action} para el despliegue automático de versiones en una página de \textit{Itch.io}. De esta forma, cada vez que se actualizaban ciertas ramas del repositorio, se compilaba en la nube una versión del juego para Windows, Linux y Web y automáticamente se publican en \textit{Itch.io}. Esto permitía compartir a todos los usuarios un mismo enlace que siempre contenía la versión más actualizada del juego, disponiendo de versiones en distintas plataformas para poder adaptarse al equipo de cualquier jugador.
+
+\section{Despliegue}
+
+Para el despliegue del juego se configuró y decoró una página de \textit{Itch.io} donde se alojó el juego. Este cuenta con versiones para Windows, Linux y Web, jugable desde el propio navegador. Para la compilación de versiones se empleó la misma \textit{Github Action} que se explicó en el apartado anterior.
+
+En un proyecto comercial, esta fase del desarrollo tendría una mayor carga de desarrollo de material promocional y marketing. Como este es un trabajo académico, simplemente se produjo un trailer a modo de presentación del juego.
