@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cioe1206pm7vx" path="res://scenes/menu/ui/player_ui.tscn" id="5_5k6en"]
 
 [node name="GameWorld" type="Node2D" unique_id=1365651245]
+process_mode = 1
 script = ExtResource("1_o21sk")
 
 [node name="Player" parent="." unique_id=2098626025 instance=ExtResource("1_xro63")]
