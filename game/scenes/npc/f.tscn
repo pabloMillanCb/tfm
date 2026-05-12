@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dnpbrat3p1pp3"]
 
+[ext_resource type="Script" uid="uid://uy5o02yttja" path="res://scenes/npc/f.gd" id="1_6d25h"]
 [ext_resource type="PackedScene" uid="uid://dh2u1x6m2ja5f" path="res://scenes/npc/npc_character.tscn" id="1_f8soa"]
 [ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="2_wp6l2"]
 [ext_resource type="Resource" uid="uid://chej1w03qeuu2" path="res://dialogues/f.dialogue" id="2_wxgmc"]
+[ext_resource type="AudioStream" uid="uid://ct7mnn565w5ef" path="res://assets/sound/f.mp3" id="4_wxgmc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yaxyh"]
 atlas = ExtResource("2_wp6l2")
@@ -77,6 +79,7 @@ animations = [{
 }]
 
 [node name="F" type="Node2D" unique_id=1414846488]
+script = ExtResource("1_6d25h")
 
 [node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("1_f8soa")]
 position = Vector2(127, 392)
@@ -94,5 +97,9 @@ autoplay = "default"
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=210552985]
 sprite_frames = SubResource("SpriteFrames_wxgmc")
 autoplay = "default"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1663032101]
+stream = ExtResource("4_wxgmc")
+volume_db = -10.0
 
 [editable path="NpcCharacter"]
