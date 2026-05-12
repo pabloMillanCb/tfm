@@ -86,3 +86,5 @@ A_1,[speed=0.4]Another armor[speed=0.1]... [wait=0.5][speed=0.6]Then you can hea
 A_2,Have you seen a golden skull in these caves?,No habras visto una calavera dorada por aqui?
 A_3,[speed=0.4]I'm not telling you why I'm searching it.,[speed=0.4]No te voy a decir para que la quiero.
 A_4,Leave me alone.,Dejame.
+,,
+GAME_SAVED,GAME SAVED,PARTIDA GUARDADA
