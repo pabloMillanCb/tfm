@@ -12,3 +12,7 @@ func _on_audio_stream_player_finished() -> void:
 	pitch += 0.1
 	%Boing.pitch_scale = pitch
 	%Boing.play()
+
+
+func _on_audio_stream_player_finished_2() -> void:
+	$AudioStreamPlayer.play()

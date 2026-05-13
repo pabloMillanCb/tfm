@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://d17fs28cof1jp" path="res://shaders/change_color.gdshader" id="7_yg5ri"]
 [ext_resource type="Texture2D" uid="uid://bnp74qtbogfm3" path="res://scenes/player/assets/player_spritesheet.png" id="8_j3ibg"]
 [ext_resource type="AudioStream" uid="uid://0ud1i1m8ma3y" path="res://assets/sound/jump.wav" id="10_bl732"]
+[ext_resource type="AudioStream" uid="uid://32bl3byn5vyc" path="res://assets/sound/waves.mp3" id="11_bl732"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ekke1"]
 
@@ -362,4 +363,11 @@ max_distance = 200.0
 libraries/ = SubResource("AnimationLibrary_qteve")
 autoplay = &"up"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1655032559]
+stream = ExtResource("11_bl732")
+volume_db = -10.0
+autoplay = true
+bus = &"SFX"
+
 [connection signal="finished" from="PlayerSprites/Boing" to="." method="_on_audio_stream_player_finished"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished_2"]
