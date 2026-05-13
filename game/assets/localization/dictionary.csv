@@ -44,9 +44,9 @@ DATA_WILL_BE_LOST,Previous data will be lost,Los datos anteriores se borraran
 YES,Yes,Si
 NO,No,No 
 ,,
-PARTY_1,Hey.,Ey.
-PARTY_2,You shouldn't be able to get up here.,No deberías haber llegado aquí.
-,,
+PARTY_1,Hey! You finally arriv-[wait=1.0][speed=0.2]?,Hola! Por fin has llega-[wait=1.0][speed=0.2]?
+PARTY_2,"Perdona, te confundí con otro pez muy parecido.[wait=1.0]?","Perdona, te confundi con otro pez muy parecido.[wait=1.0]?"
+PARTY,,
 ,,
 P_1,HIIIIIIIIIIIIIIIIIIIIIIIIII,HOLAAAAAAAAAAAA
 P_2,:O [wait=1.5] YOU UNDERSTAND WHAT I'M SAYING!!!!!!,:O [wait=1.5] ENTIENDES LO QUE DIGO!!!!!!!

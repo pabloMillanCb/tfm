@@ -1,3 +1,4 @@
 ~ start
-PARTY_1 [wait=1.0] PARTY_2
+PARTY_1
+PARTY_2
 => END
