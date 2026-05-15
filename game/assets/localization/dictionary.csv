@@ -77,7 +77,7 @@ B_6,"Treasute? [wait=1.0] Forbidden knowledge? [wait=1.0] Or maybe,[wait=0.75] y
 B_7,It does not matter anyway.[wait=1.0] I see you got yourself a nice blade.,Eso es lo de menos.[wait=1.0] Veo que has conseguido echarle el guante a un buen acero.
 B_8,You could use it with those unarmored fishes.,Podrías darle uso poniendo fin a esos salvajes sin armadura.
 B_9,"They seem like us, but they are not.[wait=1.0] We couldn't be more different.","Se parecen a nosotros, pero no te confundas.[wait=1.0] No podrian ser mas distintos."
-B_10,[speed=0.6]They are unworthy. [wait=0.6]Unable to reason. [wait=0.6]Unable to speak.,[speed=0.6]Son seres insignificantes. [wait=0.6]Carentes de razocinio. [wait=0.6]Carentes de habla.
+B_10,[speed=0.6]They are unworthy. [wait=0.6]Unable to reason. [wait=0.6]Unable to speak.,[speed=0.6]Son seres insignificantes. [wait=0.6]Carentes de raciocinio. [wait=0.6]Carentes de habla.
 B_11,"It is our duty to put them down, as the chosen by the armor.[wait=0.6][speed=0.2] Don't you think?",Es nuestro deber como elegidos de la armadura mantenerlos a raya.[wait=0.6][speed=0.2] No crees?
 B_12,Do you know yet how to open your map?,Sabes ya como abrir el mapa?
 ,,
