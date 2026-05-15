@@ -7,7 +7,7 @@ RESUME,Resume,Continuar
 BACK,Back,Volver
 EXIT,Exit,Salir
 LANGUAGE,Language,Idioma
-,,
+GAME_OVER,GAME OVER,GAME OVER
 SWORD_NAME,The sword,La espada
 SWORD_INSTRUCTION,Atack pressing,Ataca con 
 BREAK_NAME,The gauntlet,El guantelete
@@ -17,7 +17,7 @@ POGO_INSTRUCTION,Press while atacking on air,Presiona mientras atacas en el aire
 TELEPORT_NAME,The wand,El cetro
 TELEPORT_INSTRUCTION,Cast the spell with,Usa el hechizo con
 YOU_OBTAINED,You obtained,Has obtenido
-,,
+MAIN_MENU,Main Menu,Menu Principal
 VOLUME,Volume,Volumen
 GENERAL,General,General
 MUSIC,Music,Musica
@@ -26,7 +26,7 @@ FULLSCREEN,Fullscreen,Pantalla completa
 BRIGHTNESS,Brightness,Brillo
 CONTRAST,Contrast,Contraste
 CONTROLS,Controls,Controles
-,,
+LOAD_GAME,Load Game,Cargar Partida
 JUMP,Jump,Saltar
 ATACK,Atack pressing,Atacar
 WAND,Wand,Cetro
@@ -45,7 +45,7 @@ YES,Yes,Si
 NO,No,No 
 ,,
 PARTY_1,Hey! You finally arriv-[wait=1.0][speed=0.2]?,Hola! Por fin has llega-[wait=1.0][speed=0.2]?
-PARTY_2,"Perdona, te confundí con otro pez muy parecido.[wait=1.0]?","Perdona, te confundi con otro pez muy parecido.[wait=1.0]?"
+PARTY_2,"Sorry, I've mistaken you with another fish.[wait=1.0]","Perdona, te confundi con otro pez muy parecido.[wait=1.0]"
 PARTY,,
 ,,
 P_1,HIIIIIIIIIIIIIIIIIIIIIIIIII,HOLAAAAAAAAAAAA

@@ -86,6 +86,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer" unique_id=173579840]
 layout_mode = 2
+theme_override_constants/separation = 25
 
 [node name="Retry" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=955110889]
 unique_name_in_owner = true
@@ -95,7 +96,7 @@ text = "LOAD_GAME"
 [node name="Main Menu" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer" unique_id=197979001]
 unique_name_in_owner = true
 layout_mode = 2
-text = "MAIN MENU"
+text = "MAIN_MENU"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1357001966]
 
