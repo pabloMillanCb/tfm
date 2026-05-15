@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_n14ho"]
 [ext_resource type="Resource" uid="uid://co3chorhtc01w" path="res://dialogues/axolote_dialogue.dialogue" id="5_1qw35"]
 [ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="5_mhj42"]
+[ext_resource type="PackedScene" uid="uid://cu3coffrldrdu" path="res://scenes/breakable/wall/WallBreakable.tscn" id="7_n14ho"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_olhlp"]
 atlas = ExtResource("5_mhj42")
@@ -55,9 +56,15 @@ tile_set = ExtResource("1_6t6hm")
 position = Vector2(128, 42)
 
 [node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("4_mhj42")]
-position = Vector2(220, 152)
+position = Vector2(184, 168)
 dialog_script = ExtResource("5_1qw35")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=40814352]
 sprite_frames = SubResource("SpriteFrames_1qw35")
 autoplay = "default"
+
+[node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("7_n14ho")]
+position = Vector2(232, 136)
+
+[node name="WallBreakable2" parent="." unique_id=1254522504 instance=ExtResource("7_n14ho")]
+position = Vector2(232, 152)

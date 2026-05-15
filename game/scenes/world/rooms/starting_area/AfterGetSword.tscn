@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://oq7lsobwu6vk" path="res://scenes/enemies/piranha/piranha.tscn" id="6_70qqv"]
 [ext_resource type="Shader" uid="uid://dq2wpa23n6rpq" path="res://shaders/enemy_hit.gdshader" id="7_djco1"]
 [ext_resource type="PackedScene" uid="uid://11itbu87h6os" path="res://scenes/breakable/skull/skull.tscn" id="8_djco1"]
-[ext_resource type="PackedScene" uid="uid://cu3coffrldrdu" path="res://scenes/breakable/wall/WallBreakable.tscn" id="9_1kexb"]
 [ext_resource type="PackedScene" uid="uid://crj8piwquvxio" path="res://scenes/objects/heart/Heart.tscn" id="10_lwyyw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahqe5"]
@@ -48,14 +47,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahqe5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lwyyw"]
 resource_local_to_scene = true
 shader = ExtResource("7_djco1")
 shader_parameter/whiten = true
 shader_parameter/time = 0.0
 shader_parameter/alpha = 4.505
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcl3j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahqe5"]
 resource_local_to_scene = true
 shader = ExtResource("7_djco1")
 shader_parameter/whiten = true
@@ -87,7 +86,7 @@ position = Vector2(253, 423)
 speed = 70.0
 
 [node name="AnimatedSprite2D" parent="Piranha" index="0" unique_id=1814534361]
-material = SubResource("ShaderMaterial_ahqe5")
+material = SubResource("ShaderMaterial_lwyyw")
 
 [node name="EndPoint" parent="Piranha" index="4" unique_id=1382419134]
 position = Vector2(93, 0)
@@ -97,7 +96,7 @@ position = Vector2(406, 311)
 speed = 45.0
 
 [node name="AnimatedSprite2D" parent="Piranha2" index="0" unique_id=1814534361]
-material = SubResource("ShaderMaterial_tcl3j")
+material = SubResource("ShaderMaterial_ahqe5")
 
 [node name="EndPoint" parent="Piranha2" index="4" unique_id=1382419134]
 position = Vector2(58, 0)
@@ -110,14 +109,6 @@ position = Vector2(42, 392)
 
 [node name="Skull2" parent="." unique_id=135084952 instance=ExtResource("8_djco1")]
 position = Vector2(42, 424)
-
-[node name="WallBreakable" parent="." unique_id=1500639480 instance=ExtResource("9_1kexb")]
-position = Vector2(488, 360)
-color = 0
-
-[node name="WallBreakable2" parent="." unique_id=1189481281 instance=ExtResource("9_1kexb")]
-position = Vector2(488, 376)
-color = 0
 
 [node name="Heart" parent="." unique_id=72603203 instance=ExtResource("10_lwyyw")]
 position = Vector2(70, 410)
