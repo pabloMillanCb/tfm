@@ -16,5 +16,7 @@ func _update(_delta):
 	
 	if !Input.is_action_pressed("teleport"):
 		finished.emit(RELEASE_TELEPORT)
+	elif Input.is_action_just_pressed("jump"):
+		finished.emit(JUMP)
 	
 	player.move_and_slide()
