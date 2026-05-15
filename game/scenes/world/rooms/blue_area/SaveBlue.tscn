@@ -14,6 +14,7 @@ tile_set = ExtResource("1_bixfr")
 
 [node name="RoomRespawn" parent="." unique_id=597677078 instance=ExtResource("3_nyhm2")]
 position = Vector2(193, 184)
+message = "BARBUTA"
 
 [node name="AnimatedSprite2D" parent="RoomRespawn" index="1" unique_id=1129734317]
 modulate = Color(0.84821427, 0.19312024, 0.19312024, 1)
