@@ -96,7 +96,7 @@ El proyecto está estructurado en las siguientes carpetas:
     \item \textbf{/assets}: Assets gráficos, sonoros, fuentes, diccionarios y recursos generales del proyecto.
     \item \textbf{/autoload}: Contiene los nodos autoload.
     \item \textbf{/data}: Contiene recursos customizados de Godot, una suerte de estructuras de datos que se explicarán más adelante.
-    \item \textbf{/dialogues}: Contiene los diálogos del juego y escenas asociadas al plugin Dialogue Manager %TODO: Citar dialogue manager
+    \item \textbf{/dialogues}: Contiene los diálogos del juego y escenas asociadas al plugin Dialogue Manager
     \item \textbf{/scenes}: Aquí se encuentran organizadas en secciones todas las escenas que componen el juego: desde pantallas, personajes, menús a objetos.
     \item \textbf{/shaders}: Archivos .gdshaders que contienen los shaders que se usan en diferentes escenas.
     \item \textbf{/test}: Contiene todos los tests automáticos del proyecto.
@@ -247,8 +247,6 @@ Por tanto, para implementar estos componentes en cualquier escena (por ejemplo, 
 
 En la figura \ref{fig:hit-components} se tiene una representación de este esquema para la escena Player. En otras escenas se realizaría de forma similar.
 
-%TODO: Añadir diagrama para hitbox y hurtbox?
-
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.65]{img/hitbox-component-diagram.drawio.png}
@@ -292,7 +290,6 @@ En el script de Player se declaran una serie de variables con la etiqueta de God
 \end{itemize}
 
 Para gestionar las variables persistentes del jugador entre partidas se creó la estructura de datos \textbf{PlayerData}. Este es un recurso customizado de Godot y contiene información sobre las mejoras desbloqueadas y los puntos de salud máximos. Sus parámetros son:
-%TODO: METER REFERENCIA A DONDE SE EXPLIQUEN LOS RECURSOS
 
 \begin{itemize}
     \item \textbf{has\_sword\_update} (Boolean): Espada desboqueada.

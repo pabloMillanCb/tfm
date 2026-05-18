@@ -653,7 +653,7 @@ El objetivo de este sprint era producir una versión completa del juego jugable 
     \label{tab:sprint6task}
 \end{table}
 
-%TODO: Añadir horas totales de producción
+En total, la producción abarcó 142,3 horas de trabajo efectivas.
 
 \section{Postproducción}
 
@@ -666,9 +666,131 @@ La fase de postproducción consistió en un ciclo intensivo de pruebas con jugad
     \item \textit{OBJ}: Observaciones de juego. Son cambios en el diseño del juego motivados por la opinión de los jugadores y las observaciones eralizadas durante las pruebas.
 \end{itemize}
 
-En la siguiente tabla se tiene el backlog completo de postproducción:
+En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{tab:postpro4} se muestra la lista tareas completa:
 
-% TODO METER BACKLOG POSTPRO
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    Playtest & Playtest con jugadores & Terminado & 14 \\ \hline
+    CI-01 & Configurar github actions para los despliegues automáticos & Terminado & 6 \\ \hline
+    SF-61 & Añadir paredes de seguridad para teletransporte out of bounds & Terminado & 0,5 \\ \hline
+    SF-62 & Ajustar estilo del minimapa & Terminado & 0,25 \\ \hline
+    SF-63 & Añadir en menú de pausa una lista de mejoras obtenidas & DESESTIMADA & - \\ \hline
+    BUG-10 & El jugador puede seguir golpeando pirañas después de matarlas & Terminado & 0,1 \\ \hline
+    BUG-11 & Atacar durante un salto afecta a su trayectoria & Terminado & 0,25 \\ \hline
+    OBJ-15 & El comportamiento del Axolote no es legible para los jugadores & Terminado & 0,75 \\ \hline
+    OBJ-16 & Mover sala de guardado gris vertical & Terminado & 0,25 \\ \hline
+    OBJ-17 & Añadir sala de guardado tras conseguir la espada & Terminado & 0,25 \\ \hline
+    OBJ-18 & Bajar sonido de reintentar en pantalla de game over & Terminado & 0,1 \\ \hline
+    BUG-12 & El shader de golpe en Axolotes no es local & Terminado & 0,1 \\ \hline
+    OBJ-19 & Añadir sala con recompensa a la derecha del precipicio & DESESTIMADA & - \\ \hline
+    BUG-13 & El primer input de ataque tras recibir golpe es ignorado & Terminado & 2 \\ \hline
+    BUG-14 & El Axolote puede dañar al jugador aunque esté muerto & Terminado & 0,25 \\ \hline
+    BUG-15 & El jugador puede pulsar reintentar múltiples veces & Terminado & 0,5 \\ \hline
+    OBJ-20 & Dificultad para encontrar entrada a la zona azul & Terminado & 1,5 \\ \hline
+    OBJ-21 & Ajustar hitbox de los pinchos rojos & Terminado & 0,25 \\ \hline
+    OBJ-22 & Añadir pared en sala del corazón de zona gris & Terminado & 0,1 \\ \hline
+    BUG-16 & Softlock al volver a la sala de la espada & Terminado & 0,75 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro1}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    BUG-17 & Bloqueo en bloques destruibles de zona gris & Terminado & 0,25 \\ \hline
+    OBJ-23 & Aumentar el zoom del mapa & Terminado & 0,1 \\ \hline
+    BUG-18 & Marcador huérfano al cancelar teletransporte & Terminado & 0,5 \\ \hline
+    OBJ-24 & Añadir porcentaje de compleción al final del juego & Terminado & ~ \\ \hline
+    BUG-19 & El reloj del juego mide mal el tiempo & Terminado & 0,5 \\ \hline
+    BUG-20 & Colisión durante teletransporte rompe colisiones & Terminado & 1 \\ \hline
+    OBJ-25 & Out-of-bounds en sala de guardado azul & Terminado & 0,1 \\ \hline
+    OBJ-27 & El plataformeo de naranja a azul castiga mucho & Terminado & 0,25 \\ \hline
+    OBJ-28 & Replantear sección vertical naranja & Terminado & 0,75 \\ \hline
+    OBJ-29 & Reducir tamaño máximo del mapa & Terminado & 2 \\ \hline
+    OBJ-30 & El mapa blanco causa confusión & Terminado & 0,1 \\ \hline
+    OBJ-31 & Cambiar animación de caída & Terminado & 0,25 \\ \hline
+    OBJ-32 & Permitir cambiar dirección durante pogo & Terminado & 0,1 \\ \hline
+    BUG-21 & Golpe durante teletransporte lanza al infinito & Terminado & 0,5 \\ \hline
+    OBJ-33 & Añadir bloques en pasillo vertical gris & Terminado & 0,25 \\ \hline
+    OBJ-34 & Agrandar hitbox de espada hacia el centro & Terminado & 0,25 \\ \hline
+    OBJ-35 & Renombrar botón "Reintentar" & Terminado & 0,1 \\ \hline
+    OBJ-36 & Alejar trampolín de zona final & Terminado & 0,1 \\ \hline
+    OBJ-37 & Añadir ladrillos en sala NPC 2 & Terminado & 0,1 \\ \hline
+    OBJ-38 & Acortar sala de guardado en zig-zag & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro2}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    OBJ-39 & Guardado tras conseguir objetos & DESESTIMADA & - \\ \hline
+    OBJ-40 & Indicador visual de recuperación al guardar & DESESTIMADA & - \\ \hline
+    OBJ-41 & Acortar tiempo de respawn de calaveras & Terminado & 0,1 \\ \hline
+    OBJ-42 & Añadir partículas al destruir calaveras & Terminado & 0,5 \\ \hline
+    OBJ-43 & Añadir partículas al destruir paredes & Terminado & 0,5 \\ \hline
+    OBJ-44 & Alejar spawn del pez amarillo & Terminado & 0,1 \\ \hline
+    OBJ-45 & Ajustar hitbox horizontal de pinchos & Terminado & 0,1 \\ \hline
+    BUG-22 & Corregir tests de player & Terminado & 0,5 \\ \hline
+    OBJ-46 & Bajar sonido de guiñado de ojo & Terminado & 0,1 \\ \hline
+    OBJ-47 & Agrandar icono de corazones en el mapa & Terminado & 0,25 \\ \hline
+    OBJ-48 & Añadir marcador de upgrades en el mapa & Terminado & 0,25 \\ \hline
+    OBJ-49 & Eliminar rampas placeholder & Terminado & 0,1 \\ \hline
+    OBJ-50 & Sustituir plataformas móviles de zona naranja & Terminado & 0,1 \\ \hline
+    OBJ-51 & Alejar primeras calaveras de pogo azul & Terminado & 0,1 \\ \hline
+    OBJ-52 & TP derecha desde FISH golpea enemigo & Terminado & 0,1 \\ \hline
+    OBJ-53 & Tapar pared de primera habitación final & Terminado & 0,1 \\ \hline
+    BUG-23 & Se rompe animación de stomp & Terminado & 0,1 \\ \hline
+    OBJ-54 & Difícil bajar con joystick & Terminado & 0,1 \\ \hline
+    BUG-24 & Recibir daño entrando sala NPC 1 & Terminado & 0,25 \\ \hline
+    OBJ-55 & Falta explicación para abrir el mapa & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro3}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    OBJ-56 & Pitch aleatorio al sonido de salto & DESESTIMADA & - \\ \hline
+    OBJ-57 & Poner color azul en sala NPC 2 & Terminado & 0,1 \\ \hline
+    BUG-26 & Espada durante salto provoca doble salto & Terminado & 1 \\ \hline
+    OBJ-58 & Calaveras horizontales demasiado lejos & Terminado & 0,1 \\ \hline
+    BUG-27 & El jugador puede quedarse entre pinchos & Terminado & 0,25 \\ \hline
+    OBJ-59 & Mejor maniobrabilidad aérea & DESESTIMADA & - \\ \hline
+    BUG-28 & Start no despausa el juego & Terminado & 0,1 \\ \hline
+    BUG-29 & Pausar muerto no reinicia el juego & Terminado & 0,5 \\ \hline
+    BUG-30 & Sala del corazón conectada incorrectamente & Terminado & 0,1 \\ \hline
+    BUG-31 & Falta icono de guardado & Terminado & 0,1 \\ \hline
+    OBJ-60 & Pintar de azul intersecciones y bloques & Terminado & 0,1 \\ \hline
+    BUG-32 & TP derecha sala Axolote crashea el juego & Terminado & 0,25 \\ \hline
+    OBJ-61 & Ajustes a diálogos NPC & Terminado & 1,5 \\ \hline
+    BUG-33 & Controles no se guardan por defecto & Terminado & 0,1 \\ \hline
+    OBJ-62 & Ajuste visual de menús y traducciones & Terminado & 2 \\ \hline
+    BUG-34 & El volumen general no afecta al salto & DESESTIMADA & - \\ \hline
+    BUG-35 & "GAME SAVED" no traducido & Terminado & 0,1 \\ \hline
+    OBJ-63 & Añadir opción de correr & DESESTIMADA & - \\ \hline
+    BUG-36 & Bloques X tras espada no son azules & Terminado & 0,1 \\ \hline
+    OBJ-64 & Bajar sonido de bloques y calaveras & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro4}
+\end{table}
+
 
 Las pruebas de usuario consistieron en sesiones en las que el jugador completaba el juego de principio a fin. Siempre que fue posible, la sesión se monitorizó con el objetivo de tomar nota de cualquier error y recibir \textit{feedback} directo según se progresaba en el juego. En ningún momento se dieron pistas o instrucciones de cómo jugar para verificar que el diseño era correcto y que cualquier persona sabría operar el juego sin ayuda externa. Solo se ofrecían pistas si el jugador se encontraba atascado, sin forma de progresar. En la siguiente tabla se recogen todos las pruebas realizadas:
 
