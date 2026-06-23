@@ -1,13 +1,13 @@
 \chapter{Game Design Document}
 \label{chap:gdd}
 
-Como se explicaba en el \autoref{chap:stateofart}, el \textit{Game Design Document} (GDD) es un documento interno del equipo de desarrollo. Cumple una función de nexo de comunicación entre todos las disciplinas que abarcan un proyecto. A traves de este, se asegura que todos tienen una visión completa del producto. Ya que es un documento interdisciplinar, no debe ser muy técnico en ninguno de sus apartados. Es además un documento que vive y cambia a lo largo de casi todo el desarrollo: cualquier cambio en la visión del producto debe reflejarse en el GDD, y todo el equipo debe tener acceso a la versión más reciente. El tono y diseño gráfico del documento pueden ser informales en puntos concretos de forma intencionada para transmitir de forma más eficaz ciertos aspectos del juego, pero en esta ocasión se decidió mantener una maquetación uniforme para que fuera coherente con el resto de esta memoria.
+Como se explicaba en el \autoref{chap:stateofart}, el \textit{Game Design Document} (GDD) es un documento interno del equipo de desarrollo. Cumple una función de nexo de comunicación entre todos las disciplinas que abarcan un proyecto. A través de este, se asegura que todos tienen una visión completa del producto. Ya que es un documento interdisciplinar, no debe ser muy técnico en ninguno de sus apartados. Es además un documento que vive y cambia a lo largo de casi todo el desarrollo: cualquier cambio en la visión del producto debe reflejarse en el GDD, y todo el equipo debe tener acceso a la versión más reciente. El tono y diseño gráfico del documento pueden ser informales en puntos concretos de forma intencionada para transmitir de forma más eficaz ciertos aspectos del juego, pero en esta ocasión se decidió mantener una maquetación uniforme para que fuera coherente con el resto de esta memoria.
 
-En este capítulo se recopila por tanto el GDD completo en su versión final, es decir, con todos los cambios que se han aplicado a lo largo del desarrollo.
+En este capítulo se recopila, por tanto, el GDD completo en su versión final, es decir, con todos los cambios que se han aplicado a lo largo del desarrollo.
 
 \section{Introducción: MERO-MERO}
 
-El proyecto cimienta sus bases sobre el juego Zelda II: The Adventure of Link. Pese a ser de los juegos menos comprendidos de su franquicia, detrás de su dificultad frustrante propia de la época hay una base jugable que puede ser fácilmente transladable a las sensibilidades actuales.
+El proyecto cimienta sus bases sobre el juego Zelda II: The Adventure of Link. Pese a ser de los juegos menos comprendidos de su franquicia, detrás de su dificultad frustrante propia de la época hay una base jugable que puede ser fácilmente trasladable a las sensibilidades actuales.
 
 El objetivo de este proyecto es desarrollar un metroidvania de perfil bajo con una duración aproximada de media hora. Se busca recontextualizar algunas de las mecánicas de Zelda II mientras se crea una identidad propia. El núcleo del juego se apoya en la exploración y resolución de puzles, recompensando la curiosidad del jugador. Se busca dejar en un segundo plano el plataformeo y combate propios del Zelda II y otros juegos del género, ofreciendo un \textit{gameplay}\footnote{Término que hace referencia a la forma de interactuar entre el jugador y el juego.} pausado, limitado y responsivo que premie el ejecutar unas pocas acciones correctas en el momento justo, en lugar de requerir de grandes reflejos e introducir muchos \textit{inputs} en pocos segundos. 
 
@@ -15,7 +15,7 @@ El objetivo de este proyecto es desarrollar un metroidvania de perfil bajo con u
 
 El juego comienza con un pequeño pez cayendo al vacío en una misteriosa gruta. Sin desearlo, este aterriza sobre una armadura abandonada. Ahora puede usar la armadura como si de su cuerpo se tratase, sin entender por qué. 
 
-Estas cuevas están llenas de otros seres del mar. Algunos de ellos libres y agresivos. Otros sin embargo también encontraron armaduras y les fue otorgado el don del habla. Nadie sabe cómo acabó ahí, qué significan las armaduras, por qué solo algunos de ellos pudieron conseguir una y... lo más importante, cómo salir de estas cuevas.
+Estas cuevas están llenas de otros seres del mar. Algunos de ellos libres y agresivos. Otros, sin embargo, también encontraron armaduras y les fue otorgado el don del habla. Nadie sabe cómo acabó ahí, qué significan las armaduras, por qué solo algunos de ellos pudieron conseguir una y... lo más importante, cómo salir de estas cuevas.
 
 Pero estas grutas no solo están pobladas de criaturas agresivas o desamparadas; también de antiguos secretos y reliquias que serán la clave para escapar de este lugar.
 
@@ -23,11 +23,11 @@ El tono del juego busca ser críptico, ambiguo y a veces inocente. Se le da muy 
 
 \section{Mecánicas principales y objetivos}
 
-En términos de ambientación, el objetivo es que MERO, el protagonista, es simplemente regresar al mar. En términios mecánicos, el jugador participará en el siguiente \textit{bucle de juego}\footnote{estructura jugable principal que el jugador repite a lo largo de todo el juego.}: va explorando el mundo sorteando trampas y enemigos hasta que encuentra un \textbf{bloqueo} que le impida avanzar en cierta dirección. Entonces debe cambiar su rumbo, encontrar una \textbf{mejora} que le permita atravesar el bloqueo. Entonces podrá volver al punto anterior y seguir avanzando. Es importante que estas mejoras sirvan tanto para desbloquear el camino principal como otras estancias que lleven a recompensas secundarias.
+En términos de ambientación, el objetivo es que MERO, el protagonista, es simplemente regresar al mar. En términos mecánicos, el jugador participará en el siguiente \textit{bucle de juego}\footnote{Estructura jugable principal que el jugador repite a lo largo de todo el juego.}: va explorando el mundo sorteando trampas y enemigos hasta que encuentra un \textbf{bloqueo} que le impida avanzar en cierta dirección. Entonces debe cambiar su rumbo, encontrar una \textbf{mejora} que le permita atravesar el bloqueo. Entonces podrá volver al punto anterior y seguir avanzando. Es importante que estas mejoras sirvan tanto para desbloquear el camino principal como otras estancias que lleven a recompensas secundarias.
 
 Como objetivo secundario, el jugador deberá recoger una serie de \textit{corazones} escondidos por todo el mapa que aumentarán su salud. Esto recompensará la curiosidad de los perfiles de jugador que disfruten más de la exploración y facilitará su partida.
 
-Como \textbf{mecánicas jugables principales}, personaje podrá moverse de izquierda a derecha, saltar y atacar. El salto es sencillo, ausero, rígido. Una vez ejecutado un salto no debería ser posible alterar considerablemente su trayectoria. La intención es transmitir sensación de peso. El ataque, por las mismas razones, debe tener un pequeño retardo desde que se pulsa el botón hasta que se realiza. Los desafíos plataformeros y combates, por tanto, deben ser sencillos y legibles, para poder operar fácilmente con este esquema de control.
+Como \textbf{mecánicas jugables principales}, personaje podrá moverse de izquierda a derecha, saltar y atacar. El salto es sencillo, austero, rígido. Una vez ejecutado un salto no debería ser posible alterar considerablemente su trayectoria. La intención es transmitir sensación de peso. El ataque, por las mismas razones, debe tener un pequeño retardo desde que se pulsa el botón hasta que se realiza. Los desafíos plataformeros y combates, por tanto, deben ser sencillos y legibles, para poder operar fácilmente con este esquema de control.
 
 Como \textbf{mecánicas secundarias} se tienen todas las \textit{mejoras} que se pueden desbloquear a lo largo del juego:
 
@@ -208,7 +208,7 @@ El arte conceptual realizado durante la preproducción se puede observar en las 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.7]{img/screen-mockup.png}
-    \caption[Bocetos conceptual de simulación de nivel]{Bocetos conceptual de simulación de nivel}
+    \caption[Bocetos conceptuales de simulación de nivel]{Bocetos conceptual de simulación de nivel}
     \label{fig:boceto-level}
 \end{figure}
 
