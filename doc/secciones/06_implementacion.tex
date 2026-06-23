@@ -7,7 +7,7 @@ En este capítulo se detallará la implementación técnica del proyecto.
 
 La unidad de construcción mínima en Godot es el \textbf{nodo}. Cada nodo puede asignarse como hijo de otro nodo, y puede a su vez ser el padre de otros, formando así una estructura de árbol. Los nodos pueden contener un estado, una lógica que actualiza su estado a lo largo del tiempo, y una representación visual en la ejecución del juego. Es un elemento versátil que puede cumplir cualquier funcionalidad dentro de la arquitectura de un proyecto. Godot cuenta con tipos básicos de nodos, pero el desarrollador puede definir los suyos propios.
 
-Una estructura de árbol de nodos se puede agrupar en lo que se denomina \textbf{escena}. Las escenas tienen un nodo raíz, y otros nodos que hacen de hijos, nietos, etc de esa raíz. Para entender mejor la filosofía de diseño de Godot, estos son algunos ejemplos de unidades lógicas que se pueden construir agrupando nodos en escenas:
+Una estructura de árbol de nodos se puede agrupar en lo que se denomina \textbf{escena}. Las escenas tienen un nodo raíz, y otros nodos que hacen de hijos, nietos, etc. de esa raíz. Para entender mejor la filosofía de diseño de Godot, estos son algunos ejemplos de unidades lógicas que se pueden construir agrupando nodos en escenas:
 
 \begin{itemize}
     \item Personaje del jugador: La escena tendría como raíz un nodo tipo CharacterBody2D (ideado para construir personajes que se mueven). Como hijos tendría un nodo CollisionShape2D para detectar colisiones, un Sprite2D para dibujar el personaje en pantalla y un script asociado a la raíz que implementa su estado y lógica.
@@ -171,7 +171,7 @@ Dado que la máquina de estados resultante es bastante compleja, representarla e
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.5]{img/player-sm-atack.drawio.png}
-    \caption[Flujo de estados de ATTACK, Player]{Diagrama de flujo de estados para el estado ATTACK de Player.}
+    \caption[Flujo de estados de ATACK, Player]{Diagrama de flujo de estados para el estado ATACK de Player.}
     \label{fig:player-state-attack}
 \end{figure}
 
@@ -319,11 +319,11 @@ El ciclo de vida de los disparos es el siguiente:
 \begin{enumerate}
     \item Player crea una instancia de Beam. Indica la dirección del disparo en función de su orientación y lo posiciona en el mismo punto que \textit{ShootingPoint}, nodo alineado con la espada para hacer ver que el disparo aparece en esta.
     \item Player añade este nodo como hijo de su padre (el nodo \textit{GameWorld}, consultar figura \ref{fig:proyect-architecture}).
-    \item La escena Beam actualiza su posición en cada fotograma. Cuando colisiona con una pared o un enemigo, se destruye a si misma.
+    \item La escena Beam actualiza su posición en cada fotograma. Cuando colisiona con una pared o un enemigo, se destruye a sí misma.
 \end{enumerate}
 
 \subsection{Mejora TELEPORT}
-e
+
 Para la mejora del teletransporte se creó la escena \textit{TeleportCrosshair}. Esta es responsable únicamente de avanzar en línea recta y reproducir una animación.
 
 La escena hace uso de una \textit{Curve}, que se puede observar en la figura \ref{fig:teleport-curve}. Este recurso de Godot permite definir gráficamente una curva dentro de un dominio. En este caso se usa la curva para determinar la posición del \textit{crossover} en función del tiempo transcurrido. Al tener una curva \textit{ease-out}, la escena iniciará con velocidad máxima y según avance irá frenando hasta detenerse. De esta forma se consigue un efecto más vistoso y satisfactorio.
@@ -548,7 +548,7 @@ Cada vez que se instancia esta escena en alguna sala, se deben posicionar los no
 
 \subsection{Blob}
 
-Este ememigo es un pez abisal que se arrastra por el suelo. Hereda de \textit{EnemyCharacter}. Avanza en línea recta hasta toparse con un muro o hasta llegar al borde de una plataforma. Entonces, da media vuelta y avanza hacia al lado contrario. En la figura \ref{fig:blob-architecture} se muestra la arquitectura del nodo.
+Este enemigo es un pez abisal que se arrastra por el suelo. Hereda de \textit{EnemyCharacter}. Avanza en línea recta hasta toparse con un muro o hasta llegar al borde de una plataforma. Entonces, da media vuelta y avanza hacia al lado contrario. En la figura \ref{fig:blob-architecture} se muestra la arquitectura del nodo.
 
 Debido a que su patrón de comportamiento es muy simple se decidió no implementar una máquina de estados. Se muestra un diagrama de su rutina en la figura \ref{fig:blob-flow}.
 
@@ -639,7 +639,7 @@ Para definir el espacio en el que se realiza la búsqueda, se configuró en el \
     \label{fig:triangle-chase-2}
 \end{figure}
 
-Con el objetivo de lograr una jugabilidad más divertida, el enemigo solo genera un camino cuando pierde de vista al jugador, es decir, cuando hay algún obstáculo entre ellos. En caso contrario, se sigue una estrategia más simple y menos eficiente: primero se desciende hasta alcanzar la altura del jugador, y luego se avanza en linea recta, como se muestra en la figura \ref{fig:triangle-chase-1}. Esto permite al jugador evadir al enemigo saltándolo, cosa que sería imposible si este siempre siguiera el camino óptimo. 
+Con el objetivo de lograr una jugabilidad más divertida, el enemigo solo genera un camino cuando pierde de vista al jugador, es decir, cuando hay algún obstáculo entre ellos. En caso contrario, se sigue una estrategia más simple y menos eficiente: primero se desciende hasta alcanzar la altura del jugador, y luego se avanza en línea recta, como se muestra en la figura \ref{fig:triangle-chase-1}. Esto permite al jugador evadir al enemigo saltándolo, cosa que sería imposible si este siempre siguiera el camino óptimo. 
 
 \begin{figure}[h]
     \centering
@@ -831,7 +831,7 @@ En cuanto a \textbf{accesibilidad auditiva y visual}, todos los textos del juego
 % visual/daltonismo
 % mencionar colores del mapeado
 
-Para garantizar la \textbf{accesibilidad de las personas con daltonismo} se usó la herramienta ColorBlindnessTest\cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tile atlas} del mapa. Finalmente, se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, las tres últimas filas de color son diferenciadas en todos los principales tipos de daltonismo.
+Para garantizar la \textbf{accesibilidad de las personas con daltonismo} se usó la herramienta ColorBlindnessTest \cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tile atlas} del mapa. Finalmente, se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, las tres últimas filas de color son diferenciadas en todos los principales tipos de daltonismo.
 
 \begin{figure}[h]
     \centering
@@ -886,7 +886,7 @@ En cuanto a \textbf{accesibilidad cognitiva}, se realizó un análisis de un seg
 
 % hablar de gdunit
 
-Para desarrollar los tests automáticos del proyecto se usó \textit{GDUnit4} \cite{gdunit4}, un framework embebido en Godot que permite el desarrollo de tests unitarios y de integración. También permite detectar filtraciones de memoria, monitorizar el rendimiento y detectar escenas huérfanas en el árbol de escena. Se priorizó el desarrollo de tests para las funciones centrales y estructurales del proyecto, dejando de lado otros sistemas más tangentes que posiblemente cambiarían a lo largo del desarrollo. En la figura \ref{fig:gdunit-execution} se tiene un ejemplo de ejecución de los tests del proyecto. En la tabla \ref{tab:test-table} se tiene el listado de tests del proyecto.
+Para desarrollar los tests automáticos del proyecto se usó \textit{GdUnit4} \cite{gdunit4}, un framework embebido en Godot que permite el desarrollo de tests unitarios y de integración. También permite detectar filtraciones de memoria, monitorizar el rendimiento y detectar escenas huérfanas en el árbol de escena. Se priorizó el desarrollo de tests para las funciones centrales y estructurales del proyecto, dejando de lado otros sistemas más tangentes que posiblemente cambiarían a lo largo del desarrollo. En la figura \ref{fig:gdunit-execution} se tiene un ejemplo de ejecución de los tests del proyecto. En la tabla \ref{tab:test-table} se tiene el listado de tests del proyecto.
 
 \begin{figure}[h]
     \centering
