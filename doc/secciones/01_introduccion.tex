@@ -6,18 +6,18 @@ El proyecto es software libre y está publicado en \href{https://github.com/pabl
 
 \section{Contexto} 
 
-\textbf{La industria del videojuego genera más ingresos que la música y el cine juntos}\footnote{\url{https://mediacat.uk/dentsu-gaming-is-bigger-than-music-and-movies-combined/}}. Esta contundente frase ha sonado mucho en los últimos años, y no es de extrañar. Lo que antes se percibía como un juguete para niños ha ido ganando presencia en el mercadado de jóvenes y adultos a lo largo de décadas. También han crecido las formas y formatos en las que se distribuyen los videojuegos: desde juegos para un jugador que narran una historia épica, juegos online en los que conectar con otras personas, o apps para matar el rato en un smartphone sin mayor pretensión. Es probable que el lector haya tenido contacto con este mundo de una forma u otra, aunque fuera a través del \textit{juego del dinosaurio} que muestra el navegador \textit{Chrome} cuando no tiene conexión a internet.
+\textbf{La industria del videojuego genera más ingresos que la música y el cine juntos} \cite{gamingisbigger}. Esta contundente frase ha sonado mucho en los últimos años, y no es de extrañar. Lo que antes se percibía como un juguete para niños ha ido ganando presencia en el mercado de jóvenes y adultos a lo largo de décadas. También han crecido las formas y formatos en las que se distribuyen los videojuegos: desde juegos para un jugador que narran una historia épica, juegos online en los que conectar con otras personas, o apps para matar el rato en un smartphone sin mayor pretensión. Es probable que el lector haya tenido contacto con este mundo de una forma u otra, aunque fuera a través del \textit{juego del dinosaurio} que muestra el navegador \textit{Chrome} cuando no tiene conexión a internet.
 
 Los videojuegos \textbf{son productos culturales}. Su identidad y las razones de su éxito o fracaso dependen en gran medida de decisiones artísticas y de diseño ajenas a la ingeniería. Pero \textbf{también son necesariamente piezas de software}. Necesitan de un proceso de ingeniería para poder existir. Por ello, es de especial interés estudiar y refinar las metodologías para afrontar un desarrollo de estas características. 
 
-En este trabajo se estudiarán las características y necesidades software particulares para el desarrollo de un videojuego. A partir de las conclusiones extraidas, se diseñará una metodología que se aplicará para producir un proyecto completo del género \textit{Metroidvania}. Tras eso, se hará una retrospectiva de la metodología para determinar su eficacia.
+En este trabajo se estudiarán las características y necesidades software particulares para el desarrollo de un videojuego. A partir de las conclusiones extraídas, se diseñará una metodología que se aplicará para producir un proyecto completo del género \textit{Metroidvania}. Tras eso, se hará una retrospectiva de la metodología para determinar su eficacia.
 
 A continuación se definirán una serie de términos esenciales para el entendimiento del trabajo a realizar.
 
 \begin{itemize}
-    \item \textbf{Metroidvania}: Género de videojuegos. El nombre es una combinación de los títulos \textit{Metroid} y \textit{Castlevania}, dos franquicias nacidas a finales de los años 80 que sentaron sus bases. Son juegos basados en la exploración de un gran mapa laberíntico e interconectado donde se deberán sortear pelígros y resolver puzles.
+    \item \textbf{Metroidvania}: Género de videojuegos. El nombre es una combinación de los títulos \textit{Metroid} y \textit{Castlevania}, dos franquicias nacidas a finales de los años 80 que sentaron sus bases. Son juegos basados en la exploración de un gran mapa laberíntico e interconectado donde se deberán sortear peligros y resolver puzles.
 
-    \item \textbf{Motor de videojuegos}: Un \textit{game engine} o motor de videojuegos es un \textit{framework} especializado en el desarrollo de videojuegos. Entendemos \textit{framework} como una abstracción software con la que, a traves de una serie de herramientas y funcionalidades genéricas, ofrecen un estándar para desarrollar programas de cierta índole, facilitando y acelerando el desarrollo. Estos a menudo están encapsulados en forma de programa o librería. En este trabajo se referirá a los motores de videojuegos simplemente como \textit{motor}.
+    \item \textbf{Motor de videojuegos}: Un \textit{game engine} o motor de videojuegos es un \textit{framework} especializado en el desarrollo de videojuegos. Entendemos \textit{framework} como una abstracción software con la que, a través de una serie de herramientas y funcionalidades genéricas, ofrecen un estándar para desarrollar programas de cierta índole, facilitando y acelerando el desarrollo. Estos a menudo están encapsulados en forma de programa o librería. En este trabajo se referirá a los motores de videojuegos simplemente como \textit{motor}.
     
     \item \textbf{Ingeniería del software}: Rama de la informática que estudia los procesos por los cuales diseñar, construir y mantener soluciones basadas en software.
 
@@ -29,9 +29,9 @@ A continuación se definirán una serie de términos esenciales para el entendim
 
 \section{Motivación}
 
-\subsection{Industria y proyeccion económica}
+\subsection{Industria y proyección económica}
 
-El mercado del videojuegos global acumuló un valor de 184 mil millones de dólares en el año 2024 según el reporte anual de \textit{Dentsu}\cite{dentsu-report}, superando al cine y la música, que se posicionan en 33.9 y 28.6 mil millones de dólares respectivamente. En cuanto al panorama español, en la edición de 2023 \textit{Libro blanco de desarrollo español del videojuego}\cite{libro-blanco} se estima que entre el 2022 y el 2026 la facturación nacional de la industria crecerá un 8\%, alcanzando los 1.880 millones.
+El mercado del videojuego global acumuló un valor de 184 mil millones de dólares en el año 2024 según el reporte anual de \textit{Dentsu}\cite{dentsu-report}, superando al cine y la música, que se posicionan en 33.9 y 28.6 mil millones de dólares respectivamente. En cuanto al panorama español, en la edición de 2023 del \textit{Libro blanco de desarrollo español del videojuego}\cite{libro-blanco} se estima que entre el 2022 y el 2026 la facturación nacional de la industria crecerá un 8\%, alcanzando los 1.880 millones.
 
 \begin{figure}[h]
     \centering
@@ -44,29 +44,29 @@ Según el informe de Newzoo\cite{videogame-user-growth}, en 2025 el número acti
 
 \subsection{Metodologías de desarrollo}
 
-El software ya es de por si complejo de diseñar, construir y mantener. En el caso de los videojuegos, al ser proyectos de índole creativa se le añaden una serie de características particulares que los diferencian de una aplicación informática genérica.
+El software ya es de por sí complejo de diseñar, construir y mantener. En el caso de los videojuegos, al ser proyectos de índole creativa se le añaden una serie de características particulares que los diferencian de una aplicación informática genérica.
 
-En primer lugar, el software normalmente pretende resolver un problema, cubrir una necesidad, o responder a los requisitos de un cliente. Un programa de gestión de agenda, por ejemplo, debe permitir al usuario crear eventos a horas concretas, apuntar tareas pendientes o visualizar un calendario. Estos requisitos pueden ser enumerados y concretados de manera relativamente simple. Ahora bien, ¿cuales son los requisitos de un videojuego? ¿Qué necesidad cubre? En última instancia debe entretener o divertir a un público objetivo. Pero, ¿cómo se especifica eso? ¿Qué elementos debe tener para ser divertido? ¿Cómo se sabe si una idea será divertida antes de invertir tiempo y recursos en implementarla por completo? ¿Cómo se encajan estas cuestiones en el ciclo de desarrollo? Nada de esto evidente.
+En primer lugar, el software normalmente pretende resolver un problema, cubrir una necesidad, o responder a los requisitos de un cliente. Un programa de gestión de agenda, por ejemplo, debe permitir al usuario crear eventos a horas concretas, apuntar tareas pendientes o visualizar un calendario. Estos requisitos pueden ser enumerados y concretados de manera relativamente simple. Ahora bien, ¿cuáles son los requisitos de un videojuego? ¿Qué necesidad cubre? En última instancia debe entretener o divertir a un público objetivo. Pero, ¿cómo se especifica eso? ¿Qué elementos debe tener para ser divertido? ¿Cómo se sabe si una idea será divertida antes de invertir tiempo y recursos en implementarla por completo? ¿Cómo se encajan estas cuestiones en el ciclo de desarrollo? Nada de esto evidente.
 
-Además, los videojuegos son proyectos creativos. Junto a la programación conviven materias como arte, música y narrativa entre otras. Los equipos de desarrollo cuentan con perfiles tan diversos como artistas conceptuales, modeladores 3D, animadores, compositores, escritories, diseñadores, etc. Todas estas disciplinas se solapan e interconectan unas con otras y dotan de identidad y atractivo al producto final, por lo que es de suma importancia tener en cuenta su gestión en el proceso de desarrollo.
+Además, los videojuegos son proyectos creativos. Junto a la programación conviven materias como arte, música y narrativa entre otras. Los equipos de desarrollo cuentan con perfiles tan diversos como artistas conceptuales, modeladores 3D, animadores, compositores, escritores, diseñadores, etc. Todas estas disciplinas se solapan e interconectan unas con otras y dotan de identidad y atractivo al producto final, por lo que es de suma importancia tener en cuenta su gestión en el proceso de desarrollo.
 
 Las grandes producciones del sector (bautizadas como \textit{AAA}, triple A) no han hecho más que aumentar en presupuesto y tiempos de desarrollo en los últimos años, llegando proyectos a abarcar casi una década de desarrollo y un coste de cientos de millones de dólares.
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale=0.09]{img/tlou.jpg}
-    \caption[The Last of Us Parte II]{The Last of Us Parte II, desarrollado por \textit{Naughty Dog}, tuvo un coste de 220 millones de dólares y un desarrollo de 70 meses. Imagen extraida de \href{https://www.anaitgames.com/analisis/analisis-the-last-of-us-parte-ii}{Anait}.}
+    \caption[The Last of Us Parte II]{The Last of Us Parte II, desarrollado por \textit{Naughty Dog}, tuvo un coste de 220 millones de dólares y un desarrollo de 70 meses. Imagen extraída de \href{https://www.anaitgames.com/analisis/analisis-the-last-of-us-parte-ii}{Anait}.}
     \label{fig:tlou2}
 \end{figure}
 
-La complejidad software, la naturaleza creativa del diseño lúdico, la multidisciplina y los desarrollos cada vez más ambiciosos son claves para entender por qué a diferencia de otras industrias como la del cine, también con producciones millonarias, los plazos son tan difíciles de cumplir en videojuegos. Hay decenas de ejemplos de retrasos muy sonados, como \textit{The Last Guardian} (Japan Studio), anunciado al público en 2009 con vistas de publicarse en 2011, para finalmente hacerlo en 2016. En un estudio\cite{delayed-games-study} realizado sobre 23,485 juegos lanzados en la plataforma \textit{Steam}, se observó que el 48\% de los proyectos acabaron siendo retrasados respecto a su fecha de lanzamiento anunciada al público.
+La complejidad software, la naturaleza creativa del diseño lúdico, la multidisciplina y los desarrollos cada vez más ambiciosos son claves para entender por qué a diferencia de otras industrias como la del cine, también con producciones millonarias, los plazos son tan difíciles de cumplir en videojuegos. Hay decenas de ejemplos de retrasos muy sonados, como \textit{The Last Guardian} (Japan Studio), anunciado al público en 2009 con vistas de publicarse en 2011, para finalmente hacerlo en 2016. En un estudio \cite{delayed-games-study} realizado sobre 23,485 juegos lanzados en la plataforma \textit{Steam}, se observó que el 48\% de los proyectos acabaron siendo retrasados respecto a su fecha de lanzamiento anunciada al público.
 
-De esto solo se puede extraer una conclusión: \textbf{el desarrollo de videojuegos tiene necesidades particulares}, no cubiertas por la ingeniería del software genérica, por lo que es de especial interes estudiar y adaptar los procesos de desarrollo para cubrir estas necesidades.
+De esto solo se puede extraer una conclusión: \textbf{el desarrollo de videojuegos tiene necesidades particulares}, no cubiertas por la ingeniería del software genérica, por lo que es de especial interés estudiar y adaptar los procesos de desarrollo para cubrir estas necesidades.
 
 
 \section{Objetivos}
 
-El objetivo principal de este trabajo será formular una metodología para desarrollo de videojuegos y usarla para implementar un juego del género \textit{Metroidvania}. El resultado será un producto completo de principio a fin, integrando todos los ámbitos del desarrollo a parte del técnico como el arte, sonido y diseño. Este objetivo se desgrana en los siguientes objetivos específicos:
+El objetivo principal de este trabajo será formular una metodología para desarrollo de videojuegos y usarla para implementar un juego del género \textit{Metroidvania}. El resultado será un producto completo de principio a fin, integrando todos los ámbitos del desarrollo aparte del técnico como el arte, sonido y diseño. Este objetivo se desgrana en los siguientes objetivos específicos:
 
 \begin{itemize}
     \item \textbf{OE1}: Estudio de la literatura existente en los procesos de desarrollo en videojuegos. Entender sus retos y particularidades respecto a la ingeniería de software genérica.
@@ -82,7 +82,7 @@ Esta memoria se divide en los siguientes capítulos:
 \begin{enumerate}
     \item \textbf{Introducción}: El capítulo actual. Introduce a la materia y da el contexto necesario para entender el resto del trabajo.
     \item \textbf{Estado del arte}: Se realiza un estudio sobre las características y retos del desarrollo de videojuegos, el género Metroidvania, las herramientas para la gestión de calidad y la accesibilidad en este ámbito.
-    \item \textbf{Planificación y desarrollo}: A partir de las conclusiones extraidas del capítulo anterior, se propone una metodología para el desarrollo del proyecto y se realiza una planificación. Posteriormente, se realiza un reporte de todo el desarrollo por etapas.
+    \item \textbf{Planificación y desarrollo}: A partir de las conclusiones extraídas del capítulo anterior, se propone una metodología para el desarrollo del proyecto y se realiza una planificación. Posteriormente, se realiza un reporte de todo el desarrollo por etapas.
     \item \textbf{Game Design Document}: Este capítulo es el \textit{GDD}, documentación central en el desarrollo de un videojuego que recopila su visión y alcance.
     \item \textbf{Implementación}: Se desarrollan todos los detalles técnicos de la implementación del proyecto en Godot.
     \item \textbf{Conclusiones}: %TODO
