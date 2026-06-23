@@ -823,13 +823,7 @@ El jugador accede a estas opciones desde la escena \textit{SettingsMenu}. Esta o
 %% ACCESIBILIDAD
 A continuación se repasarán las consideraciones que se tuvieron respecto a la accesibilidad y su relación con los ajustes previamente explicados si la tuvieran.
 
-% auditiva
-% todos los textos del juego son más grandes que el mínimo de píxeles recomendado, con fondo negro. El usuario puede ajustar el volumen de los 3 canales. No hay ningún elemento que requiera de sonido para avanzar
-
 En cuanto a \textbf{accesibilidad auditiva y visual}, todos los textos del juego son más grandes que el tamaño mínimo de fuente recomendado (46 píxeles). Aparecen siempre sobre un fondo negro y es el usuario el que avanza el texto a voluntad. El juego no tiene voces, por lo que el texto es el único canal de comunicación en ese sentido. El usuario puede regular el volumen diferenciando entre general, música y sonido. Tampoco existe ningún elemento de juego que requiera de escuchar audio para poder progresar.
-
-% visual/daltonismo
-% mencionar colores del mapeado
 
 Para garantizar la \textbf{accesibilidad de las personas con daltonismo} se usó la herramienta ColorBlindnessTest \cite{simulador-daltonismo}. Esta permite a partir de una imagen simular cómo la verían usuarios con ciertos tipos de daltonismo. Esto es especialmente útil para detectar si los distintos colores se diferenciarían bien. El mapa del juego se divide en tres zonas principales. Cada una de estas zonas tiene motivos de color distintos. Esto ayuda a orientarse y recordar salas más fácilmente. Para asegurar que estas zonas serían diferenciadas sin problema, se cargó en la herramienta el \textit{tile atlas} del mapa. Finalmente, se eligieron los colores gris, naranja y azul para las tres zonas principales. Como se puede ver en la figura \ref{fig:daltonismo-comparacion}, las tres últimas filas de color son diferenciadas en todos los principales tipos de daltonismo.
 
@@ -984,7 +978,6 @@ jobs:
           mkdir -v -p ~/.local/share/godot/export_templates
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
       
-      # If you don't want to do a web build, remove the following section
       - name: Web Build
         run: |
           cd ${PROJECT_FOLDER}
