@@ -23,9 +23,9 @@ Tal y como estipula el método de diseño profundo, los principios de diseño de
 
 El juego consistiría en un personaje que a través de un único botón pudiera realizar varias acciones como saltar, planear, disparar, etc. Un contador limitaría el número de veces que puede pulsar ese botón, bajando cada vez que se pulsa. Se podría aumentar el número recogiendo objetos que sumaran o multiplicaran su valor por cierto número. El jugador tendría que resolver puzles y acertijos para poder explorar el mapa.
 
-A partir de esta premisa se realizó un prototipo. En distintas fases del prototipo se dio a probar a usuarios para comprobar si la idea funcionaba y realizar ajustes. Durante las pruebas no se dio a los jugadores ninguna instrucción más allá de los controles básicos para que pudieran moverse y saltar. Esto último era crucial para validar el concepto: es necesario comprobar si el prototipo transmite las ideas y objetivos del juego orgánicamente, llevando a los jugadores a poder resolver los puzles por ellos mismos.
+A partir de esta premisa se realizó un prototipo. En distintas fases del prototipo se dio a probar a usuarios para comprobar si la idea funcionaba y realizar ajustes. Durante las pruebas no se dio a los jugadores ninguna instrucción más allá de los controles básicos para que pudieran moverse y saltar. Esto último era crucial para validar el concepto: es necesario comprobar si el prototipo transmite las ideas y objetivos del juego orgánicamente, llevando a los jugadores a poder resolver los puzles por ellos mismos. Se pueden ver imágenes del prototipo en la figura \ref{fig:prototypearithmetic}
 
-\begin{figure}[H]
+\begin{figure}[htb]
     \centering
 
     \begin{minipage}{0.45\textwidth}
@@ -69,7 +69,7 @@ Los principios de diseño son los siguientes:
     \item Desafíos plataformeros dinámicos y exigentes.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \includegraphics[scale=0.37]{img/bounce_prototype.png}
     \caption[Prototipo de juego de la pelota]{Prototipo del juego de la pelota.}
@@ -100,7 +100,7 @@ Los principios de diseño son:
 
 Tras analizar el juego, se llegó a la conclusión de que muchos de los aspectos de Zelda II serían más disfrutables si fueran menos exigentes y modernizados a estándares de diseño actuales: de ahí nace la idea de plantear una experiencia más pausada en cuanto al movimiento del jugador. Además, es un tipo de juego que los jugadores con alguna discapacidad motora pueden disfrutar más fácilmente, cubriendo así desde el diseño uno de los requisitos de accesibilidad del proyecto y aumentando el público objetivo. Además, la estructura del Zelda II permite fácilmente añadir mejoras al personaje para aumentar su expresividad y capacidades. En la figura \ref{fig:prototypezelda} se muestran capturas de pantalla del prototipo  realizado.
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
 
     \begin{minipage}{0.45\textwidth}
@@ -169,7 +169,7 @@ A continuación se describen los puzles que usan las restricciones. Cada puzle t
     \item \textbf{PZ-17 [TELEPORT]}: El jugador ve en una sala una llave inaccesible. Está demasiado lejos para alcanzarla usando el teletransporte. Deberá ir a la habitación adyacente y usar el teletransporte desde ahí para alcanzarla.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[htb]
     \centering
     \includegraphics[scale=0.37]{img/deep_design_diagram.drawio.png}
     \caption[Diagrama de diseño profundo]{Diagrama de diseño profundo del prototipo Zelda II.}
@@ -190,12 +190,12 @@ A continuación se redactó una primera versión del \textit{Game Design Documen
 
 \subsection{Product Backlog}
 
-Se redactó el product backlog con las siguientes historias de usuario e historias de juego:
+Se redactó el product backlog con las siguientes historias de usuario e historias de juego, que se puede observar en las tablas \ref{tab:backloghu} y \ref{tab:backloghj}.
 
 
-\begin{table}[H]
+\begin{table}[htb]
     \centering
-    \begin{tabular}{|l|p{13cm}|l|}
+    \begin{tabular}{|l|p{10cm}|l|}
     \hline
         Código & Descripción & Prioridad \\ \hline
         HU-01 & Como usuario, me agradaría abrir el juego y ver una pantalla de título atractiva, desde la que poder comenzar o reanudar una partida. & Alta \\ \hline
@@ -209,7 +209,16 @@ Se redactó el product backlog con las siguientes historias de usuario e histori
         HU-09 & El jugador quiere poder conectar un mando para jugar más cómodamente. & Media \\ \hline
         HU-10 & El jugador con discapacidad motora necesita poder conectar su mando adaptable para poder jugar. & Media \\ \hline
         HU-11 & El jugador quiere poder consultar un mapa con su ubicación actual para navegar el entorno con mayor facilidad & Baja \\ \hline
-        ~ & ~ & ~ \\ \hline
+    \end{tabular}
+    \caption{Backlog de historias de usuario.}
+    \label{tab:backloghu}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|p{10cm}|l|}
+    \hline
+        Código & Descripción & Prioridad \\ \hline
         HJ-01 & Es divertido pensar en qué lugares me podría ser de utilidad un objeto que acabo de descubrir & Alta \\ \hline
         HJ-02 & Es divertido desbloquear puertas por las que previamente no podía pasar & Alta \\ \hline
         HJ-03 & Es satisfactorio golpear enemigos con la espada y sentir que ha sido un golpe fuerte & Media \\ \hline
@@ -225,6 +234,8 @@ Se redactó el product backlog con las siguientes historias de usuario e histori
         HJ-12 & Es divertido teletransportarme para sortear muros que de otra forma serían infranqueables & Baja \\ \hline
         HJ-13 & Es divertido usar el teletransporte de formas poco convencionales para ""romper"" el juego & Baja \\ \hline
     \end{tabular}
+    \caption{Backlog de historias de juego.}
+    \label{tab:backloghj}
 \end{table}
 
 \subsection{Planificación}
@@ -235,7 +246,7 @@ Hay que puntualizar que esta estimación tiene en cuenta únicamente las horas d
 
 Los sprints se diseñaron con la estructura explicada en la figura \ref{fig:production}, y se distribuyen de la siguiente manera:
 
-\begin{table}[H]
+\begin{table}[htb]
     \centering
     \begin{tabular}{|l|l|p{8cm}|p{1,8cm}|}
     \hline
@@ -252,7 +263,7 @@ Los sprints se diseñaron con la estructura explicada en la figura \ref{fig:prod
 
 Para planificar cada sprint de 20 horas, se usarán solo 15 para estimar las tareas a realizar. Se dejarán 2 horas para imprevistos, otras 2 horas para la validación y ajuste del proyecto al terminar el sprint, y otra hora para realizar el \textit{sprint review} y \textit{sprint planning} para la siguiente iteración.
 
-\begin{table}[!ht]
+\begin{table}[htb]
     \centering
     \begin{tabular}{|l|l|l|}
     \hline
@@ -301,7 +312,7 @@ El sprint 1 se planificó con el objetivo de trabajar los siguientes aspectos:
 
 En la tabla \ref{tab:sprint1task} se pueden observar las tareas que se plantearon para el sprint, junto a su estimación y el tiempo efectivo de ejecución. Durante este sprint se observó la necesidad de asegurar que todos los tests automáticos que se realizaran fueran correctos en la rama \textit{develop}. Es por ello que se decidió \textbf{añadir una tarea para configurar GitHub Actions para la ejecución de tests automáticos}. Durante la tarea de validación y ajustes surgieron cuatro tareas adicionales, tres de las cuales pudieron resolverse en tiempo de sprint. Se pueden observar en la tabla \ref{tab:aditionalsprint1task}.
 
-\begin{table}[!ht]
+\begin{table}[htb]
     \centering
     \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
     \hline
@@ -329,7 +340,7 @@ En la tabla \ref{tab:sprint1task} se pueden observar las tareas que se plantearo
     \label{tab:sprint1task}
 \end{table}
 
-\begin{table}[!ht]
+\begin{table}[htb]
     \centering
     \begin{tabular}{|l|p{8cm}|l|}
     \hline
@@ -576,7 +587,7 @@ En el sprint 4 se terminaron de implementar los sistemas que componen el núcleo
     \label{tab:aditionalsprint4task}
 \end{table}
 
-En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 20,3 efectivas. El sprint se realizó en el tiempo estimado y sin ningún imprevisto o problema. Por tanto, en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico.
+En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 20,3 efectivas. El sprint se realizó en el tiempo estimado y sin ningún imprevisto o problema. Por tanto, en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico. En la tabla \ref{tab:aditionalsprint4task} se tienen las tareas adicionales para este sprint.
 
 \subsection{Sprint 5}
 
@@ -667,7 +678,7 @@ La fase de postproducción consistió en un ciclo intensivo de pruebas con jugad
 
 En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{tab:postpro4} se muestra la lista tareas completa:
 
-\begin{table}[H]
+\begin{table}[hbt]
     \centering
     \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
     \hline
@@ -698,7 +709,7 @@ En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{
 \end{table}
 
 
-\begin{table}[H]
+\begin{table}[hbt]
     \centering
     \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
     \hline
@@ -729,7 +740,7 @@ En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{
 \end{table}
 
 
-\begin{table}[H]
+\begin{table}[hbt]
     \centering
     \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
     \hline
@@ -760,7 +771,7 @@ En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{
 \end{table}
 
 
-\begin{table}[H]
+\begin{table}[hbt]
     \centering
     \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
     \hline
@@ -811,7 +822,7 @@ El cuestionario recogía la siguiente información:
     \item ¿Has tenido alguna dificultad relacionada con la accesibilidad del juego? (Respuesta múltiple)
 \end{itemize}
 
-Se expuso además el proyecto en el evento UGR LAN Party, organizado en la ETSIIT de la Universidad de Granada. En este distintas personas probaron el juego a lo largo de toda la jornada. Fueron partidas más cortas, casuales y con menor monitorización, pero sirvieron igualmente para recoger la opinión informal de un gran número de usuarios.
+Se expuso además el proyecto en el evento UGR LAN Party (figura \ref{fig:ugrlanparty}), organizado en la ETSIIT de la Universidad de Granada. En este distintas personas probaron el juego a lo largo de toda la jornada. Fueron partidas más cortas, casuales y con menor monitorización, pero sirvieron igualmente para recoger la opinión informal de un gran número de usuarios.
 
 \begin{figure}[h]
     \centering
@@ -832,7 +843,7 @@ En un proyecto comercial, esta fase del desarrollo tendría una mayor carga de d
 
 Para recapitular, durante la preproducción se estimó que tomaría 230 horas de trabajo completar este proyecto. En la tabla \ref{tab:hours} se recopila las horas empleadas en cada fase del proyecto, dando un total de \textbf{228,8 horas}. Se cumplió el plazo de la estimación inicial.
 
-\begin{table}[!ht]
+\begin{table}[hbt]
     \centering
     \begin{tabular}{|l|l|}
     \hline
