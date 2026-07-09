@@ -733,6 +733,7 @@ bus = &"SFX"
 
 [node name="Blink" type="AudioStreamPlayer" parent="." unique_id=1757889123]
 stream = ExtResource("18_6w0b2")
+volume_db = -15.0
 bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

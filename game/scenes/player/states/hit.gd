@@ -11,7 +11,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	if player.current_health <= 0:
 		enter_dead = true
 		$KnockBackTimer.wait_time = 0.8
-	
+	player.free_crosshair()
 	player.set_animation("hit")
 	Input.start_joy_vibration(0,0.8,0.8,0.4)
 	player.invencible = true

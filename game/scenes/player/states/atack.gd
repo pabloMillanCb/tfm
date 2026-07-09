@@ -19,7 +19,11 @@ func _update_physics(_delta):
 	player.move_and_slide()
 
 func _on_atack_animation_end():
-	if (stored_speed != 0):
+	if !player.is_on_floor() and player.velocity.y >= 0:
+		finished.emit(FALLING)
+	elif !player.is_on_floor() and player.velocity.y < 0:
+		finished.emit(JUMP)
+	elif (stored_speed != 0):
 		finished.emit(MOVE)
 	else:
 		finished.emit(IDLE)

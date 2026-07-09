@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bd3t3y04bolwp" path="res://assets/sound/enemy_death.wav" id="17_067ba"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sjbf3"]
+resource_local_to_scene = true
 shader = ExtResource("2_igthh")
 shader_parameter/whiten = true
 shader_parameter/time = 0.0

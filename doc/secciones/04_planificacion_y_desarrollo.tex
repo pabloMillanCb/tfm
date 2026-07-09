@@ -1,0 +1,863 @@
+\chapter{Planificación y desarrollo}
+\label{chap:development}
+
+En este capítulo se detallará la programación temporal inicial. Por último, en el apartado de seguimiento, se detallará el desarrollo de las distintas fases y sprints, además de realizar una retrospectiva comparando el desarrollo con la planificación inicial.
+
+\section{Preproducción}
+
+\subsection{Diseño profundo}
+
+Se comenzó la preproducción aplicando \textbf{diseño profundo}. Se plantearon, implementaron y validaron distintas aproximaciones para plantear el juego. A continuación se detallarán las pruebas de concepto y prototipos más relevantes que se estudiaron durante las fases de \textbf{definición} y \textbf{exploración}, así como el que fue elegido finalmente para el proyecto.
+
+\subsubsection{Plataformas aritmético}
+
+Este concepto fue inspirado por la comunidad del videojuego Super Mario 64 (Nintendo, 1996). En esta hay un grupo de usuarios que se dedican a estudiar el juego a un nivel técnico, aplicando técnicas de ingeniería inversa, decompilado e interacción con el hardware de la consola con un objetivo: averiguar cuál es el número mínimo de pulsaciones del botón de salto necesario para completar el juego. El concepto para el prototipo era trasladar esas mismas sensaciones a un juego de puzles en la que el usuario ve limitadas las acciones que puede realizar para explorar un entorno.
+
+Tal y como estipula el método de diseño profundo, los principios de diseño de este concepto son los siguientes:
+
+\begin{itemize}
+    \item Traducción de las sensaciones observadas en la comunidad de Super Mario 64 a un juego de puzles
+    \item Simplificación del concepto: no debe ser necesario interactuar con \textit{bugs}, detalles técnicos de software o hardware.
+    \item Progresión basada en conocimiento: el jugador tiene disponible desde el principio más opciones de las que sabe. A través de la resolución de puzles descubre cosas que no sabía qué podía hacer y puede aplicar en otros lugares.
+\end{itemize}
+
+El juego consistiría en un personaje que a través de un único botón pudiera realizar varias acciones como saltar, planear, disparar, etc. Un contador limitaría el número de veces que puede pulsar ese botón, bajando cada vez que se pulsa. Se podría aumentar el número recogiendo objetos que sumaran o multiplicaran su valor por cierto número. El jugador tendría que resolver puzles y acertijos para poder explorar el mapa.
+
+A partir de esta premisa se realizó un prototipo. En distintas fases del prototipo se dio a probar a usuarios para comprobar si la idea funcionaba y realizar ajustes. Durante las pruebas no se dio a los jugadores ninguna instrucción más allá de los controles básicos para que pudieran moverse y saltar. Esto último era crucial para validar el concepto: es necesario comprobar si el prototipo transmite las ideas y objetivos del juego orgánicamente, llevando a los jugadores a poder resolver los puzles por ellos mismos. Se pueden ver imágenes del prototipo en la figura \ref{fig:prototypearithmetic}
+
+\begin{figure}[htb]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_1.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_2.png}
+    \end{minipage}
+
+    \vspace{0.3cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/arithmetic_prototype_3.png}
+    \end{minipage}
+
+    \caption[Prototipo de plataformas aritmético]{Prototipo de plataformas aritmético.}
+    \label{fig:prototypearithmetic}
+\end{figure}
+
+
+Para este prototipo se empleó un total de \textbf{11,5 horas de trabajo efectivo}. Se acabó descartando por las siguientes razones:
+\begin{itemize}
+    \item Por el tipo de juego, el proyecto requeriría de mucho trabajo de diseño jugable, pero muy poco de implementación, por lo que no se ajustaba a las necesidades académicas y técnicas de este trabajo.
+    \item La expresividad de las mecánicas parecía prometer, pero casa más con un juego lineal estructurado en niveles que en un metroidvania.
+\end{itemize}
+
+
+\subsubsection{Juego de la pelota}
+
+Este concepto consistía realizar un metroidvania con un alto énfasis en el plataformeo en el que se controla a una pelota de baloncesto. En lugar de simplemente saltar, como es común en este tipo de juegos, se debe rebotar en el suelo para llegar alto. Se partía de la base de un proyecto realizado de forma previa a este trabajo: un pequeño juego en el que el jugador controla a una pelota realizando rebotes para superar obstáculos. Se pretendía aprovechar esa base y expandirla a un juego de exploración.
+
+Los principios de diseño son los siguientes:
+\begin{itemize}
+    \item Transmisión al jugador de la percepción háptica del movimiento de botar una pelota con la mano.
+    \item Aproximación alternativa al verbo 'salto' en videojuegos de plataformas.
+    \item Exploración de verticalidad en el diseño de niveles.
+    \item Desafíos plataformeros dinámicos y exigentes.
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[scale=0.37]{img/bounce_prototype.png}
+    \caption[Prototipo de juego de la pelota]{Prototipo del juego de la pelota.}
+    \label{fig:bounceprototype}
+\end{figure}
+
+Se realizó un prototipo que puede verse en la figura \ref{fig:bounceprototype}. En total supuso \textbf{7 horas de trabajo efectivo}. A partir de este se decidió descartar el concepto del juego antes de realizar pruebas con otros usuarios. Esto se debió a lo siguiente:
+
+\begin{itemize}
+    \item Las salas en un metroidvania deben ser, en su mayoría, agnósticas a la dirección del jugador. Es decir, si tiene dos entradas/salidas a ambos laterales, esta debe poder recorrerse tanto de derecha a izquierda como al revés. Este requisito complica bastante el diseño de obstáculos divertidos que tengan sentido en ambas direcciones.
+    \item Revisitar salas con desafíos plataformeros ya superados es frustrante. Enfatizar mucho el plataformeo parece quitar presencia a los elementos de exploración.
+    \item El concepto de la pelota funciona mejor al mantenerlo simple. Añadir distintas mejoras desbloqueables no parece, a priori, hacerlo más divertido.
+\end{itemize}
+
+
+\subsubsection{Reimaginación de Zelda II: The Adventure of Link}
+
+Zelda II: The Adventure of Link (Nintendo, 1987) es un videojuego publicado para la \textit{Nintendo Entertaiment System}, el segundo en la franquicia \textit{The Legend of Zelda}. Es impopular entre sus seguidores debido a cómo diverge del resto de juegos de la franquicia y su dificultad, muchas veces injusta. No es un metroidvania, pero tiene elementos que serían muy fácilmente integrables en uno. La idea para el proyecto parte de reimaginar y recontextualizar los elementos de Zelda II en un juego de exploración 2D.
+
+Los principios de diseño son:
+\begin{itemize}
+    \item Recontextualización mecánica de Zelda II: The Adventure of Link.
+    \item Simplicidad visual, uso de iconografías sencillas y universales para transmitir información sin necesidad de usar texto.
+    \item Plataformeo poco exigente para dar más presencia a la exploración.
+    \item Movimientos lentos y rígidos, sensación de controlar a alguien pesado.
+    \item La dificultad debe surgir de saber medir distancias y pulsar botones en el momento adecuado, y no debe depender de la velocidad de reacción del jugador ni de necesitar pulsar muchos botones o realizar acciones complejas.
+\end{itemize}
+
+Tras analizar el juego, se llegó a la conclusión de que muchos de los aspectos de Zelda II serían más disfrutables si fueran menos exigentes y modernizados a estándares de diseño actuales: de ahí nace la idea de plantear una experiencia más pausada en cuanto al movimiento del jugador. Además, es un tipo de juego que los jugadores con alguna discapacidad motora pueden disfrutar más fácilmente, cubriendo así desde el diseño uno de los requisitos de accesibilidad del proyecto y aumentando el público objetivo. Además, la estructura del Zelda II permite fácilmente añadir mejoras al personaje para aumentar su expresividad y capacidades. En la figura \ref{fig:prototypezelda} se muestran capturas de pantalla del prototipo  realizado.
+
+\begin{figure}[htb]
+    \centering
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_1.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_2.png}
+    \end{minipage}
+
+    \vspace{0.3cm}
+
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_3.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/zelda_prototype_4.png}
+    \end{minipage}
+
+    \caption[Prototipo basado en Zelda II]{Prototipo basado en Zelda II}
+    \label{fig:prototypezelda}
+\end{figure}
+
+Se construyó el prototipo y se validó realizando pruebas con tres usuarios. Esto último fue de gran ayuda para ajustar la velocidad del juego, ya que inicialmente opinaban que esta era demasiado lenta y con demasiada fricción. En total se emplearon \textbf{14,5 horas de trabajo efectivo} en validar el prototipo. A continuación se pasó a la fase de \textit{exploración}, en la que a partir de las los puzles básicos explorados en el prototipo se definieron formalmente las \textbf{restricciones} y se experimentó con ellas para obtener nuevos puzles derivados de ellas. 
+
+Se detallan a continuación las restricciones. Cada una está nombrada con una etiqueta entre corchetes para una mayor facilidad a la hora de representarlas en el \textit{grafo de diseño profundo} que se mostrará más adelante:
+
+\begin{itemize}
+    \item \textbf{[MOVE]} El jugador puede moverse por un escenario 2D.
+    \item \textbf{[JUMP]} El jugador puede saltar para alcanzar plataformas y sortear obstáculos.
+    \item \textbf{[UNLOCK]} El jugador puede desbloquear nuevas habilidades que le permitirán acceder a lugares a los que antes le era imposible.
+    \item \textbf{[ENEMY]} Existen enemigos que habitan las instancias del juego y dañaran al personaje del jugador. Si le dañan lo suficiente, este perderá parte de su progreso.
+    \item \textbf{[SWORD]} El jugador puede eliminar a los enemigos usando un arma.
+    \item \textbf{[BREAK]} El jugador puede romper ciertos objetos usando un arma.
+    \item \textbf{[BEAM]} El jugador puede disparar un rayo al atacar.
+    \item \textbf{[POGO]} El jugador puede rebotar en ciertos elementos y enemigos usando su arma.
+    \item \textbf{[TELEPORT]} El jugador puede teletransportarse algunos metros hacia la izquierda o derecha usando un cetro mágico.
+    \item \textbf{[KEY]} El jugador puede recoger llaves y usarlas para abrir puertas
+    \item \textbf{[BUTTON]} El jugador puede accionar mecanismo que activan mecanismos, como hacer abrir una puerta.
+\end{itemize}
+
+A continuación se describen los puzles que usan las restricciones. Cada puzle tiene un identificador (con forma PZ-XX) y etiquetas en función de en qué restricciones se apoye:
+
+\begin{itemize}
+    \item \textbf{PZ-01 [JUMP]}: El jugador se encuentra en una sala donde la única forma de avanzar es saltando sobre una plataforma para llegar a una salida que está en alto. Es un entorno seguro sin opción a ser derrotado, si el jugador falla el salto puede caer y volver a intentarlo las veces que quiera.
+    \item \textbf{PZ-02 [ENEMY]}: El jugador se encuentra con enemigos antes de encontrar el arma que necesita para defenderse. En primera instancia deberá, por tanto, evitarlos, hasta que la consiga y pueda combatirlos.
+    \item \textbf{PZ-03 [KEY]}: El jugador encuentra una puerta bloqueada con el símbolo de una cerradura. En otra sala, el jugador obtiene una llave. Debe volver a la puerta para abrirla.
+    \item \textbf{PZ-04 [UNLOCK, SWORD, BUTTON]}: El jugador encuentra una puerta bloqueada junto a un mecanismo que llama su atención. El mecanismo, de activarse, abriría la puerta, pero debe encontrar antes la espada para poder golpear y activar el mecanismo más adelante.
+    \item \textbf{PZ-05 [SWORD, BUTTON]}: El jugador, justo al obtener el arma, acaba encerrado en una sala cuya única salida es una puerta conectada a un mecanismo. El jugador debe aprender a accionar el mecanismo con la espada para poder continuar.
+    \item \textbf{PZ-06 [SWORD]}: Tras conseguir la espada, el jugador es encerrado en una habitación cuyas puertas no se abrirán hasta que derrote a todos los enemigos.
+    \item \textbf{PZ-07 [BREAK]}: El jugador se encontrará con unos bloques que bloquean una puerta. Estos solo podrán ser destruidos tras conseguir la habilidad que permite romper bloques.
+    \item \textbf{PZ-08 [BREAK, POGO]}: El jugador encuentra unos bloques destruibles en el suelo, de tal forma que no puede impactarlos con un golpe lateral. Tendrá que desbloquear la habilidad de rebotar con el arma para poder romperlos.
+    \item \textbf{PZ-09 [BREAK]}: El jugador encuentra una pila de bloques que deberá destruir de cierta manera para construir una escalera y alcanzar una plataforma a la que no podría haber accedido solo con saltos.
+    \item \textbf{PZ-10 [POGO]}: El jugador encuentra un enemigo flotando sobre una superficie de lava. Para cubrir esa distancia y llegar al otro lado, el jugador debe rebotar en el enemigo con su arma.
+    \item \textbf{PZ-11 [BUTTON]}: El jugador encuentra una puerta cerrada que debe abrirse accionando un mecanismo, pero este está inaccesible tras una pared. Deberá entrar a esa misma estancia por un lugar distinto para acceder al mecanismo y abrir la puerta.
+    \item \textbf{PZ-12 [BUTTON]}:  El jugador encuentra un mecanismo que abre una puerta, pero solo durante unos pocos segundos, volviendo a cerrar la puerta tras acabarse el tiempo. El jugador no puede volver atrás.
+    \item \textbf{PZ-13 [BUTTON, BEAM]}:El jugador encuentra un mecanismo para abrir una puerta en una cavidad muy pequeña por la que no cabe. La única forma de accionar ese botón es disparándole un rayo.
+    \item \textbf{PZ-14 [BUTTON, BEAM]}: El jugador encuentra un mecanismo que abre una puerta solo durante unos segundos, pero está tan lejos de la puerta que el jugador no tiene tiempo para cruzarla. Debe accionarla desde lejos con el rayo.
+    \item \textbf{PZ-15 [TELEPORT]}: Tras conseguir el cetro mágico, el jugador es encerrado en una sala con paredes que solo puede atravesar usando el teletransporte.
+    \item \textbf{PZ-16 [TELEPORT]}: El jugador se encuentra con una serie de plataformas que se mueven de arriba a abajo. Están lo suficientemente lejos para que no pueda sortearlas con saltos, pero sí usando el teletransporte. El jugador debe coordinarse para usar el poder en el momento justo y navegar las plataformas.
+    \item \textbf{PZ-17 [TELEPORT]}: El jugador ve en una sala una llave inaccesible. Está demasiado lejos para alcanzarla usando el teletransporte. Deberá ir a la habitación adyacente y usar el teletransporte desde ahí para alcanzarla.
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[scale=0.37]{img/deep_design_diagram.drawio.png}
+    \caption[Diagrama de diseño profundo]{Diagrama de diseño profundo del prototipo Zelda II.}
+    \label{fig:deepdesigndiagram}
+\end{figure}
+
+El diagrama de diseño profundo generado en esta etapa se puede ver en la figura \ref{fig:deepdesigndiagram}. Se tienen las siguientes métricas sobre el grafo:
+
+\begin{itemize}
+    \item Profundidad: equivale a la profundidad de los nodos de restricciones del grafo, es igual a 3.
+    \item Complejidad: Es igual al número de restricciones y relaciones entre restricciones que se presentan en el grafo, en este caso 15.
+    \item Elegancia: Deriva de tener una menor complejidad con mayor profundidad, por tanto, es un cociente de dividir la profundidad entre la complejidad, en este caso 0.2.
+\end{itemize}
+
+\subsection{Game Design Document}
+
+A continuación se redactó una primera versión del \textit{Game Design Document}. Como se ha explicado, este documento muta a lo largo del desarrollo a medida que se toman decisiones y se evalúa, por lo que el GDD que se incluye en esta memoria es el final, y se puede consultar en el capítulo \ref{chap:gdd}.
+
+\subsection{Product Backlog}
+
+Se redactó el product backlog con las siguientes historias de usuario e historias de juego, que se puede observar en las tablas \ref{tab:backloghu} y \ref{tab:backloghj}.
+
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|p{10cm}|l|}
+    \hline
+        Código & Descripción & Prioridad \\ \hline
+        HU-01 & Como usuario, me agradaría abrir el juego y ver una pantalla de título atractiva, desde la que poder comenzar o reanudar una partida. & Alta \\ \hline
+        HU-02 & El jugador quiere poder detener el juego de forma indefinida en cualquier momento, para atender a cualquier necesidad que le surja y poder retomar el juego más adelante. & Alta \\ \hline
+        HU-03 & El jugador quiere cambiar todos los textos del juego a su lenguaje de preferencia. & Alta \\ \hline
+        HU-04 & El jugador quiere ajustar el volumen del juego, así como el de distintos elementos, como música o sonidos ambientales. & Baja \\ \hline
+        HU-05 & El jugador con discapacidad motora quiere poder decidir qué botones asignar a cada acción, para adaptarse a sus necesidades concretas y jugar cómodamente. & Media \\ \hline
+        HU-06 & El jugador con daltonismo quiere poder identificar correctamente la información visual que da el juego, diferenciando bien distintos elementos, para jugar en las mismas condiciones que un jugador sin daltonismo. & Media \\ \hline
+        HU-07 & El jugador con epilepsia fotosensible necesita poder regular o desactivar los efectos rápidos de flash o patrones. & Media \\ \hline
+        HU-08 & El jugador quiere que entre cada sesión de juego su progreso se mantenga, pudiendo retomar la partida por donde la había dejado. & Alta \\ \hline
+        HU-09 & El jugador quiere poder conectar un mando para jugar más cómodamente. & Media \\ \hline
+        HU-10 & El jugador con discapacidad motora necesita poder conectar su mando adaptable para poder jugar. & Media \\ \hline
+        HU-11 & El jugador quiere poder consultar un mapa con su ubicación actual para navegar el entorno con mayor facilidad & Baja \\ \hline
+    \end{tabular}
+    \caption{Backlog de historias de usuario.}
+    \label{tab:backloghu}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|p{10cm}|l|}
+    \hline
+        Código & Descripción & Prioridad \\ \hline
+        HJ-01 & Es divertido pensar en qué lugares me podría ser de utilidad un objeto que acabo de descubrir & Alta \\ \hline
+        HJ-02 & Es divertido desbloquear puertas por las que previamente no podía pasar & Alta \\ \hline
+        HJ-03 & Es satisfactorio golpear enemigos con la espada y sentir que ha sido un golpe fuerte & Media \\ \hline
+        HJ-04 & Es emocionante la sensación tras descubrir un secreto en una zona que pensaba que conocía muy bien & Alta \\ \hline
+        HJ-05 & La historia del juego resulta divertida porque no se toma en serio a sí misma, pero los personajes sí que parecen hacerlo & Media \\ \hline
+        HJ-06 & La identidad visual recuerda a juegos enigmáticos de los años 80, potenciando la sensación de exploración y descubrimiento & Media \\ \hline
+        HJ-07 & El personaje principal es satisfactorio de controlar porque es responsivo, pero aunque no es muy ágil se siente muy pesado y fuerte & Alta \\ \hline
+        HJ-08 & Es satisfactorio descifrar una pista que algún NPC dijo y acabo llevándome a descubrir un secreto & Media \\ \hline
+        HJ-09 & Es satisfactorio resolver puzles para abrirme camino & Media \\ \hline
+        ~ & ~ & ~ \\ \hline
+        HJ-10 & Es divertido rebotar en bloques con la espada para poder llegar a zonas altas & Baja \\ \hline
+        HJ-11 & Es divertido disparar rayos para poder golpear enemigos desde lejos & Baja \\ \hline
+        HJ-12 & Es divertido teletransportarme para sortear muros que de otra forma serían infranqueables & Baja \\ \hline
+        HJ-13 & Es divertido usar el teletransporte de formas poco convencionales para ""romper"" el juego & Baja \\ \hline
+    \end{tabular}
+    \caption{Backlog de historias de juego.}
+    \label{tab:backloghj}
+\end{table}
+
+\subsection{Planificación}
+
+Una vez que se tiene claro la dirección y el alcance del proyecto, se puede estimar cuanto tiempo será necesario para su desarrollo. En este caso se estimó que serían necesarios \textbf{6 sprints de 20 horas}. Eso haría un total de \textbf{120 horas de producción}. En cuanto a la postproducción, donde se realizará testeo con usuarios y arreglo de bugs, se asignaron 40 horas de trabajo. Habiendo realizado unas 38,5 horas de preproducción, y añadiendo un margen de error del 15\% para posibles imprevistos, en total se tendría que el presupuesto en horas de trabajo para este proyecto es de \textbf{230 horas en total}.
+
+Hay que puntualizar que esta estimación tiene en cuenta únicamente las horas de diseño y programación, \textbf{no se contabiliza el tiempo para la creación de assets como el arte}, ya que no es el área de interés de este trabajo, y se realizará de forma amateur.
+
+Los sprints se diseñaron con la estructura explicada en la figura \ref{fig:production}, y se distribuyen de la siguiente manera:
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|l|p{8cm}|p{1,8cm}|}
+    \hline
+        Sprint & Fase & Aspectos centrales del desarrollo & Historias asociadas \\ \hline
+        Sprint 1 & Fundamentos & Game life cycle, placeholders de menús, interfaz para controles, personaje del jugador, test room y menú de pausa & HU-01, HU-02, HU-09 \\ \hline
+        Sprint 2 & Fundamentos & Funcionalidad para ajustes, sistema de guardado, gestión de idiomas, sistema de diálogo, game loop, tilemaps, menú de mapa, gestión de cámara & HU-03, HU-08, HU-11 \\ \hline
+        Sprint 3 & Fundamentos & Enemigos, sistema de eventos, menú de ajustes para accesibilidad, sonido y controles, mecánica de puertas y llaves, revisión de personaje jugable & HU-04, HU-05, HU-06, HU-07, HU-10 \\ \hline
+        Sprint 4 & Contenido & Desarrollo de contenido (niveles, diálogos, progresión, etc.) & Historias de juego \\ \hline
+        Sprint 5 & Contenido & Desarrollo de contenido (niveles, diálogos, progresión, etc.) & Historias de juego \\ \hline
+        Sprint 6 & Cierre & Cierre del proyecto & ~ \\ \hline
+    \end{tabular}
+    \caption{Esquema general de sprints para producción.}
+\end{table}
+
+Para planificar cada sprint de 20 horas, se usarán solo 15 para estimar las tareas a realizar. Se dejarán 2 horas para imprevistos, otras 2 horas para la validación y ajuste del proyecto al terminar el sprint, y otra hora para realizar el \textit{sprint review} y \textit{sprint planning} para la siguiente iteración.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+        Horas totales: & 20 & h \\ \hline
+        Horas planificables: & 15 & h \\ \hline
+        Validación y ajustes: & 2 & h \\ \hline
+        Sprint Review: & 0,5 & h \\ \hline
+        Sprint Planning: & 0,5 & h \\ \hline
+    \end{tabular}
+    \caption{Distribución de horas de un sprint.}
+\end{table} 
+
+Para cada sprint se extraerán las tareas derivadas de las historias asociadas en la fase de planificación del sprint. Se redactarán en un \textbf{tablero kanban} (cada sprint tendrá uno distinto). El tablero contará con las siguientes columnas: \textbf{Backlog, Diseño, Implementación, Test, Validación, y Finalizado}. Para los \textit{assets} como el arte, se dispondrá de un tablero kanban adicional, con las siguientes columnas: \textbf{Backlog, Boceto, Producción, Finalizado}.
+
+\section{Producción}
+
+A continuación se desarrollarán los diferentes sprints que constituyen el desarrollo.
+
+\subsection{Control de versiones}
+
+Para el control de versiones del proyecto se empleó Git. Tanto el código como la documentación se alojaron en un mismo \href{https://github.com/pabloMillanCb/tfm}{repositorio en Github}. Se usó la siguiente nomenclatura para las ramas:
+
+\begin{itemize}
+    \item \textbf{main}: Rama principal del proyecto. Solo se actualiza con versiones de código estables al final de cada sprint.
+    \item \textbf{develop}: Rama que contiene la versión estable más reciente en desarrollo. Con estable se hace referencia a que todos los test automáticos deben pasar sin error.
+    \item \textbf{documentation}: Rama donde se actualiza la documentación del proyecto.
+    \item Ramas \textbf{feature/X}: Prefijo que hace referencia a ramas donde se implementa una funcionalidad concreta, usualmente relacionada con el \textit{gameplay} del juego. Por ejemplo, en la rama \textit{feature/player} se desarrolla la lógica, controles y animaciones de todas las mecánicas del personaje del jugador.
+    \item Ramas \textbf{system/X}: Hace referencia a las ramas en las que se desarrolla un sistema más amplio y transversal para el proyecto, como \textit{system/menus} o \textit{system/controls-interface}.
+    \item Ramas \textbf{ci/X}: Ramas para realizar la configuraciones relacionadas con la integración o despliegue continuos.
+    \item Ramas \textbf{bugfix/X}: Ramas para resolución de bugs concretos.
+    \item Ramas \textbf{playtest/X}: En esta rama se despliegan versiones beta del juego para realizar pruebas con usuarios.
+    \item Ramas \textbf{release/X}: Ramas para el despliegue de versiones completas.
+\end{itemize}
+
+\subsection{Sprint 1}
+
+El sprint 1 se planificó con el objetivo de trabajar los siguientes aspectos:
+
+\begin{itemize}
+    \item Desarrollar el Game Lifecycle, es decir, los distintos estados por los que pasa el programa desde que se empieza a ejecutar hasta que finaliza (Inicio, pantalla de título, \textit{game world}, pausa, \textit{game over}, etc.).
+    \item Implementar los placeholders para los distintos menús, como el de inicio, pausa, ajustes, mapa, etc.
+    \item Implementar al completo al personaje del jugador y sus controles.
+    \item Implementar la funcionalidad del menú de pausa.
+    \item Añadir herramientas para construir una \textit{sala de pruebas}, una instancia acotada donde moverse libremente con el personaje del jugador para probarlo.
+\end{itemize}
+
+En la tabla \ref{tab:sprint1task} se pueden observar las tareas que se plantearon para el sprint, junto a su estimación y el tiempo efectivo de ejecución. Durante este sprint se observó la necesidad de asegurar que todos los tests automáticos que se realizaran fueran correctos en la rama \textit{develop}. Es por ello que se decidió \textbf{añadir una tarea para configurar GitHub Actions para la ejecución de tests automáticos}. Durante la tarea de validación y ajustes surgieron cuatro tareas adicionales, tres de las cuales pudieron resolverse en tiempo de sprint. Se pueden observar en la tabla \ref{tab:aditionalsprint1task}.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-01 & Diseñar e implementar Game Lifecycle & 1,5 & 2 \\ \hline
+        SF-02 & Crear interfaz de controles para en un futuro poder reasignar desde ahí los controles & 0,5 & 1,5 \\ \hline
+        SF-03 & Diseñar e implementar patrón de estado de máquina completo para PJ principal & 2 & 1,5 \\ \hline
+        SF-04 & Implementar controles de movimiento y salto para jugador & 0,5 & 0,75 \\ \hline
+        SF-05 & Implementar controles de ataque para jugador & 0,5 & 0,5 \\ \hline
+        SF-06 & Implementar mejora de disparo para jugador & 1,5 & 1 \\ \hline
+        SF-07 & Implementar mejora de pogo para jugador & 2 & 1 \\ \hline
+        SF-08 & Implementar mejora de teletransporte para jugador & 1 & 0,75 \\ \hline
+        SF-09 & Implementar mejora de destrucción para jugador & 0,5 & 0,5 \\ \hline
+        SF-10 & Implementar placeholder menú de pausa & 1 & 1 \\ \hline
+        SF-11 & Implementar placeholder menú de ajustes & 0,5 & 0,5 \\ \hline
+        SF-12 & Implementar animaciones jugador & 1,5 & 0,75 \\ \hline
+        SF-13 & Implementar tileset de prueba & 0,5 & 0,25 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 4 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 1.}
+    \label{tab:sprint1task}
+\end{table}
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
+        OBJ-01 & Cambio en gravedad para que sea más manejable en el aire & 0,25 \\ \hline
+        OBJ-02 & Cambio en el salto (que pueda ser redireccionable) para que se corresponda con el control del pogo & 1 \\ \hline
+        OBJ-03 & Existe un pequeño stutter al moverse en diagonal con las opciones de baja resolución de Godot & 0,5 \\ \hline
+        BUG-01 & Al pisar con el pogo sobre un objeto que tiene colisión de suelo, se entra en estado de salto y se pierde el control & ~ \\ \hline
+        OBJ-04 & Es necesario separar las animaciones del personaje y la espada/bastón para que este pueda andar y saltar mientras prepara el teletransporte y pueda controlarse antes de conseguir el upgrade de la espada. Requiere refactorización & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 1.}
+    \label{tab:aditionalsprint1task}
+\end{table}
+
+El sprint tenía como objetivo realizarse en 20 horas. Se estimaron 17 horas, y finalmente el tiempo de trabajo efectivo fue de \textbf{23,75 horas}, superando un poco el objetivo.
+
+En el \textbf{sprint review} se siguió el enfoque \textit{¿Qué hicimos mal, qué hicimos bien, y qué vamos a hacer a partir de ahora?}
+
+En cuanto a \textit{qué hicimos mal}:
+\begin{itemize}
+    \item Las siguientes tareas requirieron más tiempo del esperado: SF-01, SF-02, SF-03, SF-04, CI y TEST.
+    \item Gran parte de la demora de algunas tareas se debió a que, a la hora de estimarlas, no se tuvo en cuenta el tiempo de escritura de tests.
+    \item El tiempo empleado de TEST fue de 4 horas porque, mientras se realizaban otras tareas, se divagaba probando el juego y realizando pequeños ajustes no relacionados con la tarea.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Otras tantas tareas requirieron considerablemente menos tiempo del esperado, compensando por suerte las que requirieron más tiempo.
+    \item La implementación de los test parece prometedora, habiendo descubierto algunos fallos inesperados al realizar otras tareas que se pudieron arreglar sin mayor problema.
+    \item El diseño del estado de máquinas del jugador es muy robusto y permite hacer cambios y añadir estados fácilmente.
+\end{itemize}
+
+Y, por tanto, en los próximos sprints:
+\begin{itemize}
+    \item Se tendrá en cuenta el tiempo de implementación de tests para la estimación, si fuera necesario.
+    \item Se prestará especial atención en no realizar ningún cambio en el proyecto que no afecte directamente a la tarea activa.
+    \item Se valorará qué tareas necesitan tests y cuáles no, teniendo como parámetros el si una entidad tiene influencia sobre otros sistemas, y de cuanta extensión puede ser la influencia. A priori, no parece merecer la pena invertir muchas horas en tests unitarios.
+\end{itemize}
+
+\subsection{Sprint 2}
+
+El sprint 2 se planificó para abarcar los siguientes puntos:
+
+\begin{itemize}
+    \item Funcionalidades de traducción de interfaz y diálogos.
+    \item Función de guardado de partidas.
+    \item Implementación de sistema de diálogos, para poder tener conversaciones dentro del juego.
+    \item Implementación completa del \textit{game loop}. Este concepto está relacionado con el \textit{game lifecycle}. Mientras que este último es un término técnico que hace referencia a los estados por los que pasa el programa, el \textit{game loop} es el bucle percibido por el jugador a través del cual se estructuran las partidas.
+    \item Funcionalidades de mapeado dinámico y navegación por instancias.
+    \item Gestión de cámara del jugador.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        Formación & Investigar plugin MetSys para implementar mapas y cámara & 3 & 3 \\ \hline
+        SF-14 & Implementar sistema de diccionario para cambio de idioma & 1,5 & 0,75 \\ \hline
+        SF-15 & Implementar interfaz para el cambio de idioma en pantalla de ajustes & 0,5 & 0,5 \\ \hline
+        SF-16 & Implementar habitaciones y navegación del jugador entre estas & 1 & 1 \\ \hline
+        SF-17 & Implementación de mini-mapa dinámico & 0,5 & 0,5 \\ \hline
+        SF-18 & Implementar dibujado de objetos dinámico en mapa & 0,5 & 0,75 \\ \hline
+        SF-19 & Dibujar la posición del jugador en mapa & 0,5 & 0 \\ \hline
+        SF-20 & Implementar posiciones de spawn del jugador por habitaciones & 0,5 & 0,25 \\ \hline
+        SF-21 & Implementar gestión de cámara dependiente de habitaciones & 1,5 & 0,75 \\ \hline
+        SF-22 & Implementar estado de 'golpeado' para jugador & 1 & 1,5 \\ \hline
+        SF-23 & Implementar pantalla de derrota y respawn & 1 & 1 \\ \hline
+        SF-24 & Investigar opciones para el sistema de diálogo & 1 & 0,75 \\ \hline
+        SF-25 & Implementar funcionalidad básica para datos de guardado & 1,5 & 3,5 \\ \hline
+        SF-26 & Implementar pantalla de carga de partida & 0,5 & 0,5 \\ \hline
+        SF-27 & Implementar sistema de diálogo & 2,5 & 3,5 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 2.}
+    \label{tab:sprint2task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
+        OBJ-04 & Es necesario separar las animaciones del personaje y la espada/bastón para que este pueda andar y saltar mientras prepara el teletransporte y pueda controlarse antes de conseguir el upgrade de la espada. Requiere refactorización & 0,5 \\ \hline
+        OBJ-5 & La animación de golpeo no transmite bien sensaciones. Se podría investigar si es compatible añadir una sacudida de pantalla en MetSys. & - \\ \hline
+        OBJ-6 & La animación de caminar no es muy efectiva, ya que da la sensación de que el personaje se desliza por el suelo, más que caminar. & 0,25 \\ \hline
+        BUG-02 & Los tests del game lifecycle fallan tras añadir la pantalla de game over. & 0,25 \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 2.}
+    \label{tab:aditionalsprint2task}
+\end{table}
+
+En la tabla \ref{tab:sprint2task} se pueden ver las tareas planificadas y su tiempo de compleción. Las tareas adicionales que surgieron durante la validación se pueden observar en la tabla \ref{tab:aditionalsprint2task}. En total se planificaron 20,5 horas y se acabaron realizando 22,75 horas efectivas de trabajo.
+
+Al finalizar este sprint se asentó la gran mayoría del software necesario para desarrollar todo el contenido del juego. Sin embargo, no había mucho que jugar. El personaje del jugador estaba terminado al completo, pero solo podía controlarse por pantallas \textit{placeholder} que no presentaban ningún reto ni objetivo interesante. La sesión de validación resultó por esto mismo un poco redundante. Si se ha llegado a este punto fue por la planificación: se decidió dedicar los 3 primeros sprints a estas cuestiones. El plan hasta ahora había funcionado y se contaba con el prototipo inicial para verificar que lo que se estaba haciendo tenía sentido. A nivel funcional la sensación de progreso era satisfactoria, pero desde un punto de vista lúdico no. En consecuencia se especuló qué habría ocurrido si este caso se hubiera dado en un escenario real, en el que hubiera un agente externo como un \textit{publisher} o un cliente. No se le estaría transmitiendo correctamente que el proyecto avanza en buena dirección, generando desconfianza.
+
+Para corregir este fallo en el planteamiento del proyecto se tomó la siguiente decisión: permutar el orden de los siguientes dos sprints. Es decir, implementar contenido de juego en el sprint 3, y dejar los pocos fundamentos funcionales restantes para el sprint 4. El objetivo es acabar el siguiente sprint con algo parecido a un \textbf{vertical slice}, un producto que contiene un breve fragmento del juego cercano a la versión final, tanto en mecánicas como en gráficos.
+
+Esta idea se propuso durante el \textbf{sprint review}. A continuación se expone el resto de puntos que se trataron siguiendo la estructura \textit{¿Qué hicimos mal, qué hicimos bien, y qué vamos a hacer a partir de ahora?}
+
+En cuanto a \textit{qué hicimos mal}:
+\begin{itemize}
+    \item Las siguientes tareas requirieron más tiempo del esperado: SF-18, SF-22, SF-25 y SF-27.
+    \item Se detectó un rendimiento especialmente bajo en sesiones de trabajo donde se trataron muchas tareas pequeñas poco relacionadas entre ellas, siendo difícil al acabar una saltar a otra distinta.
+    \item Por no dedicar suficiente tiempo al diseño del sistema de guardado, la implementación fue problemática, produciéndose muchos bugs y necesitando bastantes refactorizaciones.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Se tuvo en cuenta para la estimación el tiempo necesario para escribir tests y para la formación necesaria al trabajar con bibliotecas nuevas. 
+    \item La planificación ha permitido poder plantearse cambios de cara al siguiente sprint, los cuales han surgido al observar el estado actual del proyecto y sus necesidades. En este sentido, se está siendo ágil.
+\end{itemize}
+
+Y, por tanto, en los próximos sprints:
+\begin{itemize}
+    \item Se cambia el orden de realización de los sprints 3 y 4 con el objetivo de producir una \textit{vertical slice} para poder juzgar mejor el avance del proyecto a nivel lúdico.
+    \item Se dedicarán más esfuerzos al diseño de sistemas previos a la implementación.
+    \item Se planificarán previamente las sesiones de trabajo para agrupar en estas tareas grandes o tareas pequeñas de la misma temática con el objetivo de mejorar la productividad.
+\end{itemize}
+
+\subsection{Sprint 3}
+
+El objetivo principal de este sprint fue diseñar una sección jugable completa para validar de forma más precisa el avance del proyecto. Para ello los esfuerzos se centraron en el diseño de niveles de esta sección y la implementación de los elementos jugables que la harían posible:
+
+\begin{itemize}
+    \item Implementar el desbloqueo de mejoras para el jugador a través de objetos \textit{pick-up}.
+    \item Sistema de puertas que bloquean el paso y se pueden abrir recogiendo llaves.
+    \item Enemigo con recorrido circular estático.
+    \item Enemigo con recorrido lineal estático.
+    \item Enemigo terrestre con inteligencia artificial.
+    \item Enemigo aéreo con inteligencia artificial.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-28 & Configurar canales de audio de Godot para sonidos y música & 0,5 & 0,25 \\ \hline
+        SF-29 & Limitar el moveset del jugador en función de las mejoras obtenidas & 0,5 & 0,5 \\ \hline
+        SF-30 & Implementar objetos pick-up para desbloquear mejoras & 0,5 & 1 \\ \hline
+        SF-31 & Implementar fuente de letra pixelada por defecto en los textos del proyecto & 0,5 & 0,5 \\ \hline
+        SF-32 & Implementar mecánica de KEY y desbloqueo de puertas & 2 & 4,5 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        SF-33 & Implementar enemigo que recorre un camino aéreo circular & 0,75 & 0,5 \\ \hline
+        SF-34 & Implementar enemigo que recorre un camino aéreo fijo & 0,75 & 0,5 \\ \hline
+        SF-35 & Implementar enemigo terrestre con inteligencia & 2 & 4 \\ \hline
+        SF-36 & Implementar enemigo aéreo con inteligencia & 2 & NO REALIZADA \\ \hline
+        SF-37 & Diseñar e implementar niveles & 5 & 5 \\ \hline
+        SF-38 & Reemplazar tilemap de test por tilemap real & 1 & 1 \\ \hline
+        ~ & ~ & ~ & ~ \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 3.}
+    \label{tab:sprint3task}
+\end{table}
+
+En la tabla \ref{tab:sprint3task} se pueden ver las tareas del sprint. En las tareas \textbf{SF-32} y \textbf{SF-35} acabaron por tomar el doble de tiempo que el estimado. Para terminar el sprint en el tiempo establecido esto significó que la tarea \textbf{SF-36} quedaría pospuesta para el siguiente sprint. Se planificaron 21 horas y se acabaron empleando 23,25 horas. En la tabla \ref{tab:aditionalsprint3task} se tienen las tareas adicionales que surgieron durante la validación.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Tiempo \\ \hline
+        BUG-03 & El estado de player se mantiene cuando se muere y reaparece, cuando debería cargar la partida & 0,5 \\ \hline
+        BUG-04 & Las componentes hurtbox de los enemigos reciben la señal de ataque al salir el área de hitbox, y no al entrar & 1,5 \\ \hline
+        BUG-05 & Si se recibe daño durante una animación de ataque, se queda atrapado en la animación de ataque y/o se queda transparente & - \\ \hline
+        BUG-06 & Al morir la hitbox de daño no se desactiva y la animación de muerte puede llevar a aparecer varias veces seguidas & - \\ \hline
+        OBJ-07 & La animación del jugador de recibir daño es incorrecta. No transmite impacto y no se siente bien. & - \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 3.}
+    \label{tab:aditionalsprint3task}
+\end{table}
+
+En cuanto a \textit{qué fue mal}:
+\begin{itemize}
+    \item Las tareas \textbf{SF-32} y \textbf{SF-35} tomaron el doble de tiempo del estimado. Esto se debió a cuestiones técnicas concretas de Godot y de la librería \textit{MetSys} que por falta de experiencia se desconocían.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item La distribución de tareas fue correcta en función de las franjas de trabajo disponibles, mejorando la productividad.
+    \item Ante el imprevisto de las tareas que se demoraron se tuvo la capacidad de evaluar las prioridades del proyecto y posponer la tarea que menos impacto tendría a la meta del sprint.
+\end{itemize}
+
+Y, por tanto, en los próximos sprints se terminará de desarrollar la tarea pospuesta y se integrará en el diseño de nivel en el sprint 5.
+
+
+\subsection{Sprint 4}
+
+En el sprint 4 se terminaron de implementar los sistemas que componen el núcleo del juego y los requisitos funcionales que restaban:
+\begin{itemize}
+    \item Opciones de audio.
+    \item Opciones de configuración de pantalla.
+    \item Opciones de configuración de mandos.
+    \item Menú de mapa interactivo.
+    \item Sistema de registro de eventos para la progresión del juego.
+    \item Implementación de NPCs (\textit{Non-playable-characters})
+    \item Implementación de puntos de guardado.
+\end{itemize}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-39 & Implementar ajuste para activar/desactivar la pantalla completa & 0,5 & 0,5 \\ \hline
+        SF-40 & Implementar ajuste de audio por canales (general, música y SFX) & 1 & 0,5 \\ \hline
+        SF-41 & Implementar menú para reasignación de botones & 2 & 2 \\ \hline
+        SF-42 & Implementar slider para ajuste de contraste y brillo en ajustes & 1 & 1 \\ \hline
+        SF-43 & Implementar menú de mapa & 3 & 2,3 \\ \hline
+        SF-44 & Implementar enemigo volador con inteligencia & 4 & 4,5 \\ \hline
+        SF-45 & Implementar NPC con diálogo & 2 & 1,5 \\ \hline
+        SF-46 & Implementar pantalla de selección de archivo en nueva partida & 1,5 & 0,75 \\ \hline
+        SF-47 & Implementar punto de guardado & 0,5 & 0,5 \\ \hline
+        SF-48 & Hacer las opciones persistentes & 1 & 1,25 \\ \hline
+        TEST & Validación y ajustes & 2,5 & 2,5 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 4.}
+    \label{tab:sprint4task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Estimación (h) \\ \hline
+        OBJ-08 & El mapa invade un área de la zona de juego. Se propone agregar un marco inferior o superior para integrar el minimapa y la UI & 1 \\ \hline
+        BUG-07 & Al entrar en estado de IDLE la velocidad horizontal no se reinicia y el jugador puede quedar deslizándose hasta topar con un muro & 0,25 \\ \hline
+        OBJ-09 & El tamaño de la hitbox de los erizos rojos es demasiado grande, se activa sin dar la sensación de haber impactado & 0,25 \\ \hline
+        OBJ-10 & El movimiento del jugador debe ser más lento y los valores de la gravedad y la fuerza de salto deben ser ajustados. & 0,5 \\ \hline
+        OBJ-10 & El tamaño de la medusa es demasiado pequeño & ~ \\ \hline
+        BUG-08 & El usuario puede asignarse el mismo botón a distintas acciones & ~ \\ \hline
+        BUG-09 & El botón de aceptar y cancelar no pueden reasignarse & ~ \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 4.}
+    \label{tab:aditionalsprint4task}
+\end{table}
+
+En la tabla \ref{tab:sprint4task} se tienen las tareas realizadas durante el sprint. De las 20 horas estimadas se realizaron 20,3 efectivas. El sprint se realizó en el tiempo estimado y sin ningún imprevisto o problema. Por tanto, en esta ocasión no hay ningún punto a destacar para la dinámica de \textit{"qué ha ido bien, qué ha ido mal, qué haremos para adaptarnos"}. Se logró el objetivo de producir una sección jugable que aportó una visión más precisa del rumbo del proyecto a nivel lúdico. En la tabla \ref{tab:aditionalsprint4task} se tienen las tareas adicionales para este sprint.
+
+\subsection{Sprint 5}
+
+Los esfuerzos de este sprint fueron concentrados en el diseño y producción de contenido para el juego. Es decir, diseño de niveles, enemigos adicionales, y pequeñas funcionalidades puntuales necesarias para los niveles como pudiera ser el sistema de oleadas. En lugar de las habituales 2,5 horas para validación y ajustes, en este sprint se planificaron 8 horas. Además, se contó con varios usuarios para realizar pruebas y recibir feedback sobre el estado actual del proyecto. Se planificaron 23 horas y se acabaron empleando 26,25 para realizar el sprint. En la tabla \ref{tab:sprint5task} se tienen las tareas planificadas para el sprint, y en la tabla \ref{tab:aditionalsprint5task} las tareas que surgieron durante las pruebas con jugadores.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-49 & Añadir enemigo terrestre unidireccional & 1,5 & 0,75 \\ \hline
+        SF-50 & Implementar feedback de golpes y muerte en enemigos & 3 & 1,5 \\ \hline
+        SF-51 & Diseñar e implementar zonas gris y naranja del juego & 8 & 12 \\ \hline
+        SF-52 & Implementar sistema para oleadas de enemigos & 1,5 & 1 \\ \hline
+        TEST & Validación y ajustes & 8 & 10 \\ \hline
+        SCRUM & Sprint review & 0,5 & 0,5 \\ \hline
+        SCRUM & Sprint planning & 0,5 & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 5.}
+    \label{tab:sprint5task}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|l|}
+    \hline
+        Tarea & Descripción & Horas empleadas \\ \hline
+        OBJ-11 & El pez triángulo debe favorecer el descender en el pathfinding antes de acercarse al jugador para que el este pueda saltarlo. & 1,5 \\ \hline
+        OBJ-12 & Al pisar el suelo en el estado de SuperFall, debería haber algún feedback de haber tenido un salto grande & 0,5 \\ \hline
+        OBJ-13 & Al realizar el ataque en el aire se pierde la inercia, cambiando la trayectoria del salto. Es un cambio muy sutil que puede hacer que los cambios sean imprecisos & 0 \\ \hline
+        OBJ-14 & El aspect ratio debe ser cambiado de 1:1 a algo similar a 4:3, ya que el movimiento vertical está mucho más limitado que el horizontal. No tiene sentido tener mucho espacio vertical si la movilidad en ese eje está reducida. & 1,5 \\ \hline
+        BUG-10 & Al desbloquear una mejora y morir antes de volver a guardar, el jugador spawnea con la mejora ya obtenida, interfiriendo con el avance natural del juego. & 0,25 \\ \hline
+    \end{tabular}
+    \caption{Tareas adicionales del sprint 5.}
+    \label{tab:aditionalsprint5task}
+\end{table}
+
+En cuanto a \textit{qué fue mal}:
+\begin{itemize}
+    \item No se estimó correctamente el tiempo para el diseño de niveles.
+    \item Se planteó realizar un ajuste relativamente profundo en el proyecto como fue el cambio de resolución en un sprint bastante tardío.
+    \item Tras realizar este sprint fue más que evidente la necesidad de implementar parte del diseño de niveles mucho más temprano en el ciclo de desarrollo.
+\end{itemize}
+
+Lo que se hizo bien:
+\begin{itemize}
+    \item Las pruebas con usuarios fueron un acierto que permitieron sacar conclusiones críticas y precisas sobre cambios que el proyecto necesitaba.
+    \item Ante el reto de modificar la resolución del juego, se realizó una aproximación muy cauta, con bocetos y pruebas técnicas rápidas que permitieron terminar en una hora y media lo que podría haber sido una tarea larga con mucho prueba y error.
+\end{itemize}
+
+Para adaptarse en el siguiente y último sprint, se extenderá el tiempo necesario para el diseño de niveles de cada zona.
+
+\subsection{Sprint 6}
+
+El objetivo de este sprint era producir una versión completa del juego jugable de principio a fin. Las tareas se enfocan principalmente en diseño de niveles, implementación de las animaciones de inicio y fin del juego y de nuevo una fuerte validación. Como se trataba del último sprint de la producción, las observaciones y bugs que se anotaron durante la validación no se ven reflejadas aquí, ya que se pasan al backlog de postproducción. Tampoco se realizó sprint review ni sprint planning por la misma razón. En la tabla \ref{tab:sprint6task} se muestran las tareas. De las 26 horas planificadas se emplearon 22,25.
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{2cm}|p{2cm}|}
+    \hline
+        Tarea & Descripción & Estimación (h) & Horas empleadas \\ \hline
+        SF-53 & Diseñar e implementar zona azul del mapa & 3 & 3 \\ \hline
+        SF-54 & Diseñar e implementar zona blanca del mapa & 3 & 2 \\ \hline
+        SF-55 & Diseñar e implementar recta final de juego & 2 & 1 \\ \hline
+        SF-56 & Implementar ending del juego & 3 & 2,5 \\ \hline
+        SF-57 & Implementar interfaz de game over & 1 & 0,25 \\ \hline
+        SF-58 & Implementar interfaz de mejora obtenida & 1 & 1 \\ \hline
+        SF-59 & Implementar coleccionable corazón & 1 & 1 \\ \hline
+        SF-60 & Implementar intro del juego & 2 & 1,5 \\ \hline
+        TEST & Validación y ajustes & 10 & 10 \\ \hline
+    \end{tabular}
+    \caption{Tareas y estimación del sprint 6.}
+    \label{tab:sprint6task}
+\end{table}
+
+En total, la producción abarcó 142,3 horas de trabajo efectivas.
+
+\section{Postproducción}
+
+La fase de postproducción consistió en un ciclo intensivo de pruebas con jugadores reales y ajustes al proyecto en función de la retroalimentación dada por los usuarios y los \textit{bugs} que surgieran durante las partidas. Para ello se creó un \textit{backlog} de tareas adicional. Las tareas se dividen en los siguientes tipos:
+
+\begin{itemize}
+    \item \textit{PLAYTEST}: Representa el tiempo empleado monitorizando pruebas con usuarios.
+    \item \textit{CI}: Tareas relacionadas con la integración continua del proyecto.
+    \item \textit{BUG}: Errores de programación.
+    \item \textit{OBJ}: Observaciones de juego. Son cambios en el diseño del juego motivados por la opinión de los jugadores y las observaciones realizadas durante las pruebas.
+\end{itemize}
+
+En las tablas \ref{tab:postpro1}, \ref{tab:postpro2}, \ref{tab:postpro3} y \ref{tab:postpro4} se muestra la lista tareas completa:
+
+\begin{table}[hbt]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    Playtest & Playtest con jugadores & Terminado & 14 \\ \hline
+    CI-01 & Configurar GitHub actions para los despliegues automáticos & Terminado & 6 \\ \hline
+    SF-61 & Añadir paredes de seguridad para teletransporte out of bounds & Terminado & 0,5 \\ \hline
+    SF-62 & Ajustar estilo del minimapa & Terminado & 0,25 \\ \hline
+    SF-63 & Añadir en menú de pausa una lista de mejoras obtenidas & DESESTIMADA & - \\ \hline
+    BUG-10 & El jugador puede seguir golpeando pirañas después de matarlas & Terminado & 0,1 \\ \hline
+    BUG-11 & Atacar durante un salto afecta a su trayectoria & Terminado & 0,25 \\ \hline
+    OBJ-15 & El comportamiento del Axolote no es legible para los jugadores & Terminado & 0,75 \\ \hline
+    OBJ-16 & Mover sala de guardado gris vertical & Terminado & 0,25 \\ \hline
+    OBJ-17 & Añadir sala de guardado tras conseguir la espada & Terminado & 0,25 \\ \hline
+    OBJ-18 & Bajar sonido de reintentar en pantalla de game over & Terminado & 0,1 \\ \hline
+    BUG-12 & El shader de golpe en Axolotes no es local & Terminado & 0,1 \\ \hline
+    OBJ-19 & Añadir sala con recompensa a la derecha del precipicio & DESESTIMADA & - \\ \hline
+    BUG-13 & El primer input de ataque tras recibir golpe es ignorado & Terminado & 2 \\ \hline
+    BUG-14 & El Axolote puede dañar al jugador aunque esté muerto & Terminado & 0,25 \\ \hline
+    BUG-15 & El jugador puede pulsar 'reintentar' múltiples veces & Terminado & 0,5 \\ \hline
+    OBJ-20 & Dificultad para encontrar entrada a la zona azul & Terminado & 1,5 \\ \hline
+    OBJ-21 & Ajustar hitbox de los pinchos rojos & Terminado & 0,25 \\ \hline
+    OBJ-22 & Añadir pared en sala del corazón de zona gris & Terminado & 0,1 \\ \hline
+    BUG-16 & Softlock al volver a la sala de la espada & Terminado & 0,75 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro1}
+\end{table}
+
+
+\begin{table}[hbt]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    BUG-17 & Bloqueo en bloques destruibles de zona gris & Terminado & 0,25 \\ \hline
+    OBJ-23 & Aumentar el zoom del mapa & Terminado & 0,1 \\ \hline
+    BUG-18 & Marcador huérfano al cancelar teletransporte & Terminado & 0,5 \\ \hline
+    OBJ-24 & Añadir porcentaje de compleción al final del juego & Terminado & ~ \\ \hline
+    BUG-19 & El reloj del juego mide mal el tiempo & Terminado & 0,5 \\ \hline
+    BUG-20 & Colisión durante teletransporte rompe colisiones & Terminado & 1 \\ \hline
+    OBJ-25 & Out-of-bounds en sala de guardado azul & Terminado & 0,1 \\ \hline
+    OBJ-27 & El plataformeo de naranja a azul castiga mucho & Terminado & 0,25 \\ \hline
+    OBJ-28 & Replantear sección vertical naranja & Terminado & 0,75 \\ \hline
+    OBJ-29 & Reducir tamaño máximo del mapa & Terminado & 2 \\ \hline
+    OBJ-30 & El mapa blanco causa confusión & Terminado & 0,1 \\ \hline
+    OBJ-31 & Cambiar animación de caída & Terminado & 0,25 \\ \hline
+    OBJ-32 & Permitir cambiar dirección durante pogo & Terminado & 0,1 \\ \hline
+    BUG-21 & Golpe durante teletransporte lanza al infinito & Terminado & 0,5 \\ \hline
+    OBJ-33 & Añadir bloques en pasillo vertical gris & Terminado & 0,25 \\ \hline
+    OBJ-34 & Agrandar hitbox de espada hacia el centro & Terminado & 0,25 \\ \hline
+    OBJ-35 & Renombrar botón "Reintentar" & Terminado & 0,1 \\ \hline
+    OBJ-36 & Alejar trampolín de zona final & Terminado & 0,1 \\ \hline
+    OBJ-37 & Añadir ladrillos en sala NPC 2 & Terminado & 0,1 \\ \hline
+    OBJ-38 & Acortar sala de guardado en zigzag & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro2}
+\end{table}
+
+
+\begin{table}[hbt]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    OBJ-39 & Guardado tras conseguir objetos & DESESTIMADA & - \\ \hline
+    OBJ-40 & Indicador visual de recuperación al guardar & DESESTIMADA & - \\ \hline
+    OBJ-41 & Acortar tiempo de respawn de calaveras & Terminado & 0,1 \\ \hline
+    OBJ-42 & Añadir partículas al destruir calaveras & Terminado & 0,5 \\ \hline
+    OBJ-43 & Añadir partículas al destruir paredes & Terminado & 0,5 \\ \hline
+    OBJ-44 & Alejar spawn del pez amarillo & Terminado & 0,1 \\ \hline
+    OBJ-45 & Ajustar hitbox horizontal de pinchos & Terminado & 0,1 \\ \hline
+    BUG-22 & Corregir tests de player & Terminado & 0,5 \\ \hline
+    OBJ-46 & Bajar sonido de guiñado de ojo & Terminado & 0,1 \\ \hline
+    OBJ-47 & Agrandar icono de corazones en el mapa & Terminado & 0,25 \\ \hline
+    OBJ-48 & Añadir marcador de upgrades en el mapa & Terminado & 0,25 \\ \hline
+    OBJ-49 & Eliminar rampas placeholder & Terminado & 0,1 \\ \hline
+    OBJ-50 & Sustituir plataformas móviles de zona naranja & Terminado & 0,1 \\ \hline
+    OBJ-51 & Alejar primeras calaveras de pogo azul & Terminado & 0,1 \\ \hline
+    OBJ-52 & TP a la derecha desde FISH golpea enemigo & Terminado & 0,1 \\ \hline
+    OBJ-53 & Tapar pared de primera habitación final & Terminado & 0,1 \\ \hline
+    BUG-23 & Se rompe animación de stomp & Terminado & 0,1 \\ \hline
+    OBJ-54 & Difícil bajar con joystick & Terminado & 0,1 \\ \hline
+    BUG-24 & Recibir daño entrando sala NPC 1 & Terminado & 0,25 \\ \hline
+    OBJ-55 & Falta explicación para abrir el mapa & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro3}
+\end{table}
+
+
+\begin{table}[hbt]
+    \centering
+    \begin{tabular}{|l|p{6cm}|l|p{2cm}|}
+    \hline
+    \textbf{Tarea} & \textbf{Descripción} & \textbf{Estado} & \textbf{Horas empleadas} \\ \hline
+    OBJ-56 & Pitch aleatorio al sonido de salto & DESESTIMADA & - \\ \hline
+    OBJ-57 & Poner color azul en sala NPC 2 & Terminado & 0,1 \\ \hline
+    BUG-26 & Espada durante salto provoca doble salto & Terminado & 1 \\ \hline
+    OBJ-58 & Calaveras horizontales demasiado lejos & Terminado & 0,1 \\ \hline
+    BUG-27 & El jugador puede quedarse entre pinchos & Terminado & 0,25 \\ \hline
+    OBJ-59 & Mejor maniobrabilidad aérea & DESESTIMADA & - \\ \hline
+    BUG-28 & Start no despausa el juego & Terminado & 0,1 \\ \hline
+    BUG-29 & Pausar muerto no reinicia el juego & Terminado & 0,5 \\ \hline
+    BUG-30 & Sala del corazón conectada incorrectamente & Terminado & 0,1 \\ \hline
+    BUG-31 & Falta icono de guardado & Terminado & 0,1 \\ \hline
+    OBJ-60 & Pintar de azul intersecciones y bloques & Terminado & 0,1 \\ \hline
+    BUG-32 & TP derecha sala Axolote crashea el juego & Terminado & 0,25 \\ \hline
+    OBJ-61 & Ajustes a diálogos NPC & Terminado & 1,5 \\ \hline
+    BUG-33 & Controles no se guardan por defecto & Terminado & 0,1 \\ \hline
+    OBJ-62 & Ajuste visual de menús y traducciones & Terminado & 2 \\ \hline
+    BUG-34 & El volumen general no afecta al salto & DESESTIMADA & - \\ \hline
+    BUG-35 & "GAME SAVED" no traducido & Terminado & 0,1 \\ \hline
+    OBJ-63 & Añadir opción de correr & DESESTIMADA & - \\ \hline
+    BUG-36 & Bloques X tras espada no son azules & Terminado & 0,1 \\ \hline
+    OBJ-64 & Bajar sonido de bloques y calaveras & Terminado & 0,1 \\ \hline
+    \end{tabular}
+    \caption{Lista de tareas realizadas en postproducción.}
+    \label{tab:postpro4}
+\end{table}
+
+
+Las pruebas de usuario consistieron en sesiones en las que el jugador completaba el juego de principio a fin. Siempre que fue posible, la sesión se monitorizó con el objetivo de tomar nota de cualquier error y recibir \textit{feedback} directo según se progresaba en el juego. En ningún momento se dieron pistas o instrucciones de cómo jugar para verificar que el diseño era correcto y que cualquier persona sabría operar el juego sin ayuda externa. Solo se ofrecían pistas si el jugador se encontraba atascado, sin forma de progresar. En la siguiente tabla se recogen todos las pruebas realizadas:
+
+% METER TABLA POSTPRO
+
+Tras la partida, los usuarios rellenaron una encuesta anónima con el objetivo de formalizar por escrito su opinión y conocer sus preferencias para tomar decisiones informadas sobre su retroalimentación. Por ejemplo, si un jugador indicara que no ha disfrutado de la exploración del juego y además tiene poca experiencia en el género metroidvania, se puede estimar que no existe un problema de diseño en el juego, sino que el jugador no es el público objetivo de este.
+
+El cuestionario recogía la siguiente información:
+
+\begin{itemize}
+    \item ¿Cuánto tardaste en completar el juego?
+    \item ¿Qué porcentaje de compleción conseguiste?
+    \item ¿Cuánta experiencia previa tienes jugando videojuegos? (1-5)
+    \item ¿Cuánta experiencia previa tienes en juegos de exploración y/o metroidvanias? (1-5)
+    \item ¿Cuánta experiencia previa tienes en juegos plataformas? (1-5)
+    \item ¿Cuánto dirías que has disfrutado del juego?
+    \item ¿Qué es lo que más te ha gustado?
+    \item ¿Qué es lo que menos te ha gustado?
+    \item ¿Has tenido alguna dificultad relacionada con la accesibilidad del juego? (Respuesta múltiple)
+\end{itemize}
+
+Se expuso además el proyecto en el evento UGR LAN Party (figura \ref{fig:ugrlanparty}), organizado en la ETSIIT de la Universidad de Granada. En este distintas personas probaron el juego a lo largo de toda la jornada. Fueron partidas más cortas, casuales y con menor monitorización, pero sirvieron igualmente para recoger la opinión informal de un gran número de usuarios.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.21]{img/ugr-lan-party.png}
+    \caption[Pruebas con usuarios en la UGR LAN Party]{Foto realizada en el evento UGR LAN Party 2026, donde se expuso el juego.}
+    \label{fig:ugrlanparty}
+\end{figure}
+
+Para facilitar es despliegue y distribución de las versiones de prueba, se configuró una \textit{GitHub Action} para el despliegue automático de versiones en una página de \textit{Itch.io}. De esta forma, cada vez que se actualizaban ciertas ramas del repositorio, se compilaba en la nube una versión del juego para Windows, Linux y Web y automáticamente se publican en \textit{Itch.io}. Esto permitía compartir a todos los usuarios un mismo enlace que siempre contenía la versión más actualizada del juego, disponiendo de versiones en distintas plataformas para poder adaptarse al equipo de cualquier jugador.
+
+\section{Despliegue}
+
+Para el despliegue del juego se configuró y decoró una página de \textit{Itch.io} donde se alojó el juego. Este cuenta con versiones para Windows, Linux y Web, jugable desde el propio navegador. Para la compilación de versiones se empleó la misma \textit{GitHub Action} que se explicó en el apartado anterior.
+
+En un proyecto comercial, esta fase del desarrollo tendría una mayor carga de desarrollo de material promocional y marketing. Como este es un trabajo académico, simplemente se produjo un tráiler a modo de presentación del juego.
+
+\section{Resultado}
+
+Para recapitular, durante la preproducción se estimó que tomaría 230 horas de trabajo completar este proyecto. En la tabla \ref{tab:hours} se recopila las horas empleadas en cada fase del proyecto, dando un total de \textbf{228,8 horas}. Se cumplió el plazo de la estimación inicial.
+
+\begin{table}[hbt]
+    \centering
+    \begin{tabular}{|l|l|}
+    \hline
+        Fase & Horas de trabajo \\ \hline
+        Preproducción & 38,5 \\ \hline
+        Sprint 1 & 23,75 \\ \hline
+        Sprint 2 & 22,75 \\ \hline
+        Sprint 3 & 23,25 \\ \hline
+        Sprint 4 & 20,3 \\ \hline
+        Sprint 5 & 30 \\ \hline
+        Sprint 6 & 22,25 \\ \hline
+        Postproducción & 45 \\ \hline
+        Despliegue & 3 \\ \hline
+        Total & 228,8 \\ \hline
+    \end{tabular}
+\end{table}
+\label{tab:hours}

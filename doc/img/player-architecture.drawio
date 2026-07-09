@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="e6GtHeMp1fhrMCKSeJUD">
+    <mxGraphModel dx="1441" dy="999" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-sdJNyyts5P01FY6e-yw-15" edge="1" parent="1" source="-sdJNyyts5P01FY6e-yw-4" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.176;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;" target="-sdJNyyts5P01FY6e-yw-9" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="400" y="540" as="sourcePoint" />
+            <mxPoint x="450" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-14" edge="1" parent="1" source="-sdJNyyts5P01FY6e-yw-6" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.131;exitY=-0.052;exitDx=0;exitDy=0;exitPerimeter=0;" target="-sdJNyyts5P01FY6e-yw-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="468" y="270" />
+            </Array>
+            <mxPoint x="400" y="540" as="sourcePoint" />
+            <mxPoint x="450" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-13" edge="1" parent="1" source="-sdJNyyts5P01FY6e-yw-4" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.122;exitY=0.02;exitDx=0;exitDy=0;exitPerimeter=0;" target="-sdJNyyts5P01FY6e-yw-1" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="400" y="540" as="sourcePoint" />
+            <mxPoint x="450" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;Player&lt;/i&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="110" x="70" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;b&gt;BodyCollision&lt;/b&gt;: &lt;i&gt;CollisionShape2D&lt;/i&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="100" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;i&gt;StateMachine&lt;/i&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="100" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;PlayerSprites&lt;/b&gt;: &lt;i&gt;AnimatedSprite2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="100" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;PlayerParticles&lt;/b&gt;: &lt;i&gt;Node2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="440" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;TeleportGroundCollision&lt;/b&gt;: &lt;i&gt;Area2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="440" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;i&gt;AnimationPlayer&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;AtackHitbox&lt;/b&gt;: &lt;i&gt;HitboxComponent&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;ShootingPoint&lt;/b&gt;: &lt;i&gt;Marker2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;PogoHitbox&lt;/b&gt;: &lt;i&gt;HitboxComponent&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;Hurtbox&lt;/b&gt;: &lt;i&gt;HurtboxComponent&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="-sdJNyyts5P01FY6e-yw-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;b&gt;SwordSprites&lt;/b&gt;: &lt;i&gt;Node2D&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="210" x="166" y="550" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,4 +1,4 @@
-extends Collectible
+extends CollectibleWithMarker
 class_name Upgrade
 
 enum UpgradeType {SWORD, BREAK, BEAM, POGO, TELEPORT}

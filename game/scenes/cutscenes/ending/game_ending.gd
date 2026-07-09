@@ -2,6 +2,7 @@ extends Node2D
 
 
 func _ready() -> void:
+	DataManager.complete_game()
 	$Time.text = Clock.get_time_formated()
 
 
