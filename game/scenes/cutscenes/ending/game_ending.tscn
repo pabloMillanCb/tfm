@@ -677,9 +677,9 @@ text = "a game by pavro"
 [node name="TimeIs" type="Label" parent="." unique_id=629540242]
 visible = false
 offset_left = -52.0
-offset_top = -59.0
+offset_top = -60.0
 offset_right = 31.0
-offset_bottom = -36.0
+offset_bottom = -37.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Completion time: "
@@ -687,19 +687,40 @@ text = "Completion time: "
 [node name="Time" type="Label" parent="." unique_id=624578152]
 visible = false
 offset_left = 31.0
-offset_top = -59.0
+offset_top = -60.0
 offset_right = 114.0
-offset_bottom = -36.0
+offset_bottom = -37.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "00:00"
 
+[node name="CompletionIs" type="Label" parent="Time" unique_id=1588906722]
+layout_mode = 0
+offset_left = -66.0
+offset_top = 13.0
+offset_right = 31.0
+offset_bottom = 36.0
+theme = ExtResource("12_nw6f2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Completion: "
+
+[node name="Completion" type="Label" parent="Time" unique_id=1356943150]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = 13.0
+offset_right = 91.0
+offset_bottom = 36.0
+theme = ExtResource("12_nw6f2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100%"
+
 [node name="Thanks" type="Label" parent="." unique_id=1497565776]
 visible = false
 offset_left = -47.0
-offset_top = -45.0
+offset_top = -34.0
 offset_right = 50.0
-offset_bottom = -22.0
+offset_bottom = -11.0
 theme = ExtResource("12_nw6f2")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Thanks for playing!"
@@ -733,7 +754,7 @@ bus = &"SFX"
 
 [node name="Blink" type="AudioStreamPlayer" parent="." unique_id=1757889123]
 stream = ExtResource("18_6w0b2")
-volume_db = -15.0
+volume_db = -8.0
 bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

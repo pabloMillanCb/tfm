@@ -8,6 +8,7 @@ func _enter(_previous_state_path: String, _init_data := {}):
 
 
 func _update(_delta):
+	player.pause_controls()
 	player.update_gravity(_delta)
 	
 	if player.is_on_floor():
@@ -15,5 +16,7 @@ func _update(_delta):
 	
 	if !Input.is_action_pressed("teleport"):
 		finished.emit(RELEASE_TELEPORT)
+	elif Input.is_action_just_pressed("jump"):
+		finished.emit(JUMP)
 	
 	player.move_and_slide()

@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if event.is_action("map") and visible:
 				hide_map()
-			elif event.is_action("map") and !visible:
+			elif event.is_action("map") and !visible and get_tree().paused == false:
 				show_map()
 			if visible:
 				var move_offset: Vector2i

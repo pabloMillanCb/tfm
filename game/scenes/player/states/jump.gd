@@ -1,20 +1,33 @@
 extends PlayerState
 
 var forced_jump = false
+var tricks = 0
 
 func _enter(_previous_state_path: String, _init_data := {}):
 	player.velocity.y = player.jump_force
 	forced_jump = _init_data.get("extra_force") != null
 	player.free_crosshair()
+	
+	if _init_data.get("with_trick") == true:
+		tricks += 1
+	else:
+		tricks = 0
+	
+	print(tricks)
+	
 	if forced_jump:
 		player.velocity.y += _init_data.get("extra_force")
 		player.play_sound("spring")
 	else:
-		player.play_sound("jump")
+		player.play_sound("jump", 0.0, tricks*0.25)
 	player.set_animation("jump")
 	
-
+	
 func _update(_delta):
+	player.pause_controls()
+
+
+func _update_physics(_delta):
 	player.update_gravity(_delta, forced_jump)
 	
 	var direction = Input.get_axis("move_left", "move_right")

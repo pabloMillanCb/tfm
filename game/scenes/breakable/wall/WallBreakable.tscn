@@ -68,7 +68,8 @@ color = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1263623155]
 sprite_frames = SubResource("SpriteFrames_fklbh")
-animation = &"orange"
+animation = &"grey"
+autoplay = "grey"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1505050225]
 collision_layer = 2

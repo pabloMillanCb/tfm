@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://cvs40xxj8pkjd" path="res://scenes/collisions/hitbox/hitbox_component.gd" id="17_p1lr0"]
 [ext_resource type="Texture2D" uid="uid://l77ftnjv3bek" path="res://scenes/player/assets/player_spritesheet3.png" id="17_ye1dr"]
 [ext_resource type="Script" uid="uid://bs4qk5y2aa0dg" path="res://scenes/player/player_particles.gd" id="18_2xrq6"]
+[ext_resource type="Texture2D" uid="uid://j203gj62fc1r" path="res://scenes/player/assets/player_spritesheet4.png" id="19_eac1a"]
 [ext_resource type="Texture2D" uid="uid://786exjf32kq" path="res://scenes/player/assets/player_head.png" id="20_kswpp"]
 [ext_resource type="Texture2D" uid="uid://c47inqwe2u6x4" path="res://scenes/player/assets/player_body.png" id="21_v5i4m"]
 [ext_resource type="Script" uid="uid://cxjsgyjr5o6p" path="res://scenes/player/sounds.gd" id="23_ro0t8"]
@@ -144,7 +145,7 @@ atlas = ExtResource("15_pi3ps")
 region = Rect2(48, 288, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojq00"]
-atlas = ExtResource("17_ye1dr")
+atlas = ExtResource("19_eac1a")
 region = Rect2(24, 192, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kfw2"]

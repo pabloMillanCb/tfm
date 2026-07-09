@@ -4,10 +4,14 @@ extends CanvasLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CenterContainer/VBoxContainer/Resume.grab_focus()
+	$Timer.start()
 
-
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		if $Timer.time_left == 0:
+			_on_resume_pressed()
+	
 func _on_resume_pressed() -> void:
-	print("unpause")
 	GameEvent._on_game_resumed.emit()
 
 

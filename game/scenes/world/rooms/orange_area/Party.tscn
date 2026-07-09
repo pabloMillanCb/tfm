@@ -1,0 +1,143 @@
+[gd_scene format=4 uid="uid://di3ooou20mead"]
+
+[ext_resource type="Script" uid="uid://dufc5tmh3kf8y" path="res://scenes/world/rooms/orange_area/party.gd" id="1_dlhnd"]
+[ext_resource type="TileSet" uid="uid://cypplp6srxpc" path="res://assets/resources/tileset.tres" id="1_kpo5r"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_4tdsl"]
+[ext_resource type="PackedScene" uid="uid://d2yrwjm7nsoje" path="res://scenes/world/spawn/RoomRespawn.tscn" id="4_2iccv"]
+[ext_resource type="PackedScene" uid="uid://dh2u1x6m2ja5f" path="res://scenes/npc/npc_character.tscn" id="4_4tdsl"]
+[ext_resource type="Texture2D" uid="uid://bxgstyfyjkwr4" path="res://scenes/npc/npcs.png" id="5_jppkg"]
+[ext_resource type="Resource" uid="uid://c3akguvhwo1ef" path="res://dialogues/party.dialogue" id="5_wak10"]
+[ext_resource type="Texture2D" uid="uid://dxccwa0c0ek2i" path="res://scenes/npc/radio.png" id="6_jppkg"]
+[ext_resource type="Texture2D" uid="uid://boopsnf1pxk2d" path="res://scenes/npc/nota.png" id="7_2iccv"]
+[ext_resource type="AudioStream" uid="uid://dqbl0l6dcs77u" path="res://assets/sound/party.mp3" id="8_iud80"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iccv"]
+atlas = ExtResource("5_jppkg")
+region = Rect2(0, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iud80"]
+atlas = ExtResource("5_jppkg")
+region = Rect2(18, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wak10"]
+atlas = ExtResource("5_jppkg")
+region = Rect2(36, 36, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlhnd"]
+atlas = ExtResource("5_jppkg")
+region = Rect2(54, 36, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkslc"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2iccv")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_iud80")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_wak10")
+}, {
+"duration": 0.75,
+"texture": SubResource("AtlasTexture_dlhnd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="Animation" id="Animation_jppkg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2iccv"]
+resource_name = "music"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.65)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iud80"]
+_data = {
+&"RESET": SubResource("Animation_jppkg"),
+&"music": SubResource("Animation_2iccv")
+}
+
+[sub_resource type="Gradient" id="Gradient_iud80"]
+offsets = PackedFloat32Array(0.8633441, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="Room" type="Node2D" unique_id=801174312]
+script = ExtResource("1_dlhnd")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1337782774]
+position = Vector2(262, 56)
+tile_map_data = PackedByteArray("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")
+tile_set = ExtResource("1_kpo5r")
+
+[node name="RoomInstance" parent="." unique_id=71231764 instance=ExtResource("2_4tdsl")]
+
+[node name="RoomRespawn" parent="." unique_id=328631649 instance=ExtResource("4_2iccv")]
+position = Vector2(128, 42)
+
+[node name="NpcCharacter" parent="." unique_id=1778696213 instance=ExtResource("4_4tdsl")]
+position = Vector2(403, 160)
+dialog_script = ExtResource("5_wak10")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="NpcCharacter" unique_id=1082345752]
+sprite_frames = SubResource("SpriteFrames_wkslc")
+autoplay = "default"
+frame_progress = 0.517984
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2090939530]
+position = Vector2(369, 168)
+texture = ExtResource("6_jppkg")
+offset = Vector2(0, -8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=416554376]
+libraries/ = SubResource("AnimationLibrary_iud80")
+autoplay = &"music"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D" unique_id=1162312451]
+z_index = -1
+amount = 5
+texture = ExtResource("7_2iccv")
+lifetime = 3.0
+randomness = 0.66
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+color_ramp = SubResource("Gradient_iud80")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1800492274]
+stream = ExtResource("8_iud80")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="NpcCharacter"]

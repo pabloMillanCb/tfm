@@ -27,6 +27,10 @@ text = "SETTINGS"
 layout_mode = 2
 text = "EXIT"
 
+[node name="Timer" type="Timer" parent="." unique_id=1213388711]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -7,3 +7,84 @@ RESUME,Resume,Continuar
 BACK,Back,Volver
 EXIT,Exit,Salir
 LANGUAGE,Language,Idioma
+GAME_OVER,GAME OVER,GAME OVER
+SWORD_NAME,The sword,La espada
+SWORD_INSTRUCTION,Atack pressing,Ataca con
+BREAK_NAME,The gauntlet,El guantelete
+BREAK_INSTRUCTION,Destroy the X blocks,Destruye los bloques X
+POGO_NAME,The secret technique,La técnica secreta
+POGO_INSTRUCTION,Press while atacking on air,Presiona mientras atacas en el aire
+TELEPORT_NAME,The wand,El cetro
+TELEPORT_INSTRUCTION,Cast the spell with,Usa el hechizo con
+YOU_OBTAINED,You obtained,Has obtenido
+MAIN_MENU,Main Menu,Menú Principal
+VOLUME,Volume,Volumen
+GENERAL,General,General
+MUSIC,Music,Música
+SCREEN,Screen,Pantalla
+FULLSCREEN,Fullscreen,Pantalla completa
+BRIGHTNESS,Brightness,Brillo
+CONTRAST,Contrast,Contraste
+CONTROLS,Controls,Controles
+LOAD_GAME,Load Game,Cargar Partida
+JUMP,Jump,Saltar
+ATACK,Atack pressing,Atacar
+WAND,Wand,Cetro
+ACCEPT,Accept,Aceptar
+CANCEL,Cancel,Cancelar
+MAP,Map,Mapa
+PAUSE,Pause,Pausar
+,,
+DEFAULT,Default,Por defecto
+BACK,Back,Atrás
+,,
+START_NEW_GAME?,Start new game in this slot?,¿Empezar juego en este archivo?
+DATA_WILL_BE_LOST,Previous data will be lost,Los datos anteriores se borrarán
+,,
+YES,Yes,Sí
+NO,No,No
+,,
+PARTY_1,Hey! You finally arriv-[wait=1.0][speed=0.2]?,¡Hola! Por fin has llega-[wait=1.0][speed=0.2]?
+PARTY_2,"Sorry, I've mistaken you with another fish.[wait=1.0]","Perdona, te confundí con otro pez muy parecido.[wait=1.0]"
+PARTY,,
+,,
+P_1,HIIIIIIIIIIIIIIIIIIIIIIIIII,HOLAAAAAAAAAAAA
+P_2,:O [wait=1.5] YOU UNDERSTAND WHAT I'M SAYING!!!!!!,:O [wait=1.5] ENTIENDES LO QUE DIGO!!!!!!!
+P_3,MY NAME IIIIIIIIIIIIIIIS,ME LLAMOOOOOOOO
+P_4,UUUUUUUUUUUUUH,EEEEEEEEEEEEEEE
+P_5,whats my name.,cómo me llamo.
+P_6,I DON'T KNOW [wait=1.5] :D,NO LO SÉ [wait=1.5] :D
+P_7,,DESDE QUE CAÍ EN ESTA ARMADURA MI CEREBRO ES MUY GORDO Y PUEDO MOVERME DE FORMAS NUNCA ANTES VISTAS
+P_8,I THIN I'LL USE THIS KNOWLEDGE TO MAKE LOTSA FRENDS,CREO QUE APROVECHARÉ ESTE FRUTO DEL CONOCIMIENTO PARA HACER MUCHOS AMIGOS
+P_9,wanna be my frend? :3c,quieres ser mi amigo? :3c
+P_10,OKEY DOKEY [wait=1.5] :P,VALEP [wait=1.5] :P
+P_11,HELO FREND,HOLA AMIGO
+P_12,YOU WANNA BE FRENDS NOW?,Y AHORA QUIERES SER MI AMIGO?????
+P_13,NIIIIIIIIIICE [wait=1.5] :P,VIVAAAAAAAA!!!!!!! [wait=1.5] :P
+P_14,,
+,,
+,,
+FORBIDDEN,[speed=0.05] THAT IS FORBIDDEN [wait=4.0],[speed=0.05] ESO ESTÁ PROHIBIDO [wait=4.0]
+,,
+,,
+,,
+B_1,Stop right there!,¡Alto ahí!
+B_2,[speed=0.25]You are[speed=0.05]...[speed=0.4] Ahhhhhhhhh.,[speed=0.25]Eres[speed=0.05]...[speed=0.4] Ahhhhhhhhh.
+B_3,[speed=0.4]You are not like those savage fishes up there.,[speed=0.4]Tú no eres como esos peces salvajes de allí arriba.
+B_4,[speed=0.4]You armor shines as bright as mine.,[speed=0.4]Tu armadura brilla como la mía.
+B_5,You are wellcome in that case.[wait=1.0] What brings you to this forgotten caves?,Bienhallado seas en tal caso.[wait=1.0] ¿Qué te trae por estas grutas olvidadas?
+B_6,"Treasute? [wait=1.0] Forbidden knowledge? [wait=1.0] Or maybe,[wait=0.75] your soul stranded here by pure chance, [wait=0.75] as mine.","¿Tesoros? [wait=1.0] ¿Conocimientos prohibidos? [wait=1.0] O quizás,[wait=0.75] como yo, [wait=0.75] tu alma acabó aquí abajo por casualidad."
+B_7,It does not matter anyway.[wait=1.0] I see you got yourself a nice blade.,Eso es lo de menos.[wait=1.0] Veo que has conseguido echarle el guante a un buen acero.
+B_8,You could use it with those unarmored fishes.,Podrías darle uso poniendo fin a esos salvajes sin armadura.
+B_9,"They seem like us, but they are not.[wait=1.0] We couldn't be more different.","Se parecen a nosotros, pero no te confundas.[wait=1.0] No podrían ser más distintos."
+B_10,[speed=0.6]They are unworthy. [wait=0.6]Unable to reason. [wait=0.6]Unable to speak.,[speed=0.6]Son seres insignificantes. [wait=0.6]Carentes de raciocinio. [wait=0.6]Carentes de habla.
+B_11,"It is our duty to put them down, as the chosen by the armor.[wait=0.6][speed=0.2] Don't you think?",Es nuestro deber como elegidos de la armadura mantenerlos a raya.[wait=0.6][speed=0.2] ¿No crees?
+B_12,Do you know yet how to open your map?,¿Sabes ya cómo abrir el mapa?
+,,
+,,
+A_1,[speed=0.4]Another armor[speed=0.1]... [wait=0.5][speed=0.6]Then you can hear my words.,[speed=0.4]Otra armadura[speed=0.1]... [wait=0.5][speed=0.6]Entonces podrás entender lo que digo.
+A_2,Have you seen a golden skull in these caves?,¿No habrás visto una calavera dorada por aquí?
+A_3,[speed=0.4]I'm not telling you why I'm searching it.,[speed=0.4]No te voy a decir para qué la quiero.
+A_4,Leave me alone.,Déjame.
+,,
+GAME_SAVED,GAME SAVED,PARTIDA GUARDADA

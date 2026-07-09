@@ -22,6 +22,10 @@ func _enter(_previous_state_path: String, _init_data := {}):
 	player.velocity.y = 0
 
 
+func _update(_delta):
+	player.pause_controls()
+
+
 func _update_physics(_delta):
 	time += _delta
 	

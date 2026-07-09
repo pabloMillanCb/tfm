@@ -4,21 +4,58 @@
 [ext_resource type="Texture2D" uid="uid://cum20b4rt1cos" path="res://scenes/breakable/skull/skull.png" id="2_0bsi3"]
 [ext_resource type="FontFile" uid="uid://d232ubsdytxgp" path="res://assets/fonts/Kenney Pixel.ttf" id="3_mqsch"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_w1l5e"]
-color = Color(0.3882353, 0.60784316, 1, 1)
-thickness = 2
-vertical = true
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2nxd"]
+bg_color = Color(0.3882353, 0.60784316, 1, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s6n3"]
+bg_color = Color(0.24705882, 0.24705882, 0.45490196, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+corner_detail = 1
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5wsn"]
+bg_color = Color(0.24705882, 0.24705882, 0.45490196, 1)
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pysux"]
+bg_color = Color(0.24705882, 0.24705882, 0.45490196, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65svs"]
+bg_color = Color(0.3882353, 0.60784316, 1, 1)
+corner_radius_top_left = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqsch"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(1, 1, 1, 0.19600001)
 
 [resource]
 Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_o06hx")
-Button/styles/focus = SubResource("StyleBoxLine_w1l5e")
-HSlider/icons/grabber = ExtResource("2_0bsi3")
+Button/styles/focus = SubResource("StyleBoxFlat_d2nxd")
+Button/styles/normal = SubResource("StyleBoxFlat_2s6n3")
+Button/styles/pressed = SubResource("StyleBoxFlat_w5wsn")
+CheckBox/constants/icon_max_width = 7
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = ExtResource("2_0bsi3")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_pysux")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_65svs")
 Label/fonts/font = ExtResource("3_mqsch")
+OptionButton/constants/arrow_margin = 4
+OptionButton/constants/icon_max_width = 1
+OptionButton/constants/modulate_arrow = 9
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_mqsch")

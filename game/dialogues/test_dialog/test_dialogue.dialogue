@@ -1,11 +1,13 @@
 ~ start
-Yo yo yooooooo
-This is a placeholder NPC
-Non of which I speak truly matters
-Which of my spikes is the coolest
-- First one
-	My fish ain't even trying.
-- Second one
-	The type of fish that likes Luigi.
-Wachout for da dog
+¡Alto ahí!
+[speed=0.25]Eres[speed=0.05]...[speed=0.4] Ahhhhhhhhh.
+[speed=0.4]Tú no eres como esos peces salvajes de allí arriba.
+[speed=0.4]Tu armadura brilla, como la mía. 
+Bienhallado seas en tal caso.[wait=1.0] ¿Qué te trae por estas grutas olvidadas?
+¿Tesoros? [wait=1.0] ¿Conocimientos prohibidos? [wait=1.0] O quizás,[wait=0.75] como yo, [wait=0.75] tu alma acabó aquí abajo por casualidad.
+Eso es lo de menos.[wait=1.0] Veo que has conseguido echarle el guante a un buen acero.
+Podrías darle uso poniendo fin a esos salvajes sin armadura.
+Se parecen a nosotros, pero no te confundas.[wait=1.0] No podrían ser más distintos.
+[speed=0.6]Son seres insignificantes. [wait=0.6]Carentes de razocinio. [wait=0.6]Incapaces de esgrimir una palabra.
+Es nuestro deber como elegidos de la armadura mantenerlos a raya.[wait=0.6][speed=0.2] ¿No crees?
 => END

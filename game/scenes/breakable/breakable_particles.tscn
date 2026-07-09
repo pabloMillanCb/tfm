@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dy26cock6suuk"]
+
+[ext_resource type="Script" uid="uid://dwmsr56l3b2hk" path="res://scenes/breakable/breakable_particles.gd" id="1_6c76d"]
+[ext_resource type="Texture2D" uid="uid://digi4ggrqjboo" path="res://scenes/breakable/particles/break_particle.png" id="1_djd6d"]
+[ext_resource type="AudioStream" uid="uid://1i47h17nr6po" path="res://assets/sound/wall_break.wav" id="3_upg0e"]
+
+[sub_resource type="Curve" id="Curve_rkc0f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.3386243, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_6c76d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.24867722, 1), 0.0, 0.0, 0, 0, Vector2(0.47883594, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="BreakableParticles" type="Node2D" unique_id=730480991]
+script = ExtResource("1_6c76d")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2048960957]
+visible = false
+emitting = false
+amount = 4
+texture = ExtResource("1_djd6d")
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(5.475, 6.055)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 150)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = -83.36
+angular_velocity_max = 178.11
+scale_amount_curve = SubResource("Curve_rkc0f")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=292423827]
+emitting = false
+amount = 16
+texture = ExtResource("1_djd6d")
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+angular_velocity_min = -113.68
+angular_velocity_max = 204.64
+linear_accel_min = -62.63
+linear_accel_max = -62.63
+damping_min = 100.0
+damping_max = 100.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_6c76d")
+
+[node name="WallSound" type="AudioStreamPlayer" parent="." unique_id=89121020]
+stream = ExtResource("3_upg0e")
+volume_db = -12.0
+
+[node name="SkullSound" type="AudioStreamPlayer" parent="." unique_id=579269044]
+stream = ExtResource("3_upg0e")
+volume_db = -12.0
+
+[connection signal="finished" from="WallSound" to="." method="_on_wall_sound_finished"]
+[connection signal="finished" from="SkullSound" to="." method="_on_skull_sound_finished"]
