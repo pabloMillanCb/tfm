@@ -132,7 +132,7 @@ Edholm et al. \cite{edholm} argumenta que es seguro afirmar que el crunch es un 
 
 \subsection{Contexto}
 
-El género \textit{metroidvania} enmarca videojuegos que combinan la acción y/o plataformeo\footnote{Los videojuegos de plataformas consisten en superar obstáculos a través del movimiento de un personaje} con la exploración no lineal de un mapa interconectado. Investigando dicho mapa se obtienen objetos y mejoras para el personaje del jugador, lo cual le permite abrir nuevos caminos y llegar a lugares a los que antes no podría acceder.
+El género \textit{metroidvania} enmarca videojuegos que combinan la acción y/o plataformeo\footnote{Los videojuegos de plataformas consisten en superar obstáculos a través del movimiento de un personaje} con la exploración no lineal de un mapa interconectado (como se puede ver en la figura \ref{fig:supermetroidmap}). Investigando dicho mapa se obtienen objetos y mejoras para el personaje del jugador, lo cual le permite abrir nuevos caminos y llegar a lugares a los que antes no podría acceder.
 
 \begin{figure}[h]
     \centering
@@ -308,7 +308,7 @@ En la figura \ref{fig:godotsceneexpample} se puede observar como luce un ejemplo
     \label{fig:godottreeexpample}
 \end{figure}
 
-En 2014 Godot fue publicado y su código fue liberado. De esto fue responsable Okam Studio, estudio de videojuegos argentino que dejó de estar en activo en 2019. Durante más de 10 años, Godot fue desarrollado como motor privado para los proyectos del estudio, que finalmente decidió liberarlo. Lo que empezó siendo el proyecto de una empresa con dos trabajadores, en diciembre acabó acumulando aportaciones de más de 2800 usuarios en su repositorio. En la base de datos SteamBD \cite{steamdb} se puede consultar como ha ido creciendo el número de juegos publicados con Godot cada año. 2024 supuso una explosión de casi el doble de publicaciones, llegando a 792.
+En 2014 Godot fue publicado y su código fue liberado. De esto fue responsable Okam Studio, estudio de videojuegos argentino que dejó de estar en activo en 2019. Durante más de 10 años, Godot fue desarrollado como motor privado para los proyectos del estudio, que finalmente decidió liberarlo. Lo que empezó siendo el proyecto de una empresa con dos trabajadores, en diciembre acabó acumulando aportaciones de más de 2800 usuarios en su repositorio. En la base de datos SteamBD \cite{steamdb} se puede consultar como ha ido creciendo el número de juegos publicados con Godot cada año. 2024 supuso una explosión de casi el doble de publicaciones, llegando a 792 (figura \ref{fig:godotbyyear}).
 
 En 2022 aparece de la mano de los dos fundadores \textit{Godot Foundation} \cite{godot-foundation}, organización sin ánimo de lucro que se dedica a gestionar en lo técnico y en lo económico el desarrollo del motor. Se financian enteramente a través de donaciones de usuarios y empresas patrocinadoras, entre las que se encuentran desarrolladoras de videojuegos que usan el motor, por lo que está en el mejor de sus intereses el desarrollo del proyecto. El código permanece abierto y recibiendo aportaciones de usuarios de todo el mundo, siendo la diferencia que, gracias a las donaciones, pueden permitirse contratar a ingenieros a tiempo completo para que gestionen y desarrollen el proyecto.
 
@@ -365,7 +365,7 @@ Masella muestra en el gráfico de la figura \ref{fig:nuts-and-bolts} la comparac
 
 Los beneficios del test automático y \textit{CI} se hacen evidentes, pero hay que escoger con criterio en qué momento aplicarlos. Programar los tests consume tiempo de desarrollo que podría ser empleado en otras cuestiones. \textit{Sea of Thieves} es un juego como servicio, el cual recibe actualizaciones post-lanzamiento de forma regular, por lo que mantener una base sólida es prioritario y ayuda en el largo plazo. Para juegos más pequeños, independientes o de presupuesto limitado, se debe escoger cuidadosamente dónde y cómo se aplican estas prácticas.
 
-Godot cuenta con múltiples herramientas para desarrollar test automáticos, como \href{https://github.com/MikeSchulze/gdUnit4}{gdUnit4}. También es interesante aplicar herramientas como \href{https://github.com/Nokorpo/GDSnap}{GDSnap} para hacer \textbf{snapshot testing}. Esta técnica consiste en guardar una serie de capturas de pantalla durante una ejecución automática del juego. Posteriormente, se repite la ejecución y se compara con las capturas de pantalla originales, detectando si hay alguna diferencia visual. Estos tests son muy baratos de producir, y si el juego tiene cambios visuales que los dejan obsoletos, se pueden volver a hacer rápidamente. Hay que tener en cuenta que son sensibles a elementos visuales que dependan de aleatoriedad como los sistemas de partículas, por lo que es necesario realizar ejecuciones controladas usando semillas. Un juego no puede tener únicamente test de snapshot, pero es muy útil en muchos casos, especialmente en interfaces y menús.
+Godot cuenta con múltiples herramientas para desarrollar test automáticos, como \href{https://github.com/MikeSchulze/gdUnit4}{gdUnit4}. También es interesante aplicar herramientas como \href{https://github.com/Nokorpo/GDSnap}{GDSnap} para hacer \textbf{snapshot testing} (figura \ref{fig:snapshot-test}). Esta técnica consiste en guardar una serie de capturas de pantalla durante una ejecución automática del juego. Posteriormente, se repite la ejecución y se compara con las capturas de pantalla originales, detectando si hay alguna diferencia visual. Estos tests son muy baratos de producir, y si el juego tiene cambios visuales que los dejan obsoletos, se pueden volver a hacer rápidamente. Hay que tener en cuenta que son sensibles a elementos visuales que dependan de aleatoriedad como los sistemas de partículas, por lo que es necesario realizar ejecuciones controladas usando semillas. Un juego no puede tener únicamente test de snapshot, pero es muy útil en muchos casos, especialmente en interfaces y menús.
 
 \begin{figure}[h]
     \centering
@@ -399,7 +399,7 @@ En caso de que el juego tenga elementos auditivos necesarios para avanzar en el 
 
 Para personas con visión reducida, se aplican todas las consideraciones para los subtítulos comentadas en el apartado anterior. Cualquier otro elemento interactuable, además, deberá tener al menos una fuente de 28 píxeles.
 
-La población daltónica representa un 10\% entre los hombres y un 0.5\% entre las mujeres. Existen diferentes tipos: protanopía (ausencia de color rojo), deuteranopía (ausencia de color verde) y tritanopía (ausencia de color azul).
+La población daltónica representa un 10\% entre los hombres y un 0.5\% entre las mujeres. Existen diferentes tipos: protanopía (ausencia de color rojo), deuteranopía (ausencia de color verde) y tritanopía (ausencia de color azul) (figura \ref{fig:daltonismo}).
 
 \begin{figure}[h]
     \centering
